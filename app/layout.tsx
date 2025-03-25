@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./global.css";
 import NavBar from "../components/NavBar"; // Adjust the path as necessary
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "BUHR.DESIGN",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body>
         <NavBar />
         {children}
+        <Analytics />
       </body>
     </html>
   );
