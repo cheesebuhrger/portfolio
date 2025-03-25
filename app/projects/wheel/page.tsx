@@ -156,12 +156,12 @@ const Project1: React.FC = () => {
           body={
             <>
               Design systems challenges with typography hierarchy, inconsistent
-              iconography, color contrast issues. Also, design didn't really
-              have a "voice" where decisions were questioned and brushed off. I
-              didn't understand why that was happening in the beginning but it
-              turns out, articulating decisions and putting enough rigor to know
-              if you're doing the right thing wasn't apart of the deign process
-              at the time.
+              iconography, color contrast issues. Also, design didn&apos;t
+              really have a &ldquo;voice&rdquo; where decisions were questioned
+              and brushed off. I didn&apos;t understand why that was happening
+              in the beginning but it turns out, articulating decisions and
+              putting enough rigor to know if you&apos;re doing the right thing
+              wasn&apos;t apart of the deign process at the time.
             </>
           }
         />

@@ -38,9 +38,9 @@ const Project1: React.FC = () => {
               </div> */}
               <p className="text-base col-span-4">
                 Buildforce is a pre-seed construction startup with a temp job
-                marketplace for electricians & subcontractors. I'm most proud of
-                cultivating an amazing team culture that was functionally
-                increasing in craft, collaboration, and growth.
+                marketplace for electricians & subcontractors. I&apos;m most
+                proud of cultivating an amazing team culture that was
+                functionally increasing in craft, collaboration, and growth.
               </p>
             </div>
             <div className="col-span-2 grid grid-cols-2 gap-6">
