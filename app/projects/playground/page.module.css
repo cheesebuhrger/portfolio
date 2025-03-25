@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+}
+
+.cursor-outline,
+.cursor-dot {
+  opacity: 0;
+}
+
+.cursor-outline {
+  border-radius: 50px;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: solid 1px #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+/* Visible when running fancy.js */
+.cursor-dot {
+  mix-blend-mode: difference;
+  border-radius: 50px;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  border: solid 1px #fff;
+  pointer-events: none;
+}
+
+.target,
+.cursor-outline,
+.cursor-dot {
+  /* needed for target (shared) */
+  top: 50%;
+  left: 10%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transform: translate(-50%, -50%) rotate(0deg);
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.target {
+  border-radius: 0;
+  border-radius: 50%;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border: solid 1px #07b0da;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 50px;
+}
+
+.text {
+  position: relative;
+  color: white;
+  margin: 0;
+  user-select: none;
+}
+
+.target * {
+  pointer-events: none;
+}

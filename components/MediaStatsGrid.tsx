@@ -1,0 +1,107 @@
+import MediaImage from "./MediaImage";
+import { ReactNode } from "react";
+import StatBlock from "./StatBlock";
+
+type MediaData = {
+  type: "image" | "video";
+  src: string;
+  alt: string;
+  caption?: string;
+  poster?: string;
+  autoPlay?: boolean;
+  loop?: boolean;
+  muted?: boolean;
+  controls?: boolean;
+};
+
+type StatBlock = {
+  title: ReactNode;
+  value: string;
+  footnote?: string;
+} | null;
+
+type MediaStatsGridProps = {
+  layout: {
+    type: "full" | "double" | "stats";
+    statsPosition?: "left" | "right";
+  };
+  media: MediaData[];
+  stats?: [StatBlock, StatBlock, StatBlock, StatBlock];
+};
+
+const MediaStatsGrid: React.FC<MediaStatsGridProps> = ({
+  layout,
+  media,
+  stats,
+}) => {
+  if (layout.type === "full") {
+    return (
+      <div>
+        <div className="relative bg-surface-secondary overflow-hidden rounded-md aspect-16/9">
+          <MediaImage {...media[0]} />
+        </div>
+        <p className="text-sm text-text-secondary mt-2 w-1/2">
+          {media[0].caption}
+        </p>
+      </div>
+    );
+  }
+
+  if (layout.type === "double") {
+    return (
+      <div className="flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-8">
+        {media.map((item, index) => (
+          <div key={index} className="w-full md:w-1/2">
+            <div className="relative bg-surface-secondary overflow-hidden rounded-md aspect-16/9-half">
+              <MediaImage {...item} />
+            </div>
+            {item.caption && (
+              <p className="text-sm text-text-secondary mt-2">{item.caption}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  // Stats layout
+  const StatBlocks = () => (
+    <div className="grid grid-rows md:grid-cols-2 w-full md:w-1/2 md:aspect-16/9-half gap-4 md:gap-2">
+      {[0, 1, 2, 3].map((index) => (
+        <div
+          key={index}
+          className={`${!stats?.[index] ? "hidden md:block" : ""}`}
+        >
+          {stats?.[index] && (
+            <StatBlock
+              title={stats[index]!.title}
+              value={stats[index]!.value}
+            />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <div className="flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-8">
+      {layout.statsPosition === "left" ? (
+        <>
+          <StatBlocks />
+          <div className="relative bg-surface-secondary overflow-hidden rounded-md aspect-16/9-half w-full md:w-1/2">
+            <MediaImage {...media[0]} />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="relative bg-surface-secondary overflow-hidden rounded-md aspect-16/9-half w-full md:w-1/2">
+            <MediaImage {...media[0]} />
+          </div>
+          <StatBlocks />
+        </>
+      )}
+    </div>
+  );
+};
+
+export default MediaStatsGrid;

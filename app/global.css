@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: "EditorialOldLight";
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+  src: url("../fonts/PPEditorialOld-Light.woff") format("woff");
+  src: url("../fonts/PPEditorialOld-Light.woff2") format("woff2");
+  src: url("../fonts/PPEditorialOld-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "EditorialOldLightItalic";
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  src: url("../fonts/PPEditorialOld-LightItalic.woff") format("woff");
+  src: url("../fonts/PPEditorialOld-LightItalic.woff2") format("woff2");
+  src: url("../fonts/PPEditorialOld-LightItalic.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "EditorialOldUltralight";
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  src: url("../fonts/PPEditorialOld-Ultralight.woff") format("woff");
+  src: url("../fonts/PPEditorialOld-Ultralight.woff2") format("woff2");
+  src: url("../fonts/PPEditorialOld-Ultralight.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "EditorialOldUltralightItalic";
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  src: url("../fonts/PPEditorialOld-UltralightItalic.woff") format("woff");
+  src: url("../fonts/PPEditorialOld-UltralightItalic.woff2") format("woff2");
+  src: url("../fonts/PPEditorialOld-UltralightItalic.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Surt";
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-rendering: optimizeLegibility; */
+  src: url("../fonts/Surt-Normal-Regular.woff") format("woff");
+  src: url("../fonts/Surt-Normal-Regular.woff2") format("woff2");
+  src: url("../fonts/Surt-Normal-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Geist";
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-rendering: optimizeLegibility; */
+  src: url("../fonts/GeistMono-Regular.woff2") format("woff2");
+  src: url("../fonts/GeistMono-Regular.otf") format("opentype");
+}
+
+:root {
+  --black-100: 0, 0, 0;
+  --black-90: 26, 26, 26;
+  --black-80: 51, 51, 51;
+  --black-70: 77, 77, 77;
+  --black-60: 102, 102, 102;
+  --white-100: 255, 255, 255;
+  --white-95: 242, 242, 242;
+  --red-100: 199, 16, 16;
+  --pink-02: 254, 248, 246;
+  --pink-05: 252, 234, 227;
+  --pink-10: 250, 220, 209;
+  --pink-20: 245, 186, 163;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+} */
+
+.cards {
+  display: grid;
+  > * {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+}
+
+@layer base {
+  html {
+    @apply text-text-primary font-sans bg-surface-background;
+  }
+  h1 {
+    @apply font-serif;
+  }
+  h2 {
+    @apply font-serif;
+  }
+  h3 {
+    @apply font-serif;
+  }
+  h4 {
+    @apply font-serif;
+  }
+  .project-section {
+    @apply relative px-8 py-40 grid grid-cols-12 w-screen;
+    @apply border-t border-border-primary;
+  }
+  .project-section-two {
+    @apply relative px-8 py-40 grid grid-cols-12 gap-24 w-screen;
+    @apply border-t border-border-primary;
+  }
+}
+
+/* LENIS SMOOTH SCROLL */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
