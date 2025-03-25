@@ -1,12 +1,9 @@
-interface MediaGroupWrapperProps {
+interface MediaGroupProps {
   children: React.ReactNode;
   className?: string;
 }
 
-const MediaGroupWrapper: React.FC<MediaGroupWrapperProps> = ({
-  children,
-  className,
-}) => {
+const MediaGroup: React.FC<MediaGroupProps> = ({ children, className }) => {
   return (
     <div className={`flex flex-col gap-4 md:gap-6 lg:gap-8 ${className}`}>
       {children}
@@ -14,4 +11,4 @@ const MediaGroupWrapper: React.FC<MediaGroupWrapperProps> = ({
   );
 };
 
-export default MediaGroupWrapper;
+export default MediaGroup;

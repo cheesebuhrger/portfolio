@@ -142,7 +142,7 @@ const Project1: React.FC = () => {
             <>
               Every project sparked scope debates, with speed taking priority
               over quality. This approach often led to hacked-together solutions
-              that didn't always solve the right problems for users.
+              that didn&apos;t always solve the right problems for users.
             </>
           }
         />
@@ -334,7 +334,7 @@ const Project1: React.FC = () => {
               <br />
               <br />
               He joined Buildforce as a Staff Product Designer focused on
-              bringing our SaaS product to life. It wasn't long before I
+              bringing our SaaS product to life. It wasn&apos;t long before I
               realized I needed to get out of the way, let him do his thing, and
               promote him to Head of Design. He greatly impacted design, design
               processes, how product operated and evolved, and overall team
@@ -350,10 +350,10 @@ const Project1: React.FC = () => {
               were able to grow and understand where to grow and focus.
               <br />
               <br />
-              Moreover, Buhr is the best designer I've had the privilege to work
-              with. His skill set is remarkably diverse, spanning product
+              Moreover, Buhr is the best designer I&apos;ve had the privilege to
+              work with. His skill set is remarkably diverse, spanning product
               design, marketing/growth, brand design, and more. There is no task
-              he couldn't handle.
+              he couldn&apos;t handle.
               <br />
               <br />I consider myself lucky to have had the opportunity to work
               with him, and I hope to have the chance to work with him again in

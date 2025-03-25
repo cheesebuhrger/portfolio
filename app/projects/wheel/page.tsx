@@ -13,7 +13,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useStackAnimation } from "@/hooks/useStackAnimation";
 import Button from "@/components/Button";
 import TransitionLink from "@/components/TransitionLink";
-import MediaGroupWrapper from "@/components/MediaGroupWrapper";
+import MediaGroup from "@/components/MediaGroup";
 gsap.registerPlugin(ScrollTrigger);
 
 const Project1: React.FC = () => {
@@ -128,7 +128,7 @@ const Project1: React.FC = () => {
           }
         />
 
-        <MediaGroupWrapper>
+        <MediaGroup>
           <MediaStatsGrid
             layout={{ type: "full" }}
             media={[
@@ -149,7 +149,7 @@ const Project1: React.FC = () => {
               },
             ]}
           />
-        </MediaGroupWrapper>
+        </MediaGroup>
 
         <ProjectSectionContent
           headline={<>No product and little data</>}
@@ -287,8 +287,8 @@ const Project1: React.FC = () => {
           role="N/A"
           preview={
             <>
-              I never thought I'd work for a company that actually listened to
-              their providers.
+              I never thought I&apos;d work for a company that actually listened
+              to their providers.
             </>
           }
           fullQuote={<></>}
@@ -300,8 +300,8 @@ const Project1: React.FC = () => {
           role="N/A"
           preview={
             <>
-              Love the new portal! It's so simple and clean. I can finally see
-              my earnings!!!
+              Love the new portal! It&apos;s so simple and clean. I can finally
+              see my earnings!!!
             </>
           }
           fullQuote={<></>}
@@ -320,7 +320,7 @@ const Project1: React.FC = () => {
           fullQuote={<></>}
         />
 
-        <MediaGroupWrapper>
+        <MediaGroup>
           <MediaStatsGrid
             layout={{ type: "full" }}
             media={[
@@ -351,7 +351,7 @@ const Project1: React.FC = () => {
               },
             ]}
           />
-        </MediaGroupWrapper>
+        </MediaGroup>
       </ProjectSection>
 
       {/* ---- APPROACH ---- */}
