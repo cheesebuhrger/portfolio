@@ -467,9 +467,10 @@ const Project1: React.FC = () => {
               focused and beautiful UX is unparalleled. At Buildforce I watched
               Buhr take a scattered brand and transform it into something unique
               and consistent -- all within the span of a few months. As if that
-              weren't enough, shortly after its release Buhr was able to to make
-              contributions to our production codebase and release UI changes
-              that may have never been prioritized by a busy engineering team.
+              weren&apos;t enough, shortly after its release Buhr was able to to
+              make contributions to our production codebase and release UI
+              changes that may have never been prioritized by a busy engineering
+              team.
               <br />
               <br />
               When encountering technical hurdles, Buhr is quick to collaborate.
@@ -574,35 +575,35 @@ const Project1: React.FC = () => {
           }
           fullQuote={
             <>
-              Buhr's impact on Buildforce was undeniable from the moment he
-              joined the team. He wasn't just another hire; he rolled up his
-              sleeves and helped us define and establish design processes that
-              are still the backbone of our workflow today. He also played a key
-              role in facilitating and shaping our product roadmap, ensuring
-              design remained at the forefront of every decision. His passion
-              for fostering a strong design culture was infectious, creating a
-              space where collaboration and innovation thrived across product,
-              design, and engineering.
+              Buhr&apos;s impact on Buildforce was undeniable from the moment he
+              joined the team. He wasn&apos;t just another hire; he rolled up
+              his sleeves and helped us define and establish design processes
+              that are still the backbone of our workflow today. He also played
+              a key role in facilitating and shaping our product roadmap,
+              ensuring design remained at the forefront of every decision. His
+              passion for fostering a strong design culture was infectious,
+              creating a space where collaboration and innovation thrived across
+              product, design, and engineering.
               <br />
               <br />
-              Buhr's leadership went beyond just the technical aspects. He
+              Buhr&apos;s leadership went beyond just the technical aspects. He
               spearheaded the development of our design systems and brand
               identity, ensuring a consistent experience for all our products.
               But what truly sets Buhr apart is his ability to connect with
-              people. He's a fantastic listener who asks insightful questions
-              and acts as a skilled mediator, fostering open communication and
-              bridging gaps between teams with his genuine curiosity and
-              collaborative spirit. He wasn't just my manager; he was a mentor
-              who generously shared his knowledge and helped shape my
-              professional journey.
+              people. He&apos;s a fantastic listener who asks insightful
+              questions and acts as a skilled mediator, fostering open
+              communication and bridging gaps between teams with his genuine
+              curiosity and collaborative spirit. He wasn&apos;t just my
+              manager; he was a mentor who generously shared his knowledge and
+              helped shape my professional journey.
               <br />
               <br />
-              Buhr's a rare combination of design expertise, collaborative
-              spirit, and a genuinely positive and curious personality. He's an
-              invaluable asset to any organization, and I highly recommend him
-              for any design leadership role where his skills and experience can
-              truly shine. It was an absolute privilege to get to work with and
-              know this wonderful human being.
+              Buhr&apos;s a rare combination of design expertise, collaborative
+              spirit, and a genuinely positive and curious personality.
+              He&apos;s an invaluable asset to any organization, and I highly
+              recommend him for any design leadership role where his skills and
+              experience can truly shine. It was an absolute privilege to get to
+              work with and know this wonderful human being.
             </>
           }
         />

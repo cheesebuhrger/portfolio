@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Button from "./Button";
 
 interface ModalProps {
@@ -26,13 +26,13 @@ const Modal: React.FC<ModalProps> = ({
     }
   }, [isOpen]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIsClosing(true);
     setTimeout(() => {
       onClose();
       setIsVisible(false);
     }, 700);
-  };
+  }, [onClose]);
 
   const handleScrimClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -62,7 +62,7 @@ const Modal: React.FC<ModalProps> = ({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, onPrev, onNext]);
+  }, [isOpen, onPrev, onNext, handleClose]);
 
   if (!isOpen && !isVisible) return null;
 

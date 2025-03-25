@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Button from "./Button";
-import SectionLabel from "./ProjectSection";
+import ProjectSection from "./ProjectSection";
 
 interface Project {
   id: number;
@@ -88,9 +88,8 @@ const IndexHero: React.FC = () => {
 
       {/* List of projects for switching, with focus styling */}
       <div className="absolute bottom-16 left-16 transform flex flex-col">
-        <SectionLabel
-          number="01"
-          title="Case Studies"
+        <ProjectSection
+          sectionLabel="Case Studies"
           className="h-10 flex items-center"
         />
         {projects.map((project) => (
