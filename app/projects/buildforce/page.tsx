@@ -5,11 +5,9 @@ import Logo from "../../../public/images/logos/logo-buildforce.svg";
 import MediaStatsGrid from "@/components/MediaStatsGrid";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 // import { useAppearAnimation } from "@/hooks/useAppearAnimation";
-import { useLenisScroll } from "@/hooks/useLenisScroll";
 
 const Project1: React.FC = () => {
   // const appearRef = useAppearAnimation();
-  useLenisScroll(); // Initialize smooth scrolling
   const imageScaleRef = useImageScaleAnimation();
 
   return (

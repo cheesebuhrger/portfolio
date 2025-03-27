@@ -10,21 +10,21 @@ export interface GridItem {
 export const playgroundItems: GridItem[] = [
   {
     type: "video",
-    src: "/images/craft/buildforce-loader.webm",
+    src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1742872389/buildforce-loader_ntpl4q.webm",
     title: "Buildforce Loader",
     date: "2024",
     description: "Animated loader I created using Lottie.",
   },
   {
     type: "image",
-    src: "/images/craft/gloss-genius.webp",
+    src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742872388/gloss-genius_jo1q9t.webp",
     title: "Gloss Genius",
     date: "2023",
     description: "A visual exercise for Gloss Genius.",
   },
   {
     type: "image",
-    src: "/images/craft/buildforce-icons.webp",
+    src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742872387/buildforce-icons_gzy72y.webp",
     title: "Buildforce Icons",
     date: "2024",
     description:
@@ -32,7 +32,7 @@ export const playgroundItems: GridItem[] = [
   },
   {
     type: "image",
-    src: "/images/craft/buildforce-spots.webp",
+    src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742872387/buildforce-spots_zhudiu.webp",
     title: "Buildforce Spots",
     date: "2024",
     description:
@@ -40,7 +40,7 @@ export const playgroundItems: GridItem[] = [
   },
   {
     type: "video",
-    src: "/images/craft/uber-cross-dispatch.webm",
+    src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1742872390/uber-cross-dispatch_fpunmd.webm",
     title: "Uber Cross Dispatch",
     date: "2017",
     description:
@@ -48,19 +48,19 @@ export const playgroundItems: GridItem[] = [
   },
   {
     type: "image",
-    src: "/images/craft/chapter-2.webp",
+    src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742872388/chapter-2_hjku1l.webp",
     title: "Chapter 2",
     date: "2014",
   },
   {
     type: "image",
-    src: "/images/craft/chapter-4.webp",
+    src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742872388/chapter-4_tdbtuv.webp",
     title: "Chapter 4",
     date: "2014",
   },
   {
     type: "video",
-    src: "/images/craft/andy-nguyen.webm",
+    src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1742872391/andy-nguyen_eg7k6a.webm",
     title: "Andy Nguyen Portrait",
     date: "2014",
     url: "https://vimeo.com/113965742",
@@ -69,7 +69,7 @@ export const playgroundItems: GridItem[] = [
   },
   {
     type: "video",
-    src: "/images/craft/eod-props.webm",
+    src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1742872389/eod-props_r90nda.webm",
     title: "Enzyme Value Props",
     date: "2019",
     description:

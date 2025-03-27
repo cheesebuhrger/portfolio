@@ -6,7 +6,7 @@ type MediaData = {
   type: "image" | "video";
   src: string;
   alt: string;
-  caption?: string;
+  caption?: ReactNode;
   poster?: string;
   autoPlay?: boolean;
   loop?: boolean;
@@ -56,7 +56,11 @@ const MediaStatsGrid: React.FC<MediaStatsGridProps> = ({
               <MediaImage {...item} />
             </div>
             {item.caption && (
-              <p className="text-sm text-text-secondary mt-2">{item.caption}</p>
+              <div className="grid grid-cols-1 mb-2 md:mb-4 lg:mb-0 xl:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+                <p className="xl:col-span-2 text-xs text-text-secondary mt-2">
+                  {item.caption}
+                </p>
+              </div>
             )}
           </div>
         ))}

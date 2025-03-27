@@ -1,9 +1,9 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import TransitionLink from "./TransitionLink";
 import { projects, romanNumerals } from "@/data/indexProjectCovers";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
-import TransitionLink from "./TransitionLink";
 import CursorDot from "./CursorDot";
 
 gsap.registerPlugin(ScrollTrigger);

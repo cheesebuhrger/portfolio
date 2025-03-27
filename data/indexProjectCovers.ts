@@ -43,8 +43,7 @@ export const projects: Project[] = [
     },
   },
   {
-    title:
-      "How I shaped the design culture at Buildforce and improved collaboration",
+    title: "How I shaped design & improved collaboration @Buildforce",
     company: "Buildforce",
     year: "2023-24",
     url: "/projects/buildforce-leadership",
@@ -63,11 +62,11 @@ export const projects: Project[] = [
     year: "2022-23",
     url: "/projects/strava-growth",
     image1: {
-      src: "/images/strava-growth/strava-growth-cover-1.webp",
+      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873197/strava-growth-cover-1_dwsdpv.webp",
       alt: "Buildforce",
     },
     image2: {
-      src: "/images/strava-growth/strava-growth-cover-2.webp",
+      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873197/strava-growth-cover-2_iyh5ek.webp",
       alt: "Buildforce",
     },
   },
@@ -78,7 +77,7 @@ export const projects: Project[] = [
     year: "2021",
     url: "/projects/wheel",
     image1: {
-      src: "/images/wheel/wheel-cover-1.webp",
+      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873250/wheel-cover-1_uamqg1.webp",
       alt: "Buildforce",
     },
     image2: {

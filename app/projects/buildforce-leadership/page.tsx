@@ -3,7 +3,6 @@
 import React from "react";
 import MediaStatsGrid from "@/components/MediaStatsGrid";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
-import { useLenisScroll } from "@/hooks/useLenisScroll";
 import ProjectSectionContent from "@/components/ProjectSectionContent";
 import ProjectSection from "@/components/ProjectSection";
 import ProjectHero from "@/components/ProjectHero";
@@ -12,13 +11,12 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useStackAnimation } from "@/hooks/useStackAnimation";
 import Button from "@/components/Button";
-import TransitionLink from "@/components/TransitionLink";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Project1: React.FC = () => {
   const imageScaleRef = useImageScaleAnimation();
   const stackRef = useStackAnimation();
-  useLenisScroll(); // Initialize smooth scrolling
 
   return (
     <div>
@@ -26,7 +24,7 @@ const Project1: React.FC = () => {
         headline={
           <>
             <div className="">
-              How I shaped design @Buildforce & improved collaboration
+              How I shaped design & improved collaboration @Buildforce
             </div>
           </>
         }
@@ -314,52 +312,58 @@ const Project1: React.FC = () => {
           ]}
         />
         <Quote
-          image="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742857057/michaelo_yesl2r.webp"
-          name="Michael Orcutt"
-          role="CTO"
-          preview={
-            <>
-              Buhr{" "}
-              <span className="text-text-action">
-                greatly impacted design, design processes, how product operated
-                and evolved, and overall team dynamics
-              </span>
-              . When he joined, things were a bit chaotic, and he brought
-              balance and much-needed structure to our team.
-            </>
-          }
-          fullQuote={
-            <>
-              Buhr is talented far beyond his title.
-              <br />
-              <br />
-              He joined Buildforce as a Staff Product Designer focused on
-              bringing our SaaS product to life. It wasn&apos;t long before I
-              realized I needed to get out of the way, let him do his thing, and
-              promote him to Head of Design. He greatly impacted design, design
-              processes, how product operated and evolved, and overall team
-              dynamics. When he joined, things were a bit chaotic, and he
-              brought balance and much-needed structure to our team. He did this
-              all while elevating our design, brand, and overall experience of
-              Buildforce.
-              <br />
-              <br />
-              He set the structure and processes for managing designers at
-              Buildforce. He had a thoughtful approach and consistently managed
-              and mentored another product designer. Under his leadership, they
-              were able to grow and understand where to grow and focus.
-              <br />
-              <br />
-              Moreover, Buhr is the best designer I&apos;ve had the privilege to
-              work with. His skill set is remarkably diverse, spanning product
-              design, marketing/growth, brand design, and more. There is no task
-              he couldn&apos;t handle.
-              <br />
-              <br />I consider myself lucky to have had the opportunity to work
-              with him, and I hope to have the chance to work with him again in
-              the future.
-            </>
-          }
+          writer={{
+            image:
+              "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742857057/michaelo_yesl2r.webp",
+            name: "Michael Orcutt",
+            role: "CTO",
+          }}
+          content={{
+            snippet: (
+              <>
+                Buhr{" "}
+                <span className="text-text-action">
+                  greatly impacted design, design processes, how product
+                  operated and evolved, and overall team dynamics
+                </span>
+                . When he joined, things were a bit chaotic, and he brought
+                balance and much-needed structure to our team.
+              </>
+            ),
+            full: (
+              <>
+                Buhr is talented far beyond his title.
+                <br />
+                <br />
+                He joined Buildforce as a Staff Product Designer focused on
+                bringing our SaaS product to life. It wasn&apos;t long before I
+                realized I needed to get out of the way, let him do his thing,
+                and promote him to Head of Design. He greatly impacted design,
+                design processes, how product operated and evolved, and overall
+                team dynamics. When he joined, things were a bit chaotic, and he
+                brought balance and much-needed structure to our team. He did
+                this all while elevating our design, brand, and overall
+                experience of Buildforce.
+                <br />
+                <br />
+                He set the structure and processes for managing designers at
+                Buildforce. He had a thoughtful approach and consistently
+                managed and mentored another product designer. Under his
+                leadership, they were able to grow and understand where to grow
+                and focus.
+                <br />
+                <br />
+                Moreover, Buhr is the best designer I&apos;ve had the privilege
+                to work with. His skill set is remarkably diverse, spanning
+                product design, marketing/growth, brand design, and more. There
+                is no task he couldn&apos;t handle.
+                <br />
+                <br />I consider myself lucky to have had the opportunity to
+                work with him, and I hope to have the chance to work with him
+                again in the future.
+              </>
+            ),
+          }}
         />
 
         <div
@@ -447,39 +451,44 @@ const Project1: React.FC = () => {
         />
 
         <Quote
-          image="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742857057/colin_xmpff3.webp"
-          name="Colin Harman"
-          role="Staff Software Engineer"
-          preview={
-            <>
-              We loved having Buhr in the room because it meant our scoping,
-              critiquing, or ideating would result in a{" "}
-              <span className="text-text-action">
-                higher quality feature in less time.
-              </span>
-            </>
-          }
-          fullQuote={
-            <>
-              Buhr is one of the most talented designers and product minds I
-              have encountered in my 10 years working as a software engineer.
-              His ability to isolate and solve customer problems with simple,
-              focused and beautiful UX is unparalleled. At Buildforce I watched
-              Buhr take a scattered brand and transform it into something unique
-              and consistent -- all within the span of a few months. As if that
-              weren&apos;t enough, shortly after its release Buhr was able to to
-              make contributions to our production codebase and release UI
-              changes that may have never been prioritized by a busy engineering
-              team.
-              <br />
-              <br />
-              When encountering technical hurdles, Buhr is quick to collaborate.
-              We often came up with creative design alterations, keeping
-              engineering pace high. As a result, we loved having Buhr in the
-              room because it meant our scoping, critiquing, or ideating would
-              result in a higher quality feature in less time.
-            </>
-          }
+          writer={{
+            image:
+              "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742857057/colin_xmpff3.webp",
+            name: "Colin Harman",
+            role: "Staff Software Engineer",
+          }}
+          content={{
+            snippet: (
+              <>
+                We loved having Buhr in the room because it meant our scoping,
+                critiquing, or ideating would result in a{" "}
+                <span className="text-text-action">
+                  higher quality feature in less time.
+                </span>
+              </>
+            ),
+            full: (
+              <>
+                Buhr is one of the most talented designers and product minds I
+                have encountered in my 10 years working as a software engineer.
+                His ability to isolate and solve customer problems with simple,
+                focused and beautiful UX is unparalleled. At Buildforce I
+                watched Buhr take a scattered brand and transform it into
+                something unique and consistent -- all within the span of a few
+                months. As if that weren&apos;t enough, shortly after its
+                release Buhr was able to to make contributions to our production
+                codebase and release UI changes that may have never been
+                prioritized by a busy engineering team.
+                <br />
+                <br />
+                When encountering technical hurdles, Buhr is quick to
+                collaborate. We often came up with creative design alterations,
+                keeping engineering pace high. As a result, we loved having Buhr
+                in the room because it meant our scoping, critiquing, or
+                ideating would result in a higher quality feature in less time.
+              </>
+            ),
+          }}
         />
 
         <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
@@ -561,51 +570,58 @@ const Project1: React.FC = () => {
         />
 
         <Quote
-          image="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742857057/melysia_si7s14.webp"
-          name="Melysia Cha"
-          role="Product Designer"
-          preview={
-            <>
-              Buhr acts as a skilled mediator,{" "}
-              <span className="text-text-action">
-                fostering open communication and bridging gaps
-              </span>{" "}
-              between teams with his genuine curiosity and collaborative spirit.
-            </>
-          }
-          fullQuote={
-            <>
-              Buhr&apos;s impact on Buildforce was undeniable from the moment he
-              joined the team. He wasn&apos;t just another hire; he rolled up
-              his sleeves and helped us define and establish design processes
-              that are still the backbone of our workflow today. He also played
-              a key role in facilitating and shaping our product roadmap,
-              ensuring design remained at the forefront of every decision. His
-              passion for fostering a strong design culture was infectious,
-              creating a space where collaboration and innovation thrived across
-              product, design, and engineering.
-              <br />
-              <br />
-              Buhr&apos;s leadership went beyond just the technical aspects. He
-              spearheaded the development of our design systems and brand
-              identity, ensuring a consistent experience for all our products.
-              But what truly sets Buhr apart is his ability to connect with
-              people. He&apos;s a fantastic listener who asks insightful
-              questions and acts as a skilled mediator, fostering open
-              communication and bridging gaps between teams with his genuine
-              curiosity and collaborative spirit. He wasn&apos;t just my
-              manager; he was a mentor who generously shared his knowledge and
-              helped shape my professional journey.
-              <br />
-              <br />
-              Buhr&apos;s a rare combination of design expertise, collaborative
-              spirit, and a genuinely positive and curious personality.
-              He&apos;s an invaluable asset to any organization, and I highly
-              recommend him for any design leadership role where his skills and
-              experience can truly shine. It was an absolute privilege to get to
-              work with and know this wonderful human being.
-            </>
-          }
+          writer={{
+            image:
+              "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742857057/melysia_si7s14.webp",
+            name: "Melysia Cha",
+            role: "Product Designer",
+          }}
+          content={{
+            snippet: (
+              <>
+                Buhr acts as a skilled mediator,{" "}
+                <span className="text-text-action">
+                  fostering open communication and bridging gaps
+                </span>{" "}
+                between teams with his genuine curiosity and collaborative
+                spirit.
+              </>
+            ),
+            full: (
+              <>
+                Buhr&apos;s impact on Buildforce was undeniable from the moment
+                he joined the team. He wasn&apos;t just another hire; he rolled
+                up his sleeves and helped us define and establish design
+                processes that are still the backbone of our workflow today. He
+                also played a key role in facilitating and shaping our product
+                roadmap, ensuring design remained at the forefront of every
+                decision. His passion for fostering a strong design culture was
+                infectious, creating a space where collaboration and innovation
+                thrived across product, design, and engineering.
+                <br />
+                <br />
+                Buhr&apos;s leadership went beyond just the technical aspects.
+                He spearheaded the development of our design systems and brand
+                identity, ensuring a consistent experience for all our products.
+                But what truly sets Buhr apart is his ability to connect with
+                people. He&apos;s a fantastic listener who asks insightful
+                questions and acts as a skilled mediator, fostering open
+                communication and bridging gaps between teams with his genuine
+                curiosity and collaborative spirit. He wasn&apos;t just my
+                manager; he was a mentor who generously shared his knowledge and
+                helped shape my professional journey.
+                <br />
+                <br />
+                Buhr&apos;s a rare combination of design expertise,
+                collaborative spirit, and a genuinely positive and curious
+                personality. He&apos;s an invaluable asset to any organization,
+                and I highly recommend him for any design leadership role where
+                his skills and experience can truly shine. It was an absolute
+                privilege to get to work with and know this wonderful human
+                being.
+              </>
+            ),
+          }}
         />
 
         <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">

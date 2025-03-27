@@ -1,12 +1,14 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import TransitionLink from "./TransitionLink";
+import Link from "next/link";
+import { useTransition } from "../hooks/useTransition";
 import Button from "./Button";
 
-const NavBar = () => {
+const Nav = () => {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const { navigate } = useTransition();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -20,18 +22,22 @@ const NavBar = () => {
           <div>PRODUCT DESIGNER</div>
         </div>
       ) : (
-        <Button label="←" href="/" size="medium" />
+        <Button href="/" label="←" />
       )}
       {isHome && (
-        <TransitionLink
+        <Link
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/about");
+          }}
           href="/about"
           className="col-span-4 col-start-10 justify-self-end"
         >
           ABOUT
-        </TransitionLink>
+        </Link>
       )}
     </nav>
   );
 };
 
-export default NavBar;
+export default Nav;

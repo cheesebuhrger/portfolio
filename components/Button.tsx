@@ -5,7 +5,7 @@ import SplitType from "split-type";
 import { gsap } from "gsap";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { animationPageOut } from "@/utils/animations";
+import TransitionLink from "./TransitionLink";
 
 interface ButtonProps {
   label: string;
@@ -14,7 +14,6 @@ interface ButtonProps {
   className?: string;
   size?: "small" | "medium" | "large";
   variant?: "primary" | "secondary";
-  useTransition?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -24,7 +23,6 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   size = "medium",
   variant = "primary",
-  useTransition = true,
 }) => {
   const linkRef = useRef<HTMLAnchorElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -111,11 +109,6 @@ const Button: React.FC<ButtonProps> = ({
     if (onClick) {
       e.preventDefault();
       onClick();
-    } else if (href && useTransition) {
-      e.preventDefault();
-      if (pathname !== href) {
-        animationPageOut(href, router);
-      }
     }
   };
 
@@ -149,14 +142,9 @@ const Button: React.FC<ButtonProps> = ({
   );
 
   return href ? (
-    <Link
-      ref={linkRef}
-      href={href}
-      onClick={handleClick}
-      className={commonClassName}
-    >
+    <TransitionLink href={href} className={commonClassName}>
       {buttonContent}
-    </Link>
+    </TransitionLink>
   ) : (
     <button
       ref={buttonRef}

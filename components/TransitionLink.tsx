@@ -1,31 +1,26 @@
-import { ReactNode } from "react";
+"use client";
+
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { animationPageOut } from "@/utils/animations";
+import { useTransition } from "../hooks/useTransition";
 
 interface TransitionLinkProps {
   href: string;
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
 }
 
-const TransitionLink = ({
-  href,
-  children,
-  className = "",
-}: TransitionLinkProps) => {
-  const pathname = usePathname();
-  const router = useRouter();
-
-  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    if (pathname !== href) {
-      animationPageOut(href, router);
-    }
-  };
+const TransitionLink = ({ href, children, className }: TransitionLinkProps) => {
+  const { navigate } = useTransition();
 
   return (
-    <Link href={href} className={className} onClick={handleNavigation}>
+    <Link
+      href={href}
+      onClick={(e) => {
+        e.preventDefault();
+        navigate(href);
+      }}
+      className={className}
+    >
       {children}
     </Link>
   );
