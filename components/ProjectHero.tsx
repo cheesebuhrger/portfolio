@@ -97,7 +97,7 @@ const ProjectHero: React.FC<ProjectHeroProps> = ({
       className={`flex flex-col gap-y-12 md:gap-y-24 pb-24 md:pb-40 w-screen ${className}`}
     >
       <div className="flex flex-col gap-y-12 md:gap-y-24 pt-24 pb-4 md:pb-0 md:h-85 md:justify-end">
-        <h1 className="~text-6xl/9xl px-4 md:px-6 lg:px-8 text-text-primary text-balance">
+        <h1 className="~text-6xl-p/9xl-p px-4 md:px-6 lg:px-8 text-text-primary text-balance">
           {headline}
         </h1>
         <div className="grid grid-flow-row md:grid-flow-col md:grid-cols-6 lg:grid-cols-12 gap-12 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8">

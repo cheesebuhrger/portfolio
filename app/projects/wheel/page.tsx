@@ -1,23 +1,61 @@
 "use client";
 
 import React from "react";
+import { useRef } from "react";
+
 import MediaStatsGrid from "@/components/MediaStatsGrid";
-import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import ProjectSectionContent from "@/components/ProjectSectionContent";
 import ProjectSection from "@/components/ProjectSection";
 import ProjectHero from "@/components/ProjectHero";
 import Quote from "@/components/Quote";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useStackAnimation } from "@/hooks/useStackAnimation";
 import Button from "@/components/Button";
 import MediaGroup from "@/components/MediaGroup";
-import { ReactLenis } from "@studio-freight/react-lenis";
-gsap.registerPlugin(ScrollTrigger);
 
-const Project1: React.FC = () => {
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ReactLenis } from "@studio-freight/react-lenis";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useStackAnimation } from "@/hooks/useStackAnimation";
+import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
+import SplitType from "split-type";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+const Wheel: React.FC = () => {
   const imageScaleRef = useImageScaleAnimation();
   const stackRef = useStackAnimation();
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const heroText = new SplitType(".project-hero-text", {
+      types: "lines",
+      tagName: "div",
+      lineClass: "line",
+    });
+    heroText.lines?.forEach((line) => {
+      const content = line.innerHTML;
+      line.innerHTML = `<span>${content}</span>`;
+    });
+
+    gsap.set(".project-hero-text .line span", {
+      y: 125,
+      // x: 50,
+      // rotateX: -135,
+      display: "block",
+    });
+    gsap.to(".project-hero-text .line span", {
+      y: 0,
+      // x: 0,
+      // rotateX: 0,
+      duration: 1,
+      stagger: 0.25,
+      ease: "expo.out",
+      delay: 1,
+    });
+    return () => {
+      if (heroText) heroText.revert();
+    };
+  }, [container]);
 
   return (
     <ReactLenis root>
@@ -25,7 +63,7 @@ const Project1: React.FC = () => {
         <ProjectHero
           headline={
             <>
-              <div className="">
+              <div className="project-hero-text" ref={container}>
                 Designing for clarity, control, & efficiency in virtual care,
                 from 0 → 1
               </div>
@@ -534,4 +572,4 @@ const Project1: React.FC = () => {
   );
 };
 
-export default Project1;
+export default Wheel;
