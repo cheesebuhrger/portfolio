@@ -24,38 +24,38 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 const Wheel: React.FC = () => {
   const imageScaleRef = useImageScaleAnimation();
   const stackRef = useStackAnimation();
-  const container = useRef<HTMLDivElement>(null);
+  // const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    const heroText = new SplitType(".project-hero-text", {
-      types: "lines",
-      tagName: "div",
-      lineClass: "line",
-    });
-    heroText.lines?.forEach((line) => {
-      const content = line.innerHTML;
-      line.innerHTML = `<span>${content}</span>`;
-    });
+  // useGSAP(() => {
+  //   const heroText = new SplitType(".project-hero-text", {
+  //     types: "lines",
+  //     tagName: "div",
+  //     lineClass: "line",
+  //   });
+  //   heroText.lines?.forEach((line) => {
+  //     const content = line.innerHTML;
+  //     line.innerHTML = `<span>${content}</span>`;
+  //   });
 
-    gsap.set(".project-hero-text .line span", {
-      y: 125,
-      // x: 50,
-      // rotateX: -135,
-      display: "block",
-    });
-    gsap.to(".project-hero-text .line span", {
-      y: 0,
-      // x: 0,
-      // rotateX: 0,
-      duration: 1,
-      stagger: 0.25,
-      ease: "expo.out",
-      delay: 1,
-    });
-    return () => {
-      if (heroText) heroText.revert();
-    };
-  }, [container]);
+  //   gsap.set(".project-hero-text .line span", {
+  //     y: 125,
+  //     // x: 50,
+  //     // rotateX: -135,
+  //     display: "block",
+  //   });
+  //   gsap.to(".project-hero-text .line span", {
+  //     y: 0,
+  //     // x: 0,
+  //     // rotateX: 0,
+  //     duration: 1,
+  //     stagger: 0.075,
+  //     ease: "expo.out",
+  //     delay: 1,
+  //   });
+  //   return () => {
+  //     if (heroText) heroText.revert();
+  //   };
+  // }, [container]);
 
   return (
     <ReactLenis root>
@@ -63,10 +63,8 @@ const Wheel: React.FC = () => {
         <ProjectHero
           headline={
             <>
-              <div className="project-hero-text" ref={container}>
-                Designing for clarity, control, & efficiency in virtual care,
-                from 0 → 1
-              </div>
+              Designing for clarity, control, & efficiency in virtual care, from
+              0 → 1
             </>
           }
           results={[

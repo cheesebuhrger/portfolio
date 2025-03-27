@@ -107,9 +107,8 @@ html {
   }
 } */
 
-.project-hero-text .line {
+/* .project-hero-text .line {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  /* border: 1px solid red; */
 }
 
 .project-hero-text .line:not(:first-child) {
@@ -119,7 +118,7 @@ html {
 .project-hero-text .line span {
   position: relative;
   will-change: transform;
-}
+} */
 
 .cards {
   display: grid;

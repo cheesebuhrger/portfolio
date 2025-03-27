@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useTransition } from "../hooks/useTransition";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 interface TransitionLinkProps {
   href: string;
@@ -11,13 +12,18 @@ interface TransitionLinkProps {
 
 const TransitionLink = ({ href, children, className }: TransitionLinkProps) => {
   const { navigate } = useTransition();
+  const isMobile = useIsMobile();
 
   return (
     <Link
       href={href}
       onClick={(e) => {
         e.preventDefault();
-        navigate(href);
+        if (!isMobile) {
+          navigate(href);
+        } else {
+          window.location.href = href;
+        }
       }}
       className={className}
     >

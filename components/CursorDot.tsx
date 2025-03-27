@@ -1,6 +1,7 @@
 "use client";
 
 import { useCursorAnimation } from "@/hooks/useCursorAnimation";
+import { useIsTouch } from "@/hooks/useIsTouch";
 
 interface CursorDotProps {
   text?: string;
@@ -8,13 +9,16 @@ interface CursorDotProps {
 
 const CursorDot = ({ text = "VIEW MORE" }: CursorDotProps) => {
   useCursorAnimation();
+  const isTouch = useIsTouch();
+
+  if (isTouch) return null;
 
   return (
     <>
-      <div className="cursor-text fixed top-0 left-0 rounded-[1000px] w-24 h-24 pointer-events-none z-[50] flex items-center justify-center bg-black text-text-primary-negative">
+      <div className="cursor-text opacity-0 fixed top-0 left-0 rounded-[1000px] w-24 h-24 pointer-events-none z-[50] flex items-center justify-center bg-black text-text-primary-negative">
         <span className="font-mono text-xs uppercase">{text}</span>
       </div>
-      <div className="cursor-dot fixed top-0 left-0 rounded-[1000px] w-28 h-28 bg-surface-primary-negative pointer-events-none z-[49]"></div>
+      <div className="cursor-dot opacity-0 fixed top-0 left-0 rounded-[1000px] w-28 h-28 bg-surface-primary-negative pointer-events-none z-[49]"></div>
     </>
   );
 };
