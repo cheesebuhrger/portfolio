@@ -24,6 +24,10 @@ type ProjectSectionMediaProps = {
   layout: {
     type: "full" | "double" | "stats" | "mockup";
     statsPosition?: "left" | "right";
+    background?: {
+      color?: string;
+      image?: string;
+    };
   };
   media: MediaData[];
   stats?: [StatBlock, StatBlock, StatBlock, StatBlock];
@@ -48,10 +52,23 @@ const ProjectSectionMedia: React.FC<ProjectSectionMediaProps> = ({
   }
 
   if (layout.type === "mockup") {
+    const backgroundStyle = layout.background?.image
+      ? {
+          backgroundImage: `url(${layout.background.image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }
+      : {};
+    const backgroundClass = layout.background?.color || "bg-surface-secondary";
+
     return (
       <div>
-        <div className="relative bg-surface-secondary overflow-hidden rounded-md w-full lg:h-[calc(100vh-4rem)]">
-          <div className="relative flex border border-[red] w-full h-full items-center justify-center p-4 py-20 sm:p-8 sm:py-24 md:p-12 md:py-24">
+        <div
+          className={`relative ${backgroundClass} overflow-hidden rounded-md w-full lg:h-[calc(100vh-4rem)]`}
+          style={backgroundStyle}
+        >
+          <div className="relative flex w-full h-full items-center justify-center p-4 py-20 sm:p-8 sm:py-24 md:p-12 md:py-24">
             <MediaImage
               imageScaleAnimation="subtle"
               objectFit="contain"

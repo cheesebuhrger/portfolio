@@ -24,7 +24,10 @@ const Playground: React.FC = () => {
           rounded-md
           overflow-hidden
           lg:h-[calc(100vh-4rem)]
-          bg-[#EDE5D8]
+          bg-[url('https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743015415/wheel-06-bg_y7lytz.webp')]
+          bg-cover
+          bg-center
+          bg-no-repeat
         "
         >
           <div
@@ -60,7 +63,13 @@ const Playground: React.FC = () => {
         </div>
 
         <ProjectSectionMedia
-          layout={{ type: "mockup" }}
+          layout={{
+            type: "mockup",
+            background: {
+              color:
+                "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743015415/wheel-06-bg_y7lytz.webp",
+            },
+          }}
           media={[
             {
               type: "video",
