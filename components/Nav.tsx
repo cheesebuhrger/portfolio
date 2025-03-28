@@ -24,6 +24,7 @@ const Nav = () => {
       ) : (
         <Button href="/" label="←" />
       )}
+
       {isHome && (
         <Link
           onClick={(e) => {

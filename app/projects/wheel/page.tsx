@@ -3,13 +3,13 @@
 import React from "react";
 import { useRef } from "react";
 
-import MediaStatsGrid from "@/components/MediaStatsGrid";
+import ProjectSectionMedia from "@/components/ProjectSectionMedia";
 import ProjectSectionContent from "@/components/ProjectSectionContent";
 import ProjectSection from "@/components/ProjectSection";
 import ProjectHero from "@/components/ProjectHero";
 import Quote from "@/components/Quote";
 import Button from "@/components/Button";
-import MediaGroup from "@/components/MediaGroup";
+import ProjectSectionMediaBinder from "@/components/ProjectSectionMediaBinder";
 
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -164,8 +164,8 @@ const Wheel: React.FC = () => {
             }
           />
 
-          <MediaGroup>
-            <MediaStatsGrid
+          <ProjectSectionMediaBinder>
+            <ProjectSectionMedia
               layout={{ type: "full" }}
               media={[
                 {
@@ -175,7 +175,7 @@ const Wheel: React.FC = () => {
                 },
               ]}
             />
-            <MediaStatsGrid
+            <ProjectSectionMedia
               layout={{ type: "full" }}
               media={[
                 {
@@ -185,7 +185,7 @@ const Wheel: React.FC = () => {
                 },
               ]}
             />
-          </MediaGroup>
+          </ProjectSectionMediaBinder>
 
           <ProjectSectionContent
             headline={<>No product and little data</>}
@@ -203,7 +203,7 @@ const Wheel: React.FC = () => {
             }
           />
 
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "double" }}
             media={[
               {
@@ -290,7 +290,7 @@ const Wheel: React.FC = () => {
             }
           />
 
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{
               type: "stats",
               statsPosition: "left",
@@ -366,8 +366,8 @@ const Wheel: React.FC = () => {
             />
           </div>
 
-          <MediaGroup>
-            <MediaStatsGrid
+          <ProjectSectionMediaBinder>
+            <ProjectSectionMedia
               layout={{ type: "double" }}
               media={[
                 {
@@ -400,7 +400,7 @@ const Wheel: React.FC = () => {
                 },
               ]}
             />
-            <MediaStatsGrid
+            <ProjectSectionMedia
               layout={{ type: "double" }}
               media={[
                 {
@@ -430,7 +430,7 @@ const Wheel: React.FC = () => {
                 },
               ]}
             />
-          </MediaGroup>
+          </ProjectSectionMediaBinder>
 
           <ProjectSectionContent
             headline={
@@ -448,8 +448,8 @@ const Wheel: React.FC = () => {
             }
           />
 
-          <MediaGroup>
-            <MediaStatsGrid
+          <ProjectSectionMediaBinder>
+            <ProjectSectionMedia
               layout={{ type: "full" }}
               media={[
                 {
@@ -468,7 +468,7 @@ const Wheel: React.FC = () => {
                 },
               ]}
             />
-            <MediaStatsGrid
+            <ProjectSectionMedia
               layout={{ type: "double" }}
               media={[
                 {
@@ -483,7 +483,7 @@ const Wheel: React.FC = () => {
                 },
               ]}
             />
-            <MediaStatsGrid
+            <ProjectSectionMedia
               layout={{ type: "double" }}
               media={[
                 {
@@ -498,7 +498,7 @@ const Wheel: React.FC = () => {
                 },
               ]}
             />
-          </MediaGroup>
+          </ProjectSectionMediaBinder>
         </ProjectSection>
 
         {/* ---- PROCESS ---- */}
@@ -523,7 +523,7 @@ const Wheel: React.FC = () => {
             }
           />
 
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "double" }}
             media={[
               {
@@ -550,7 +550,7 @@ const Wheel: React.FC = () => {
             }
           />
 
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "full" }}
             media={[
               {

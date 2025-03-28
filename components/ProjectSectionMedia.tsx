@@ -20,16 +20,16 @@ type StatBlock = {
   footnote?: string;
 } | null;
 
-type MediaStatsGridProps = {
+type ProjectSectionMediaProps = {
   layout: {
-    type: "full" | "double" | "stats";
+    type: "full" | "double" | "stats" | "mockup";
     statsPosition?: "left" | "right";
   };
   media: MediaData[];
   stats?: [StatBlock, StatBlock, StatBlock, StatBlock];
 };
 
-const MediaStatsGrid: React.FC<MediaStatsGridProps> = ({
+const ProjectSectionMedia: React.FC<ProjectSectionMediaProps> = ({
   layout,
   media,
   stats,
@@ -39,6 +39,28 @@ const MediaStatsGrid: React.FC<MediaStatsGridProps> = ({
       <div>
         <div className="relative bg-surface-secondary overflow-hidden rounded-md aspect-16/9">
           <MediaImage {...media[0]} />
+        </div>
+        <p className="text-sm text-text-secondary mt-2 w-1/2">
+          {media[0].caption}
+        </p>
+      </div>
+    );
+  }
+
+  if (layout.type === "mockup") {
+    return (
+      <div>
+        <div className="relative bg-surface-secondary overflow-hidden rounded-md w-full lg:h-[calc(100vh-4rem)]">
+          <div className="relative flex border border-[red] w-full h-full items-center justify-center p-4 py-20 sm:p-8 sm:py-24 md:p-12 md:py-24">
+            <MediaImage
+              imageScaleAnimation="subtle"
+              objectFit="contain"
+              {...(media[0].type === "image"
+                ? { width: 1440, height: 900 }
+                : {})}
+              {...media[0]}
+            />
+          </div>
         </div>
         <p className="text-sm text-text-secondary mt-2 w-1/2">
           {media[0].caption}
@@ -108,4 +130,4 @@ const MediaStatsGrid: React.FC<MediaStatsGridProps> = ({
   );
 };
 
-export default MediaStatsGrid;
+export default ProjectSectionMedia;

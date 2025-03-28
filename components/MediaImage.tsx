@@ -4,11 +4,15 @@ interface BaseMediaProps {
   type: "image" | "video";
   alt: string;
   className?: string;
+  objectFit?: "cover" | "contain";
+  imageScaleAnimation?: "subtle" | "default" | "none";
 }
 
 interface ImageProps extends BaseMediaProps {
   type: "image";
   src: string;
+  width?: number;
+  height?: number;
 }
 
 interface VideoProps extends BaseMediaProps {
@@ -21,6 +25,17 @@ interface VideoProps extends BaseMediaProps {
   muted?: boolean;
 }
 
+const getAnimationClass = (animation?: "subtle" | "default" | "none") => {
+  switch (animation) {
+    case "subtle":
+      return "image-scale-animation-subtle";
+    case "none":
+      return "";
+    default:
+      return "image-scale-animation";
+  }
+};
+
 type MediaImageProps = ImageProps | VideoProps;
 
 const MediaImage: React.FC<MediaImageProps> = (props) => {
@@ -29,12 +44,15 @@ const MediaImage: React.FC<MediaImageProps> = (props) => {
       <video
         src={props.src}
         poster={props.poster}
-        controls={props.controls ?? true}
+        controls={props.controls ?? false}
         autoPlay={props.autoPlay ?? true}
         loop={props.loop ?? true}
         muted={props.muted ?? true}
         playsInline
-        className="w-full h-full object-cover image-scale-animation"
+        className={`w-full h-full ${
+          props.objectFit ?? "cover"
+        } ${getAnimationClass(props.imageScaleAnimation)}
+        }`}
         aria-label={props.alt}
       />
     );
@@ -44,8 +62,13 @@ const MediaImage: React.FC<MediaImageProps> = (props) => {
     <Image
       src={props.src}
       alt={props.alt}
-      fill
-      className="object-cover image-scale-animation"
+      {...(props.width && props.height
+        ? { width: props.width, height: props.height }
+        : { fill: true })}
+      className={`${props.objectFit ?? "cover"} ${getAnimationClass(
+        props.imageScaleAnimation
+      )}
+      }`}
     />
   );
 };

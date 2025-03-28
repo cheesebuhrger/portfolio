@@ -2,7 +2,7 @@
 
 import React from "react";
 import Logo from "../../../public/images/logos/logo-buildforce.svg";
-import MediaStatsGrid from "@/components/MediaStatsGrid";
+import ProjectSectionMedia from "@/components/ProjectSectionMedia";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 // import { useAppearAnimation } from "@/hooks/useAppearAnimation";
 
@@ -63,7 +63,7 @@ const Project1: React.FC = () => {
             </div>
           </div>
         </div>
-        <MediaStatsGrid
+        <ProjectSectionMedia
           layout={{ type: "full" }}
           media={[
             {
@@ -80,7 +80,7 @@ const Project1: React.FC = () => {
         id="outcomes"
         className="relative px-4 md:px-8 py-40 grid grid-flow-row gap-48"
       >
-        <MediaStatsGrid
+        <ProjectSectionMedia
           layout={{
             type: "stats",
             statsPosition: "left",
@@ -127,7 +127,7 @@ const Project1: React.FC = () => {
         </div>
 
         <div id="case-image-grid" className="grid grid-flow-row gap-8">
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "full" }}
             media={[
               {
@@ -137,7 +137,7 @@ const Project1: React.FC = () => {
               },
             ]}
           />
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "full" }}
             media={[
               {
@@ -147,7 +147,7 @@ const Project1: React.FC = () => {
               },
             ]}
           />
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "full" }}
             media={[
               {
@@ -165,7 +165,7 @@ const Project1: React.FC = () => {
         id="outcomes"
         className="relative px-4 md:px-8 py-40 grid grid-flow-row gap-48"
       >
-        <MediaStatsGrid
+        <ProjectSectionMedia
           layout={{
             type: "stats",
             statsPosition: "right",
@@ -208,7 +208,7 @@ const Project1: React.FC = () => {
         </div>
 
         <div id="case-image-grid" className="grid grid-flow-row gap-8">
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "full" }}
             media={[
               {
@@ -218,7 +218,7 @@ const Project1: React.FC = () => {
               },
             ]}
           />
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "double" }}
             media={[
               {
@@ -233,7 +233,7 @@ const Project1: React.FC = () => {
               },
             ]}
           />
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "full" }}
             media={[
               {
@@ -251,7 +251,7 @@ const Project1: React.FC = () => {
         id="outcomes"
         className="relative px-4 md:px-8 py-40 grid grid-flow-row gap-48"
       >
-        <MediaStatsGrid
+        <ProjectSectionMedia
           layout={{
             type: "stats",
             statsPosition: "left",
@@ -293,7 +293,7 @@ const Project1: React.FC = () => {
         </div>
 
         <div id="case-image-grid" className="grid grid-flow-row gap-8">
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "full" }}
             media={[
               {
@@ -303,7 +303,7 @@ const Project1: React.FC = () => {
               },
             ]}
           />
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "double" }}
             media={[
               {

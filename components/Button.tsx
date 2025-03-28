@@ -142,7 +142,7 @@ const Button: React.FC<ButtonProps> = ({
   );
 
   return href ? (
-    <TransitionLink href={href} className={commonClassName}>
+    <TransitionLink href={href} ref={linkRef} className={commonClassName}>
       {buttonContent}
     </TransitionLink>
   ) : (

@@ -19,7 +19,24 @@ export const useImageScaleAnimation = () => {
           trigger: element,
           start: "top bottom",
           toggleActions: "play none none reverse",
-          // markers: true,
+          // markers:true,
+        },
+      });
+    });
+
+    // Handle subtle scale animation
+    const subtleElements = gsap.utils.toArray<HTMLElement>(
+      ".image-scale-animation-subtle"
+    );
+    subtleElements.forEach((element) => {
+      gsap.from(element, {
+        scale: 1.1,
+        duration: 3,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: element,
+          start: "top bottom",
+          toggleActions: "play none none reverse",
         },
       });
     });

@@ -1,16 +1,15 @@
 "use client";
 
 import React from "react";
-import MediaStatsGrid from "@/components/MediaStatsGrid";
-import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
+import ProjectSectionMedia from "@/components/ProjectSectionMedia";
 import ProjectSectionContent from "@/components/ProjectSectionContent";
 import ProjectSection from "@/components/ProjectSection";
 import ProjectHero from "@/components/ProjectHero";
 import Quote from "@/components/Quote";
+import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useStackAnimation } from "@/hooks/useStackAnimation";
-import Button from "@/components/Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -145,7 +144,7 @@ const Project1: React.FC = () => {
           }
         />
 
-        <MediaStatsGrid
+        <ProjectSectionMedia
           layout={{ type: "full" }}
           media={[
             {
@@ -172,7 +171,7 @@ const Project1: React.FC = () => {
           }
         />
 
-        <MediaStatsGrid
+        <ProjectSectionMedia
           layout={{ type: "double" }}
           media={[
             {
@@ -222,7 +221,7 @@ const Project1: React.FC = () => {
           }
         />
 
-        <MediaStatsGrid
+        <ProjectSectionMedia
           layout={{ type: "double" }}
           media={[
             {
@@ -249,7 +248,7 @@ const Project1: React.FC = () => {
           }
         />
 
-        <MediaStatsGrid
+        <ProjectSectionMedia
           layout={{ type: "full" }}
           media={[
             {
@@ -277,7 +276,7 @@ const Project1: React.FC = () => {
           }
         />
 
-        <MediaStatsGrid
+        <ProjectSectionMedia
           layout={{
             type: "stats",
             statsPosition: "left",
@@ -370,7 +369,7 @@ const Project1: React.FC = () => {
           id="case-image-grid"
           className="flex flex-col gap-4 md:gap-6 lg:gap-8"
         >
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "full" }}
             media={[
               {
@@ -380,7 +379,7 @@ const Project1: React.FC = () => {
               },
             ]}
           />
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "full" }}
             media={[
               {
@@ -390,7 +389,7 @@ const Project1: React.FC = () => {
               },
             ]}
           />
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "full" }}
             media={[
               {
@@ -419,7 +418,7 @@ const Project1: React.FC = () => {
           }
         />
 
-        <MediaStatsGrid
+        <ProjectSectionMedia
           layout={{
             type: "stats",
             statsPosition: "right",
@@ -492,7 +491,7 @@ const Project1: React.FC = () => {
         />
 
         <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "full" }}
             media={[
               {
@@ -502,7 +501,7 @@ const Project1: React.FC = () => {
               },
             ]}
           />
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "double" }}
             media={[
               {
@@ -523,7 +522,7 @@ const Project1: React.FC = () => {
           body={<>Something needs to go here explaining the design system.</>}
         />
 
-        <MediaStatsGrid
+        <ProjectSectionMedia
           layout={{ type: "full" }}
           media={[
             {
@@ -539,7 +538,7 @@ const Project1: React.FC = () => {
       <ProjectSection sectionNumber="III" sectionLabel="Outcomes C">
         <ProjectSectionContent headline={<>Empowerment & Growth</>} />
 
-        <MediaStatsGrid
+        <ProjectSectionMedia
           layout={{
             type: "stats",
             statsPosition: "left",
@@ -625,7 +624,7 @@ const Project1: React.FC = () => {
         />
 
         <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "full" }}
             media={[
               {
@@ -635,7 +634,7 @@ const Project1: React.FC = () => {
               },
             ]}
           />
-          <MediaStatsGrid
+          <ProjectSectionMedia
             layout={{ type: "double" }}
             media={[
               {
