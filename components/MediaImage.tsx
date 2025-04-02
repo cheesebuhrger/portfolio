@@ -4,7 +4,7 @@ interface BaseMediaProps {
   type: "image" | "video";
   alt: string;
   className?: string;
-  objectFit?: "cover" | "contain";
+  objectFit?: "object-cover" | "object-contain";
   imageScaleAnimation?: "subtle" | "default" | "none";
 }
 
@@ -50,7 +50,7 @@ const MediaImage: React.FC<MediaImageProps> = (props) => {
         muted={props.muted ?? true}
         playsInline
         className={`w-full h-full ${
-          props.objectFit ?? "cover"
+          props.objectFit ?? "object-cover"
         } ${getAnimationClass(props.imageScaleAnimation)}
         }`}
         aria-label={props.alt}
@@ -65,9 +65,9 @@ const MediaImage: React.FC<MediaImageProps> = (props) => {
       {...(props.width && props.height
         ? { width: props.width, height: props.height }
         : { fill: true })}
-      className={`${props.objectFit ?? "cover"} ${getAnimationClass(
-        props.imageScaleAnimation
-      )}
+      className={`w-full h-full ${
+        props.objectFit ?? "object-cover"
+      } ${getAnimationClass(props.imageScaleAnimation)}
       }`}
     />
   );

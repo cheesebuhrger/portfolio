@@ -44,9 +44,11 @@ const ProjectSectionMedia: React.FC<ProjectSectionMediaProps> = ({
         <div className="relative bg-surface-secondary overflow-hidden rounded-md aspect-16/9">
           <MediaImage {...media[0]} />
         </div>
-        <p className="text-sm text-text-secondary mt-2 w-1/2">
-          {media[0].caption}
-        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+          <p className="md:col-start-2 text-sm text-text-secondary mt-2">
+            {media[0].caption}
+          </p>
+        </div>
       </div>
     );
   }
@@ -71,7 +73,7 @@ const ProjectSectionMedia: React.FC<ProjectSectionMediaProps> = ({
           <div className="relative flex w-full h-full items-center justify-center p-4 py-20 sm:p-8 sm:py-24 md:p-12 md:py-24">
             <MediaImage
               imageScaleAnimation="subtle"
-              objectFit="contain"
+              objectFit="object-contain"
               {...(media[0].type === "image"
                 ? { width: 1440, height: 900 }
                 : {})}
@@ -79,9 +81,11 @@ const ProjectSectionMedia: React.FC<ProjectSectionMediaProps> = ({
             />
           </div>
         </div>
-        <p className="text-sm text-text-secondary mt-2 w-1/2">
-          {media[0].caption}
-        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+          <p className="md:col-start-2 text-sm text-text-secondary mt-2">
+            {media[0].caption}
+          </p>
+        </div>
       </div>
     );
   }

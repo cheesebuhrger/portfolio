@@ -1,327 +1,489 @@
 "use client";
 
 import React from "react";
-import Logo from "../../../public/images/logos/logo-buildforce.svg";
-import ProjectSectionMedia from "@/components/ProjectSectionMedia";
-import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
-// import { useAppearAnimation } from "@/hooks/useAppearAnimation";
+import { useRef } from "react";
 
-const Project1: React.FC = () => {
-  // const appearRef = useAppearAnimation();
+import ProjectSectionMedia from "@/components/ProjectSectionMedia";
+import ProjectSectionContent from "@/components/ProjectSectionContent";
+import ProjectSection from "@/components/ProjectSection";
+import ProjectHero from "@/components/ProjectHero";
+import Quote from "@/components/Quote";
+import Button from "@/components/Button";
+import ProjectSectionMediaBinder from "@/components/ProjectSectionMediaBinder";
+
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ReactLenis } from "@studio-freight/react-lenis";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useStackAnimation } from "@/hooks/useStackAnimation";
+import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
+import SplitType from "split-type";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+const Buildforce: React.FC = () => {
   const imageScaleRef = useImageScaleAnimation();
+  const stackRef = useStackAnimation();
 
   return (
-    <div>
-      <section
-        id="introduction"
-        className="grid grid-cols-1 gap-y-24 px-4 md:px-8 pb-40 w-screen;"
-      >
-        <div className="col-span-1 grid grid-cols-12 items-start gap-x-2 gap-y-24 h-85 auto-rows-max content-end">
-          <h1 className="~text-5xl/10xl col-span-full">
-            Helping Electricians
-            <br />
-            <span className="font-serif-italic">Get Paid Accurately</span>
-          </h1>
-          <div className="col-span-12 grid grid-cols-12 items-start gap-x-2 auto-rows-max border-t border-border-primary pt-8">
-            <div className="col-span-8 grid grid-cols-8 gap-6">
-              <h3 className="text-xl col-span-full">My Role</h3>
-              {/* <div className="col-span-full border-b border-primary pb-4 flex items-center pr-8">
-                <Image
-                  src={Logo}
-                  alt="Buildforce Logo"
-                  width={28}
-                  height={28}
-                  className="mr-2"
-                />
-              </div> */}
-              <p className="text-base col-span-4">
-                Buildforce is a pre-seed construction startup with a temp job
-                marketplace for electricians & subcontractors. I&apos;m most
-                proud of cultivating an amazing team culture that was
-                functionally increasing in craft, collaboration, and growth.
-              </p>
-            </div>
-            <div className="col-span-2 grid grid-cols-2 gap-6">
-              <h3 className="text-xl col-span-full">Team</h3>
-              <div className="text-base col-span-full pr-6">
-                <ul>
-                  <li>7 Engineers</li>
-                  <li>Product Designer</li>
-                  <li>CPO</li>
-                  <li>VP of Eng</li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-span-2 grid grid-cols-2 gap-6">
-              <h3 className="text-xl col-span-full">Duration</h3>
-              <div className="text-base col-span-full">
-                <ul>
-                  <li>1 year</li>
-                  <li>2023-2024</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <ProjectSectionMedia
-          layout={{ type: "full" }}
-          media={[
+    <ReactLenis root>
+      <div>
+        <ProjectHero
+          headline={<>Helping electricians get paid accurately</>}
+          results={[
             {
-              type: "image",
-              src: "/images/bf/bf-2.webp",
-              alt: "Contractor onboarding for Buildforce web app",
+              title:
+                "Less time spent on reconciliation internall = tighter window for payroll and less editing",
+            },
+            {
+              title:
+                "Decreased disputes = workers ultimately get paid accurately and on time",
+            },
+            {
+              title:
+                "Less edits made by contractors = more accurate time tracking",
             },
           ]}
-        />
-      </section>
-
-      {/* ---- Outcomes 1 ---- */}
-      <section
-        id="outcomes"
-        className="relative px-4 md:px-8 py-40 grid grid-flow-row gap-48"
-      >
-        <ProjectSectionMedia
-          layout={{
-            type: "stats",
-            statsPosition: "left",
+          skills={[
+            "Data Analysis",
+            "Design Systems",
+            "Interaction Design",
+            "Mobile App",
+            "Prototyping",
+            "Research",
+            "Visual Design",
+            "Web App",
+          ]}
+          duration={{
+            length: "6 weeks",
+            year: "2024",
           }}
-          media={[
-            {
-              type: "image",
-              src: "/images/bf/bf-1.webp",
-              alt: "Worker time recording on Trades app in construction scene",
-            },
-          ]}
-          stats={[
-            {
-              title: <>Metric</>,
-              value: "431",
-            },
-            {
-              title: <>Metric</>,
-              value: "431",
-            },
-            null,
-            {
-              title: (
-                <>
-                  <span className="font-serif-italic">Less time</span>{" "}
-                  correcting hours by contractors & workers
-                </>
-              ),
-              value: "50%",
-              footnote: "*Approximate amount per week",
-            },
-          ]}
-        />
-
-        <div className="col-span-full grid grid-cols-12 gap-8">
-          <div className="col-start-7 col-span-6">
-            <p className="~text-base/lg-p font-sans">
-              Time tracking was the most complex with lots of technical
-              constraints and the first with the new process. Lots of pivoting
-              and opened a lot of new opportunities for future roadmap items
-              like moving from time sheets to individual time entries.
-            </p>
-          </div>
-        </div>
-
-        <div id="case-image-grid" className="grid grid-flow-row gap-8">
-          <ProjectSectionMedia
-            layout={{ type: "full" }}
-            media={[
+          team={{
+            avatars: [
               {
-                type: "image",
-                src: "/images/bf/bf-2.webp",
-                alt: "Contractor onboarding for Buildforce web app",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742857057/colin_xmpff3.webp",
+                alt: "Colin Harman",
+                href: "https://www.linkedin.com/in/colinharman/",
+                primary: "Colin Harman",
+                secondary: "Staff Software Engineer",
               },
-            ]}
-          />
-          <ProjectSectionMedia
-            layout={{ type: "full" }}
-            media={[
               {
-                type: "image",
-                src: "/images/bf/bf-3.webp",
-                alt: "Worker profile for Buildforce web app in construction scene",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742856923/lillian_mgwjau.webp",
+                alt: "Lillian Situ",
+                href: "https://www.linkedin.com/in/situlillian/",
+                primary: "Lillian Situ",
+                secondary: "Senior Software Engineer",
               },
-            ]}
-          />
-          <ProjectSectionMedia
-            layout={{ type: "full" }}
-            media={[
               {
-                type: "image",
-                src: "/images/bf/bf-5.webp",
-                alt: "Worker time submission flow for Buildforce web app",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742856923/mark_cw3uig.webp",
+                alt: "Mark Di Marco",
+                href: "https://www.linkedin.com/in/markdimarco/",
+                primary: "Mark Di Marco",
+                secondary: "VP Eng",
               },
-            ]}
-          />
-        </div>
-      </section>
-
-      {/* ---- Outcomes 2 ---- */}
-      <section
-        id="outcomes"
-        className="relative px-4 md:px-8 py-40 grid grid-flow-row gap-48"
-      >
-        <ProjectSectionMedia
-          layout={{
-            type: "stats",
-            statsPosition: "right",
+              {
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742856923/michaelh_skijai.webp",
+                alt: "Michael Harman",
+                href: "https://www.linkedin.com/in/michael-harman-1a330220a/",
+                primary: "Michael Harman",
+                secondary: "Software Engineer",
+              },
+            ],
           }}
-          media={[
-            {
-              type: "video",
-              src: "/images/bf/bf-6.webm",
-              alt: "??",
-              autoPlay: true,
-              loop: true,
-              muted: true,
-              controls: false,
+          images={{
+            primary: {
+              src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183529/buildforce-leadership-08_pnhrc4.webp",
+              alt: "Buildforce Leadership",
             },
-          ]}
-          stats={[
-            null,
-            {
-              title: <>Structure to projects and process changes, time saved</>,
-              value: "431",
+            secondary: {
+              src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743185810/buildforce-cover-02_i4bhke.webp",
+              alt: "Buildforce Leadership",
             },
-            {
-              title: <>Design system formalized</>,
-              value: "10+",
-              footnote: "Pull requests sumbitted",
-            },
-            null,
-          ]}
+          }}
+          className="stack-animation"
         />
 
-        <div className="col-span-full grid grid-cols-12 gap-8">
-          <div className="col-span-6">
-            <p className="~text-base/lg-p font-sans">
-              Time tracking was the most complex with lots of technical
-              constraints and the first with the new process. Lots of pivoting
-              and opened a lot of new opportunities for future roadmap items
-              like moving from time sheets to individual time entries.
-            </p>
-          </div>
-        </div>
-
-        <div id="case-image-grid" className="grid grid-flow-row gap-8">
-          <ProjectSectionMedia
-            layout={{ type: "full" }}
-            media={[
-              {
-                type: "image",
-                src: "/images/bf/bf-7.webp",
-                alt: "Moodboard for Buildforce brand",
-              },
-            ]}
+        {/* ---- PROBLEM ---- */}
+        <ProjectSection
+          sectionNumber="I"
+          sectionLabel="Problem"
+          className="stack-animation"
+        >
+          <ProjectSectionContent
+            headline={
+              <>
+                At the time, around ~120 workers on the field on a given day
+                across portfolio of contractors. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor
+                sit amet consectetur adipisicing elit.
+              </>
+            }
+            body={
+              <>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Quisquam, quos. Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor
+                sit amet consectetur adipisicing elit. Quisquam, quos.
+              </>
+            }
           />
+
+          <ProjectSectionMediaBinder>
+            <ProjectSectionMedia
+              layout={{ type: "full" }}
+              media={[
+                {
+                  type: "image",
+                  src: "",
+                  alt: "rotating gif of gmail example and client platforms to show how similar everything looks",
+                },
+              ]}
+            />
+            <ProjectSectionMedia
+              layout={{ type: "full" }}
+              media={[
+                {
+                  type: "image",
+                  src: "",
+                  alt: "Email to partner platform flow diagram",
+                },
+              ]}
+            />
+          </ProjectSectionMediaBinder>
+
+          <ProjectSectionContent
+            headline={
+              <>
+                Need to communicate complexity of the flow, perhaps it's all the
+                moving pieces that make it complex.
+              </>
+            }
+            body={
+              <>
+                Design systems challenges with typography hierarchy,
+                inconsistent iconography, color contrast issues. Also, design
+                didn&apos;t really have a &ldquo;voice&rdquo; where decisions
+                were questioned and brushed off. I didn&apos;t understand why
+                that was happening in the beginning but it turns out,
+                articulating decisions and putting enough rigor to know if
+                you&apos;re doing the right thing wasn&apos;t apart of the deign
+                process at the time.
+              </>
+            }
+          />
+
           <ProjectSectionMedia
             layout={{ type: "double" }}
             media={[
               {
                 type: "image",
-                src: "/images/bf/bf-8.webp",
-                alt: "??",
+                src: "/images/bf-leadership/bf-leadership-0.webp",
+                alt: "Worker profile for Buildforce web app in construction scene",
               },
               {
                 type: "image",
-                src: "/images/bf/bf-4.webp",
+                src: "/images/bf-leadership/bf-leadership-0.webp",
                 alt: "Spot compoisitions Buildforce brand",
               },
             ]}
           />
-          <ProjectSectionMedia
-            layout={{ type: "full" }}
-            media={[
-              {
-                type: "image",
-                src: "/images/bf/bf-10.webp",
-                alt: "??",
-              },
-            ]}
+
+          <ProjectSectionContent
+            headline={
+              <>
+                The core problems clinicians were experiencing were discovered
+                through foundational research
+              </>
+            }
+            body={
+              <>
+                Time tracking was the most complex with lots of technical
+                constraints and the first with the new process. Lots of pivoting
+                and opened a lot of new opportunities for future roadmap items
+                like moving from time sheets to individual time entries.
+              </>
+            }
           />
-        </div>
-      </section>
-
-      {/* ---- Outcomes 3 ---- */}
-      <section
-        id="outcomes"
-        className="relative px-4 md:px-8 py-40 grid grid-flow-row gap-48"
-      >
-        <ProjectSectionMedia
-          layout={{
-            type: "stats",
-            statsPosition: "left",
-          }}
-          stats={[
-            null,
-            {
-              title: <>Clarity over product design role at buildforce</>,
-              value: "0 to 1",
-            },
-            {
-              title: <>Design crits include eng</>,
-              value: "188",
-            },
-            null,
-          ]}
-          media={[
-            {
-              type: "video",
-              src: "/images/bf/bf-11.webm",
-              alt: "??",
-              autoPlay: true,
-              loop: true,
-              muted: true,
-              controls: false,
-            },
-          ]}
-        />
-
-        <div className="col-span-full grid grid-cols-12 gap-8">
-          <div className="col-start-7 col-span-6">
-            <p className="~text-base/lg-p font-sans">
-              Time tracking was the most complex with lots of technical
-              constraints and the first with the new process. Lots of pivoting
-              and opened a lot of new opportunities for future roadmap items
-              like moving from time sheets to individual time entries.
-            </p>
+          <div className="flex flex-col md:flex-row gap-4 md:gap-2">
+            <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
+              <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
+                Clinicians could go{" "}
+                <span className="text-text-action">
+                  days or weeks without talking to someone
+                </span>{" "}
+                from Wheel
+              </p>
+            </div>
+            <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
+              <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
+                Clinicians have extremely{" "}
+                <span className="text-text-action">
+                  low expectations of software
+                </span>
+              </p>
+            </div>
+            <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
+              <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
+                Clinicians feel{" "}
+                <span className="text-text-action">
+                  burnt out and unappreciated
+                </span>
+                , which is why they turned to telemedicine
+              </p>
+            </div>
+            <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
+              <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
+                Clinicians{" "}
+                <span className="text-text-action">
+                  lack trust from not getting paid
+                </span>{" "}
+                from previous telemedicine companies
+              </p>
+            </div>
           </div>
-        </div>
+        </ProjectSection>
 
-        <div id="case-image-grid" className="grid grid-flow-row gap-8">
+        {/* ---- OUTCOMES ---- */}
+        <ProjectSection
+          sectionNumber="II"
+          sectionLabel="Final Design & Outcomes"
+          className="stack-animation"
+        >
+          <ProjectSectionContent
+            headline={
+              <>
+                Itaque natus ut. Consequatur error odio sapiente ut laboriosam
+                nihil esse et. Libero alias quis ex vitae eius corrupti nihil
+                libero. Vel quia eos. Porro sunt accusantium. Quas quo est et
+                nisi omnis cum.
+              </>
+            }
+            body={
+              <>
+                Eum ut officia eum. Dicta quo est aut aut ut fugit
+                exercitationem hic. Quod voluptatum odio est ipsa aut vel. Ut
+                officia illum quibusdam ab est alias. Voluptas voluptas est.
+                Accusamus non architecto. Delectus natus debitis deleniti et rem
+                et et. Sed soluta qui odit ea eos laborum aut aut. Incidunt
+                omnis error quia dolorum ab officia non quidem sint. Praesentium
+                ut ad voluptatem ducimus accusantium aut eius consequatur ea.
+                Eaque quia voluptas qui similique excepturi debitis aut soluta
+                dolorem. Sit aut laborum quo aut.
+              </>
+            }
+          />
+
           <ProjectSectionMedia
-            layout={{ type: "full" }}
+            layout={{
+              type: "stats",
+              statsPosition: "left",
+            }}
             media={[
               {
                 type: "image",
-                src: "/images/bf/bf-12.webp",
-                alt: "??",
+                src: "",
+                alt: "Animated flow of time tracking for Buildforce worker app",
+              },
+            ]}
+            stats={[
+              {
+                title: "Workers actively corrected time before submitting",
+                value: "4 hrs",
+              },
+              {
+                title:
+                  "More time entries moved through without any intervention",
+                value: "17%",
+              },
+              {
+                title:
+                  "Workers still aren’t engaging with time edits later in the week",
+                value: "-44 s",
+              },
+              {
+                title:
+                  "Contractor and ops edits dropped, meaning fewer last-minute disputes",
+                value: "-44 s",
               },
             ]}
           />
+
+          <ProjectSectionContent
+            headline={
+              <>
+                More workers were actively involved in correcting their time
+                entries before submission, leading to higher-quality data and
+                fewer errors down the line.
+              </>
+            }
+            body={
+              <>
+                Eum ut officia eum. Dicta quo est aut aut ut fugit
+                exercitationem hic. Quod voluptatum odio est ipsa aut vel. Ut
+                officia illum quibusdam ab est alias. Voluptas voluptas est.
+                Accusamus non architecto.
+              </>
+            }
+          />
+
+          <ProjectSectionMediaBinder>
+            <ProjectSectionMedia
+              layout={{
+                type: "mockup",
+                background: {
+                  image:
+                    "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-11-bg_rcrm7o.webp",
+                },
+              }}
+              media={[
+                {
+                  type: "image",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743576112/buildforce-06_wlbyrv.webp",
+                  alt: "Contractor onboarding for Buildforce web app",
+                  caption: <>This is a caption</>,
+                },
+              ]}
+            />
+            <ProjectSectionMedia
+              layout={{ type: "double" }}
+              media={[
+                {
+                  type: "image",
+                  src: "",
+                  alt: "Contractor onboarding for Buildforce web app",
+                  caption: <></>,
+                },
+                {
+                  type: "image",
+                  src: "",
+                  alt: "Contractor onboarding for Buildforce web app",
+                  caption: <></>,
+                },
+              ]}
+            />
+          </ProjectSectionMediaBinder>
+
+          <ProjectSectionContent
+            headline={
+              <>
+                Time entry view & confirmation resulted in a few more edits but
+                not by much. Don&apos;t have the data on when the edits are
+                made.
+              </>
+            }
+            body={
+              <>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Quisquam, quos. Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Quisquam, quos.
+              </>
+            }
+          />
+
+          <ProjectSectionMediaBinder>
+            <ProjectSectionMedia
+              layout={{
+                type: "mockup",
+                background: {
+                  image:
+                    "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743573561/buildforce-07-bg_h3loqy.webp",
+                },
+              }}
+              media={[
+                {
+                  type: "image",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743576113/buildforce-07_r99kby.webp",
+                  alt: "Contractor onboarding for Buildforce web app",
+                  caption: <>This is a caption</>,
+                },
+              ]}
+            />
+            <ProjectSectionMedia
+              layout={{ type: "double" }}
+              media={[
+                {
+                  type: "image",
+                  src: "",
+                  alt: "Contractor onboarding for Buildforce web app",
+                },
+                {
+                  type: "image",
+                  src: "",
+                  alt: "Contractor onboarding for Buildforce web app",
+                },
+              ]}
+            />
+          </ProjectSectionMediaBinder>
+        </ProjectSection>
+
+        {/* ---- PROCESS ---- */}
+        <ProjectSection
+          sectionNumber="III"
+          sectionLabel="Process"
+          // className="stack-animation"
+        >
+          <ProjectSectionContent
+            headline={
+              <>
+                One-on-one conversations with teammates and building trust is
+                just as important as product work.
+              </>
+            }
+            body={
+              <>
+                I approached everyone individually, genuinely trying to
+                understand their painpoints and what they wanted in an ideal
+                team.
+              </>
+            }
+          />
+
           <ProjectSectionMedia
             layout={{ type: "double" }}
             media={[
               {
                 type: "image",
-                src: "/images/bf/bf-13.webp",
-                alt: "??",
+                src: "/images/bf-leadership/bf-leadership-0.webp",
+                alt: "Worker profile for Buildforce web app in construction scene",
               },
               {
                 type: "image",
-                src: "/images/bf/bf-14.webp",
-                alt: "??",
+                src: "/images/bf-leadership/bf-leadership-0.webp",
+                alt: "Spot compoisitions Buildforce brand",
               },
             ]}
           />
-        </div>
-      </section>
-    </div>
+
+          <ProjectSectionContent
+            body={
+              <>
+                Time tracking was the most complex with lots of technical
+                constraints and the first with the new process. Lots of pivoting
+                and opened a lot of new opportunities for future roadmap items
+                like moving from time sheets to individual time entries.
+              </>
+            }
+          />
+
+          <ProjectSectionMedia
+            layout={{ type: "full" }}
+            media={[
+              {
+                type: "image",
+                src: "/images/bf-leadership/bf-leadership-0.webp",
+                alt: "Contractor onboarding for Buildforce web app",
+              },
+            ]}
+          />
+        </ProjectSection>
+
+        <footer className="p-8 pt-40 bg-surface-primary border-t border-border-primary">
+          Hello
+        </footer>
+      </div>
+    </ReactLenis>
   );
 };
 
-export default Project1;
+export default Buildforce;

@@ -66,7 +66,7 @@ const Playground: React.FC = () => {
           layout={{
             type: "mockup",
             background: {
-              color:
+              image:
                 "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743015415/wheel-06-bg_y7lytz.webp",
             },
           }}

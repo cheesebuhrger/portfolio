@@ -115,7 +115,7 @@ const Project1: React.FC = () => {
             alt: "Buildforce Leadership",
           },
           secondary: {
-            src: "/images/bf-leadership/bf-leadership-7.webp",
+            src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-cover-02_gqnb5l.webp",
             alt: "Buildforce Leadership",
           },
         }}
@@ -284,7 +284,7 @@ const Project1: React.FC = () => {
           media={[
             {
               type: "image",
-              src: "/images/bf-leadership/bf-leadership-1.webp",
+              src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183529/buildforce-leadership-08_pnhrc4.webp",
               alt: "Worker time recording on Trades app in construction scene",
             },
           ]}
@@ -384,17 +384,23 @@ const Project1: React.FC = () => {
             media={[
               {
                 type: "image",
-                src: "/images/bf-leadership/bf-leadership-3.webp",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-10_otwlkk.webp",
                 alt: "Worker profile for Buildforce web app in construction scene",
               },
             ]}
           />
           <ProjectSectionMedia
-            layout={{ type: "full" }}
+            layout={{
+              type: "mockup",
+              background: {
+                image:
+                  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-11-bg_rcrm7o.webp",
+              },
+            }}
             media={[
               {
                 type: "image",
-                src: "/images/bf-leadership/bf-leadership-5.webp",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183529/buildforce-leadership-11_defhzi.webp",
                 alt: "Worker time submission flow for Buildforce web app",
               },
             ]}
@@ -426,12 +432,8 @@ const Project1: React.FC = () => {
           media={[
             {
               type: "video",
-              src: "/images/bf-leadership/bf-leadership-6.webm",
+              src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1743183530/buildforce-leadership-12_aqpi2t.webm",
               alt: "??",
-              autoPlay: true,
-              loop: true,
-              muted: true,
-              controls: false,
             },
           ]}
           stats={[
@@ -496,7 +498,7 @@ const Project1: React.FC = () => {
             media={[
               {
                 type: "image",
-                src: "/images/bf-leadership/bf-leadership-7.webp",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-13_moefco.webp",
                 alt: "Moodboard for Buildforce brand",
               },
             ]}
@@ -506,12 +508,12 @@ const Project1: React.FC = () => {
             media={[
               {
                 type: "image",
-                src: "/images/bf-leadership/bf-leadership-8.webp",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183529/buildforce-leadership-14_q6huzo.webp",
                 alt: "??",
               },
               {
                 type: "image",
-                src: "/images/bf-leadership/bf-leadership-9.webp",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183529/buildforce-leadership-15_wtczko.webp",
                 alt: "Spot compoisitions Buildforce brand",
               },
             ]}
@@ -558,12 +560,8 @@ const Project1: React.FC = () => {
           media={[
             {
               type: "video",
-              src: "/images/bf-leadership/bf-leadership-11.webm",
+              src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1743183531/buildforce-leadership-17_g9pm0a.webm",
               alt: "??",
-              autoPlay: true,
-              loop: true,
-              muted: true,
-              controls: false,
             },
           ]}
         />
@@ -639,12 +637,12 @@ const Project1: React.FC = () => {
             media={[
               {
                 type: "image",
-                src: "/images/bf-leadership/bf-leadership-13.webp",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-20_fmi2so.webp",
                 alt: "??",
               },
               {
                 type: "image",
-                src: "/images/bf-leadership/bf-leadership-14.webp",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-21_ki9pnk.webp",
                 alt: "??",
               },
             ]}

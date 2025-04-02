@@ -38,7 +38,7 @@ export const projects: Project[] = [
       alt: "Buildforce",
     },
     image2: {
-      src: "/images/bf/bf-cover-2.webp",
+      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743185810/buildforce-cover-02_i4bhke.webp",
       alt: "Buildforce",
     },
   },
