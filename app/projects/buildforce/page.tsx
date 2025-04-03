@@ -253,10 +253,9 @@ const Buildforce: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                Itaque natus ut. Consequatur error odio sapiente ut laboriosam
-                nihil esse et. Libero alias quis ex vitae eius corrupti nihil
-                libero. Vel quia eos. Porro sunt accusantium. Quas quo est et
-                nisi omnis cum.
+                Workers took control of their time entries while all parties
+                spent less time correcting hours for payroll. Helped scale
+                operations and reduce disputes.
               </>
             }
             body={
@@ -288,23 +287,21 @@ const Buildforce: React.FC = () => {
             ]}
             stats={[
               {
-                title: "Workers actively corrected time before submitting",
-                value: "4 hrs",
+                title: "Less edits made overall",
+                value: "−42%",
+                footnote: "~2,500 → ~1,450 edits/week",
               },
+              {
+                title: "Workers took more ownership of their time",
+                value: "+15%",
+                footnote: "35% to 50%",
+              },
+              null,
               {
                 title:
                   "More time entries moved through without any intervention",
-                value: "17%",
-              },
-              {
-                title:
-                  "Workers still aren’t engaging with time edits later in the week",
-                value: "-44 s",
-              },
-              {
-                title:
-                  "Contractor and ops edits dropped, meaning fewer last-minute disputes",
-                value: "-44 s",
+                value: "+20%",
+                footnote: "55% to 75%",
               },
             ]}
           />
@@ -312,9 +309,8 @@ const Buildforce: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                More workers were actively involved in correcting their time
-                entries before submission, leading to higher-quality data and
-                fewer errors down the line.
+                To protect workers from costly mistakes, I designed a flow that
+                made them slow down & review their time.
               </>
             }
             body={
@@ -339,7 +335,7 @@ const Buildforce: React.FC = () => {
               media={[
                 {
                   type: "image",
-                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743576112/buildforce-06_wlbyrv.webp",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743617221/buildforce-06_skkg7l.webp",
                   alt: "Contractor onboarding for Buildforce web app",
                   caption: <>This is a caption</>,
                 },
@@ -367,16 +363,32 @@ const Buildforce: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                Time entry view & confirmation resulted in a few more edits but
-                not by much. Don&apos;t have the data on when the edits are
-                made.
+                Allowing workers to edit their time entries throughout the week
+                had very little impact; they didn't do it.
               </>
             }
             body={
               <>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam, quos. Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Quisquam, quos.
+                <p className="mb-4">
+                  Once the worker added their time entry, I designed a way for
+                  them to view and edit them if they needed to make corrections.
+                  We found that workers didn&apos;t edit their time after the
+                  initial entry which could be tied to a few reasons:
+                </p>
+                <ul className="list-disc list-outside ml-4">
+                  <li>
+                    Workers know they entered correctly the first time which is
+                    probably the most likely reason.
+                  </li>
+                  <li>
+                    Time entries entry point is difficult to find and/or they
+                    don't know they could edit them.
+                  </li>
+                  <li>
+                    Workers still believe contractors are the source of truth
+                    for time entries/hours.
+                  </li>
+                </ul>
               </>
             }
           />
@@ -415,6 +427,71 @@ const Buildforce: React.FC = () => {
               ]}
             />
           </ProjectSectionMediaBinder>
+
+          <ProjectSectionContent
+            headline={
+              <>
+                I designed a way for contractors to get more visibility into
+                worker clock-in & out locations but it's difficult to say if it
+                impacted contractor editing behavior.
+              </>
+            }
+            body={
+              <>
+                We saw contractors engaging with this data, but not sure if it
+                kept them accountable from reporting inaccurate hours. We did
+                see less edits to time entries from contractors, so it's
+                possible it did have an impact, but difficult to attribute.
+              </>
+            }
+          />
+
+          <ProjectSectionMedia
+            layout={{
+              type: "mockup",
+              background: {
+                image: "",
+              },
+            }}
+            media={[
+              {
+                type: "image",
+                src: "",
+                alt: "Contractor onboarding for Buildforce web app",
+                caption: <>This is a caption</>,
+              },
+            ]}
+          />
+
+          <ProjectSectionContent
+            headline={
+              <>
+                Workers got notified when contractors approved their time. They
+                could see if edits were made and dispute inaccuracies. We
+                anecdotally heard from our team that there were less disputes
+                and disputes were easier to manage but I believe it was because
+                of more accurate times being submitted by workers.
+              </>
+            }
+            body={<>?</>}
+          />
+
+          <ProjectSectionMedia
+            layout={{
+              type: "mockup",
+              background: {
+                image: "",
+              },
+            }}
+            media={[
+              {
+                type: "image",
+                src: "",
+                alt: "Contractor onboarding for Buildforce web app",
+                caption: <>This is a caption</>,
+              },
+            ]}
+          />
         </ProjectSection>
 
         {/* ---- PROCESS ---- */}
@@ -426,59 +503,33 @@ const Buildforce: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                One-on-one conversations with teammates and building trust is
-                just as important as product work.
+                If you'd like to learn more about the process, I'd be happy to
+                chat.
               </>
             }
             body={
               <>
-                I approached everyone individually, genuinely trying to
-                understand their painpoints and what they wanted in an ideal
-                team.
+                Learn more about how these questions I answered:
+                <ul className="list-disc list-outside ml-4">
+                  <li>
+                    What were our principles and how did we stay on the worker's
+                    side?
+                  </li>
+                  <li>What challenges arose throughout the project?</li>
+                  <li>How did did we move to the shape-up process?</li>
+                  <li>
+                    How did we tackle product education, comms and support?
+                  </li>
+                  <li>
+                    How did we introduce a brand refresh alongside product work?
+                  </li>
+                </ul>
               </>
             }
-          />
-
-          <ProjectSectionMedia
-            layout={{ type: "double" }}
-            media={[
-              {
-                type: "image",
-                src: "/images/bf-leadership/bf-leadership-0.webp",
-                alt: "Worker profile for Buildforce web app in construction scene",
-              },
-              {
-                type: "image",
-                src: "/images/bf-leadership/bf-leadership-0.webp",
-                alt: "Spot compoisitions Buildforce brand",
-              },
-            ]}
-          />
-
-          <ProjectSectionContent
-            body={
-              <>
-                Time tracking was the most complex with lots of technical
-                constraints and the first with the new process. Lots of pivoting
-                and opened a lot of new opportunities for future roadmap items
-                like moving from time sheets to individual time entries.
-              </>
-            }
-          />
-
-          <ProjectSectionMedia
-            layout={{ type: "full" }}
-            media={[
-              {
-                type: "image",
-                src: "/images/bf-leadership/bf-leadership-0.webp",
-                alt: "Contractor onboarding for Buildforce web app",
-              },
-            ]}
           />
         </ProjectSection>
 
-        <footer className="p-8 pt-40 bg-surface-primary border-t border-border-primary">
+        <footer className="p-8 pt-40 bg-surface-primary border-t h-screen border-border-primary">
           Hello
         </footer>
       </div>

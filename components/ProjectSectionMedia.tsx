@@ -123,6 +123,7 @@ const ProjectSectionMedia: React.FC<ProjectSectionMediaProps> = ({
             <StatBlock
               title={stats[index]!.title}
               value={stats[index]!.value}
+              footnote={stats[index]!.footnote}
             />
           )}
         </div>
