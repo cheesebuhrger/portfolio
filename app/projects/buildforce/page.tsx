@@ -112,41 +112,52 @@ const Buildforce: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                At the time, around ~120 workers on the field on a given day
-                across portfolio of contractors. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor
-                sit amet consectetur adipisicing elit.
+                Workers were submitting hours that didn&apos;t reflect reality,
+                so contractors and our ops team had to clean up the mess in time
+                to run payroll every week.
               </>
             }
             body={
               <>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam, quos. Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Quisquam, quos.
+                Clock-in and clock-out times were all over the place, sometimes
+                showing 24-hour shifts, other times missing entire days. Some
+                clocked out hours after their shift ended, or forgot entirely
+                and only noticed when clocking in the next day. Many workers
+                didn&apos;t review their time before submitting. This led to
+                inaccurate time sheets getting sent to contractors and a cascade
+                of manual corrections later.
               </>
             }
           />
 
           <ProjectSectionMediaBinder>
             <ProjectSectionMedia
-              layout={{ type: "full" }}
+              layout={{
+                type: "mockup",
+                background: {
+                  image: "",
+                },
+              }}
               media={[
                 {
                   type: "image",
-                  src: "",
-                  alt: "rotating gif of gmail example and client platforms to show how similar everything looks",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743717774/buildforce-02_bpjwok.webp",
+                  alt: "Trades app clockout flow",
                 },
               ]}
             />
             <ProjectSectionMedia
-              layout={{ type: "full" }}
+              layout={{
+                type: "mockup",
+                background: {
+                  image: "",
+                },
+              }}
               media={[
                 {
                   type: "image",
-                  src: "",
-                  alt: "Email to partner platform flow diagram",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743717774/buildforce-03_qq6zik.webp",
+                  alt: "Trades app submit time flow at the start of the following week",
                 },
               ]}
             />
@@ -155,36 +166,38 @@ const Buildforce: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                Need to communicate complexity of the flow, perhaps it's all the
-                moving pieces that make it complex.
+                Contractors didn&apos;t trust the hours and inputted their own
+                time sheets. Our ops team spent 3 days of their week untangling
+                the truth.
               </>
             }
             body={
               <>
-                Design systems challenges with typography hierarchy,
-                inconsistent iconography, color contrast issues. Also, design
-                didn&apos;t really have a &ldquo;voice&rdquo; where decisions
-                were questioned and brushed off. I didn&apos;t understand why
-                that was happening in the beginning but it turns out,
-                articulating decisions and putting enough rigor to know if
-                you&apos;re doing the right thing wasn&apos;t apart of the deign
-                process at the time.
+                Each week followed the same painful pattern. Our payroll team
+                rounded worker-reported hours and sent them to contractors, who
+                cross-checked them against their own logs usually treating
+                theirs as the source of truth. When the numbers didn&apos;t
+                match (which happened a lot), payroll and support ops were left
+                sorting it out. That meant chasing foremen, piecing together
+                timelines, and trying to resolve disputes with limited context.
+                Workers were often left in the dark sometimes waiting weeks to
+                get paid correctly.
               </>
             }
           />
 
           <ProjectSectionMedia
-            layout={{ type: "double" }}
+            layout={{
+              type: "mockup",
+              background: {
+                image: "",
+              },
+            }}
             media={[
               {
                 type: "image",
-                src: "/images/bf-leadership/bf-leadership-0.webp",
-                alt: "Worker profile for Buildforce web app in construction scene",
-              },
-              {
-                type: "image",
-                src: "/images/bf-leadership/bf-leadership-0.webp",
-                alt: "Spot compoisitions Buildforce brand",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743718033/buildforce-01_ub0gdl.webp",
+                alt: "Contractor time approval",
               },
             ]}
           />
@@ -192,53 +205,47 @@ const Buildforce: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                The core problems clinicians were experiencing were discovered
-                through foundational research
+                The system created friction for contractors, gave workers little
+                feedback, and left ops stuck in the middle.
               </>
             }
             body={
               <>
-                Time tracking was the most complex with lots of technical
-                constraints and the first with the new process. Lots of pivoting
-                and opened a lot of new opportunities for future roadmap items
-                like moving from time sheets to individual time entries.
+                Hiring through Buildforce was supposed to be easier, but our
+                time tracking flow added more overhead for contractors. Many
+                already had systems in place, so using ours felt like extra
+                work... not an upgrade. On the worker side, the flow was too
+                easy to speed through (they didn't know they were doing anything
+                wrong) and too hard to correct later. Meanwhile, our ops team
+                was stretched thin, manually reconciling time across three
+                disconnected perspectives.
               </>
             }
           />
+
           <div className="flex flex-col md:flex-row gap-4 md:gap-2">
             <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
               <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
-                Clinicians could go{" "}
+                Workers didn’t review or correct their hours with{" "}
                 <span className="text-text-action">
-                  days or weeks without talking to someone
-                </span>{" "}
-                from Wheel
-              </p>
-            </div>
-            <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
-              <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
-                Clinicians have extremely{" "}
-                <span className="text-text-action">
-                  low expectations of software
+                  ~65% of entries were submitted without worker edits
                 </span>
               </p>
             </div>
             <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
               <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
-                Clinicians feel{" "}
+                Contractors often ignored worker-submitted time with{" "}
                 <span className="text-text-action">
-                  burnt out and unappreciated
+                  45% of entries edited by contractors
                 </span>
-                , which is why they turned to telemedicine
               </p>
             </div>
             <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
               <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
-                Clinicians{" "}
+                Ops had to intervene constantly with only{" "}
                 <span className="text-text-action">
-                  lack trust from not getting paid
-                </span>{" "}
-                from previous telemedicine companies
+                  ~55% of time sheets getting auto-approved
+                </span>
               </p>
             </div>
           </div>
@@ -253,22 +260,19 @@ const Buildforce: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                Workers took control of their time entries while all parties
-                spent less time correcting hours for payroll. Helped scale
-                operations and reduce disputes.
+                Workers fixed their own time, contractors edited less, and ops
+                finally didn’t have to spend half their week supporting payroll.
               </>
             }
             body={
               <>
-                Eum ut officia eum. Dicta quo est aut aut ut fugit
-                exercitationem hic. Quod voluptatum odio est ipsa aut vel. Ut
-                officia illum quibusdam ab est alias. Voluptas voluptas est.
-                Accusamus non architecto. Delectus natus debitis deleniti et rem
-                et et. Sed soluta qui odit ea eos laborum aut aut. Incidunt
-                omnis error quia dolorum ab officia non quidem sint. Praesentium
-                ut ad voluptatem ducimus accusantium aut eius consequatur ea.
-                Eaque quia voluptas qui similique excepturi debitis aut soluta
-                dolorem. Sit aut laborum quo aut.
+                Once we launched version 2 of time tracking, everyone did less
+                but in the best way. Workers made more accurate submissions up
+                front, contractors barely had to touch them because they aligned
+                with their own logs, and our ops team didn’t have to mediate
+                every payroll cycle. The time tracking system stopped being a
+                problem that needed constant fixing. It wasn’t perfect, but it
+                was going to help us scale the business.
               </>
             }
           />
@@ -309,16 +313,21 @@ const Buildforce: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                To protect workers from costly mistakes, I designed a flow that
-                made them slow down & review their time.
+                I redesigned the time entry flow to show workers exactly what
+                the contractor sees. It made workers pause and think.
               </>
             }
             body={
               <>
-                Eum ut officia eum. Dicta quo est aut aut ut fugit
-                exercitationem hic. Quod voluptatum odio est ipsa aut vel. Ut
-                officia illum quibusdam ab est alias. Voluptas voluptas est.
-                Accusamus non architecto.
+                The new flow added a summary screen that showed workers their
+                exact clock-in and clock-out locations on a map just like the
+                contractor would see it. This made mistakes more obvious and
+                accountability more real. We also added automatic rounding to
+                the nearest 15 minutes and snapped unusually long shifts to the
+                project schedule, so payroll ops didn’t have to clean up the
+                mess later. What workers saw matched what was sent to
+                contractors. That small shift in visibility and friction made a
+                huuuge difference.
               </>
             }
           />
@@ -363,32 +372,19 @@ const Buildforce: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                Allowing workers to edit their time entries throughout the week
-                had very little impact; they didn't do it.
+                Letting workers edit time throughout the week sounded great.
+                Most didn’t use it.
               </>
             }
             body={
               <>
-                <p className="mb-4">
-                  Once the worker added their time entry, I designed a way for
-                  them to view and edit them if they needed to make corrections.
-                  We found that workers didn&apos;t edit their time after the
-                  initial entry which could be tied to a few reasons:
-                </p>
-                <ul className="list-disc list-outside ml-4">
-                  <li>
-                    Workers know they entered correctly the first time which is
-                    probably the most likely reason.
-                  </li>
-                  <li>
-                    Time entries entry point is difficult to find and/or they
-                    don't know they could edit them.
-                  </li>
-                  <li>
-                    Workers still believe contractors are the source of truth
-                    for time entries/hours.
-                  </li>
-                </ul>
+                I designed a way for workers to review and edit time entries
+                anytime before they were submitted to contractors. In theory, it
+                gave them more flexibility. In practice, almost not many used
+                it. My guess is either they nailed it on the first try (best
+                case), didn’t know they could make edits later (plausible), or
+                still assumed the contractor was ultimately in charge of time
+                (unfortunately still true in some cases).
               </>
             }
           />
@@ -431,49 +427,23 @@ const Buildforce: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                I designed a way for contractors to get more visibility into
-                worker clock-in & out locations but it's difficult to say if it
-                impacted contractor editing behavior.
+                Contractors used worker data to resolve disputes, and workers
+                could challenge edits without needing us.
               </>
             }
             body={
               <>
-                We saw contractors engaging with this data, but not sure if it
-                kept them accountable from reporting inaccurate hours. We did
-                see less edits to time entries from contractors, so it's
-                possible it did have an impact, but difficult to attribute.
+                We added clock-in and clock-out maps to give contractors a
+                clearer view of when and where shifts started and ended. We
+                didn’t have direct metrics on trust, but we saw contractors
+                using that data to settle disputes, which in my view suggests
+                they believed it. On the flip side, workers were notified when
+                their time was approved or changed and could dispute it
+                directly. Instead of ops chasing people down, both sides had the
+                info they needed. Our team went from spending 3 days a week
+                resolving time disputes to just a couple of hours.
               </>
             }
-          />
-
-          <ProjectSectionMedia
-            layout={{
-              type: "mockup",
-              background: {
-                image: "",
-              },
-            }}
-            media={[
-              {
-                type: "image",
-                src: "",
-                alt: "Contractor onboarding for Buildforce web app",
-                caption: <>This is a caption</>,
-              },
-            ]}
-          />
-
-          <ProjectSectionContent
-            headline={
-              <>
-                Workers got notified when contractors approved their time. They
-                could see if edits were made and dispute inaccuracies. We
-                anecdotally heard from our team that there were less disputes
-                and disputes were easier to manage but I believe it was because
-                of more accurate times being submitted by workers.
-              </>
-            }
-            body={<>?</>}
           />
 
           <ProjectSectionMedia
