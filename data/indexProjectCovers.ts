@@ -28,17 +28,17 @@ export const romanNumerals = [
 
 export const projects: Project[] = [
   {
-    title: "Helping Electricians Get Paid Accurately",
+    title: "Designing friction to save everyone time",
     company: "Buildforce",
     //   "Project with lots of technical constraints, ambiguous scope, and phasing strategy (solve the time tracking problem first, then the reconciliation problem).",
     year: "2023",
     url: "/projects/buildforce",
     image1: {
-      src: "/images/bf/bf-1.webp",
+      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744060998/buildforce-cover-01_mph55e.webp",
       alt: "Buildforce",
     },
     image2: {
-      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743185810/buildforce-cover-02_i4bhke.webp",
+      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744060999/buildforce-cover-02_thswdq.webp",
       alt: "Buildforce",
     },
   },

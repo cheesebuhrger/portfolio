@@ -44,8 +44,8 @@ const ProjectSectionMedia: React.FC<ProjectSectionMediaProps> = ({
         <div className="relative bg-surface-secondary overflow-hidden rounded-md aspect-16/9">
           <MediaImage {...media[0]} />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
-          <p className="md:col-start-2 text-sm text-text-secondary mt-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-4 md:gap-6 lg:gap-8">
+          <p className="col-span-1 col-start-1 md:col-span-1 md:col-start-2 xl:col-start-4 xl:col-span-3 xl:text-right text-xs text-text-secondary mt-2">
             {media[0].caption}
           </p>
         </div>
@@ -81,8 +81,8 @@ const ProjectSectionMedia: React.FC<ProjectSectionMediaProps> = ({
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
-          <p className="md:col-start-2 text-sm text-text-secondary mt-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-4 md:gap-6 lg:gap-8">
+          <p className="col-span-1 col-start-1 md:col-span-1 md:col-start-2 xl:col-start-4 xl:col-span-3 xl:text-right text-xs text-text-secondary mt-2">
             {media[0].caption}
           </p>
         </div>
@@ -99,8 +99,8 @@ const ProjectSectionMedia: React.FC<ProjectSectionMediaProps> = ({
               <MediaImage {...item} />
             </div>
             {item.caption && (
-              <div className="grid grid-cols-1 mb-2 md:mb-4 lg:mb-0 xl:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-                <p className="xl:col-span-2 text-xs text-text-secondary mt-2">
+              <div className="grid grid-cols-1 mb-2 md:mb-4 lg:mb-0 xl:grid-cols-6 gap-4 md:gap-6 lg:gap-8">
+                <p className="xl:col-span-3 xl:col-start-4 xl:text-right text-xs text-text-secondary mt-2">
                   {item.caption}
                 </p>
               </div>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./global.css";
 import Nav from "../components/Nav"; // Adjust the path as necessary
 import { Analytics } from "@vercel/analytics/react";
@@ -25,10 +25,13 @@ export const metadata: Metadata = {
     //   },
     // ],
   },
-  themeColor: "#ffffff", // This will set the Safari top bar to white
   // icons: {
   //   icon: "/favicon.ico",
   // },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({

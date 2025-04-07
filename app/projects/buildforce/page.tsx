@@ -29,19 +29,16 @@ const Buildforce: React.FC = () => {
     <ReactLenis root>
       <div>
         <ProjectHero
-          headline={<>Helping electricians get paid accurately</>}
+          headline={<>Designing friction to save everyone time</>}
           results={[
             {
-              title:
-                "Less time spent on reconciliation internall = tighter window for payroll and less editing",
+              title: "Workers submitted cleaner, more accurate time entries",
             },
             {
-              title:
-                "Decreased disputes = workers ultimately get paid accurately and on time",
+              title: "Contractors trusted the data and made fewer edits",
             },
             {
-              title:
-                "Less edits made by contractors = more accurate time tracking",
+              title: "Ops cut their payroll workload from days to hours",
             },
           ]}
           skills={[
@@ -49,7 +46,6 @@ const Buildforce: React.FC = () => {
             "Design Systems",
             "Interaction Design",
             "Mobile App",
-            "Prototyping",
             "Research",
             "Visual Design",
             "Web App",
@@ -60,6 +56,12 @@ const Buildforce: React.FC = () => {
           }}
           team={{
             avatars: [
+              {
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744064454/bf_dmmhfv.webp",
+                alt: "Buildforce",
+                href: "https://www.linkedin.com/company/buildforce/",
+                primary: "Buildforce",
+              },
               {
                 src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742857057/colin_xmpff3.webp",
                 alt: "Colin Harman",
@@ -92,11 +94,11 @@ const Buildforce: React.FC = () => {
           }}
           images={{
             primary: {
-              src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183529/buildforce-leadership-08_pnhrc4.webp",
+              src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744060998/buildforce-cover-01_mph55e.webp",
               alt: "Buildforce Leadership",
             },
             secondary: {
-              src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743185810/buildforce-cover-02_i4bhke.webp",
+              src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744060999/buildforce-cover-02_thswdq.webp",
               alt: "Buildforce Leadership",
             },
           }}
@@ -112,7 +114,7 @@ const Buildforce: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                Workers were submitting hours that didn&apos;t reflect reality,
+                Workers were submitting hours that didn&rsquo;t reflect reality,
                 so contractors and our ops team had to clean up the mess in time
                 to run payroll every week.
               </>
@@ -123,7 +125,7 @@ const Buildforce: React.FC = () => {
                 showing 24-hour shifts, other times missing entire days. Some
                 clocked out hours after their shift ended, or forgot entirely
                 and only noticed when clocking in the next day. Many workers
-                didn&apos;t review their time before submitting. This led to
+                didn&rsquo;t review their time before submitting. This led to
                 inaccurate time sheets getting sent to contractors and a cascade
                 of manual corrections later.
               </>
@@ -135,7 +137,7 @@ const Buildforce: React.FC = () => {
               layout={{
                 type: "mockup",
                 background: {
-                  image: "",
+                  color: "bg-[#2F3947]",
                 },
               }}
               media={[
@@ -143,6 +145,13 @@ const Buildforce: React.FC = () => {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743717774/buildforce-02_bpjwok.webp",
                   alt: "Trades app clockout flow",
+                  caption: (
+                    <>
+                      Our time tracking system works like a stopwatch: easy to
+                      forget. Most workers forget to clock in or out, and about
+                      65% of these time entries go uncorrected.
+                    </>
+                  ),
                 },
               ]}
             />
@@ -150,7 +159,7 @@ const Buildforce: React.FC = () => {
               layout={{
                 type: "mockup",
                 background: {
-                  image: "",
+                  color: "bg-[#6C7585]",
                 },
               }}
               media={[
@@ -158,6 +167,13 @@ const Buildforce: React.FC = () => {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743717774/buildforce-03_qq6zik.webp",
                   alt: "Trades app submit time flow at the start of the following week",
+                  caption: (
+                    <>
+                      Workers get a second chance to fix their hours at the
+                      start of the week but most skip it, either unaware or
+                      assuming the original entry is “good enough.”
+                    </>
+                  ),
                 },
               ]}
             />
@@ -166,9 +182,9 @@ const Buildforce: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                Contractors didn&apos;t trust the hours and inputted their own
-                time sheets. Our ops team spent 3 days of their week untangling
-                the truth.
+                Contractors didn&rsquo;t trust the hours and inputted their own
+                time sheets. As a result, our ops team spent 3 days of their
+                week untangling the truth.
               </>
             }
             body={
@@ -176,7 +192,7 @@ const Buildforce: React.FC = () => {
                 Each week followed the same painful pattern. Our payroll team
                 rounded worker-reported hours and sent them to contractors, who
                 cross-checked them against their own logs usually treating
-                theirs as the source of truth. When the numbers didn&apos;t
+                theirs as the source of truth. When the numbers didn&&rsquo;;t
                 match (which happened a lot), payroll and support ops were left
                 sorting it out. That meant chasing foremen, piecing together
                 timelines, and trying to resolve disputes with limited context.
@@ -190,14 +206,21 @@ const Buildforce: React.FC = () => {
             layout={{
               type: "mockup",
               background: {
-                image: "",
+                color: "bg-[#BDC3CF]",
               },
             }}
             media={[
               {
                 type: "image",
-                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743718033/buildforce-01_ub0gdl.webp",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744064972/buildforce-01_fhd7ft.webp",
                 alt: "Contractor time approval",
+                caption: (
+                  <>
+                    Contractors use this web app surface to approve worker hours
+                    but usually end up editing them. They often overwrite worker
+                    entries to match time sheets from their own systems.
+                  </>
+                ),
               },
             ]}
           />
@@ -261,18 +284,26 @@ const Buildforce: React.FC = () => {
             headline={
               <>
                 Workers fixed their own time, contractors edited less, and ops
-                finally didn’t have to spend half their week supporting payroll.
+                finally didn&rsquo;t have to spend half their week supporting
+                payroll.
               </>
             }
             body={
               <>
-                Once we launched version 2 of time tracking, everyone did less
-                but in the best way. Workers made more accurate submissions up
-                front, contractors barely had to touch them because they aligned
-                with their own logs, and our ops team didn’t have to mediate
-                every payroll cycle. The time tracking system stopped being a
-                problem that needed constant fixing. It wasn’t perfect, but it
-                was going to help us scale the business.
+                <p>
+                  Once we launched version 2 of time tracking, everyone did less
+                  but in the best way. Workers made more accurate submissions up
+                  front, contractors barely had to touch them because they
+                  aligned with their own logs, and our ops team didn&rsquo;t
+                  have to mediate every payroll cycle. The time tracking system
+                  stopped being a problem that needed constant fixing. It
+                  wasn&rsquo;t perfect, but it was going to help us scale the
+                  business.
+                </p>
+                <p className="mt-4">
+                  *Note: New designs have different styling because we were also
+                  going through a brand refresh.
+                </p>
               </>
             }
           />
@@ -285,27 +316,31 @@ const Buildforce: React.FC = () => {
             media={[
               {
                 type: "image",
-                src: "",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744058143/buildforce-05_atx4jv.webp",
                 alt: "Animated flow of time tracking for Buildforce worker app",
               },
             ]}
             stats={[
               {
-                title: "Less edits made overall",
+                title: "Less edits made by all parties",
                 value: "−42%",
                 footnote: "~2,500 → ~1,450 edits/week",
               },
               {
-                title: "Workers took more ownership of their time",
+                title: "Workers corrected their own time",
                 value: "+15%",
-                footnote: "35% to 50%",
+                footnote: "~35% to ~50%",
               },
-              null,
+              {
+                title: "Contractors/ops had to fix less",
+                value: "-21%",
+                footnote: "~45% to ~24%",
+              },
               {
                 title:
                   "More time entries moved through without any intervention",
                 value: "+20%",
-                footnote: "55% to 75%",
+                footnote: "~55% to ~75%",
               },
             ]}
           />
@@ -324,56 +359,43 @@ const Buildforce: React.FC = () => {
                 contractor would see it. This made mistakes more obvious and
                 accountability more real. We also added automatic rounding to
                 the nearest 15 minutes and snapped unusually long shifts to the
-                project schedule, so payroll ops didn’t have to clean up the
-                mess later. What workers saw matched what was sent to
+                project schedule, so payroll ops didn&rsquo;t have to clean up
+                the mess later. What workers saw matched what was sent to
                 contractors. That small shift in visibility and friction made a
                 huuuge difference.
               </>
             }
           />
 
-          <ProjectSectionMediaBinder>
-            <ProjectSectionMedia
-              layout={{
-                type: "mockup",
-                background: {
-                  image:
-                    "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-11-bg_rcrm7o.webp",
-                },
-              }}
-              media={[
-                {
-                  type: "image",
-                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743617221/buildforce-06_skkg7l.webp",
-                  alt: "Contractor onboarding for Buildforce web app",
-                  caption: <>This is a caption</>,
-                },
-              ]}
-            />
-            <ProjectSectionMedia
-              layout={{ type: "double" }}
-              media={[
-                {
-                  type: "image",
-                  src: "",
-                  alt: "Contractor onboarding for Buildforce web app",
-                  caption: <></>,
-                },
-                {
-                  type: "image",
-                  src: "",
-                  alt: "Contractor onboarding for Buildforce web app",
-                  caption: <></>,
-                },
-              ]}
-            />
-          </ProjectSectionMediaBinder>
+          <ProjectSectionMedia
+            layout={{
+              type: "mockup",
+              background: {
+                image:
+                  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-11-bg_rcrm7o.webp",
+              },
+            }}
+            media={[
+              {
+                type: "image",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744060079/buildforce-06_x1tmoq.webp",
+                alt: "Contractor onboarding for Buildforce web app",
+                caption: (
+                  <>
+                    The new clock-out flow adds friction and clarity; I designed
+                    a step-by-step review with location data and 15-minute
+                    rounding, so workers know exactly what gets submitted.
+                  </>
+                ),
+              },
+            ]}
+          />
 
           <ProjectSectionContent
             headline={
               <>
-                Letting workers edit time throughout the week sounded great.
-                Most didn’t use it.
+                Letting workers edit time throughout the week sounded like a
+                logical iteration. Most didn&rsquo;t do it.
               </>
             }
             body={
@@ -382,47 +404,37 @@ const Buildforce: React.FC = () => {
                 anytime before they were submitted to contractors. In theory, it
                 gave them more flexibility. In practice, almost not many used
                 it. My guess is either they nailed it on the first try (best
-                case), didn’t know they could make edits later (plausible), or
-                still assumed the contractor was ultimately in charge of time
-                (unfortunately still true in some cases).
+                case), didn&rsquo;t know they could make edits later
+                (plausible), or still assumed the contractor was ultimately in
+                charge of time (unfortunately still true in some cases).
               </>
             }
           />
 
-          <ProjectSectionMediaBinder>
-            <ProjectSectionMedia
-              layout={{
-                type: "mockup",
-                background: {
-                  image:
-                    "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743573561/buildforce-07-bg_h3loqy.webp",
-                },
-              }}
-              media={[
-                {
-                  type: "image",
-                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743576113/buildforce-07_r99kby.webp",
-                  alt: "Contractor onboarding for Buildforce web app",
-                  caption: <>This is a caption</>,
-                },
-              ]}
-            />
-            <ProjectSectionMedia
-              layout={{ type: "double" }}
-              media={[
-                {
-                  type: "image",
-                  src: "",
-                  alt: "Contractor onboarding for Buildforce web app",
-                },
-                {
-                  type: "image",
-                  src: "",
-                  alt: "Contractor onboarding for Buildforce web app",
-                },
-              ]}
-            />
-          </ProjectSectionMediaBinder>
+          <ProjectSectionMedia
+            layout={{
+              type: "mockup",
+              background: {
+                image:
+                  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743573561/buildforce-07-bg_h3loqy.webp",
+              },
+            }}
+            media={[
+              {
+                type: "image",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744060192/buildforce-07_r0yavc.webp",
+                alt: "Contractor onboarding for Buildforce web app",
+                caption: (
+                  <>
+                    End-of-week flow to double-check entries before it
+                    auto-submits on Monday. Similar to the old design, but
+                    workers can edit throughout the week and don&rsquo;t have to
+                    explicitly “&ldquo;submit&rdquo; hours.
+                  </>
+                ),
+              },
+            ]}
+          />
 
           <ProjectSectionContent
             headline={
@@ -435,69 +447,85 @@ const Buildforce: React.FC = () => {
               <>
                 We added clock-in and clock-out maps to give contractors a
                 clearer view of when and where shifts started and ended. We
-                didn’t have direct metrics on trust, but we saw contractors
-                using that data to settle disputes, which in my view suggests
-                they believed it. On the flip side, workers were notified when
-                their time was approved or changed and could dispute it
-                directly. Instead of ops chasing people down, both sides had the
-                info they needed. Our team went from spending 3 days a week
-                resolving time disputes to just a couple of hours.
+                didn&rsquo;t have direct metrics on trust, but we saw
+                contractors using that data to settle disputes, which in my view
+                suggests they believed it. On the flip side, workers were
+                notified when their time was approved or changed and could
+                dispute it directly. Instead of ops chasing people down, both
+                sides had the info they needed. Our team went from spending 3
+                days a week resolving time disputes to just a couple of hours.
               </>
             }
           />
 
-          <ProjectSectionMedia
-            layout={{
-              type: "mockup",
-              background: {
-                image: "",
-              },
-            }}
-            media={[
-              {
-                type: "image",
-                src: "",
-                alt: "Contractor onboarding for Buildforce web app",
-                caption: <>This is a caption</>,
-              },
-            ]}
-          />
+          <ProjectSectionMediaBinder>
+            <ProjectSectionMedia
+              layout={{
+                type: "mockup",
+                background: {
+                  color: "bg-[#BEB39E]",
+                },
+              }}
+              media={[
+                {
+                  type: "image",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744060079/buildforce-08_nrwqhs.webp",
+                  alt: "Contractor onboarding for Buildforce web app",
+                  caption: (
+                    <>
+                      Contractors can view location and time entry details for
+                      each worker. This helped build trust in the system, even
+                      though the main approval surface stayed unchanged aside
+                      from new brand styling.
+                    </>
+                  ),
+                },
+              ]}
+            />
+            <ProjectSectionMedia
+              layout={{
+                type: "double",
+              }}
+              media={[
+                {
+                  type: "image",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744059344/buildforce-09_qhiksw.webp",
+                  alt: "Contractor onboarding for Buildforce web app",
+                  caption: (
+                    <>
+                      Workers are notified when time is approved or edited so
+                      they can dispute issues directly. This removed ops from
+                      having to chase down confirmations.
+                    </>
+                  ),
+                },
+                {
+                  type: "image",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744059343/buildforce-10_x8hitp.webp",
+                  alt: "Contractor onboarding for Buildforce web app",
+                },
+              ]}
+            />
+          </ProjectSectionMediaBinder>
         </ProjectSection>
 
         {/* ---- PROCESS ---- */}
-        <ProjectSection
-          sectionNumber="III"
-          sectionLabel="Process"
-          // className="stack-animation"
-        >
-          <ProjectSectionContent
-            headline={
-              <>
-                If you'd like to learn more about the process, I'd be happy to
-                chat.
-              </>
-            }
-            body={
-              <>
-                Learn more about how these questions I answered:
-                <ul className="list-disc list-outside ml-4">
-                  <li>
-                    What were our principles and how did we stay on the worker's
-                    side?
-                  </li>
-                  <li>What challenges arose throughout the project?</li>
-                  <li>How did did we move to the shape-up process?</li>
-                  <li>
-                    How did we tackle product education, comms and support?
-                  </li>
-                  <li>
-                    How did we introduce a brand refresh alongside product work?
-                  </li>
-                </ul>
-              </>
-            }
-          />
-        </ProjectSection>
+        <section className="relative p-8 pt-40 bg-surface-primary-negative border-t h-screen border-border-primary">
+          <h1 className="~text-6xl/10xl text-balance text-text-primary-negative text-center">
+            Let's chat if you'd like to hear more of the nitty gritty
+          </h1>
+          {/* <ul className="list-disc list-outside ml-4">
+            <li>
+              What were our principles and how did we stay on the worker's side?
+            </li>
+            <li>What challenges arose throughout the project?</li>
+            <li>How did did we move to the shape-up process?</li>
+            <li>How did we tackle product education, comms and support?</li>
+            <li>
+              How did we introduce a brand refresh alongside product work?
+            </li>
+          </ul> */}
+        </section>
 
         <footer className="p-8 pt-40 bg-surface-primary border-t h-screen border-border-primary">
           Hello
