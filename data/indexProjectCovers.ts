@@ -34,7 +34,7 @@ export const projects: Project[] = [
     year: "2023",
     url: "/projects/buildforce",
     image1: {
-      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744060998/buildforce-cover-01_mph55e.webp",
+      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744093117/buildforce-cover-01_1_jzzqeo.webp",
       alt: "Buildforce",
     },
     image2: {

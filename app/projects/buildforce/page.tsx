@@ -94,7 +94,7 @@ const Buildforce: React.FC = () => {
           }}
           images={{
             primary: {
-              src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744060998/buildforce-cover-01_mph55e.webp",
+              src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744093117/buildforce-cover-01_1_jzzqeo.webp",
               alt: "Buildforce Leadership",
             },
             secondary: {
@@ -206,7 +206,7 @@ const Buildforce: React.FC = () => {
             layout={{
               type: "mockup",
               background: {
-                color: "bg-[#BDC3CF]",
+                color: "bg-[#2F3947]",
               },
             }}
             media={[
@@ -316,7 +316,7 @@ const Buildforce: React.FC = () => {
             media={[
               {
                 type: "image",
-                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744058143/buildforce-05_atx4jv.webp",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744091995/buildforce-05_hajxhw.webp",
                 alt: "Animated flow of time tracking for Buildforce worker app",
               },
             ]}
@@ -489,7 +489,7 @@ const Buildforce: React.FC = () => {
               media={[
                 {
                   type: "image",
-                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744059344/buildforce-09_qhiksw.webp",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744092019/buildforce-09_dqdnsc.webp",
                   alt: "Contractor onboarding for Buildforce web app",
                   caption: (
                     <>
@@ -501,7 +501,7 @@ const Buildforce: React.FC = () => {
                 },
                 {
                   type: "image",
-                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744059343/buildforce-10_x8hitp.webp",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744092019/buildforce-10_ykqwvx.webp",
                   alt: "Contractor onboarding for Buildforce web app",
                 },
               ]}
@@ -527,8 +527,21 @@ const Buildforce: React.FC = () => {
           </ul> */}
         </section>
 
-        <footer className="p-8 pt-40 bg-surface-primary border-t h-screen border-border-primary">
-          Hello
+        <footer className="bg-surface-primary-negative text-text-primary-negative p-4 pt-24 md:p-8 md:pt-48 text-xs font-mono uppercase grid grid-cols-12 gap-8 items-end">
+          {/* <div className="col-span-3">
+          <p>...</p>
+        </div> */}
+
+          <div className="col-start-7 col-span-3">
+            <p>LinkedIn</p>
+            <p>Are.na</p>
+            <p>Dribbble</p>
+          </div>
+
+          <div className="col-start-10 col-span-3 text-right justify-self-end">
+            <p>&copy;{new Date().getFullYear()}</p>
+            <p>Made w/love by Buhr</p>
+          </div>
         </footer>
       </div>
     </ReactLenis>
