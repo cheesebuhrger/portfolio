@@ -17,6 +17,7 @@ import { ReactLenis } from "@studio-freight/react-lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useStackAnimation } from "@/hooks/useStackAnimation";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
+import { usePeelMediaAnimation } from "@/hooks/usePeelMediaAnimation";
 import SplitType from "split-type";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -24,7 +25,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 const Buildforce: React.FC = () => {
   const imageScaleRef = useImageScaleAnimation();
   const stackRef = useStackAnimation();
-
+  const peelMediaRef = usePeelMediaAnimation();
   return (
     <ReactLenis root>
       <div>
@@ -32,16 +33,27 @@ const Buildforce: React.FC = () => {
           headline={<>Designing friction to save everyone time</>}
           results={[
             {
-              title: "Workers submitted cleaner, more accurate time entries",
+              title:
+                "I led the redesign of Buildforce's time tracking flow with 3 engineers, no PM, & a new dev process (Shape Up)",
             },
             {
-              title: "Contractors trusted the data and made fewer edits",
+              title:
+                "Resulted in fewer errors, more accurate hrs from workers, & reduced days of manual payroll cleanup",
             },
-            {
-              title: "Ops cut their payroll workload from days to hours",
-            },
+
+            // {
+            //   title: "Workers submitted cleaner, more accurate time entries",
+            // },
+            // {
+            //   title: "Contractors trusted the data and made fewer edits",
+            // },
+            // {
+            //   title: "Ops cut their payroll workload from days to hours",
+            // },
           ]}
           skills={[
+            "!Staff Product Designer",
+            "!Iterative Design",
             "Data Analysis",
             "Design Systems",
             "Interaction Design",
@@ -137,7 +149,7 @@ const Buildforce: React.FC = () => {
               layout={{
                 type: "mockup",
                 background: {
-                  color: "bg-[#2F3947]",
+                  color: "bg-[#BDC3CF]",
                 },
               }}
               media={[
@@ -159,7 +171,7 @@ const Buildforce: React.FC = () => {
               layout={{
                 type: "mockup",
                 background: {
-                  color: "bg-[#6C7585]",
+                  color: "bg-[#BDC3CF]",
                 },
               }}
               media={[
@@ -206,7 +218,7 @@ const Buildforce: React.FC = () => {
             layout={{
               type: "mockup",
               background: {
-                color: "bg-[#2F3947]",
+                color: "bg-[#BDC3CF]",
               },
             }}
             media={[
@@ -278,7 +290,7 @@ const Buildforce: React.FC = () => {
         <ProjectSection
           sectionNumber="II"
           sectionLabel="Final Design & Outcomes"
-          className="stack-animation"
+          // className="stack-animation"
         >
           <ProjectSectionContent
             headline={
@@ -510,24 +522,8 @@ const Buildforce: React.FC = () => {
         </ProjectSection>
 
         {/* ---- PROCESS ---- */}
-        <section className="relative p-8 pt-40 bg-surface-primary-negative border-t h-screen border-border-primary">
-          <h1 className="~text-6xl/10xl text-balance text-text-primary-negative text-center">
-            Let's chat if you'd like to hear more of the nitty gritty
-          </h1>
-          {/* <ul className="list-disc list-outside ml-4">
-            <li>
-              What were our principles and how did we stay on the worker's side?
-            </li>
-            <li>What challenges arose throughout the project?</li>
-            <li>How did did we move to the shape-up process?</li>
-            <li>How did we tackle product education, comms and support?</li>
-            <li>
-              How did we introduce a brand refresh alongside product work?
-            </li>
-          </ul> */}
-        </section>
 
-        <footer className="bg-surface-primary-negative text-text-primary-negative p-4 pt-24 md:p-8 md:pt-48 text-xs font-mono uppercase grid grid-cols-12 gap-8 items-end">
+        <footer className="p-4 pt-24 md:p-8 md:pt-48 text-xs font-mono uppercase grid grid-cols-12 gap-8 items-end">
           {/* <div className="col-span-3">
           <p>...</p>
         </div> */}

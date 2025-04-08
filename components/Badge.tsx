@@ -1,10 +1,17 @@
 interface BadgeProps {
   text: string;
+  negative?: boolean;
 }
 
-export const Badge = ({ text }: BadgeProps) => {
+export const Badge = ({ text, negative = false }: BadgeProps) => {
   return (
-    <div className="w-fit h-5 px-1 border border-border-secondary rounded-[4px] text-xs font-mono flex items-center justify-center">
+    <div
+      className={`w-fit h-5 px-1 border rounded-[4px] text-xs font-mono flex items-center justify-center ${
+        negative
+          ? "border-border-primary rounded-md px-2"
+          : "border-border-secondary text-text-primary"
+      }`}
+    >
       {text}
     </div>
   );

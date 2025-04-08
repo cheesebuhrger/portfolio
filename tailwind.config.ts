@@ -41,9 +41,9 @@ const config: Config = {
       "8xl": ["5rem", "5.5rem"], //80 / 88
       "9xl": ["6rem", "6.5rem"], //96 / 104
       // "9xl-p": ["6rem", "7.75rem"], //96 / 124
-      "10xl": ["8rem", "9.5rem"], //128 / 152
-      "11xl": ["10rem", "11.5rem"], //160 / 184
-      "12xl": ["12rem", "13.5rem"], //192 / 216
+      "10xl": ["8rem", "8.25rem"], //128 / 132
+      "11xl": ["10rem", "10.25rem"], //160 / 164
+      "12xl": ["12rem", "12.25rem"], //192 / 196
     },
     screens: {
       sm: "30rem", //480
@@ -99,6 +99,9 @@ const config: Config = {
         primary: "rgba(var(--black-100), .3)",
         secondary: "rgba(var(--black-100), .1)",
         tertiary: "rgba(var(--black-100), .6)",
+        "primary-negative": "rgba(var(--white-100), .3)",
+        "secondary-negative": "rgba(var(--white-100), .1)",
+        "tertiary-negative": "rgba(var(--white-100), .6)",
         action: "rgba(var(--red-100), 1)",
       },
     },

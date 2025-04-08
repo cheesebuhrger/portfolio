@@ -50,11 +50,11 @@ const ProjectHeroResults: React.FC<ProjectHeroResultsProps> = ({
   title,
   index,
 }) => {
-  const letter = String.fromCharCode(65 + index); // 65 is ASCII for 'A'
+  // const letter = String.fromCharCode(65 + index); // 65 is ASCII for 'A'
   return (
-    <div className="flex flex-row border border-border-primary p-8 font-serif-p ~text-2xl/3xl rounded-md gap-8">
-      <span className="font-mono text-xs uspanpercase mt-1 lg:mt-[3px]">
-        {letter}
+    <div className="flex flex-row border border-border-primary p-4 md:p-6 lg:p-8 font-serif-p ~text-xl/3xl-p rounded-md gap-4 md:gap-6 lg:gap-8">
+      <span className="font-sans text-base uspanpercase mt-[1px] md:mt-[2px] lg:mt-1 xl:mt-2">
+        {/* {letter} */}↳
       </span>
       <p>{title}</p>
     </div>
@@ -96,8 +96,8 @@ const ProjectHero: React.FC<ProjectHeroProps> = ({
       id="introduction"
       className={`flex flex-col gap-y-12 md:gap-y-24 pb-24 md:pb-40 w-screen ${className}`}
     >
-      <div className="flex flex-col gap-y-12 md:gap-y-24 pt-24 pb-4 md:pb-0 md:h-85 md:justify-end">
-        <h1 className="~text-6xl/9xl px-4 md:px-6 lg:px-8 text-text-primary text-balance">
+      <div className="flex flex-col gap-y-12 md:gap-y-24 pt-24 pb-4 md:pb-0 md:h-85 md:min-h-fit md:justify-end">
+        <h1 className="~text-6xl/10xl px-4 md:px-6 lg:px-8 text-text-primary text-balance">
           {headline}
         </h1>
         <div className="grid grid-flow-row md:grid-flow-col md:grid-cols-6 lg:grid-cols-12 gap-12 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8">
@@ -111,7 +111,7 @@ const ProjectHero: React.FC<ProjectHeroProps> = ({
             ))}
           </div>
           <div className="md:col-start-5 md:col-span-2 lg:col-start-10 lg:col-span-3 flex flex-col gap-8 -mt-1">
-            <ProjectHeroDataWrapper label="Skills">
+            <ProjectHeroDataWrapper label="Role & Scope">
               <BadgeGroup badges={skills} />
             </ProjectHeroDataWrapper>
 

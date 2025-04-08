@@ -14,7 +14,7 @@ export const useImageScaleAnimation = () => {
       gsap.from(element, {
         scale: 1.2,
         duration: 3,
-        ease: "power2.out",
+        ease: "power4.out",
         scrollTrigger: {
           trigger: element,
           start: "top bottom",
@@ -32,7 +32,7 @@ export const useImageScaleAnimation = () => {
       gsap.from(element, {
         scale: 1.1,
         duration: 3,
-        ease: "power2.out",
+        ease: "power4.out",
         scrollTrigger: {
           trigger: element,
           start: "top bottom",
