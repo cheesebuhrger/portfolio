@@ -16,7 +16,7 @@ const ProjectSectionContent: React.FC<ProjectSectionContentProps> = ({
       <h2 className="split-type-animation col-span-1 col-start-1 md:col-span-1 md:col-start-2 xl:col-start-7 xl:col-span-6 ~text-4xl/6xl font-serif-p">
         {headline}
       </h2>
-      <div className="col-span-1 col-start-1 md:col-span-1 md:col-start-2 xl:col-start-7 xl:col-span-4 row-start-2 text-base">
+      <div className="col-span-1 col-start-1 md:col-span-1 md:col-start-2 xl:col-start-7 xl:col-span-4 row-start-2 text-base indent-16">
         {body}
       </div>
     </div>
