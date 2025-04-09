@@ -18,7 +18,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useStackAnimation } from "@/hooks/useStackAnimation";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import { usePeelMediaAnimation } from "@/hooks/usePeelMediaAnimation";
-import SplitType from "split-type";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -31,26 +30,8 @@ const Buildforce: React.FC = () => {
       <div>
         <ProjectHero
           headline={<>Designing friction to save everyone time</>}
-          results={[
-            {
-              title:
-                "I led the redesign of Buildforce's time tracking flow with 3 engineers, no PM, & a new dev process (Shape Up)",
-            },
-            {
-              title:
-                "Resulted in fewer errors, more accurate hrs from workers, & reduced days of manual payroll cleanup",
-            },
-
-            // {
-            //   title: "Workers submitted cleaner, more accurate time entries",
-            // },
-            // {
-            //   title: "Contractors trusted the data and made fewer edits",
-            // },
-            // {
-            //   title: "Ops cut their payroll workload from days to hours",
-            // },
-          ]}
+          problem="Inaccurate worker time entries made contractors distrust our system & left the ops team cleaning up payroll for 3 days"
+          solution="Redesigning the time tracking flow resulted in fewer errors, more accurate hrs from workers, & reduced days of manual payroll cleanup"
           skills={[
             "!Staff Product Designer",
             "!Iterative Design",
@@ -134,18 +115,13 @@ const Buildforce: React.FC = () => {
             body={
               <>
                 <p>
-                  Once we launched version 2 of time tracking, everyone did less
-                  but in the best way. Workers made more accurate submissions up
-                  front, contractors barely had to touch them because they
-                  aligned with their own logs, and our ops team didn&rsquo;t
-                  have to mediate every payroll cycle. The time tracking system
-                  stopped being a problem that needed constant fixing. It
-                  wasn&rsquo;t perfect, but it was going to help us scale the
-                  business.
-                </p>
-                <p className="mt-4">
-                  *Note: New designs have different styling because we were also
-                  going through a brand refresh.
+                  Once we released time tracking v2, everyone did less but in
+                  the best way. Workers made more accurate submissions up front,
+                  contractors barely had to touch them because they aligned with
+                  their own logs, and our ops team didn&rsquo;t have to mediate
+                  every payroll cycle. The time tracking system stopped being a
+                  problem that needed constant fixing. It wasn&rsquo;t perfect,
+                  but it was going to help us scale the business.
                 </p>
               </>
             }

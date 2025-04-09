@@ -3,6 +3,8 @@ import Image from "next/image";
 import { BadgeGroup } from "./BadgeGroup";
 import { AvatarGroup } from "./AvatarGroup";
 import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
+import IconSequence from "@/components/IconSequence";
+
 interface ProjectHeroResults {
   title: string;
 }
@@ -10,7 +12,8 @@ interface ProjectHeroResults {
 interface ProjectHeroProps {
   headline: ReactNode;
   company?: ReactNode;
-  results: ProjectHeroResults[];
+  problem: string;
+  solution: string;
   skills: string[];
   team:
     | ReactNode
@@ -40,26 +43,25 @@ interface ProjectHeroProps {
   className?: string;
 }
 
+const problemIconSequence = [
+  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177227/problem-1_parbly.svg",
+  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177227/problem-2_lxidte.svg",
+  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177227/problem-3_vnjp3a.svg",
+  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177228/problem-4_zzod3m.svg",
+  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177228/problem-5_knoanl.svg",
+];
+
+const solutionIconSequence = [
+  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177813/solution-1_jj64ip.svg",
+  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177813/solution-2_x0ryne.svg",
+  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177814/solution-3_vgzypm.svg",
+];
+
 // ---- RESULT COMPONENT ----
 interface ProjectHeroResultsProps {
   title: string;
   index: number;
 }
-
-const ProjectHeroResults: React.FC<ProjectHeroResultsProps> = ({
-  title,
-  index,
-}) => {
-  // const letter = String.fromCharCode(65 + index); // 65 is ASCII for 'A'
-  return (
-    <div className="flex flex-row border border-border-primary p-4 md:p-6 lg:p-8 font-serif-p ~text-xl/3xl-p rounded-md gap-4 md:gap-6 lg:gap-8">
-      <span className="font-sans text-base uspanpercase mt-[1px] md:mt-[2px] lg:mt-1 xl:mt-2">
-        {/* {letter} */}↳
-      </span>
-      <p>{title}</p>
-    </div>
-  );
-};
 
 // ---- DATA COMPONENT ----
 
@@ -88,7 +90,8 @@ const ProjectHero: React.FC<ProjectHeroProps> = ({
   team,
   duration,
   images,
-  results,
+  problem,
+  solution,
   className,
 }) => {
   useSplitTypeAnimation();
@@ -103,13 +106,25 @@ const ProjectHero: React.FC<ProjectHeroProps> = ({
         </h1>
         <div className="grid grid-flow-row md:grid-flow-col md:grid-cols-6 lg:grid-cols-12 gap-12 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8">
           <div className="md:col-span-4 lg:col-span-8 xl:col-span-6 flex flex-col gap-2">
-            {results.map((result, index) => (
-              <ProjectHeroResults
-                key={index}
-                title={result.title}
-                index={index}
-              />
-            ))}
+            <div className="flex flex-row border border-border-primary p-4 md:p-6 lg:p-8 font-serif-p ~text-xl/3xl-p rounded-md gap-4 md:gap-6 lg:gap-8">
+              <div className="relative mt-1">
+                <IconSequence
+                  className="text-text-action"
+                  images={problemIconSequence}
+                />
+              </div>
+              <p>{problem}</p>
+            </div>
+            <div className="flex flex-row border border-border-primary p-4 md:p-6 lg:p-8 font-serif-p ~text-xl/3xl-p rounded-md gap-4 md:gap-6 lg:gap-8">
+              <div className="relative mt-1">
+                <IconSequence
+                  className="text-text-action"
+                  images={solutionIconSequence}
+                  interval={250}
+                />
+              </div>
+              <p>{solution}</p>
+            </div>
           </div>
           <div className="md:col-start-5 md:col-span-2 lg:col-start-10 lg:col-span-3 flex flex-col gap-8 -mt-1">
             <ProjectHeroDataWrapper label="Role & Scope">
