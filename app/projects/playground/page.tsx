@@ -1,15 +1,17 @@
 "use client";
 
 import ProjectSection from "@/components/ProjectSection";
-import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
-import { usePeelMediaAnimation } from "@/hooks/usePeelMediaAnimation";
+import ProjectSectionMedia from "@/components/ProjectSectionMedia";
 import Image from "next/image";
 import React from "react";
-import ProjectSectionMedia from "@/components/ProjectSectionMedia";
+
 import { ReactLenis } from "@studio-freight/react-lenis";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
+import { usePeelMediaAnimation } from "@/hooks/usePeelMediaAnimation";
+import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -17,12 +19,21 @@ const Playground: React.FC = () => {
   // Initialize the animation hooks
   useImageScaleAnimation();
   usePeelMediaAnimation();
+  useSplitTypeAnimation();
 
   return (
     <ReactLenis root>
       <div>
         {/* Spacing */}
-        <section className="h-80" />
+        <section className="h-screen flex items-center justify-center gap-8">
+          <h1 className="split-type-animation text-8xl font-serif">
+            Playground
+          </h1>
+          <p className="split-type-animation text-4xl font-serif w-1/2">
+            A collection of experiments and ideas. Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Quisquam, quos.
+          </p>
+        </section>
 
         <section className="relative flex flex-row items-end justify-end p-8 gap-8 bg-surface-primary-negative border-t border-border-primary h-screen">
           <div className="w-1/2">

@@ -4,6 +4,12 @@ import { useTransitionRouter } from "next-view-transitions";
 
 export const useTransition = () => {
   const router = useTransitionRouter();
+  const ease =
+    // "cubic-bezier(0.87, 0, 0.13, 1)" original
+    // "cubic-bezier(0.46,0.03,0.52,0.96)" contender
+    "cubic-bezier(0.65,0.05,0.36,1)";
+
+  const duration = 1000;
 
   const slideInOut = () => {
     document.documentElement.animate(
@@ -18,8 +24,8 @@ export const useTransition = () => {
         },
       ],
       {
-        duration: 1500,
-        easing: "cubic-bezier(0.87, 0, 0.13, 1)",
+        duration: duration,
+        easing: ease,
         fill: "forwards",
         pseudoElement: "::view-transition-old(root)",
       }
@@ -35,8 +41,8 @@ export const useTransition = () => {
         },
       ],
       {
-        duration: 1500,
-        easing: "cubic-bezier(0.87, 0, 0.13, 1)",
+        duration: duration,
+        easing: ease,
         fill: "forwards",
         pseudoElement: "::view-transition-new(root)",
       }

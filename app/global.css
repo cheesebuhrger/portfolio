@@ -120,6 +120,17 @@ html {
   will-change: transform;
 } */
 
+.split-type-animation-hero .line,
+.split-type-animation .line {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.split-type-animation-hero .line span,
+.split-type-animation .line span {
+  will-change: transform;
+  display: none;
+}
+
 .cards {
   display: grid;
   > * {

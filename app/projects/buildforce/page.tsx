@@ -117,180 +117,11 @@ const Buildforce: React.FC = () => {
           className="stack-animation"
         />
 
-        {/* ---- PROBLEM ---- */}
-        <ProjectSection
-          sectionNumber="I"
-          sectionLabel="Problem"
-          className="stack-animation"
-        >
-          <ProjectSectionContent
-            headline={
-              <>
-                Workers were submitting hours that didn&rsquo;t reflect reality,
-                so contractors and our ops team had to clean up the mess in time
-                to run payroll every week.
-              </>
-            }
-            body={
-              <>
-                Clock-in and clock-out times were all over the place, sometimes
-                showing 24-hour shifts, other times missing entire days. Some
-                clocked out hours after their shift ended, or forgot entirely
-                and only noticed when clocking in the next day. Many workers
-                didn&rsquo;t review their time before submitting. This led to
-                inaccurate time sheets getting sent to contractors and a cascade
-                of manual corrections later.
-              </>
-            }
-          />
-
-          <ProjectSectionMediaBinder>
-            <ProjectSectionMedia
-              layout={{
-                type: "mockup",
-                background: {
-                  color: "bg-[#BDC3CF]",
-                },
-              }}
-              media={[
-                {
-                  type: "image",
-                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743717774/buildforce-02_bpjwok.webp",
-                  alt: "Trades app clockout flow",
-                  caption: (
-                    <>
-                      Our time tracking system works like a stopwatch: easy to
-                      forget. Most workers forget to clock in or out, and about
-                      65% of these time entries go uncorrected.
-                    </>
-                  ),
-                },
-              ]}
-            />
-            <ProjectSectionMedia
-              layout={{
-                type: "mockup",
-                background: {
-                  color: "bg-[#BDC3CF]",
-                },
-              }}
-              media={[
-                {
-                  type: "image",
-                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743717774/buildforce-03_qq6zik.webp",
-                  alt: "Trades app submit time flow at the start of the following week",
-                  caption: (
-                    <>
-                      Workers get a second chance to fix their hours at the
-                      start of the week but most skip it, either unaware or
-                      assuming the original entry is “good enough.”
-                    </>
-                  ),
-                },
-              ]}
-            />
-          </ProjectSectionMediaBinder>
-
-          <ProjectSectionContent
-            headline={
-              <>
-                Contractors didn&rsquo;t trust the hours and inputted their own
-                time sheets. As a result, our ops team spent 3 days of their
-                week untangling the truth.
-              </>
-            }
-            body={
-              <>
-                Each week followed the same painful pattern. Our payroll team
-                rounded worker-reported hours and sent them to contractors, who
-                cross-checked them against their own logs usually treating
-                theirs as the source of truth. When the numbers didn&&rsquo;;t
-                match (which happened a lot), payroll and support ops were left
-                sorting it out. That meant chasing foremen, piecing together
-                timelines, and trying to resolve disputes with limited context.
-                Workers were often left in the dark sometimes waiting weeks to
-                get paid correctly.
-              </>
-            }
-          />
-
-          <ProjectSectionMedia
-            layout={{
-              type: "mockup",
-              background: {
-                color: "bg-[#BDC3CF]",
-              },
-            }}
-            media={[
-              {
-                type: "image",
-                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744064972/buildforce-01_fhd7ft.webp",
-                alt: "Contractor time approval",
-                caption: (
-                  <>
-                    Contractors use this web app surface to approve worker hours
-                    but usually end up editing them. They often overwrite worker
-                    entries to match time sheets from their own systems.
-                  </>
-                ),
-              },
-            ]}
-          />
-
-          <ProjectSectionContent
-            headline={
-              <>
-                The system created friction for contractors, gave workers little
-                feedback, and left ops stuck in the middle.
-              </>
-            }
-            body={
-              <>
-                Hiring through Buildforce was supposed to be easier, but our
-                time tracking flow added more overhead for contractors. Many
-                already had systems in place, so using ours felt like extra
-                work... not an upgrade. On the worker side, the flow was too
-                easy to speed through (they didn't know they were doing anything
-                wrong) and too hard to correct later. Meanwhile, our ops team
-                was stretched thin, manually reconciling time across three
-                disconnected perspectives.
-              </>
-            }
-          />
-
-          <div className="flex flex-col md:flex-row gap-4 md:gap-2">
-            <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
-              <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
-                Workers didn’t review or correct their hours with{" "}
-                <span className="text-text-action">
-                  ~65% of entries were submitted without worker edits
-                </span>
-              </p>
-            </div>
-            <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
-              <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
-                Contractors often ignored worker-submitted time with{" "}
-                <span className="text-text-action">
-                  45% of entries edited by contractors
-                </span>
-              </p>
-            </div>
-            <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
-              <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
-                Ops had to intervene constantly with only{" "}
-                <span className="text-text-action">
-                  ~55% of time sheets getting auto-approved
-                </span>
-              </p>
-            </div>
-          </div>
-        </ProjectSection>
-
         {/* ---- OUTCOMES ---- */}
         <ProjectSection
           sectionNumber="II"
           sectionLabel="Final Design & Outcomes"
-          // className="stack-animation"
+          className="stack-animation"
         >
           <ProjectSectionContent
             headline={
@@ -519,6 +350,175 @@ const Buildforce: React.FC = () => {
               ]}
             />
           </ProjectSectionMediaBinder>
+        </ProjectSection>
+
+        {/* ---- PROBLEM ---- */}
+        <ProjectSection
+          sectionNumber="I"
+          sectionLabel="Problem"
+          // className="stack-animation"
+        >
+          <ProjectSectionContent
+            headline={
+              <>
+                Workers were submitting hours that didn&rsquo;t reflect reality,
+                so contractors and our ops team had to clean up the mess in time
+                to run payroll every week.
+              </>
+            }
+            body={
+              <>
+                Clock-in and clock-out times were all over the place, sometimes
+                showing 24-hour shifts, other times missing entire days. Some
+                clocked out hours after their shift ended, or forgot entirely
+                and only noticed when clocking in the next day. Many workers
+                didn&rsquo;t review their time before submitting. This led to
+                inaccurate time sheets getting sent to contractors and a cascade
+                of manual corrections later.
+              </>
+            }
+          />
+
+          <ProjectSectionMediaBinder>
+            <ProjectSectionMedia
+              layout={{
+                type: "mockup",
+                background: {
+                  color: "bg-[#BDC3CF]",
+                },
+              }}
+              media={[
+                {
+                  type: "image",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743717774/buildforce-02_bpjwok.webp",
+                  alt: "Trades app clockout flow",
+                  caption: (
+                    <>
+                      Our time tracking system works like a stopwatch: easy to
+                      forget. Most workers forget to clock in or out, and about
+                      65% of these time entries go uncorrected.
+                    </>
+                  ),
+                },
+              ]}
+            />
+            <ProjectSectionMedia
+              layout={{
+                type: "mockup",
+                background: {
+                  color: "bg-[#BDC3CF]",
+                },
+              }}
+              media={[
+                {
+                  type: "image",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743717774/buildforce-03_qq6zik.webp",
+                  alt: "Trades app submit time flow at the start of the following week",
+                  caption: (
+                    <>
+                      Workers get a second chance to fix their hours at the
+                      start of the week but most skip it, either unaware or
+                      assuming the original entry is “good enough.”
+                    </>
+                  ),
+                },
+              ]}
+            />
+          </ProjectSectionMediaBinder>
+
+          <ProjectSectionContent
+            headline={
+              <>
+                Contractors didn&rsquo;t trust the hours and inputted their own
+                time sheets. As a result, our ops team spent 3 days of their
+                week untangling the truth.
+              </>
+            }
+            body={
+              <>
+                Each week followed the same painful pattern. Our payroll team
+                rounded worker-reported hours and sent them to contractors, who
+                cross-checked them against their own logs usually treating
+                theirs as the source of truth. When the numbers didn&&rsquo;;t
+                match (which happened a lot), payroll and support ops were left
+                sorting it out. That meant chasing foremen, piecing together
+                timelines, and trying to resolve disputes with limited context.
+                Workers were often left in the dark sometimes waiting weeks to
+                get paid correctly.
+              </>
+            }
+          />
+
+          <ProjectSectionMedia
+            layout={{
+              type: "mockup",
+              background: {
+                color: "bg-[#BDC3CF]",
+              },
+            }}
+            media={[
+              {
+                type: "image",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744064972/buildforce-01_fhd7ft.webp",
+                alt: "Contractor time approval",
+                caption: (
+                  <>
+                    Contractors use this web app surface to approve worker hours
+                    but usually end up editing them. They often overwrite worker
+                    entries to match time sheets from their own systems.
+                  </>
+                ),
+              },
+            ]}
+          />
+
+          <ProjectSectionContent
+            headline={
+              <>
+                The system created friction for contractors, gave workers little
+                feedback, and left ops stuck in the middle.
+              </>
+            }
+            body={
+              <>
+                Hiring through Buildforce was supposed to be easier, but our
+                time tracking flow added more overhead for contractors. Many
+                already had systems in place, so using ours felt like extra
+                work... not an upgrade. On the worker side, the flow was too
+                easy to speed through (they didn't know they were doing anything
+                wrong) and too hard to correct later. Meanwhile, our ops team
+                was stretched thin, manually reconciling time across three
+                disconnected perspectives.
+              </>
+            }
+          />
+
+          <div className="flex flex-col md:flex-row gap-4 md:gap-2">
+            <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
+              <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
+                Workers didn’t review or correct their hours with{" "}
+                <span className="text-text-action">
+                  ~65% of entries were submitted without worker edits
+                </span>
+              </p>
+            </div>
+            <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
+              <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
+                Contractors often ignored worker-submitted time with{" "}
+                <span className="text-text-action">
+                  45% of entries edited by contractors
+                </span>
+              </p>
+            </div>
+            <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
+              <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
+                Ops had to intervene constantly with only{" "}
+                <span className="text-text-action">
+                  ~55% of time sheets getting auto-approved
+                </span>
+              </p>
+            </div>
+          </div>
         </ProjectSection>
 
         {/* ---- PROCESS ---- */}
