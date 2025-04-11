@@ -8,6 +8,30 @@ export const useSplitTypeAnimation = () => {
   const elementsRef = useRef<NodeListOf<HTMLElement> | null>(null);
 
   useGSAP(() => {
+    // Check if we're on medium devices or larger
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+    // Function to handle media query changes
+    const handleMediaQueryChange = (
+      e: MediaQueryListEvent | MediaQueryList
+    ) => {
+      if (e.matches) {
+        // On medium and up, observe elements
+        elementsRef.current?.forEach((el) => {
+          observerRef.current?.observe(el);
+        });
+      } else {
+        // On small screens, disconnect observer
+        observerRef.current?.disconnect();
+      }
+    };
+
+    // Initial check
+    handleMediaQueryChange(mediaQuery);
+
+    // Listen for changes
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+
     elementsRef.current = document.querySelectorAll<HTMLElement>(
       ".split-type-animation, .split-type-animation-hero"
     );
@@ -59,12 +83,6 @@ export const useSplitTypeAnimation = () => {
         y: "100%",
         display: "block", // Keeping block as per previous state
       });
-
-      // Ensure lines don't wrap their content internally
-      // This might be redundant if layout issues are fixed, but keeping for now
-      //   gsap.set(lines, {
-      //     whiteSpace: "nowrap",
-      //   });
 
       // Animate spans
       gsap.to(spans, {
@@ -125,14 +143,10 @@ export const useSplitTypeAnimation = () => {
       }
     );
 
-    elementsRef.current.forEach((el) => {
-      observerRef.current?.observe(el);
-    });
-
     // Cleanup function for the hook
     return () => {
-      observerRef.current?.disconnect(); // Disconnect observer on unmount
-      // GSAP context cleanup handled by useGSAP
+      observerRef.current?.disconnect();
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
     };
-  }, []); // Empty dependency array ensures this runs once on mount
+  }, []);
 };
