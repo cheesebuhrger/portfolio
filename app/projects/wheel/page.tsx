@@ -67,18 +67,8 @@ const Wheel: React.FC = () => {
               0 → 1
             </>
           }
-          results={[
-            {
-              title: "Less ops hours dedicated to scheduling and pay",
-            },
-            {
-              title:
-                "More first assignment completions under round robin system",
-            },
-            {
-              title: "Faster visit completion times",
-            },
-          ]}
+          problem="Clinicians used email to know what patients they were assigned to, needed to context switch and learn many different platforms"
+          solution="Less ops hours dedicated to scheduling and pay, more first assignment completions under round robin system, and faster visit completion times"
           skills={[
             "Design Systems",
             "IA",
