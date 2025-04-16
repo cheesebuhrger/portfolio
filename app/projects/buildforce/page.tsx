@@ -462,10 +462,10 @@ const Buildforce: React.FC = () => {
                 time tracking flow added more overhead for contractors. Many
                 already had systems in place, so using ours felt like extra
                 work... not an upgrade. On the worker side, the flow was too
-                easy to speed through (they didn't know they were doing anything
-                wrong) and too hard to correct later. Meanwhile, our ops team
-                was stretched thin, manually reconciling time across three
-                disconnected perspectives.
+                easy to speed through (they didn&rsquo;t know they were doing
+                anything wrong) and too hard to correct later. Meanwhile, our
+                ops team was stretched thin, manually reconciling time across
+                three disconnected perspectives.
               </>
             }
           />

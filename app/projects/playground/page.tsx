@@ -73,8 +73,8 @@ const Playground: React.FC = () => {
 
             <div className="border border-border-primary-negative bg-surface-primary-negative rounded-md p-8 ">
               <p>
-                What were our principles and how did we stay on the worker's
-                side?
+                What were our principles and how did we stay on the
+                worker&rsquo;s side?
               </p>
             </div>
 
@@ -84,8 +84,8 @@ const Playground: React.FC = () => {
 
             <div className="border border-border-primary-negative bg-surface-primary-negative rounded-md p-8 ">
               <p>
-                What were our principles and how did we stay on the worker's
-                side?
+                What were our principles and how did we stay on the
+                worker&rsquo;s side?
               </p>
             </div>
 
