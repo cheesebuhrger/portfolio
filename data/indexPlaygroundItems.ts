@@ -65,7 +65,7 @@ export const playgroundItems: GridItem[] = [
     date: "2014",
     url: "https://vimeo.com/113965742",
     description:
-      "I filmed a video portrait/documentary of my nephew, Andy Nguyen. Played around with a few different lenses and techniques. Also scrappily used my iPhone to record better soundf for the interview and steps.",
+      "I filmed a video portrait/documentary of my nephew, Andy Nguyen. Played around with a few different lenses and techniques. Also scrappily used my iPhone to record better sound for the interview and choreo.",
   },
   {
     type: "video",

@@ -7,8 +7,6 @@ import ProjectSectionMedia from "@/components/ProjectSectionMedia";
 import ProjectSectionContent from "@/components/ProjectSectionContent";
 import ProjectSection from "@/components/ProjectSection";
 import ProjectHero from "@/components/ProjectHero";
-import Quote from "@/components/Quote";
-import Button from "@/components/Button";
 import ProjectSectionMediaBinder from "@/components/ProjectSectionMediaBinder";
 
 import { gsap } from "gsap";
@@ -17,14 +15,12 @@ import { ReactLenis } from "@studio-freight/react-lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useStackAnimation } from "@/hooks/useStackAnimation";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
-import { usePeelMediaAnimation } from "@/hooks/usePeelMediaAnimation";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const Buildforce: React.FC = () => {
   const imageScaleRef = useImageScaleAnimation();
   const stackRef = useStackAnimation();
-  const peelMediaRef = usePeelMediaAnimation();
   return (
     <ReactLenis root>
       <div>
@@ -100,9 +96,10 @@ const Buildforce: React.FC = () => {
 
         {/* ---- OUTCOMES ---- */}
         <ProjectSection
-          sectionNumber="II"
+          sectionNumber="I"
           sectionLabel="Final Design & Outcomes"
           className="stack-animation"
+          iconType="solution"
         >
           <ProjectSectionContent
             headline={
@@ -142,24 +139,27 @@ const Buildforce: React.FC = () => {
             stats={[
               {
                 title: "Less edits made by all parties",
-                value: "−42%",
-                footnote: "~2,500 → ~1,450 edits/week",
+                value: "42%",
+                footnote: "~2,500 → ~1,450 edits/wk",
+                direction: "down",
               },
               {
                 title: "Workers corrected their own time",
-                value: "+15%",
+                value: "15%",
                 footnote: "~35% to ~50%",
+                direction: "up",
               },
               {
                 title: "Contractors/ops had to fix less",
-                value: "-21%",
+                value: "21%",
                 footnote: "~45% to ~24%",
+                direction: "down",
               },
               {
-                title:
-                  "More time entries moved through without any intervention",
-                value: "+20%",
+                title: "More time approved without intervention",
+                value: "20%",
                 footnote: "~55% to ~75%",
+                direction: "up",
               },
             ]}
           />
@@ -214,7 +214,7 @@ const Buildforce: React.FC = () => {
             headline={
               <>
                 Letting workers edit time throughout the week sounded like a
-                logical iteration. Most didn&rsquo;t do it.
+                logical improvement. Most didn&rsquo;t do it.
               </>
             }
             body={
@@ -330,8 +330,9 @@ const Buildforce: React.FC = () => {
 
         {/* ---- PROBLEM ---- */}
         <ProjectSection
-          sectionNumber="I"
+          sectionNumber="II"
           sectionLabel="Problem"
+          iconType="problem"
           // className="stack-animation"
         >
           <ProjectSectionContent

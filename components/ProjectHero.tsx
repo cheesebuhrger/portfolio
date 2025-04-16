@@ -3,7 +3,7 @@ import Image from "next/image";
 import { BadgeGroup } from "./BadgeGroup";
 import { AvatarGroup } from "./AvatarGroup";
 import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
-import IconSequence from "@/components/IconSequence";
+import { AnimatedIcon } from "./icons";
 
 interface ProjectHeroResults {
   title: string;
@@ -108,20 +108,13 @@ const ProjectHero: React.FC<ProjectHeroProps> = ({
           <div className="md:col-span-4 lg:col-span-8 xl:col-span-6 flex flex-col gap-2">
             <div className="flex flex-row border border-border-primary p-4 md:p-6 lg:p-8 font-serif-p ~text-xl/3xl-p rounded-md gap-4 md:gap-6 lg:gap-8">
               <div className="relative mt-1">
-                <IconSequence
-                  className="text-text-action"
-                  images={problemIconSequence}
-                />
+                <AnimatedIcon type="problem" />
               </div>
               <p>{problem}</p>
             </div>
             <div className="flex flex-row border border-border-primary p-4 md:p-6 lg:p-8 font-serif-p ~text-xl/3xl-p rounded-md gap-4 md:gap-6 lg:gap-8">
               <div className="relative mt-1">
-                <IconSequence
-                  className="text-text-action"
-                  images={solutionIconSequence}
-                  interval={250}
-                />
+                <AnimatedIcon type="solution" interval={250} />
               </div>
               <p>{solution}</p>
             </div>

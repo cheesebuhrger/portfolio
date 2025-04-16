@@ -2,7 +2,6 @@
 
 import ProjectSection from "@/components/ProjectSection";
 import ProjectSectionMedia from "@/components/ProjectSectionMedia";
-import IconSequence from "@/components/IconSequence";
 import React from "react";
 
 import { ReactLenis } from "@studio-freight/react-lenis";
@@ -14,15 +13,6 @@ import { usePeelMediaAnimation } from "@/hooks/usePeelMediaAnimation";
 import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
-
-// Define the image sequence
-const imageSequence = [
-  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744175300/problem-1_ujba7f.svg",
-  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744175300/problem-2_xja6t9.svg",
-  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744175300/problem-3_dheswi.svg",
-  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744175300/problem-4_qwz8ve.svg",
-  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744175300/problem-5_n5r8ta.svg",
-];
 
 const Playground: React.FC = () => {
   // Initialize the animation hooks
@@ -42,8 +32,30 @@ const Playground: React.FC = () => {
             A collection of experiments and ideas. Lorem ipsum dolor sit amet
             consectetur adipisicing elit. Quisquam, quos.
           </p>
-          <IconSequence images={imageSequence} />
+          <svg width="320" height="130" xmlns="http://www.w3.org/2000/svg">
+            <rect
+              width="300"
+              height="100"
+              x="10"
+              y="10"
+              style={{ fill: "rgb(0,0,255)", strokeWidth: 3, stroke: "red" }}
+            />
+          </svg>
         </section>
+
+        {/* divider */}
+        <section className="relative p-8 gap-8 bg-surface-primary border-t border-border-primary h-screen" />
+        {/* divider */}
+
+        <section className="relative flex flex-row items-end justify-center p-8 gap-8 bg-surface-primary-negative border-t border-border-primary h-screen">
+          <h1 className="~text-6xl/12xl text-text-primary-negative">
+            The Nitty Gritty
+          </h1>
+        </section>
+
+        {/* divider */}
+        <section className="relative p-8 gap-8 bg-surface-primary border-t border-border-primary h-screen" />
+        {/* divider */}
 
         <section className="relative flex flex-row items-end justify-end p-8 gap-8 bg-surface-primary-negative border-t border-border-primary h-screen">
           <div className="w-1/2">

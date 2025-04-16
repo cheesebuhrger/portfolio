@@ -18,6 +18,7 @@ type StatBlock = {
   title: ReactNode;
   value: string;
   footnote?: string;
+  direction?: "up" | "down" | "unknown" | "none";
 } | null;
 
 type ProjectSectionMediaProps = {
@@ -124,6 +125,7 @@ const ProjectSectionMedia: React.FC<ProjectSectionMediaProps> = ({
               title={stats[index]!.title}
               value={stats[index]!.value}
               footnote={stats[index]!.footnote}
+              direction={stats[index]!.direction}
             />
           )}
         </div>

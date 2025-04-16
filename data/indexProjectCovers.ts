@@ -70,19 +70,19 @@ export const projects: Project[] = [
       alt: "Buildforce",
     },
   },
-  {
-    title:
-      "Designing for clarity, control, & efficiency in virtual care, from 0 → 1",
-    company: "Wheel",
-    year: "2021",
-    url: "/projects/wheel",
-    image1: {
-      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873250/wheel-cover-1_uamqg1.webp",
-      alt: "Buildforce",
-    },
-    image2: {
-      src: "/images/wheel/wheel-cover-2.jpg",
-      alt: "Buildforce",
-    },
-  },
+  // {
+  //   title:
+  //     "Designing for clarity, control, & efficiency in virtual care, from 0 → 1",
+  //   company: "Wheel",
+  //   year: "2021",
+  //   url: "/projects/wheel",
+  //   image1: {
+  //     src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873250/wheel-cover-1_uamqg1.webp",
+  //     alt: "Wheel",
+  //   },
+  //   image2: {
+  //     src: "/images/wheel/wheel-cover-2.jpg",
+  //     alt: "Wheel",
+  //   },
+  // },
 ];
