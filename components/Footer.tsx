@@ -9,8 +9,20 @@ const Footer = () => {
   const isHomePage = pathname === "/";
 
   return (
-    <footer className="grid md:grid-cols-4 p-4 pt-24 md:p-8 md:pt-48 text-xs font-mono uppercase gap-8 items-end">
-      <div className="col-span-2 border border-border-primary h-96"></div>
+    <footer
+      className={`grid md:grid-cols-4 p-4 pt-24 md:p-8 md:pt-48 text-xs font-mono uppercase gap-8 items-end ${
+        !isHomePage
+          ? "bg-surface-primary-negative text-text-primary-negative"
+          : ""
+      }`}
+    >
+      <div
+        className={`col-span-2 border ${
+          !isHomePage
+            ? "border-border-primary-negative"
+            : "border-border-primary"
+        } h-96`}
+      ></div>
 
       <ul className="col-span-1 md:col-start-3">
         {!isHomePage && (

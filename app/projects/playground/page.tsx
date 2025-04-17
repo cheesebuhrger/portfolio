@@ -11,14 +11,114 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import { usePeelMediaAnimation } from "@/hooks/usePeelMediaAnimation";
 import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
+import { useStackAnimation } from "@/hooks/useStackAnimation";
+import Image from "next/image";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+const tl = gsap.timeline();
 
 const Playground: React.FC = () => {
   // Initialize the animation hooks
   useImageScaleAnimation();
   usePeelMediaAnimation();
   useSplitTypeAnimation();
+  useStackAnimation();
+
+  useGSAP(() => {
+    // gsap.set(".panel", {
+    //   zIndex: (i, target, targets) => targets.length - i,
+    // });
+    gsap.set(".panel-2", {
+      yPercent: -100,
+    });
+    gsap.set(".panel-3", {
+      yPercent: -100,
+    });
+    gsap.to(".panel-2", {
+      scrollTrigger: {
+        trigger: ".panel-2-container",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+        // markers: true,
+        pin: true,
+      },
+    });
+    gsap.to(".nitty-gritty-text", {
+      opacity: 0.1,
+      scrollTrigger: {
+        trigger: ".panel-2-container",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+        // markers: true,
+      },
+    });
+    gsap.to(".panel-3", {
+      scrollTrigger: {
+        trigger: ".panel-3-container",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+        // markers: true,
+        pin: true,
+        pinSpacing: false,
+      },
+    });
+    // gsap.fromTo(
+    //   ".explore-container, .panel-1, .panel-2, .pin-dis",
+    //   {
+    //     backgroundColor: "#1A1A1A",
+    //   },
+    //   {
+    //     backgroundColor: "#F2F2F2",
+    //     duration: 0.5,
+    //     ease: "power2.inOut",
+    //     scrollTrigger: {
+    //       trigger: ".turn-white",
+    //       // start: "top bottom",
+    //       // end: "center bottom",
+    //       markers: true,
+    //       // scrub: 1,
+    //       toggleActions: "play none none reverse",
+    //     },
+    //   }
+    // );
+    // tl.fromTo(
+    //   ".explore-text",
+    //   {
+    //     color: "#F2F2F2",
+    //   },
+    //   {
+    //     color: "#1A1A1A",
+    //     duration: 0.5,
+    //     ease: "power1.inOut",
+    //     scrollTrigger: {
+    //       trigger: ".turn-white",
+    //       // start: "top bottom",
+    //       // end: "center bottom",
+    //       // scrub: 1,
+    //       toggleActions: "play none none reverse",
+    //     },
+    //   },
+    //   "<"
+    // );
+    // tl.to(
+    //   "panel-2-container",
+    //   {
+    //     backgroundColor: "#f2f2f2",
+    //     scrollTrigger: {
+    //       trigger: ".turn-white",
+    //       start: "top bottom",
+    //       end: "bottom bottom",
+    //       markers: true,
+    //       scrub: true,
+    //     },
+    //   },
+    //   "<"
+    // );
+  });
 
   return (
     <ReactLenis root>
@@ -43,21 +143,67 @@ const Playground: React.FC = () => {
           </svg>
         </section>
 
+        <div className="pin-dis relative w-screen overflow-hidden flex flex-col items-end pb-32 md:pb-40 lg:pb-48 bg-surface-primary-negative">
+          <div className="z-30 panel-1 relative flex flex-row gap-8 w-full h-screen items-end justify-center bg-surface-primary-negative">
+            <h1 className="explore-text nitty-gritty-text ~text-6xl/12xl p-8 text-text-primary-negative w-full text-center">
+              The Nitty Gritty
+            </h1>
+          </div>
+
+          <div className="panel-2-container z-20 relative w-full">
+            <div className="panel-2 relative flex items-end justify-center gap-8 w-full bg-surface-primary-negative">
+              <h1 className="explore-text ~text-6xl/12xl text-text-primary-negative h-fit w-full p-8 font-serif-italic text-center">
+                Want the Details?
+              </h1>
+            </div>
+          </div>
+
+          <div className="panel-3-container z-10 relative w-full">
+            <div className="panel-3 relative flex items-end justify-center p-8 gap-8 w-full h-full">
+              <div className="flex items-center justify-center border border-border-primary w-full font-serif bg-surface-primary text-text-primary rounded-lg p-16 h-fit text-8xl">
+                <p>Message me</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* divider */}
-        <section className="relative p-8 gap-8 bg-surface-primary border-t border-border-primary h-screen" />
+        <div className="explore-container relative bg-surface-primary-negative border-t border-border-primary-negative grid grid-flow-row gap-32 p-4 md:gap-48 md:p-6 lg:p-8 text-text-primary-negative">
+          <div className="explore-text flex gap-4 md:gap-6 lg:gap-8">
+            <div className="flex flex-row md:justify-between gap-4 md:w-1/2 opacity-80">
+              <p className="text-xs font-mono uppercase">EXPLORE MORE</p>
+            </div>
+          </div>
+
+          <div className="turn-white grid grid-cols-2 gap-8">
+            <div className="w-full h-fit">
+              <div className="aspect-4/3 bg-[grey] rounded-md overflow-hidden">
+                <Image
+                  src="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744093117/buildforce-cover-01_1_jzzqeo.webp"
+                  alt="Project Name"
+                  width={1000}
+                  height={1000}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h2 className="text-5xl mt-4">Project Name </h2>
+            </div>
+
+            <div className="w-full h-fit">
+              <div className="aspect-4/3 bg-[grey] rounded-md overflow-hidden" />
+              <h2 className="text-5xl mt-4">Prototype Name </h2>
+            </div>
+          </div>
+        </div>
         {/* divider */}
 
-        <section className="relative flex flex-row items-end justify-center p-8 gap-8 bg-surface-primary-negative border-t border-border-primary h-screen">
-          <h1 className="~text-6xl/12xl text-text-primary-negative">
-            The Nitty Gritty
-          </h1>
-        </section>
-
         {/* divider */}
-        <section className="relative p-8 gap-8 bg-surface-primary border-t border-border-primary h-screen" />
+        {/* <section className="relative p-8 gap-8 bg-surface-primary border-t border-border-primary h-screen flex items-end justify-center">
+          This is the end
+        </section> */}
         {/* divider */}
 
-        <section className="relative flex flex-row items-end justify-end p-8 gap-8 bg-surface-primary-negative border-t border-border-primary h-screen">
+        {/* <section className="relative flex flex-row items-end justify-end p-8 gap-8 bg-surface-primary-negative border-t border-border-primary h-screen">
           <div className="w-1/2">
             <h1 className="~text-6xl/12xl text-balance text-text-primary-negative">
               The
@@ -108,7 +254,6 @@ const Playground: React.FC = () => {
         </section>
 
         <ProjectSection sectionLabel="Playground">
-          {/* full - mockup-desktop - VIDEO */}
           <div>full - mockup-mobile - VIDEO</div>
           <div
             className="
@@ -172,7 +317,7 @@ const Playground: React.FC = () => {
               ]}
             />
           </div>
-        </ProjectSection>
+        </ProjectSection> */}
       </div>
     </ReactLenis>
   );

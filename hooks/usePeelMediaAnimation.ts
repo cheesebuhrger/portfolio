@@ -29,7 +29,7 @@ export const usePeelMediaAnimation = () => {
         rotateX: 90,
         rotateZ: fromLeft ? 90 : -90,
         duration: 2,
-        ease: "power3.out",
+        ease: "power4.out",
       });
     };
 
