@@ -497,25 +497,6 @@ const Buildforce: React.FC = () => {
             </div>
           </div>
         </ProjectSection>
-
-        {/* ---- PROCESS ---- */}
-
-        <footer className="p-4 pt-24 md:p-8 md:pt-48 text-xs font-mono uppercase grid grid-cols-12 gap-8 items-end">
-          {/* <div className="col-span-3">
-          <p>...</p>
-        </div> */}
-
-          <div className="col-start-7 col-span-3">
-            <p>LinkedIn</p>
-            <p>Are.na</p>
-            <p>Dribbble</p>
-          </div>
-
-          <div className="col-start-10 col-span-3 text-right justify-self-end">
-            <p>&copy;{new Date().getFullYear()}</p>
-            <p>Made w/love by Buhr</p>
-          </div>
-        </footer>
       </div>
     </ReactLenis>
   );

@@ -4,6 +4,7 @@ import Nav from "../components/Nav"; // Adjust the path as necessary
 import { Analytics } from "@vercel/analytics/react";
 import { ViewTransitions } from "next-view-transitions";
 import Head from "next/head";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "BUHR.DESIGN",
@@ -49,6 +50,7 @@ export default function RootLayout({
           <Nav />
           {children}
           <Analytics />
+          <Footer />
         </body>
       </html>
     </ViewTransitions>

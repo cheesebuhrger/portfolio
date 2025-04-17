@@ -16,7 +16,7 @@ const Home: NextPage = () => {
           <Button href="/projects/playground" label="Playground" />
         </section>
 
-        <section className="border-t border-black py-4 md:py-8">
+        <section id="projects" className="border-t border-black py-4 md:py-8">
           <h2 className="text-xs font-mono uppercase px-4 md:px-8 mb-48">
             Projects
           </h2>
@@ -31,22 +31,6 @@ const Home: NextPage = () => {
 
           <IndexCraft />
         </section>
-        <footer className="p-4 pt-24 md:p-8 md:pt-48 text-xs font-mono uppercase grid grid-cols-12 gap-8 items-end">
-          {/* <div className="col-span-3">
-          <p>...</p>
-        </div> */}
-
-          <div className="col-start-7 col-span-3">
-            <p>LinkedIn</p>
-            <p>Are.na</p>
-            <p>Dribbble</p>
-          </div>
-
-          <div className="col-start-10 col-span-3 text-right justify-self-end">
-            <p>&copy;{new Date().getFullYear()}</p>
-            <p>Made w/love by Buhr</p>
-          </div>
-        </footer>
       </div>
     </ReactLenis>
   );
