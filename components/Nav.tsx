@@ -15,14 +15,18 @@ const Nav = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 p-4 md:p-8 text-xs font-mono uppercase grid grid-cols-12 gap-4 md:gap-8">
+    <nav className="fixed top-0 w-full z-50 p-4 md:p-8 text-xs font-mono uppercase grid grid-cols-12 gap-4 md:gap-8 mix-blend-difference">
       {isHome ? (
         <div className="col-span-4 cursor-pointer" onClick={scrollToTop}>
-          <div>BUHR DUONG</div>
-          <div>PRODUCT DESIGNER</div>
+          <div className="text-text-primary-negative">BUHR DUONG</div>
+          <div className="text-text-primary-negative">PRODUCT DESIGNER</div>
         </div>
       ) : (
-        <Button href="/" label="←" />
+        <Button
+          href="/"
+          label="←"
+          className="border border-border-primary-negative hover:border-border-tertiary-negative text-text-primary-negative"
+        />
       )}
 
       {isHome && (

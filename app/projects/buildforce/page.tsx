@@ -16,11 +16,132 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useStackAnimation } from "@/hooks/useStackAnimation";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 
+import Image from "next/image";
+
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const Buildforce: React.FC = () => {
   const imageScaleRef = useImageScaleAnimation();
   const stackRef = useStackAnimation();
+
+  useGSAP(() => {
+    // gsap.set(".panel", {
+    //   zIndex: (i, target, targets) => targets.length - i,
+    // });
+    gsap.set(".panel-1", {
+      yPercent: -100,
+    });
+    gsap.set(".panel-2", {
+      yPercent: -100,
+    });
+    gsap.set(".panel-3", {
+      yPercent: -100,
+    });
+    gsap.to(".panel-1", {
+      scrollTrigger: {
+        trigger: ".panel-1-container",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+        // markers: true,
+        pin: true,
+      },
+    });
+    gsap.to(".panel-2", {
+      scrollTrigger: {
+        trigger: ".panel-2-container",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+        // markers: true,
+        pin: true,
+      },
+    });
+    gsap.to(".nitty-gritty-text", {
+      opacity: 0.1,
+      scrollTrigger: {
+        trigger: ".panel-2-container",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+        // markers: true,
+      },
+    });
+    gsap.to(".panel-3", {
+      scrollTrigger: {
+        trigger: ".panel-3-container",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+        // markers: true,
+        pin: true,
+        // pinSpacing: false,
+      },
+    });
+    gsap.to(".closer-image-pin", {
+      scrollTrigger: {
+        trigger: ".closer-image-pin",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+        markers: true,
+        pin: true,
+      },
+    });
+    // gsap.fromTo(
+    //   ".explore-container, .panel-1, .panel-2, .pin-dis",
+    //   {
+    //     backgroundColor: "#1A1A1A",
+    //   },
+    //   {
+    //     backgroundColor: "#F2F2F2",
+    //     duration: 0.5,
+    //     ease: "power2.inOut",
+    //     scrollTrigger: {
+    //       trigger: ".turn-white",
+    //       // start: "top bottom",
+    //       // end: "center bottom",
+    //       markers: true,
+    //       // scrub: 1,
+    //       toggleActions: "play none none reverse",
+    //     },
+    //   }
+    // );
+    // tl.fromTo(
+    //   ".explore-text",
+    //   {
+    //     color: "#F2F2F2",
+    //   },
+    //   {
+    //     color: "#1A1A1A",
+    //     duration: 0.5,
+    //     ease: "power1.inOut",
+    //     scrollTrigger: {
+    //       trigger: ".turn-white",
+    //       // start: "top bottom",
+    //       // end: "center bottom",
+    //       // scrub: 1,
+    //       toggleActions: "play none none reverse",
+    //     },
+    //   },
+    //   "<"
+    // );
+    // tl.to(
+    //   "panel-2-container",
+    //   {
+    //     backgroundColor: "#f2f2f2",
+    //     scrollTrigger: {
+    //       trigger: ".turn-white",
+    //       start: "top bottom",
+    //       end: "bottom bottom",
+    //       markers: true,
+    //       scrub: true,
+    //     },
+    //   },
+    //   "<"
+    // );
+  });
+
   return (
     <ReactLenis root>
       <div>
@@ -87,7 +208,7 @@ const Buildforce: React.FC = () => {
               alt: "Buildforce Leadership",
             },
             secondary: {
-              src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744060999/buildforce-cover-02_thswdq.webp",
+              src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744925544/buildforce-cover-02_v3wm6k.webp",
               alt: "Buildforce Leadership",
             },
           }}
@@ -133,7 +254,7 @@ const Buildforce: React.FC = () => {
               {
                 type: "image",
                 src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744091995/buildforce-05_hajxhw.webp",
-                alt: "Animated flow of time tracking for Buildforce worker app",
+                alt: "Time tracking for Buildforce worker app",
               },
             ]}
             stats={[
@@ -190,15 +311,14 @@ const Buildforce: React.FC = () => {
             layout={{
               type: "mockup",
               background: {
-                image:
-                  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-11-bg_rcrm7o.webp",
+                color: "bg-[#BEB39E]",
               },
             }}
             media={[
               {
                 type: "image",
                 src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744060079/buildforce-06_x1tmoq.webp",
-                alt: "Contractor onboarding for Buildforce web app",
+                alt: "Electrician clock-out flow in the Buildforce web app",
                 caption: (
                   <>
                     The new clock-out flow adds friction and clarity; I designed
@@ -235,7 +355,7 @@ const Buildforce: React.FC = () => {
               type: "mockup",
               background: {
                 image:
-                  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743573561/buildforce-07-bg_h3loqy.webp",
+                  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-11-bg_rcrm7o.webp",
               },
             }}
             media={[
@@ -325,6 +445,18 @@ const Buildforce: React.FC = () => {
                 },
               ]}
             />
+            <ProjectSectionMedia
+              layout={{
+                type: "full",
+              }}
+              media={[
+                {
+                  type: "image",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744924853/buildforce-12_y8hqg1.webp",
+                  alt: "Buildforce electrician using mobile phone",
+                },
+              ]}
+            />
           </ProjectSectionMediaBinder>
         </ProjectSection>
 
@@ -333,7 +465,7 @@ const Buildforce: React.FC = () => {
           sectionNumber="II"
           sectionLabel="Problem"
           iconType="problem"
-          // className="stack-animation"
+          className="stack-animation"
         >
           <ProjectSectionContent
             headline={
@@ -497,6 +629,87 @@ const Buildforce: React.FC = () => {
             </div>
           </div>
         </ProjectSection>
+
+        <section className="relative w-screen h-screen overflow-hidden bg-surface-secondary bg-[url(https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744924853/buildforce-11_cwgjyq.webp)] bg-cover bg-center bg-fixed">
+          {/* <div className="closer-image-pin relative w-full h-full">
+            <Image
+              src="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744924853/buildforce-11_cwgjyq.webp"
+              alt="Buildforce electrician loading tools onto work vehicle"
+              width={1000}
+              height={1000}
+              className="w-full h-full object-cover image-scale-animation"
+            />
+          </div> */}
+        </section>
+
+        {/* <ProjectSectionMedia
+          layout={{
+            type: "full",
+          }}
+          media={[
+            {
+              type: "image",
+              src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744922925/buildforce-11_kizcpf.webp",
+              alt: "Contractor time approval",
+            },
+          ]}
+        /> */}
+
+        {/* CLOSER */}
+        <div className="relative w-screen -z-[1] overflow-hidden flex flex-col items-end pb-32 md:pb-40 lg:pb-48 bg-surface-primary-negative">
+          <div className="panel-1-container relative w-full">
+            <div className="panel-1 relative flex flex-row gap-8 w-full h-screen items-end justify-center bg-surface-primary-negative">
+              <h1 className="explore-text nitty-gritty-text ~text-6xl/13xl p-8 text-text-primary-negative w-full text-center">
+                The Nitty Gritty
+              </h1>
+            </div>
+          </div>
+
+          <div className="panel-2-container -z-[2] relative w-full">
+            <div className="panel-2 relative flex items-end justify-center gap-8 w-full bg-surface-primary-negative">
+              <h1 className="~text-6xl/13xl text-text-primary-negative h-fit w-full p-8 font-serif-italic text-center">
+                Want the Details?
+              </h1>
+            </div>
+          </div>
+
+          <div className="panel-3-container -z-[3] relative w-full">
+            <div className="panel-3 relative flex items-end justify-center p-8 gap-8 w-full h-full">
+              <div className="flex items-center justify-center w-full font-serif bg-surface-primary text-text-primary rounded-lg p-16 h-fit text-9xl">
+                <p>Message me</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* divider */}
+        <div className="explore-container relative bg-surface-primary-negative border-t border-border-primary-negative grid grid-flow-row gap-32 p-4 md:gap-48 md:p-6 lg:p-8 text-text-primary-negative">
+          <div className="flex gap-4 md:gap-6 lg:gap-8">
+            <div className="flex flex-row md:justify-between gap-4 md:w-1/2 opacity-80">
+              <p className="text-xs font-mono uppercase">EXPLORE MORE</p>
+            </div>
+          </div>
+
+          <div className="turn-white grid grid-cols-2 gap-8">
+            <div className="w-full h-fit">
+              <div className="aspect-4/3 bg-[grey] rounded-md overflow-hidden">
+                <Image
+                  src="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744093117/buildforce-cover-01_1_jzzqeo.webp"
+                  alt="Project Name"
+                  width={1000}
+                  height={1000}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h2 className="text-5xl mt-4">Project Name </h2>
+            </div>
+
+            <div className="w-full h-fit">
+              <div className="aspect-4/3 bg-[grey] rounded-md overflow-hidden" />
+              <h2 className="text-5xl mt-4">Prototype Name </h2>
+            </div>
+          </div>
+        </div>
       </div>
     </ReactLenis>
   );

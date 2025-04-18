@@ -26,14 +26,24 @@ const Playground: React.FC = () => {
   useStackAnimation();
 
   useGSAP(() => {
-    // gsap.set(".panel", {
-    //   zIndex: (i, target, targets) => targets.length - i,
-    // });
+    gsap.set(".panel-1", {
+      yPercent: -100,
+    });
     gsap.set(".panel-2", {
       yPercent: -100,
     });
     gsap.set(".panel-3", {
       yPercent: -100,
+    });
+    gsap.to(".panel-1", {
+      scrollTrigger: {
+        trigger: ".panel-1-container",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+        // markers: true,
+        pin: true,
+      },
     });
     gsap.to(".panel-2", {
       scrollTrigger: {
@@ -63,75 +73,151 @@ const Playground: React.FC = () => {
         scrub: true,
         // markers: true,
         pin: true,
-        pinSpacing: false,
       },
     });
-    // gsap.fromTo(
-    //   ".explore-container, .panel-1, .panel-2, .pin-dis",
+
+    // // 1
+    // tl.fromTo(
+    //   ".card-confetti-container-1",
     //   {
-    //     backgroundColor: "#1A1A1A",
+    //     yPercent: 50,
     //   },
     //   {
-    //     backgroundColor: "#F2F2F2",
-    //     duration: 0.5,
+    //     left: 0,
+    //     yPercent: -50,
+    //     xPercent: 40,
+    //     rotateZ: 30,
+    //     duration: 1,
     //     ease: "power2.inOut",
-    //     scrollTrigger: {
-    //       trigger: ".turn-white",
-    //       // start: "top bottom",
-    //       // end: "center bottom",
-    //       markers: true,
-    //       // scrub: 1,
-    //       toggleActions: "play none none reverse",
-    //     },
     //   }
     // );
+    // // 2
     // tl.fromTo(
-    //   ".explore-text",
+    //   ".card-confetti-container-2",
     //   {
-    //     color: "#F2F2F2",
+    //     yPercent: 50,
     //   },
     //   {
-    //     color: "#1A1A1A",
-    //     duration: 0.5,
-    //     ease: "power1.inOut",
-    //     scrollTrigger: {
-    //       trigger: ".turn-white",
-    //       // start: "top bottom",
-    //       // end: "center bottom",
-    //       // scrub: 1,
-    //       toggleActions: "play none none reverse",
-    //     },
-    //   },
-    //   "<"
+    //     left: 0,
+    //     yPercent: -50,
+    //     xPercent: -15,
+    //     rotateZ: -10,
+    //     duration: 1,
+    //     ease: "power2.inOut",
+    //   }
     // );
-    // tl.to(
-    //   "panel-2-container",
+    // // 3
+    // tl.fromTo(
+    //   ".card-confetti-container-3",
     //   {
-    //     backgroundColor: "#f2f2f2",
-    //     scrollTrigger: {
-    //       trigger: ".turn-white",
-    //       start: "top bottom",
-    //       end: "bottom bottom",
-    //       markers: true,
-    //       scrub: true,
-    //     },
+    //     yPercent: 50,
     //   },
-    //   "<"
+    //   {
+    //     left: 0,
+    //     yPercent: -40,
+    //     xPercent: 20,
+    //     rotateZ: 20,
+    //     duration: 1,
+    //     ease: "power2.inOut",
+    //   }
     // );
+    // // 4
+    // tl.fromTo(
+    //   ".card-confetti-container-4",
+    //   {
+    //     yPercent: 50,
+    //   },
+    //   {
+    //     left: 0,
+    //     yPercent: -50,
+    //     xPercent: -40,
+    //     rotateZ: -30,
+    //     duration: 1,
+    //     ease: "power2.inOut",
+    //   }
+    // );
+    // // 5
+    // tl.fromTo(
+    //   ".card-confetti-container-5",
+    //   {
+    //     yPercent: 50,
+    //   },
+    //   {
+    //     left: 0,
+    //     yPercent: -10,
+    //     xPercent: -20,
+    //     rotateZ: -30,
+    //     duration: 1,
+    //     ease: "power2.inOut",
+    //   }
+    // );
+    // gsap.set(".process-item-1", {
+    //   xPercent: 100,
+    //   skewX: 30,
+    // });
+    tl.fromTo(
+      ".process-item-1",
+      {
+        xPercent: 100,
+        skewX: 30,
+      },
+      {
+        xPercent: 0,
+        skewX: 0,
+        ease: "power3.out",
+        duration: 2,
+      }
+    );
+    tl.fromTo(
+      ".process-item-2",
+      {
+        xPercent: -100,
+      },
+      { xPercent: 0, duration: 2, ease: "power3.out" }
+    );
+    tl.fromTo(
+      ".process-item-3",
+      {
+        xPercent: 100,
+      },
+      { xPercent: 0, duration: 2, ease: "power3.out" }
+    );
+    tl.fromTo(
+      ".process-item-4",
+      {
+        xPercent: -100,
+      },
+      { xPercent: 0, duration: 2, ease: "power3.out" }
+    );
+    tl.fromTo(
+      ".process-item-5",
+      {
+        xPercent: 100,
+      },
+      { xPercent: 0, duration: 2, ease: "power3.out" }
+    );
   });
+
+  const ProcessCard = ({
+    label,
+    className,
+  }: {
+    label: string;
+    className?: string;
+  }) => (
+    <div className="~text-lg-p/5xl gap-8 w-80 aspect-2/3 border border-border-primary-negative text-text-primary-negative font-serif-p p-8 rounded-md bg-surface-primary-negative">
+      {label}
+    </div>
+  );
 
   return (
     <ReactLenis root>
       <div>
         {/* Spacing */}
-        <section className="h-screen flex items-center justify-center gap-8">
+        <section className="relative h-screen flex items-center justify-center gap-8 opacity-90 bg-surface-primary">
           <h1 className="split-type-animation text-8xl font-serif">
             Playground
           </h1>
-          <p className="split-type-animation text-4xl font-serif w-1/2">
-            A collection of experiments and ideas. Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Quisquam, quos.
-          </p>
           <svg width="320" height="130" xmlns="http://www.w3.org/2000/svg">
             <rect
               width="300"
@@ -143,24 +229,48 @@ const Playground: React.FC = () => {
           </svg>
         </section>
 
-        <div className="pin-dis relative w-screen overflow-hidden flex flex-col items-end pb-32 md:pb-40 lg:pb-48 bg-surface-primary-negative">
-          <div className="z-30 panel-1 relative flex flex-row gap-8 w-full h-screen items-end justify-center bg-surface-primary-negative">
-            <h1 className="explore-text nitty-gritty-text ~text-6xl/12xl p-8 text-text-primary-negative w-full text-center">
-              The Nitty Gritty
-            </h1>
+        <div className="relative w-screen -z-[1] overflow-hidden flex flex-col items-end pb-32 md:pb-40 lg:pb-48 bg-surface-primary-negative">
+          <div className="panel-1-container relative w-full">
+            <div className="panel-1 relative flex flex-col gap-4 md:gap-6 lg:gap-8 w-full h-screen items-end justify-center bg-surface-primary-negative">
+              <div className="flex flex-row border w-full h-full gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8 border-[blue] text-text-primary-negative font-serif text-2xl">
+                <div className="overflow-hidden grid grid-rows-5 py-8 w-full border-r border-border-tertiary-negative justify-items-end">
+                  <div className="process-item-1 nitty-gritty-text pr-8 w-1/2 row-start-5 border border-[red] text-right flex items-center">
+                    How & why did we start using the Shape Up process?
+                  </div>
+                  <div className="process-item-3 nitty-gritty-text pr-8 w-1/2 row-start-3 border border-[red] text-right flex items-center">
+                    How did we tackle product education, comms and support?
+                  </div>
+                  <div className="process-item-5 nitty-gritty-text pr-8 w-1/2 row-start-1 border border-[red] text-right flex items-center">
+                    How did we introduce a brand refresh alongside this work?
+                  </div>
+                </div>
+
+                <div className="overflow-hidden grid grid-rows-5 w-full border-l border-border-tertiary-negative">
+                  <div className="process-item-2 nitty-gritty-text pl-8 w-1/2 row-start-4 border border-[red] flex items-center">
+                    Which decisions kept us on the worker’s side?
+                  </div>
+                  <div className="process-item-4 nitty-gritty-text pl-8 w-1/2 row-start-2 border border-[red] flex items-center">
+                    What challenges arose throughout the project?
+                  </div>
+                </div>
+              </div>
+              <h1 className="nitty-gritty-text ~text-6xl/13xl p-8 text-text-primary-negative w-full text-center border border-[red]">
+                The Nitty Gritty
+              </h1>
+            </div>
           </div>
 
-          <div className="panel-2-container z-20 relative w-full">
+          <div className="panel-2-container -z-[2] relative w-full">
             <div className="panel-2 relative flex items-end justify-center gap-8 w-full bg-surface-primary-negative">
-              <h1 className="explore-text ~text-6xl/12xl text-text-primary-negative h-fit w-full p-8 font-serif-italic text-center">
+              <h1 className="~text-6xl/13xl text-text-primary-negative h-fit w-full p-8 font-serif-italic text-center">
                 Want the Details?
               </h1>
             </div>
           </div>
 
-          <div className="panel-3-container z-10 relative w-full">
+          <div className="panel-3-container -z-[3] relative w-full">
             <div className="panel-3 relative flex items-end justify-center p-8 gap-8 w-full h-full">
-              <div className="flex items-center justify-center border border-border-primary w-full font-serif bg-surface-primary text-text-primary rounded-lg p-16 h-fit text-8xl">
+              <div className="flex items-center justify-center w-full font-serif bg-surface-primary text-text-primary rounded-lg p-16 h-fit text-8xl">
                 <p>Message me</p>
               </div>
             </div>
@@ -169,7 +279,7 @@ const Playground: React.FC = () => {
 
         {/* divider */}
         <div className="explore-container relative bg-surface-primary-negative border-t border-border-primary-negative grid grid-flow-row gap-32 p-4 md:gap-48 md:p-6 lg:p-8 text-text-primary-negative">
-          <div className="explore-text flex gap-4 md:gap-6 lg:gap-8">
+          <div className="flex gap-4 md:gap-6 lg:gap-8">
             <div className="flex flex-row md:justify-between gap-4 md:w-1/2 opacity-80">
               <p className="text-xs font-mono uppercase">EXPLORE MORE</p>
             </div>
@@ -318,6 +428,41 @@ const Playground: React.FC = () => {
             />
           </div>
         </ProjectSection> */}
+
+        {/* <section className="relative w-screen h-screen flex items-center justify-center gap-8 bg-surface-primary-negative">
+          <div className="bg-[yellow] w-full h-full absolute flex items-end justify-center">
+     
+            <div className="card-confetti-container-1 border-2 border-[red] w-full h-full absolute flex items-end justify-center">
+              <div className="process-card-1 ~text-lg-p/5xl gap-8 w-80 aspect-2/3 border border-border-primary-negative text-text-primary-negative font-serif-p p-8 rounded-md bg-surface-primary-negative">
+                Which decisions kept us on the worker&rsquot;s side?
+              </div>
+            </div>
+
+            <div className="card-confetti-container-2 border-2 border-[blue] w-full h-full absolute flex items-end justify-center">
+              <div className="process-card-1 ~text-lg-p/5xl gap-8 w-80 aspect-2/3 border border-border-primary-negative text-text-primary-negative font-serif-p p-8 rounded-md bg-surface-primary-negative">
+                How & why did we start using the Shape Up process?
+              </div>
+            </div>
+
+            <div className="card-confetti-container-3 border-2 border-[green] w-full h-full absolute flex items-end justify-center">
+              <div className="process-card-1 ~text-lg-p/5xl gap-8 w-80 aspect-2/3 border border-border-primary-negative text-text-primary-negative font-serif-p p-8 rounded-md bg-surface-primary-negative">
+                How did we tackle product education, comms and support?
+              </div>
+            </div>
+
+            <div className="card-confetti-container-4 border-2 border-[purple] w-full h-full absolute flex items-end justify-center">
+              <div className="process-card-1 ~text-lg-p/5xl gap-8 w-80 aspect-2/3 border border-border-primary-negative text-text-primary-negative font-serif-p p-8 rounded-md bg-surface-primary-negative">
+                How did we introduce a brand refresh alongside this work?
+              </div>
+            </div>
+
+            <div className="card-confetti-container-5 border-2 border-[orange] w-full h-full absolute flex items-end justify-center">
+              <div className="process-card-1 ~text-lg-p/5xl gap-8 w-80 aspect-2/3 border border-border-primary-negative text-text-primary-negative font-serif-p p-8 rounded-md bg-surface-primary-negative">
+                What challenges arose throughout the project?
+              </div>
+            </div>
+          </div>
+        </section> */}
       </div>
     </ReactLenis>
   );
