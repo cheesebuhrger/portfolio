@@ -6,6 +6,8 @@ import ProjectSectionContent from "@/components/ProjectSectionContent";
 import ProjectSection from "@/components/ProjectSection";
 import ProjectHero from "@/components/ProjectHero";
 import Quote from "@/components/Quote";
+import ProjectEnd from "@/components/ProjectEnd";
+
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -405,7 +407,7 @@ const Project1: React.FC = () => {
           sectionNumber="I.C"
           sectionLabel="Outcome: Empowerment & Growth"
           iconType="solution"
-          // className="stack-animation"
+          className="stack-animation"
         >
           <ProjectSectionContent
             headline={<>Empowerment & Growth</>}
@@ -532,10 +534,30 @@ const Project1: React.FC = () => {
           </div>
         </ProjectSection>
 
-        {/* ---- FOOTER ---- */}
-        <footer className="p-8 pt-40 bg-surface-primary border-t border-border-primary">
-          Hello
-        </footer>
+        <ProjectEnd
+          image="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744924853/buildforce-11_cwgjyq.webp"
+          process={{
+            item1: "?",
+            item2: "?",
+            item3: "?",
+            item4: "?",
+            item5: "?",
+          }}
+          project={{
+            name: "Designing friction to save everyone time",
+            type: "image",
+            src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744093117/buildforce-cover-01_1_jzzqeo.webp",
+            alt: "Time entry on the Buildforce mobile app",
+            url: "/projects/buildforce",
+          }}
+          prototype={{
+            name: "Prototype",
+            type: "image",
+            src: "",
+            alt: "",
+            url: "/",
+          }}
+        />
       </div>
     </ReactLenis>
   );

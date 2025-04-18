@@ -10,22 +10,30 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import { usePeelMediaAnimation } from "@/hooks/usePeelMediaAnimation";
-import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
 import { useStackAnimation } from "@/hooks/useStackAnimation";
 import Image from "next/image";
+import SplitType from "split-type";
+import Button from "@/components/Button";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const tl = gsap.timeline();
+const processTimeline = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".panel-1-container",
+    start: "top 90%",
+    markers: true,
+    toggleActions: "play none none reverse",
+  },
+});
 
 const Playground: React.FC = () => {
   // Initialize the animation hooks
   useImageScaleAnimation();
   usePeelMediaAnimation();
-  useSplitTypeAnimation();
   useStackAnimation();
 
   useGSAP(() => {
+    // Large text animations
     gsap.set(".panel-1", {
       yPercent: -100,
     });
@@ -76,148 +84,228 @@ const Playground: React.FC = () => {
       },
     });
 
-    // // 1
-    // tl.fromTo(
-    //   ".card-confetti-container-1",
-    //   {
-    //     yPercent: 50,
-    //   },
-    //   {
-    //     left: 0,
-    //     yPercent: -50,
-    //     xPercent: 40,
-    //     rotateZ: 30,
-    //     duration: 1,
-    //     ease: "power2.inOut",
-    //   }
-    // );
-    // // 2
-    // tl.fromTo(
-    //   ".card-confetti-container-2",
-    //   {
-    //     yPercent: 50,
-    //   },
-    //   {
-    //     left: 0,
-    //     yPercent: -50,
-    //     xPercent: -15,
-    //     rotateZ: -10,
-    //     duration: 1,
-    //     ease: "power2.inOut",
-    //   }
-    // );
-    // // 3
-    // tl.fromTo(
-    //   ".card-confetti-container-3",
-    //   {
-    //     yPercent: 50,
-    //   },
-    //   {
-    //     left: 0,
-    //     yPercent: -40,
-    //     xPercent: 20,
-    //     rotateZ: 20,
-    //     duration: 1,
-    //     ease: "power2.inOut",
-    //   }
-    // );
-    // // 4
-    // tl.fromTo(
-    //   ".card-confetti-container-4",
-    //   {
-    //     yPercent: 50,
-    //   },
-    //   {
-    //     left: 0,
-    //     yPercent: -50,
-    //     xPercent: -40,
-    //     rotateZ: -30,
-    //     duration: 1,
-    //     ease: "power2.inOut",
-    //   }
-    // );
-    // // 5
-    // tl.fromTo(
-    //   ".card-confetti-container-5",
-    //   {
-    //     yPercent: 50,
-    //   },
-    //   {
-    //     left: 0,
-    //     yPercent: -10,
-    //     xPercent: -20,
-    //     rotateZ: -30,
-    //     duration: 1,
-    //     ease: "power2.inOut",
-    //   }
-    // );
-    // gsap.set(".process-item-1", {
-    //   xPercent: 100,
-    //   skewX: 30,
-    // });
-    tl.fromTo(
-      ".process-item-1",
-      {
-        xPercent: 100,
-        skewX: 30,
-      },
-      {
-        xPercent: 0,
-        skewX: 0,
-        ease: "power3.out",
-        duration: 2,
-      }
-    );
-    tl.fromTo(
-      ".process-item-2",
-      {
-        xPercent: -100,
-      },
-      { xPercent: 0, duration: 2, ease: "power3.out" }
-    );
-    tl.fromTo(
-      ".process-item-3",
-      {
-        xPercent: 100,
-      },
-      { xPercent: 0, duration: 2, ease: "power3.out" }
-    );
-    tl.fromTo(
-      ".process-item-4",
-      {
-        xPercent: -100,
-      },
-      { xPercent: 0, duration: 2, ease: "power3.out" }
-    );
-    tl.fromTo(
-      ".process-item-5",
-      {
-        xPercent: 100,
-      },
-      { xPercent: 0, duration: 2, ease: "power3.out" }
-    );
-  });
+    // Split type animation setup
+    const processItems =
+      document.querySelectorAll<HTMLElement>(".process-item");
+    processItems.forEach((item) => {
+      const text = new SplitType(item, {
+        types: "lines",
+        tagName: "div",
+        lineClass: "line",
+      });
 
-  const ProcessCard = ({
-    label,
-    className,
-  }: {
-    label: string;
-    className?: string;
-  }) => (
-    <div className="~text-lg-p/5xl gap-8 w-80 aspect-2/3 border border-border-primary-negative text-text-primary-negative font-serif-p p-8 rounded-md bg-surface-primary-negative">
-      {label}
-    </div>
-  );
+      // Wrap each line's content in a span
+      text.lines?.forEach((line) => {
+        const content = line.innerHTML;
+        line.innerHTML = `<span>${content}</span>`;
+      });
+
+      // Get all spans within the lines
+      const spans = item.querySelectorAll<HTMLElement>(":scope > .line > span");
+
+      // Initial state for spans
+      gsap.set(spans, {
+        y: "100%",
+        display: "block",
+      });
+    });
+
+    const processItemsDuration = 1;
+    const processEase = "power2.out";
+    const processSkewDelay = 0.25;
+    const processItemsTighten = ">-0.9";
+
+    // Process timeline with split type animations
+    processTimeline
+      .fromTo(
+        ".process-item-1",
+        {
+          xPercent: 100,
+        },
+        {
+          xPercent: 0,
+          ease: processEase,
+          duration: processItemsDuration,
+        }
+      )
+      .fromTo(
+        ".process-item-1 .line > span",
+        {
+          y: "100%",
+          skewX: 30,
+        },
+        {
+          y: 0,
+          skewX: 0,
+          duration: processItemsDuration,
+          ease: processEase,
+          delay: processSkewDelay,
+        },
+        "<"
+      )
+      .fromTo(
+        ".process-item-1 .line",
+        { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
+        {
+          clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
+          duration: processItemsDuration,
+          ease: processEase,
+        },
+        "<"
+      )
+      .fromTo(
+        ".process-item-2",
+        {
+          xPercent: -100,
+        },
+        {
+          xPercent: 0,
+          ease: processEase,
+          duration: processItemsDuration,
+        },
+        processItemsTighten
+      )
+      .fromTo(
+        ".process-item-2 .line > span",
+        {
+          y: "100%",
+          skewX: -30,
+        },
+        {
+          y: 0,
+          skewX: 0,
+          duration: processItemsDuration,
+          ease: processEase,
+          delay: processSkewDelay,
+        },
+        "<"
+      )
+      .fromTo(
+        ".process-item-2 .line",
+        { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
+        {
+          clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
+          duration: processItemsDuration,
+          ease: processEase,
+        },
+        "<"
+      )
+      .fromTo(
+        ".process-item-3",
+        {
+          xPercent: 100,
+        },
+        { xPercent: 0, ease: processEase, duration: processItemsDuration },
+        processItemsTighten
+      )
+      .fromTo(
+        ".process-item-3 .line > span",
+        {
+          y: "100%",
+          skewX: 30,
+        },
+        {
+          y: 0,
+          skewX: 0,
+          duration: processItemsDuration,
+          ease: processEase,
+          delay: processSkewDelay,
+        },
+        "<"
+      )
+      .fromTo(
+        ".process-item-3 .line",
+        { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
+        {
+          clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
+          duration: processItemsDuration,
+          ease: processEase,
+        },
+        "<"
+      )
+      .fromTo(
+        ".process-item-4",
+        {
+          xPercent: -100,
+        },
+        {
+          xPercent: 0,
+          ease: processEase,
+          duration: processItemsDuration,
+        },
+        processItemsTighten
+      )
+      .fromTo(
+        ".process-item-4 .line > span",
+        {
+          y: "100%",
+          skewX: -30,
+        },
+        {
+          y: 0,
+          skewX: 0,
+          duration: processItemsDuration,
+          ease: processEase,
+          delay: processSkewDelay,
+        },
+        "<"
+      )
+      .fromTo(
+        ".process-item-4 .line",
+        { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
+        {
+          clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
+          duration: processItemsDuration,
+          ease: processEase,
+        },
+        "<"
+      )
+      .fromTo(
+        ".process-item-5",
+        {
+          xPercent: 100,
+        },
+        {
+          xPercent: 0,
+          ease: processEase,
+          duration: processItemsDuration,
+        },
+        processItemsTighten
+      )
+      .fromTo(
+        ".process-item-5 .line > span",
+        {
+          y: "100%",
+          skewX: 30,
+        },
+        {
+          y: 0,
+          skewX: 0,
+          duration: processItemsDuration,
+          ease: processEase,
+          delay: processSkewDelay,
+        },
+        "<"
+      )
+      .fromTo(
+        ".process-item-5 .line",
+        { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
+        {
+          clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
+          duration: processItemsDuration,
+          ease: processEase,
+        },
+        "<"
+      );
+  });
 
   return (
     <ReactLenis root>
       <div>
+        <section className="relative h-screen flex items-center justify-center gap-8 bg-surface-primary"></section>
         {/* Spacing */}
-        <section className="relative h-screen flex items-center justify-center gap-8 opacity-90 bg-surface-primary">
-          <h1 className="split-type-animation text-8xl font-serif">
-            Playground
-          </h1>
+        <section className="relative h-screen flex items-center justify-center gap-8 bg-surface-primary">
+          <h1 className="text-8xl font-serif">Playground</h1>
           <svg width="320" height="130" xmlns="http://www.w3.org/2000/svg">
             <rect
               width="300"
@@ -229,32 +317,35 @@ const Playground: React.FC = () => {
           </svg>
         </section>
 
-        <div className="relative w-screen -z-[1] overflow-hidden flex flex-col items-end pb-32 md:pb-40 lg:pb-48 bg-surface-primary-negative">
+        <div
+          id="closer"
+          className="relative w-screen -z-[1] overflow-hidden flex flex-col items-end pb-32 md:pb-40 lg:pb-48 bg-surface-primary-negative"
+        >
           <div className="panel-1-container relative w-full">
             <div className="panel-1 relative flex flex-col gap-4 md:gap-6 lg:gap-8 w-full h-screen items-end justify-center bg-surface-primary-negative">
-              <div className="flex flex-row border w-full h-full gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8 border-[blue] text-text-primary-negative font-serif text-2xl">
+              <div className="nitty-gritty-text flex flex-row w-full h-full gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8 text-text-primary-negative font-serif text-2xl">
                 <div className="overflow-hidden grid grid-rows-5 py-8 w-full border-r border-border-tertiary-negative justify-items-end">
-                  <div className="process-item-1 nitty-gritty-text pr-8 w-1/2 row-start-5 border border-[red] text-right flex items-center">
+                  <div className="process-item-1 process-item pr-8 w-1/2 row-start-5 text-right flex items-center">
                     How & why did we start using the Shape Up process?
                   </div>
-                  <div className="process-item-3 nitty-gritty-text pr-8 w-1/2 row-start-3 border border-[red] text-right flex items-center">
+                  <div className="process-item-3 process-item pr-8 w-1/2 row-start-3 text-right flex items-center">
                     How did we tackle product education, comms and support?
                   </div>
-                  <div className="process-item-5 nitty-gritty-text pr-8 w-1/2 row-start-1 border border-[red] text-right flex items-center">
+                  <div className="process-item-5 process-item pr-8 w-1/2 row-start-1 text-right flex items-center">
                     How did we introduce a brand refresh alongside this work?
                   </div>
                 </div>
 
                 <div className="overflow-hidden grid grid-rows-5 w-full border-l border-border-tertiary-negative">
-                  <div className="process-item-2 nitty-gritty-text pl-8 w-1/2 row-start-4 border border-[red] flex items-center">
-                    Which decisions kept us on the worker’s side?
+                  <div className="process-item-2 process-item pl-8 w-1/2 row-start-4 flex items-center">
+                    Which decisions kept us on the worker&rsquo;s side?
                   </div>
-                  <div className="process-item-4 nitty-gritty-text pl-8 w-1/2 row-start-2 border border-[red] flex items-center">
+                  <div className="process-item-4 process-item pl-8 w-1/2 row-start-2 flex items-center">
                     What challenges arose throughout the project?
                   </div>
                 </div>
               </div>
-              <h1 className="nitty-gritty-text ~text-6xl/13xl p-8 text-text-primary-negative w-full text-center border border-[red]">
+              <h1 className="nitty-gritty-text ~text-6xl/13xl p-8 text-text-primary-negative w-full text-center">
                 The Nitty Gritty
               </h1>
             </div>
@@ -428,41 +519,6 @@ const Playground: React.FC = () => {
             />
           </div>
         </ProjectSection> */}
-
-        {/* <section className="relative w-screen h-screen flex items-center justify-center gap-8 bg-surface-primary-negative">
-          <div className="bg-[yellow] w-full h-full absolute flex items-end justify-center">
-     
-            <div className="card-confetti-container-1 border-2 border-[red] w-full h-full absolute flex items-end justify-center">
-              <div className="process-card-1 ~text-lg-p/5xl gap-8 w-80 aspect-2/3 border border-border-primary-negative text-text-primary-negative font-serif-p p-8 rounded-md bg-surface-primary-negative">
-                Which decisions kept us on the worker&rsquot;s side?
-              </div>
-            </div>
-
-            <div className="card-confetti-container-2 border-2 border-[blue] w-full h-full absolute flex items-end justify-center">
-              <div className="process-card-1 ~text-lg-p/5xl gap-8 w-80 aspect-2/3 border border-border-primary-negative text-text-primary-negative font-serif-p p-8 rounded-md bg-surface-primary-negative">
-                How & why did we start using the Shape Up process?
-              </div>
-            </div>
-
-            <div className="card-confetti-container-3 border-2 border-[green] w-full h-full absolute flex items-end justify-center">
-              <div className="process-card-1 ~text-lg-p/5xl gap-8 w-80 aspect-2/3 border border-border-primary-negative text-text-primary-negative font-serif-p p-8 rounded-md bg-surface-primary-negative">
-                How did we tackle product education, comms and support?
-              </div>
-            </div>
-
-            <div className="card-confetti-container-4 border-2 border-[purple] w-full h-full absolute flex items-end justify-center">
-              <div className="process-card-1 ~text-lg-p/5xl gap-8 w-80 aspect-2/3 border border-border-primary-negative text-text-primary-negative font-serif-p p-8 rounded-md bg-surface-primary-negative">
-                How did we introduce a brand refresh alongside this work?
-              </div>
-            </div>
-
-            <div className="card-confetti-container-5 border-2 border-[orange] w-full h-full absolute flex items-end justify-center">
-              <div className="process-card-1 ~text-lg-p/5xl gap-8 w-80 aspect-2/3 border border-border-primary-negative text-text-primary-negative font-serif-p p-8 rounded-md bg-surface-primary-negative">
-                What challenges arose throughout the project?
-              </div>
-            </div>
-          </div>
-        </section> */}
       </div>
     </ReactLenis>
   );

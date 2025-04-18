@@ -52,7 +52,7 @@ export const projects: Project[] = [
       alt: "Buildforce",
     },
     image2: {
-      src: "/images/bf-leadership/bf-leadership-7.webp",
+      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-cover-02_gqnb5l.webp",
       alt: "Buildforce",
     },
   },

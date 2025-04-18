@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import TransitionLink from "./TransitionLink";
 import { usePathname } from "next/navigation";
 
