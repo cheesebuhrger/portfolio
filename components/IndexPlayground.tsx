@@ -28,8 +28,9 @@ const IndexCraft: React.FC = () => {
         {playgroundItems.map((item, index) => (
           <div
             key={index}
-            className="relative group overflow-hidden rounded-md aspect-4/3 cursor-pointer bg-surface-secondary"
+            className="cursor-animation relative group overflow-hidden rounded-md aspect-4/3 cursor-pointer bg-surface-secondary"
             onClick={() => open(index)}
+            data-cursor-text="VIEW DETAILS"
           >
             <MediaItem item={item} />
             <div className="absolute inset-0 bg-surface-overlay flex items-center justify-center p-4 text-text-on-action opacity-0 group-hover:opacity-100 transition-opacity duration-500">

@@ -31,6 +31,7 @@ const IndexProjects = () => {
               <TransitionLink
                 href={project.url}
                 className="cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline transition-all duration-300"
+                data-cursor-text="VIEW PROJECT"
               >
                 {project.title}
               </TransitionLink>
@@ -46,6 +47,7 @@ const IndexProjects = () => {
             <TransitionLink
               href={project.url}
               className="cursor-animation project-card-media-container grid grid-cols-2 aspect-21/9"
+              data-cursor-text="VIEW PROJECT"
             >
               <div className="relative overflow-hidden bg-surface-secondary">
                 <Image

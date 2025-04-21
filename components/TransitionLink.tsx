@@ -9,10 +9,11 @@ interface TransitionLinkProps {
   href: string;
   children: React.ReactNode;
   className?: string;
+  [key: string]: any; // Allow any other props to be passed through
 }
 
 const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
-  ({ href, children, className }, ref) => {
+  ({ href, children, className, ...props }, ref) => {
     const { navigate } = useTransition();
     const isMobile = useIsMobile();
 
@@ -29,6 +30,7 @@ const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
           }
         }}
         className={className}
+        {...props}
       >
         {children}
       </Link>

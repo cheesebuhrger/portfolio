@@ -66,8 +66,19 @@ export const useCursorAnimation = () => {
     document.addEventListener("mousemove", mouseMove);
 
     targets.forEach((target) => {
-      target.addEventListener("mouseenter", () => cursorScale.play());
-      target.addEventListener("mouseleave", () => cursorScale.reverse());
+      target.addEventListener("mouseenter", () => {
+        const cursorText = target.getAttribute("data-cursor-text");
+        if (cursorText) {
+          const textElement = document.querySelector(".cursor-text span");
+          if (textElement) {
+            textElement.textContent = cursorText;
+          }
+        }
+        cursorScale.play();
+      });
+      target.addEventListener("mouseleave", () => {
+        cursorScale.reverse();
+      });
     });
 
     // Cleanup
