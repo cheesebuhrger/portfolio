@@ -4,14 +4,16 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useTransition } from "../hooks/useTransition";
 import Button from "./Button";
+import { useLenis } from "@studio-freight/react-lenis";
 
 const Nav = () => {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const { navigate } = useTransition();
+  const lenis = useLenis();
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    lenis?.scrollTo(0, { immediate: false });
   };
 
   return (
@@ -35,29 +37,41 @@ const Nav = () => {
       {isHome && (
         <>
           <ul className="group col-span-3 col-start-7 text-text-primary-negative w-fit">
-            <li className="group-hover:pb-1 hover:underline transition-all duration-300 w-fit">
+            <li
+              onClick={() => {
+                lenis?.scrollTo("#projects");
+              }}
+              className="group-hover:pb-1 hover:underline transition-all duration-300 w-fit cursor-pointer"
+            >
               Projects
             </li>
-            <li className="group-hover:py-1 hover:underline transition-all duration-300 w-fit">
-              Prototypes
+            <li
+              onClick={() => {
+                lenis?.scrollTo("#about");
+              }}
+              className="group-hover:py-1 hover:underline transition-all duration-300 w-fit cursor-pointer"
+            >
+              About
             </li>
-            <li className="group-hover:py-1 hover:underline transition-all duration-300 w-fit">
+            <li
+              onClick={() => {
+                lenis?.scrollTo("#playground");
+              }}
+              className="group-hover:py-1 hover:underline transition-all duration-300 w-fit cursor-pointer"
+            >
               Playground
             </li>
           </ul>
-          <ul className="col-span-3 col-start-10 text-text-primary-negative">
-            <li>
-              <Link
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/about");
-                }}
-                href="/about"
-              >
-                ABOUT
-              </Link>
+          {/* <ul className="col-span-3 col-start-10 text-text-primary-negative">
+            <li
+              onClick={() => {
+                lenis?.scrollTo("#about");
+              }}
+              className="group-hover:py-1 hover:underline transition-all duration-300 w-fit cursor-pointer"
+            >
+              About
             </li>
-          </ul>
+          </ul> */}
         </>
       )}
     </nav>

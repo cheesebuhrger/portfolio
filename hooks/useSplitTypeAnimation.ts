@@ -76,6 +76,10 @@ export const useSplitTypeAnimation = () => {
         ? 0.5
         : 0;
 
+      const start = element.classList.contains("split-type-animation-hero")
+        ? "top bottom"
+        : "top 80%";
+
       // Initial state for spans
       gsap.set(spans, {
         skewX: 30,
@@ -95,7 +99,7 @@ export const useSplitTypeAnimation = () => {
         delay: delay,
         scrollTrigger: {
           trigger: element,
-          start: "top 80%",
+          start: start,
           toggleActions: "play none none reverse",
           // markers: true, // Keep markers off for production
         },
@@ -113,7 +117,7 @@ export const useSplitTypeAnimation = () => {
           delay: delay,
           scrollTrigger: {
             trigger: element,
-            start: "top 80%",
+            start: start,
             toggleActions: "play none none reverse",
             // markers: true, // Keep markers off for production
           },

@@ -13,10 +13,10 @@ const IndexHero4 = () => {
           Through a decade of designing, I&rsquo;ve honed skills in interaction
           design, motion, design systems, & prototyping. I&rsquo;m a builder at
           heart and I&rsquo;m always finding new ways to bring ideas to life.
-          Now I&rsquo;m blending my design skills with code.
+          Now I&rsquo;m focusing on blending my design skills with code.
         </h1>
 
-        <div className="col-span-6 col-start-7 flex flex-row gap-2">
+        <div className="col-span-6 col-start-7 flex flex-row gap-2 items-end">
           <div className="relative w-full h-fit flex flex-col gap-2">
             <p className="text-xs font-mono uppercase">Featured Projects</p>
             <TransitionLink

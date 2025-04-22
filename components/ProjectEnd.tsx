@@ -34,15 +34,6 @@ interface ProjectEndProps {
   };
 }
 
-const processTimeline = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".panel-1-container",
-    start: "top 90%",
-    // markers: true,
-    toggleActions: "play none none reverse",
-  },
-});
-
 const ProjectEnd = ({
   process,
   image,
@@ -50,6 +41,15 @@ const ProjectEnd = ({
   prototype,
 }: ProjectEndProps) => {
   useGSAP(() => {
+    const processTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".panel-1-container",
+        start: "top 90%",
+        // markers: true,
+        toggleActions: "play none none reverse",
+      },
+    });
+
     // Large text animations
     gsap.set(".panel-1", {
       yPercent: -100,

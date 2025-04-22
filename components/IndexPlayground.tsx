@@ -18,7 +18,7 @@ interface GridItem {
   description?: string;
 }
 
-const IndexCraft: React.FC = () => {
+const IndexPlayground: React.FC = () => {
   const { isOpen, currentIndex, open, close, next, prev } =
     useModal(playgroundItems);
 
@@ -85,4 +85,4 @@ const IndexCraft: React.FC = () => {
   );
 };
 
-export default IndexCraft;
+export default IndexPlayground;

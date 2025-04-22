@@ -3,7 +3,7 @@
 import type { NextPage } from "next";
 import IndexHero3 from "@/components/IndexHero3";
 import SectionLabel from "../components/ProjectSection";
-import IndexCraft from "../components/IndexPlayground";
+import IndexPlayground from "../components/IndexPlayground";
 import IndexProjects from "@/components/IndexProjects";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import { ReactLenis } from "@studio-freight/react-lenis";
@@ -20,9 +20,10 @@ const Home: NextPage = () => {
     <ReactLenis root>
       <div className="min-h-screen bg-surface-background">
         <CursorDot />
+        {/* <IndexHero4 /> */}
         <section className="w-screen h-screen">
           <div className="w-full h-full grid grid-cols-12 gap-4 md:gap-6 lg:gap-8 p-4 md:p-6 lg:p-8 pt-16 md:pt-20 lg:pt-24 items-end">
-            <h1 className="col-span-6 col-start-7 text-4xl split-type-animation">
+            <h1 className="col-span-6 col-start-7 text-4xl split-type-animation-hero">
               Through a decade of designing, I&rsquo;ve honed skills in
               interaction design, motion, design systems, & prototyping.
               I&rsquo;m a builder at heart and I&rsquo;m always finding new ways
@@ -44,12 +45,12 @@ const Home: NextPage = () => {
         </section>
 
         <section
-          id="craft"
+          id="playground"
           className="relative border-t border-black p-4 md:p-8"
         >
           <h2 className="text-xs font-mono uppercase mb-64">Playground</h2>
 
-          <IndexCraft />
+          <IndexPlayground />
         </section>
       </div>
     </ReactLenis>

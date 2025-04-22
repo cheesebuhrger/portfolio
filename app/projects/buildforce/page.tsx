@@ -530,7 +530,7 @@ const Buildforce: React.FC = () => {
           image="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744924853/buildforce-11_cwgjyq.webp"
           process={{
             item1: "How & why did we start using the Shape Up process?",
-            item2: "Which decisions kept us on the worker&rsquo;s side?",
+            item2: "Which decisions kept us on the worker's side?",
             item3: "How did we tackle product education, comms and support?",
             item4: "What challenges arose throughout the project?",
             item5: "How did we introduce a brand refresh alongside this work?",
