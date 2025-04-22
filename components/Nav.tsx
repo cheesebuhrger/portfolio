@@ -36,7 +36,7 @@ const Nav = () => {
             navigate("/about");
           }}
           href="/about"
-          className="col-span-4 col-start-10 justify-self-end"
+          className="col-span-4 col-start-10 justify-self-end text-text-primary-negative"
         >
           ABOUT
         </Link>

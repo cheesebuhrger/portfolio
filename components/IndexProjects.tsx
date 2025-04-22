@@ -4,7 +4,6 @@ import Image from "next/image";
 import TransitionLink from "./TransitionLink";
 import { projects, romanNumerals } from "@/data/indexProjectCovers";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
-import CursorDot from "./CursorDot";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,7 +12,6 @@ const IndexProjects = () => {
 
   return (
     <section className="">
-      <CursorDot text="VIEW PROJECT" />
       {projects.map((project, index) => (
         <section
           key={index}
