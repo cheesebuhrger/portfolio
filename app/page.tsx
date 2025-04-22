@@ -12,6 +12,7 @@ import MediaImage from "@/components/MediaImage";
 import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
 import TransitionLink from "@/components/TransitionLink";
 import CursorDot from "@/components/CursorDot";
+import IndexHero4 from "@/components/IndexHero4";
 
 const Home: NextPage = () => {
   useSplitTypeAnimation();
@@ -28,44 +29,6 @@ const Home: NextPage = () => {
               to bring ideas to life. Now I&rsquo;m blending my design skills
               with code.
             </h1>
-
-            <div className="col-span-6 col-start-7 flex flex-row gap-2">
-              <div className="relative w-full h-fit flex flex-col gap-2">
-                <p className="text-xs font-mono uppercase">Featured Project</p>
-                <TransitionLink
-                  href="/projects/buildforce"
-                  className="cursor-animation"
-                  data-cursor-text="VIEW PROJECT"
-                >
-                  <div className="relative w-full aspect-21/9-half bg-surface-secondary rounded-md overflow-hidden">
-                    <MediaImage
-                      src="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744093117/buildforce-cover-01_1_jzzqeo.webp"
-                      alt="Buildforce Time Tracking App"
-                      type="image"
-                    />
-                  </div>
-                </TransitionLink>
-              </div>
-
-              <div className="relative w-full h-fit flex flex-col gap-2">
-                <p className="text-xs font-mono uppercase">
-                  Featured Prototype
-                </p>
-                <TransitionLink
-                  href="/projects/strava-growth"
-                  className="cursor-animation"
-                  data-cursor-text="VIEW PROTOTYPE"
-                >
-                  <div className="relative w-full aspect-21/9-half bg-surface-secondary rounded-md overflow-hidden">
-                    <MediaImage
-                      src="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873197/strava-growth-cover-1_dwsdpv.webp"
-                      alt="Buildforce Time Tracking App"
-                      type="image"
-                    />
-                  </div>
-                </TransitionLink>
-              </div>
-            </div>
           </div>
         </section>
 

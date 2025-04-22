@@ -17,9 +17,12 @@ const Nav = () => {
   return (
     <nav className="fixed top-0 w-full z-50 p-4 md:p-8 text-xs font-mono uppercase grid grid-cols-12 gap-4 md:gap-8 mix-blend-difference">
       {isHome ? (
-        <div className="col-span-4 cursor-pointer" onClick={scrollToTop}>
-          <div className="text-text-primary-negative">BUHR DUONG</div>
-          <div className="text-text-primary-negative">PRODUCT DESIGNER</div>
+        <div
+          className="col-span-4 text-text-primary-negative cursor-pointer"
+          onClick={scrollToTop}
+        >
+          <div>BUHR DUONG</div>
+          <div>PRODUCT DESIGNER</div>
         </div>
       ) : (
         <Button
@@ -30,16 +33,32 @@ const Nav = () => {
       )}
 
       {isHome && (
-        <Link
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/about");
-          }}
-          href="/about"
-          className="col-span-4 col-start-10 justify-self-end text-text-primary-negative"
-        >
-          ABOUT
-        </Link>
+        <>
+          <ul className="group col-span-3 col-start-7 text-text-primary-negative w-fit">
+            <li className="group-hover:pb-1 hover:underline transition-all duration-300 w-fit">
+              Projects
+            </li>
+            <li className="group-hover:py-1 hover:underline transition-all duration-300 w-fit">
+              Prototypes
+            </li>
+            <li className="group-hover:py-1 hover:underline transition-all duration-300 w-fit">
+              Playground
+            </li>
+          </ul>
+          <ul className="col-span-3 col-start-10 text-text-primary-negative">
+            <li>
+              <Link
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/about");
+                }}
+                href="/about"
+              >
+                ABOUT
+              </Link>
+            </li>
+          </ul>
+        </>
       )}
     </nav>
   );
