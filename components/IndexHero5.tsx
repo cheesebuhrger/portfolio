@@ -8,7 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-const IndexHero4 = () => {
+const IndexHero5 = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -24,9 +24,8 @@ const IndexHero4 = () => {
       // }
       ();
 
-    tl.to(".index-hero-default", {
-      opacity: 0,
-      duration: 1,
+    tl.set(".project-container-1 ", {
+      yPercent: -100,
     }).fromTo(
       ".index-hero-hover",
       {
@@ -42,9 +41,9 @@ const IndexHero4 = () => {
 
   return (
     <section className="">
-      <div className="w-screen h-screen grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-8 p-4 md:p-6 lg:p-8 pt-16 md:pt-20 lg:pt-24 items-end">
+      <div className="relative opacity-50 z-[1] w-screen h-screen grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-8 p-4 md:p-6 lg:p-8 pt-16 md:pt-20 lg:pt-24 items-end bg-[yellow]">
         <div className="col-span-1 lg:col-span-6 lg:col-start-7 text-5xl relative">
-          <h1 className="relative index-hero-default split-type-animation-hero">
+          <h1 className="relative split-type-animation-hero">
             Through a decade of designing products, I&rsquo;ve honed skills in
             interaction design, motion, design systems, & prototyping. I&rsquo;m
             a builder at heart and I&rsquo;m always finding new ways to bring
@@ -69,11 +68,7 @@ const IndexHero4 = () => {
 
           <div className="relative w-full h-fit flex flex-col gap-2">
             <p className="text-xs font-mono uppercase">Featured Prototype</p>
-            <TransitionLink
-              href="/projects/strava-growth"
-              className="cursor-animation"
-              data-cursor-text="VIEW PROTOTYPE"
-            >
+            <TransitionLink href="/projects/strava-growth">
               <div className="relative w-full aspect-4/3 bg-surface-secondary rounded-md overflow-hidden">
                 <MediaImage
                   src="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873197/strava-growth-cover-1_dwsdpv.webp"
@@ -85,9 +80,12 @@ const IndexHero4 = () => {
           </div>
         </div>
       </div>
-      <div className="w-screen h-screen bg-[red]"> </div>
+
+      <div className="project-container-1 w-screen h-screen bg-[red]">
+        <h1 className="text-12xl">HELLO</h1>
+      </div>
     </section>
   );
 };
 
-export default IndexHero4;
+export default IndexHero5;

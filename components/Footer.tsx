@@ -15,13 +15,14 @@ const Footer = () => {
           : ""
       }`}
     >
-      <div
-        className={`col-span-2 border ${
-          !isHomePage
-            ? "border-border-primary-negative"
-            : "border-border-primary"
-        } h-96`}
-      ></div>
+      {/* <div
+        className={`col-span-2 h-96 border
+          ${
+            !isHomePage
+              ? "border-border-primary-negative"
+              : "border-border-primary"
+          }`}
+      ></div> */}
 
       <ul className="col-span-1 md:col-start-3">
         {!isHomePage && (
