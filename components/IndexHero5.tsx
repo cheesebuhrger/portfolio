@@ -6,12 +6,40 @@ import MediaImage from "./MediaImage";
 import { projects, romanNumerals } from "@/data/indexProjectCovers";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitType from "split-type";
 import { useGSAP } from "@gsap/react";
 
 const IndexHero5 = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    // Split type animation setup
+    const projectContent = document.querySelectorAll<HTMLElement>(
+      ".index-project-title"
+    );
+    projectContent.forEach((item) => {
+      const text = new SplitType(item, {
+        types: "lines",
+        tagName: "div",
+        lineClass: "line",
+      });
+
+      // Wrap each line's content in a span
+      text.lines?.forEach((line) => {
+        const content = line.innerHTML;
+        line.innerHTML = `<span>${content}</span>`;
+      });
+
+      // Get all spans within the lines
+      const spans = item.querySelectorAll<HTMLElement>(":scope > .line > span");
+
+      // Initial state for spans
+      gsap.set(spans, {
+        y: "100%",
+        display: "block",
+      });
+    });
+
     const tl = gsap
       .timeline
       //   {
@@ -64,6 +92,34 @@ const IndexHero5 = () => {
           stagger: 2,
         },
         "<"
+      )
+      .fromTo(
+        ".index-project-title .line > span",
+        {
+          y: "100%",
+          x: 75,
+          skewX: 30,
+        },
+        {
+          y: 0,
+          x: 0,
+          skewX: 0,
+          duration: 1,
+          delay: 0.5,
+          ease: "power2.inOut",
+          stagger: 0.15,
+        },
+        "<"
+      )
+      .fromTo(
+        ".index-project-title .line",
+        { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
+        {
+          clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
+          duration: 1,
+          ease: "power2.inOut",
+        },
+        "<"
       );
   }, []);
 
@@ -112,7 +168,7 @@ const IndexHero5 = () => {
       <div className="projects relative">
         <div className="project-container z-[4] relative w-screen h-screen bg-[red] flex items-end justify-center">
           <div className="group w-full relative">
-            <div className="project-header px-4 md:px-8 mb-8 grid grid-cols-12 gap-8">
+            <div className="project-content-container px-4 md:px-8 mb-8 grid grid-cols-12 gap-8">
               <TransitionLink
                 href={projects[0].url}
                 className="text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action transition-all duration-300"
@@ -121,7 +177,7 @@ const IndexHero5 = () => {
               </TransitionLink>
               <TransitionLink
                 href={projects[0].url}
-                className="cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline transition-all duration-300"
+                className="index-project-title cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline transition-all duration-300"
                 data-cursor-text="VIEW PROJECT"
               >
                 {projects[0].title}
@@ -160,7 +216,7 @@ const IndexHero5 = () => {
 
         <div className="project-container z-[3] relative w-screen h-screen bg-[blue] flex items-end justify-center">
           <div className="group w-full relative">
-            <div className="project-header px-4 md:px-8 mb-8 grid grid-cols-12 gap-8">
+            <div className="project-content-container px-4 md:px-8 mb-8 grid grid-cols-12 gap-8">
               <TransitionLink
                 href={projects[1].url}
                 className="text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action transition-all duration-300"
@@ -169,7 +225,7 @@ const IndexHero5 = () => {
               </TransitionLink>
               <TransitionLink
                 href={projects[1].url}
-                className="cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline transition-all duration-300"
+                className="index-project-title cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline transition-all duration-300"
                 data-cursor-text="VIEW PROJECT"
               >
                 {projects[1].title}
@@ -207,23 +263,23 @@ const IndexHero5 = () => {
         </div>
         <div className="project-container z-[2] relative w-screen h-screen bg-[orange] flex items-end justify-center">
           <div className="group w-full relative">
-            <div className="project-text-container px-4 md:px-8 mb-8 grid grid-cols-12 gap-8">
+            <div className="project-content-container px-4 md:px-8 mb-8 grid grid-cols-12 gap-8">
               <TransitionLink
                 href={projects[2].url}
-                className="project-text text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action transition-all duration-300"
+                className=" text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action transition-all duration-300"
               >
                 {romanNumerals[2]}
               </TransitionLink>
               <TransitionLink
                 href={projects[2].url}
-                className="project-text cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline transition-all duration-300"
+                className="index-project-title cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline transition-all duration-300"
                 data-cursor-text="VIEW PROJECT"
               >
                 {projects[2].title}
               </TransitionLink>
               <TransitionLink
                 href={projects[2].url}
-                className="project-text text-lg col-start-10 col-span-3 pt-1 font-serif group-hover:text-text-action transition-all duration-300"
+                className="text-lg col-start-10 col-span-3 pt-1 font-serif group-hover:text-text-action transition-all duration-300"
               >
                 <p>{projects[2].company}</p>
                 <p>{projects[2].year}</p>
