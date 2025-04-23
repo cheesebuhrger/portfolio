@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import TransitionLink from "./TransitionLink";
 import MediaImage from "./MediaImage";
-import { projects } from "@/data/indexProjectCovers";
+import { projects, romanNumerals } from "@/data/indexProjectCovers";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -23,25 +23,53 @@ const IndexHero5 = () => {
       //   },
       // }
       ();
+    gsap.set(".project-image-left", {
+      transformOrigin: "bottom right",
+    });
+    gsap.set(".project-image-right", {
+      transformOrigin: "bottom left",
+    });
 
-    tl.set(".project-container-1 ", {
-      yPercent: -100,
-    }).fromTo(
-      ".index-hero-hover",
+    tl.fromTo(
+      ".project-container",
       {
-        display: "none",
-        opacity: 0,
+        yPercent: -100,
       },
       {
-        display: "block",
-        opacity: 1,
+        yPercent: 0,
+        duration: 1,
+        stagger: 2,
       }
-    );
+    )
+      .fromTo(
+        ".project-image-left",
+        {
+          scale: 0,
+        },
+        {
+          scale: 1,
+          duration: 1,
+          stagger: 2,
+        },
+        "<+1"
+      )
+      .fromTo(
+        ".project-image-right",
+        {
+          scale: 0,
+        },
+        {
+          scale: 1,
+          duration: 1,
+          stagger: 2,
+        },
+        "<"
+      );
   }, []);
 
   return (
-    <section className="">
-      <div className="relative opacity-50 z-[1] w-screen h-screen grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-8 p-4 md:p-6 lg:p-8 pt-16 md:pt-20 lg:pt-24 items-end bg-[yellow]">
+    <section className="relative">
+      <div className="relative opacity-10 z-[5] w-screen h-screen grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-8 p-4 md:p-6 lg:p-8 pt-16 md:pt-20 lg:pt-24 items-end bg-[yellow]">
         <div className="col-span-1 lg:col-span-6 lg:col-start-7 text-5xl relative">
           <h1 className="relative split-type-animation-hero">
             Through a decade of designing products, I&rsquo;ve honed skills in
@@ -81,8 +109,149 @@ const IndexHero5 = () => {
         </div>
       </div>
 
-      <div className="project-container-1 w-screen h-screen bg-[red]">
-        <h1 className="text-12xl">HELLO</h1>
+      <div className="projects relative">
+        <div className="project-container z-[4] relative w-screen h-screen bg-[red] flex items-end justify-center">
+          <div className="group w-full relative">
+            <div className="project-header px-4 md:px-8 mb-8 grid grid-cols-12 gap-8">
+              <TransitionLink
+                href={projects[0].url}
+                className="text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action transition-all duration-300"
+              >
+                {romanNumerals[0]}
+              </TransitionLink>
+              <TransitionLink
+                href={projects[0].url}
+                className="cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline transition-all duration-300"
+                data-cursor-text="VIEW PROJECT"
+              >
+                {projects[0].title}
+              </TransitionLink>
+              <TransitionLink
+                href={projects[0].url}
+                className="text-lg col-start-10 col-span-3 pt-1 font-serif group-hover:text-text-action transition-all duration-300"
+              >
+                <p>{projects[0].company}</p>
+                <p>{projects[0].year}</p>
+              </TransitionLink>
+            </div>
+
+            <TransitionLink
+              href={projects[0].url}
+              className="cursor-animation relative flex bg-[pink] w-full"
+              data-cursor-text="VIEW PROJECT"
+            >
+              <div className="project-image-left relative w-full aspect-4/3 overflow-hidden bg-[green]">
+                <MediaImage
+                  src={projects[0].image1.src}
+                  alt={projects[0].image1.alt}
+                  type="image"
+                />
+              </div>
+              <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-[purple]">
+                <MediaImage
+                  src={projects[0].image2.src}
+                  alt={projects[0].image2.alt}
+                  type="image"
+                />
+              </div>
+            </TransitionLink>
+          </div>
+        </div>
+
+        <div className="project-container z-[3] relative w-screen h-screen bg-[blue] flex items-end justify-center">
+          <div className="group w-full relative">
+            <div className="project-header px-4 md:px-8 mb-8 grid grid-cols-12 gap-8">
+              <TransitionLink
+                href={projects[1].url}
+                className="text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action transition-all duration-300"
+              >
+                {romanNumerals[1]}
+              </TransitionLink>
+              <TransitionLink
+                href={projects[1].url}
+                className="cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline transition-all duration-300"
+                data-cursor-text="VIEW PROJECT"
+              >
+                {projects[1].title}
+              </TransitionLink>
+              <TransitionLink
+                href={projects[1].url}
+                className="text-lg col-start-10 col-span-3 pt-1 font-serif group-hover:text-text-action transition-all duration-300"
+              >
+                <p>{projects[1].company}</p>
+                <p>{projects[1].year}</p>
+              </TransitionLink>
+            </div>
+
+            <TransitionLink
+              href={projects[1].url}
+              className="cursor-animation relative flex bg-[pink] w-full"
+              data-cursor-text="VIEW PROJECT"
+            >
+              <div className="project-image-left relative w-full aspect-4/3 overflow-hidden bg-[green]">
+                <MediaImage
+                  src={projects[1].image1.src}
+                  alt={projects[1].image1.alt}
+                  type="image"
+                />
+              </div>
+              <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-[purple]">
+                <MediaImage
+                  src={projects[1].image2.src}
+                  alt={projects[1].image2.alt}
+                  type="image"
+                />
+              </div>
+            </TransitionLink>
+          </div>
+        </div>
+        <div className="project-container z-[2] relative w-screen h-screen bg-[orange] flex items-end justify-center">
+          <div className="group w-full relative">
+            <div className="project-text-container px-4 md:px-8 mb-8 grid grid-cols-12 gap-8">
+              <TransitionLink
+                href={projects[2].url}
+                className="project-text text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action transition-all duration-300"
+              >
+                {romanNumerals[2]}
+              </TransitionLink>
+              <TransitionLink
+                href={projects[2].url}
+                className="project-text cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline transition-all duration-300"
+                data-cursor-text="VIEW PROJECT"
+              >
+                {projects[2].title}
+              </TransitionLink>
+              <TransitionLink
+                href={projects[2].url}
+                className="project-text text-lg col-start-10 col-span-3 pt-1 font-serif group-hover:text-text-action transition-all duration-300"
+              >
+                <p>{projects[2].company}</p>
+                <p>{projects[2].year}</p>
+              </TransitionLink>
+            </div>
+
+            <TransitionLink
+              href={projects[2].url}
+              className="cursor-animation relative flex bg-[pink] w-full"
+              data-cursor-text="VIEW PROJECT"
+            >
+              <div className="project-image-left relative w-full aspect-4/3 overflow-hidden bg-[green]">
+                <MediaImage
+                  src={projects[2].image1.src}
+                  alt={projects[2].image1.alt}
+                  type="image"
+                />
+              </div>
+              <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-[purple]">
+                <MediaImage
+                  src={projects[2].image2.src}
+                  alt={projects[2].image2.alt}
+                  type="image"
+                />
+              </div>
+            </TransitionLink>
+          </div>
+        </div>
       </div>
     </section>
   );
