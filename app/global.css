@@ -131,6 +131,7 @@ html {
 .split-type-animation .line span,
 .index-project-title .line span {
   will-change: transform;
+  display: block;
 }
 
 @layer base {

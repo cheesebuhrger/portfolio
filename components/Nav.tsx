@@ -13,7 +13,7 @@ const Nav = () => {
   const lenis = useLenis();
 
   const scrollToTop = () => {
-    lenis?.scrollTo(0, { immediate: false });
+    lenis?.scrollTo(0, { duration: 2 });
   };
 
   return (
@@ -39,7 +39,7 @@ const Nav = () => {
           <ul className="group col-span-3 col-start-7 text-text-primary-negative w-fit">
             <li
               onClick={() => {
-                lenis?.scrollTo("#projects");
+                lenis?.scrollTo("#projects", { duration: 2 });
               }}
               className="group-hover:pb-1 hover:underline transition-all duration-300 w-fit cursor-pointer"
             >
@@ -47,7 +47,7 @@ const Nav = () => {
             </li>
             <li
               onClick={() => {
-                lenis?.scrollTo("#playground");
+                lenis?.scrollTo("#playground", { duration: 2 });
               }}
               className="group-hover:py-1 hover:underline transition-all duration-300 w-fit cursor-pointer"
             >
@@ -65,7 +65,7 @@ const Nav = () => {
           <ul className="col-span-3 col-start-10 text-text-primary-negative">
             <li
               onClick={() => {
-                lenis?.scrollTo("#about");
+                lenis?.scrollTo("#about", { duration: 2 });
               }}
               className="group-hover:py-1 hover:underline transition-all duration-300 w-fit cursor-pointer"
             >

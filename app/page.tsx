@@ -21,23 +21,12 @@ const Home: NextPage = () => {
       <div className="min-h-screen bg-surface-background">
         <CursorDot />
         <IndexHero5 />
-        {/* <section className="w-screen h-screen">
-          <div className="w-full h-full grid grid-cols-12 gap-4 md:gap-6 lg:gap-8 p-4 md:p-6 lg:p-8 pt-16 md:pt-20 lg:pt-24 items-end">
-            <h1 className="col-span-12 col-start-1 text-7xl split-type-animation-hero">
-              I'm Buhr. Through a decade of designing products, I&rsquo;ve honed
-              skills in interaction design, motion, design systems, &
-              prototyping. I&rsquo;m a builder at heart and I&rsquo;m always
-              finding new ways to bring ideas to life. Now I&rsquo;m blending my
-              design skills with code.
-            </h1>
-          </div>
-        </section> */}
 
-        <section id="projects" className="border-t border-black py-4 md:py-8">
+        <section className="border-t border-black py-4 md:py-8">
           <h2 className="text-xs font-mono uppercase px-4 md:px-8 mb-48">
-            Projects
+            Prototypes
           </h2>
-          <IndexProjects />
+          {/* <IndexProjects /> */}
         </section>
 
         <section className="p-4 md:p-8 flex justify-center items-center">
