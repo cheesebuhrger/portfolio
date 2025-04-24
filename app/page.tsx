@@ -27,9 +27,6 @@ const Home: NextPage = () => {
             Prototypes
           </h2>
           {/* <IndexProjects /> */}
-        </section>
-
-        <section className="p-4 md:p-8 flex justify-center items-center">
           <Button href="/projects/playground" label="Playground" />
         </section>
 

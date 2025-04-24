@@ -89,7 +89,7 @@ const IndexHero5 = () => {
       borderRadius: "0",
       ease: "power1.inOut",
       scrollTrigger: {
-        trigger: ".project-container-1",
+        trigger: ".index-project-1 .project-container",
         start: "top bottom",
         end: "bottom bottom",
         // markers: true,
@@ -101,9 +101,9 @@ const IndexHero5 = () => {
       opacity: 0.1,
       ease: "power2.inOut",
       scrollTrigger: {
-        trigger: ".index-project-1",
-        start: "25% bottom",
-        end: "center bottom",
+        trigger: ".index-intro",
+        start: "bottom 75%",
+        end: "bottom top",
         scrub: true,
       },
     });
@@ -121,7 +121,7 @@ const IndexHero5 = () => {
 
     const pinFirstProject = gsap.timeline({
       scrollTrigger: {
-        trigger: ".project-container-1",
+        trigger: ".index-project-1 .project-container",
         start: "top bottom",
         end: "bottom bottom",
         // markers: true,
@@ -133,7 +133,7 @@ const IndexHero5 = () => {
 
     const pinSecondProject = gsap.timeline({
       scrollTrigger: {
-        trigger: ".project-container-2",
+        trigger: ".index-project-2 .project-container",
         start: "top bottom",
         end: "bottom bottom",
         // markers: true,
@@ -145,7 +145,7 @@ const IndexHero5 = () => {
 
     const pinThirdProject = gsap.timeline({
       scrollTrigger: {
-        trigger: ".project-container-3",
+        trigger: ".index-project-3 .project-container",
         start: "top bottom",
         end: "bottom bottom",
         // markers: true,
@@ -156,9 +156,9 @@ const IndexHero5 = () => {
     });
 
     pinFirstProject
-      .set(".project-container-1", { yPercent: -100 })
+      .set(".index-project-1 .project-container", { yPercent: -100 })
       .fromTo(
-        ".project-image-left",
+        ".index-project-1 .project-image-left",
         {
           scale: 0.5,
           bottom: "2rem",
@@ -174,7 +174,7 @@ const IndexHero5 = () => {
         }
       )
       .fromTo(
-        ".project-image-right",
+        ".index-project-1 .project-image-right",
         {
           scale: 0,
           borderRadius: "2rem",
@@ -189,14 +189,63 @@ const IndexHero5 = () => {
         "<"
       );
 
-    pinSecondProject.set(".project-container-2", { yPercent: -100 });
-    pinThirdProject.set(".project-container-3", { yPercent: -100 });
+    pinSecondProject
+      .set(".index-project-2 .project-container", {
+        yPercent: -100,
+      })
+      .fromTo(
+        ".index-project-2 .project-image-left",
+        {
+          scale: 0,
+        },
+        {
+          scale: 1,
+          // ease: "power1.inOut",
+        }
+      )
+      .fromTo(
+        ".index-project-2 .project-image-right",
+        {
+          scale: 0,
+        },
+        {
+          scale: 1,
+          // ease: "power1.inOut",
+        },
+        "<"
+      );
+
+    pinThirdProject
+      .set(".index-project-3 .project-container", {
+        yPercent: -100,
+      })
+      .fromTo(
+        ".index-project-3 .project-image-left",
+        {
+          scale: 0,
+        },
+        {
+          scale: 1,
+          // ease: "power1.inOut",
+        }
+      )
+      .fromTo(
+        ".index-project-3 .project-image-right",
+        {
+          scale: 0,
+        },
+        {
+          scale: 1,
+          // ease: "power1.inOut",
+        },
+        "<"
+      );
 
     const textFirstProject = gsap.timeline({
       scrollTrigger: {
         trigger: ".index-project-1",
         start: "25% center",
-        markers: true,
+        // markers: true,
         toggleActions: "play none none reverse",
       },
     });
@@ -237,11 +286,137 @@ const IndexHero5 = () => {
         },
         "<"
       );
+
+    const textSecondProject = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".index-project-2",
+        start: "25% center",
+        // markers: true,
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    textSecondProject
+      .fromTo(
+        ".index-project-2 .index-project-title .line > span",
+        {
+          y: "100%",
+          x: 75,
+          skewX: 30,
+        },
+        {
+          y: 0,
+          x: 0,
+          skewX: 0,
+          ease: "power2.out",
+          duration: 1,
+        }
+      )
+      .fromTo(
+        ".index-project-2 .index-project-title .line",
+        { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
+        {
+          clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
+          ease: "power2.out",
+          duration: 1,
+        },
+        "<"
+      )
+      .fromTo(
+        ".index-project-2 .index-project-meta",
+        { opacity: 0.1 },
+        {
+          opacity: 1,
+          ease: "power2.out",
+          duration: 0.5,
+        },
+        "<"
+      );
+
+    const textThirdProject = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".index-project-3",
+        start: "25% center",
+        // markers: true,
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    textThirdProject
+      .fromTo(
+        ".index-project-3 .index-project-title .line > span",
+        {
+          y: "100%",
+          x: 75,
+          skewX: 30,
+        },
+        {
+          y: 0,
+          x: 0,
+          skewX: 0,
+          ease: "power2.out",
+          duration: 1,
+        }
+      )
+      .fromTo(
+        ".index-project-3 .index-project-title .line",
+        { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
+        {
+          clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
+          ease: "power2.out",
+          duration: 1,
+        },
+        "<"
+      )
+      .fromTo(
+        ".index-project-3 .index-project-meta",
+        { opacity: 0.1 },
+        {
+          opacity: 1,
+          ease: "power2.out",
+          duration: 0.5,
+        },
+        "<"
+      );
+
+    gsap.to(".index-project-1 .project-container", {
+      filter: "grayscale(100%)",
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: ".index-project-1",
+        start: "bottom 75%",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.to(".index-project-2 .project-container", {
+      filter: "grayscale(100%)",
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: ".index-project-2",
+        start: "bottom 75%",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.to(".index-project-3 .project-container", {
+      opacity: 0.1,
+      filter: "grayscale(100%)",
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: ".index-project-3",
+        start: "bottom 75%",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
   }, []);
 
   return (
     <section className="overall-container relative">
-      <div className="project-image-fix-container w-1/2 z-[10] fixed bottom-0">
+      <div className="project-image-fix-container w-1/2 z-[10] fixed bottom-0 hidden">
         <div
           onClick={() => {
             lenis?.scrollTo("#projects", { duration: 2 });
@@ -297,12 +472,12 @@ const IndexHero5 = () => {
       <div id="projects" className="index-projects relative w-screen">
         {/* PROJECT 1 */}
         <div className="index-project-1 z-[4] bg-surface-primary relative w-full">
-          <div className="project-container-1 h-screen flex flex-col justify-between relative">
+          <div className="project-container h-screen flex flex-col justify-between relative">
             <h2 className="text-xs font-mono uppercase p-4 md:p-6 lg:p-8">
               Projects
             </h2>
             <div className="group w-full h-fit relative flex-col">
-              <div className="project-content-1 px-4 md:px-8 mb-8 w-full grid grid-cols-12 gap-8 relative">
+              <div className="project-content px-4 md:px-8 mb-8 w-full grid grid-cols-12 gap-8 relative">
                 <div className="index-project-meta text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action">
                   {romanNumerals[0]}
                 </div>
@@ -345,10 +520,10 @@ const IndexHero5 = () => {
 
         {/* PROJECT 2 */}
 
-        <div className="index-project-1 z-[3] bg-surface-primary relative w-full">
-          <div className="project-container-2 h-screen flex flex-col justify-end items-end relative">
+        <div className="index-project-2 z-[3] bg-surface-primary relative w-full">
+          <div className="project-container h-screen flex flex-col justify-end items-end relative">
             <div className="group w-full h-fit relative flex-col">
-              <div className="project-content-2 px-4 md:px-8 mb-8 w-full grid grid-cols-12 gap-8 relative">
+              <div className="project-content px-4 md:px-8 mb-8 w-full grid grid-cols-12 gap-8 relative">
                 <div className="index-project-meta text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action">
                   {romanNumerals[1]}
                 </div>
@@ -390,51 +565,48 @@ const IndexHero5 = () => {
         </div>
 
         {/* PROJECT 3 */}
-        <div className="project-mask-3 z-[2] relative w-screen h-screen bg-[orange] flex items-end justify-center">
-          <div className="project-container-3 group w-full h-full relative flex flex-col items-end justify-end">
-            <div className="project-content-3 px-4 md:px-8 mb-8 w-full grid grid-cols-12 gap-8">
+
+        <div className="index-project-3 z-[2] bg-surface-primary relative w-full">
+          <div className="project-container h-screen flex flex-col justify-end items-end relative">
+            <div className="group w-full h-fit relative flex-col">
+              <div className="project-content px-4 md:px-8 mb-8 w-full grid grid-cols-12 gap-8 relative">
+                <div className="index-project-meta text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action">
+                  {romanNumerals[2]}
+                </div>
+                <TransitionLink
+                  href={projects[2].url}
+                  className="index-project-title cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline"
+                  data-cursor-text="VIEW PROJECT"
+                >
+                  {projects[2].title}
+                </TransitionLink>
+                <div className="index-project-meta text-lg col-start-10 col-span-3 pt-1 font-serif group-hover:text-text-action">
+                  <p>{projects[2].company}</p>
+                  <p>{projects[2].year}</p>
+                </div>
+              </div>
+
               <TransitionLink
                 href={projects[2].url}
-                className=" text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action transition-all duration-300"
-              >
-                {romanNumerals[2]}
-              </TransitionLink>
-              <TransitionLink
-                href={projects[2].url}
-                className="index-project-title cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline transition-all duration-300"
+                className="cursor-animation relative flex w-full"
                 data-cursor-text="VIEW PROJECT"
               >
-                {projects[2].title}
-              </TransitionLink>
-              <TransitionLink
-                href={projects[2].url}
-                className="text-lg col-start-10 col-span-3 pt-1 font-serif group-hover:text-text-action transition-all duration-300"
-              >
-                <p>{projects[2].company}</p>
-                <p>{projects[2].year}</p>
+                <div className="project-image-left relative w-full aspect-4/3 overflow-hidden bg-surface-secondary">
+                  <MediaImage
+                    src={projects[2].image1.src}
+                    alt={projects[2].image1.alt}
+                    type="image"
+                  />
+                </div>
+                <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary">
+                  <MediaImage
+                    src={projects[2].image2.src}
+                    alt={projects[2].image2.alt}
+                    type="image"
+                  />
+                </div>
               </TransitionLink>
             </div>
-
-            <TransitionLink
-              href={projects[2].url}
-              className="cursor-animation relative flex bg-[pink] w-full"
-              data-cursor-text="VIEW PROJECT"
-            >
-              <div className="project-image-left relative w-full aspect-4/3 overflow-hidden bg-[green]">
-                <MediaImage
-                  src={projects[2].image1.src}
-                  alt={projects[2].image1.alt}
-                  type="image"
-                />
-              </div>
-              <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-[purple]">
-                <MediaImage
-                  src={projects[2].image2.src}
-                  alt={projects[2].image2.alt}
-                  type="image"
-                />
-              </div>
-            </TransitionLink>
           </div>
         </div>
       </div>
