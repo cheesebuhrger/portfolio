@@ -17,7 +17,7 @@ const Nav = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 p-4 md:p-8 text-xs font-mono uppercase grid grid-cols-12 gap-4 md:gap-8 mix-blend-difference">
+    <nav className="fixed top-0 w-full z-50 p-4 md:p-6 lg:p-8 text-xs font-mono uppercase grid grid-cols-12 gap-4 md:gap-6 lg:gap-8 mix-blend-difference">
       {isHome ? (
         <div
           className="col-span-4 text-text-primary-negative cursor-pointer"

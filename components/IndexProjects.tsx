@@ -9,6 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 import { useGSAP } from "@gsap/react";
 import { useLenis } from "@studio-freight/react-lenis";
+import Button from "./Button";
 
 const IndexProjects = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -415,13 +416,13 @@ const IndexProjects = () => {
   }, []);
 
   return (
-    <section className="overall-container relative">
+    <section className="overall-container relative w-screen overflow-hidden">
       <div className="project-image-fix-container w-1/2 z-[10] fixed bottom-0 hidden">
         <div
           onClick={() => {
             lenis?.scrollTo("#projects", { duration: 2 });
           }}
-          className="project-image-fix index-intro-in absolute w-1/2 aspect-4/3 overflow-hidden bottom-8 right-4 rounded-md cursor-pointer"
+          className="project-image-fix index-intro-in absolute w-1/2 aspect-4/3 overflow-hidden bottom-8 right-4 rounded-md cursor-pointer hidden md:block"
         >
           <MediaImage
             src={projects[0].image1.src}
@@ -430,16 +431,33 @@ const IndexProjects = () => {
           />
         </div>
       </div>
-      <div className="index-intro relative z-[5] w-screen h-screen flex flex-col pt-16 md:pt-20 lg:pt-24 pb-4 md:pb-6 lg:pb-8 items-end bg-surface-primary border-b border-border-tertiary">
-        <div className="index-intro-out relative pl-4 pr-8 w-full h-full grid grid-cols-12 gap-4 md:gap-6 lg:gap-8 pt-16 md:p-6 lg:p-8 items-center">
-          <h1 className="relative text-4xl split-type-animation-hero col-span-6 col-start-7 text-pretty">
+      <div className="index-intro relative z-[5] w-screen h-screen flex flex-col pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-8 items-end bg-surface-primary border-b border-border-tertiary">
+        <div className="index-intro-out relative p-4 md:p-6 lg:p-8 w-full h-full flex md:grid flex-col md:grid-cols-2 gap-8 md:gap-6 lg:gap-8 justify-center md:items-center">
+          <h1 className="relative text-4xl split-type-animation-hero col-span-1 md:col-start-2 text-pretty">
             A builder at heart, I&rsquo;m always finding new ways to bring ideas
             to life. Through a decade of designing products, I&rsquo;ve honed
             skills in interaction design, motion, & prototyping. My current
             obsession is writing code to bridge design & dev.
           </h1>
+          <div className="md:hidden flex flex-row gap-2">
+            <Button
+              onClick={() => {
+                lenis?.scrollTo("#projects", { offset: -60, immediate: true });
+              }}
+              label="Go to Projects"
+            />
+            <Button
+              onClick={() => {
+                lenis?.scrollTo("#prototypes", {
+                  offset: -60,
+                  immediate: true,
+                });
+              }}
+              label="Go to Prototypes"
+            />
+          </div>
         </div>
-        <div className="index-intro-out w-full h-fit flex flex-row justify-end items-center">
+        <div className="index-intro-out w-full h-fit md:flex-row justify-end items-center hidden md:flex">
           {/* LEFT */}
           <div className="w-full h-full flex flex-col justify-end items-end">
             <div className="index-intro-in relative w-1/2 h-fit flex flex-col gap-2 right-2 md:right-3 lg:right-4">
@@ -450,7 +468,7 @@ const IndexProjects = () => {
 
           {/* RIGHT */}
           <div className="w-full h-full flex flex-col justify-end">
-            <div className="index-intro-in relative w-1/2 h-fit flex flex-col gap-2 left-4">
+            <div className="index-intro-in relative w-1/2 h-fit flex flex-col gap-2 left-2 md:left-3 lg:left-4">
               <p className="text-xs font-mono uppercase">Featured Prototype</p>
               <div
                 onClick={() => {
@@ -472,23 +490,23 @@ const IndexProjects = () => {
       <div id="projects" className="index-projects relative w-screen">
         {/* PROJECT 1 */}
         <div className="index-project-1 z-[4] bg-surface-primary relative w-full">
-          <div className="project-container h-screen flex flex-col justify-between relative">
-            <h2 className="text-xs font-mono uppercase p-4 md:p-6 lg:p-8">
+          <div className="project-container h-fit lg:h-screen flex flex-col justify-between relative">
+            <h2 className="text-xs font-mono uppercase p-4 md:p-6 lg:p-8 mb-32 lg:mb-0">
               Projects
             </h2>
-            <div className="group w-full h-fit relative flex-col">
-              <div className="project-content px-4 md:px-8 mb-8 w-full grid grid-cols-12 gap-8 relative">
-                <div className="index-project-meta text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action">
+            <div className="group w-full h-fit relative flex flex-col gap-4 md:gap-6 lg:gap-8">
+              <div className="project-content px-4 md:px-6 lg:px-8 w-full flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-6 lg:gap-8 relative">
+                <div className="index-project-meta text-sm md:col-span-1 font-serif pt-1 lg:pt-2 uppercase group-hover:text-text-action">
                   {romanNumerals[0]}
                 </div>
                 <TransitionLink
                   href={projects[0].url}
-                  className="index-project-title cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline text-pretty"
+                  className="index-project-title cursor-animation ~text-4xl/6xl font-serif md:col-span-8 group-hover:text-text-action group-hover:underline text-pretty"
                   data-cursor-text="VIEW PROJECT"
                 >
                   {projects[0].title}
                 </TransitionLink>
-                <div className="index-project-meta text-lg col-start-10 col-span-3 pt-1 font-serif group-hover:text-text-action">
+                <div className="index-project-meta text-lg md:col-start-10 md:col-span-3 pt-1 font-serif group-hover:text-text-action">
                   <p>{projects[0].company}</p>
                   <p>{projects[0].year}</p>
                 </div>
@@ -506,7 +524,7 @@ const IndexProjects = () => {
                     type="image"
                   />
                 </div>
-                <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary">
+                <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary hidden md:block">
                   <MediaImage
                     src={projects[0].image2.src}
                     alt={projects[0].image2.alt}
@@ -521,20 +539,20 @@ const IndexProjects = () => {
         {/* PROJECT 2 */}
 
         <div className="index-project-2 z-[3] bg-surface-primary relative w-full">
-          <div className="project-container h-screen flex flex-col justify-end items-end relative">
-            <div className="group w-full h-fit relative flex-col">
-              <div className="project-content px-4 md:px-8 mb-8 w-full grid grid-cols-12 gap-8 relative">
-                <div className="index-project-meta text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action">
+          <div className="project-container h-fit lg:h-screen flex flex-col justify-end items-end relative">
+            <div className="group w-full h-fit relative flex flex-col gap-4 md:gap-6 lg:gap-8">
+              <div className="project-content px-4 md:px-6 lg:px-8 mt-20 md:mt-24 w-full flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-6 lg:gap-8 relative">
+                <div className="index-project-meta text-sm md:col-span-1 font-serif pt-1 lg:pt-2 uppercase group-hover:text-text-action">
                   {romanNumerals[1]}
                 </div>
                 <TransitionLink
                   href={projects[1].url}
-                  className="index-project-title cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline text-pretty"
+                  className="index-project-title cursor-animation ~text-4xl/6xl font-serif md:col-span-8 group-hover:text-text-action group-hover:underline text-pretty"
                   data-cursor-text="VIEW PROJECT"
                 >
                   {projects[1].title}
                 </TransitionLink>
-                <div className="index-project-meta text-lg col-start-10 col-span-3 pt-1 font-serif group-hover:text-text-action">
+                <div className="index-project-meta text-lg md:col-start-10 md:col-span-3 pt-1 font-serif group-hover:text-text-action">
                   <p>{projects[1].company}</p>
                   <p>{projects[1].year}</p>
                 </div>
@@ -552,7 +570,7 @@ const IndexProjects = () => {
                     type="image"
                   />
                 </div>
-                <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary">
+                <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary hidden md:block">
                   <MediaImage
                     src={projects[1].image2.src}
                     alt={projects[1].image2.alt}
@@ -567,20 +585,20 @@ const IndexProjects = () => {
         {/* PROJECT 3 */}
 
         <div className="index-project-3 z-[2] bg-surface-primary relative w-full">
-          <div className="project-container h-screen flex flex-col justify-end items-end relative">
-            <div className="group w-full h-fit relative flex-col">
-              <div className="project-content px-4 md:px-8 mb-8 w-full grid grid-cols-12 gap-8 relative">
-                <div className="index-project-meta text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action">
+          <div className="project-container h-fit lg:h-screen flex flex-col justify-end items-end relative">
+            <div className="group w-full h-fit relative flex flex-col gap-4 md:gap-6 lg:gap-8">
+              <div className="project-content px-4 md:px-6 lg:px-8 mt-20 md:mt-24 w-full flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-6 lg:gap-8 relative">
+                <div className="index-project-meta text-sm md:col-span-1 font-serif pt-1 lg:pt-2 uppercase group-hover:text-text-action">
                   {romanNumerals[2]}
                 </div>
                 <TransitionLink
                   href={projects[2].url}
-                  className="index-project-title cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline text-pretty"
+                  className="index-project-title cursor-animation ~text-4xl/6xl font-serif md:col-span-8 group-hover:text-text-action group-hover:underline text-pretty"
                   data-cursor-text="VIEW PROJECT"
                 >
                   {projects[2].title}
                 </TransitionLink>
-                <div className="index-project-meta text-lg col-start-10 col-span-3 pt-1 font-serif group-hover:text-text-action">
+                <div className="index-project-meta text-lg md:col-start-10 md:col-span-3 pt-1 font-serif group-hover:text-text-action">
                   <p>{projects[2].company}</p>
                   <p>{projects[2].year}</p>
                 </div>
@@ -598,7 +616,7 @@ const IndexProjects = () => {
                     type="image"
                   />
                 </div>
-                <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary">
+                <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary hidden md:block">
                   <MediaImage
                     src={projects[2].image2.src}
                     alt={projects[2].image2.alt}

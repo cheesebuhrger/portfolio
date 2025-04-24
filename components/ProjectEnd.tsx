@@ -320,7 +320,7 @@ const ProjectEnd = ({
   return (
     <section>
       <div
-        className="z-10 relative w-screen h-screen overflow-hidden bg-surface-secondary bg-cover bg-center bg-fixed"
+        className="z-10 relative w-screen h-screen overflow-hidden bg-surface-secondary bg-cover bg-center md:bg-fixed"
         style={{ backgroundImage: `url(${image})` }}
       />
 
