@@ -156,21 +156,26 @@ const IndexProjects = () => {
       },
     });
 
+    const useMobileScale = () => (window.innerWidth < 768 ? 0 : 0.5);
+    const useMobileBottom = () => (window.innerWidth < 768 ? 0 : "2rem");
+    const useMobileRight = () => (window.innerWidth < 768 ? 0 : "1rem");
+    const useMobileRadius = () => (window.innerWidth < 768 ? 0 : "2rem");
+
     pinFirstProject
       .set(".index-project-1 .project-container", { yPercent: -100 })
       .fromTo(
         ".index-project-1 .project-image-left",
         {
-          scale: 0.5,
-          bottom: "2rem",
-          right: "1rem",
-          borderRadius: "2rem",
+          scale: useMobileScale(),
+          bottom: useMobileBottom(),
+          right: useMobileRight(),
+          borderRadius: useMobileRadius(),
         },
         {
           scale: 1,
-          bottom: "0",
-          right: "0",
-          borderRadius: "0",
+          bottom: 0,
+          right: 0,
+          borderRadius: 0,
           ease: "power1.inOut",
         }
       )
@@ -422,7 +427,7 @@ const IndexProjects = () => {
           onClick={() => {
             lenis?.scrollTo("#projects", { duration: 2 });
           }}
-          className="project-image-fix index-intro-in absolute w-1/2 aspect-4/3 overflow-hidden bottom-8 right-4 rounded-md cursor-pointer hidden md:block"
+          className="project-image-fix index-intro-in absolute w-1/2 aspect-4/3 overflow-hidden bottom-8 right-0 md:right-4 rounded-md cursor-pointer hidden md:block"
         >
           <MediaImage
             src={projects[0].image1.src}
@@ -460,7 +465,7 @@ const IndexProjects = () => {
         <div className="index-intro-out w-full h-fit md:flex-row justify-end items-center hidden md:flex">
           {/* LEFT */}
           <div className="w-full h-full flex flex-col justify-end items-end">
-            <div className="index-intro-in relative w-1/2 h-fit flex flex-col gap-2 right-2 md:right-3 lg:right-4">
+            <div className="index-intro-in relative w-1/2 h-fit flex flex-col gap-2 right-0 md:right-4">
               <p className="text-xs font-mono uppercase">Featured Project</p>
               <div className="relative w-full aspect-4/3 rounded-md overflow-hidden"></div>
             </div>

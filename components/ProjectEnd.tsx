@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 import MediaImage from "@/components/MediaImage";
 import TransitionLink from "./TransitionLink";
+import CursorDot from "./CursorDot";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -319,6 +320,7 @@ const ProjectEnd = ({
 
   return (
     <section>
+      <CursorDot />
       <div
         className="z-10 relative w-screen h-screen overflow-hidden bg-surface-secondary bg-cover bg-center md:bg-fixed"
         style={{ backgroundImage: `url(${image})` }}
@@ -327,29 +329,29 @@ const ProjectEnd = ({
       <div className="pointer-events-none relative w-screen overflow-hidden flex flex-col items-end pb-32 md:pb-40 lg:pb-48 bg-surface-primary-negative">
         <div className="panel-1-container z-[3] relative w-full">
           <div className="panel-1 relative flex flex-col gap-4 md:gap-6 lg:gap-8 w-full h-screen items-end justify-center bg-surface-primary-negative">
-            <div className="process-fade flex flex-row w-full h-full gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8 text-text-primary-negative font-serif text-2xl">
+            <div className="process-fade flex flex-row w-full h-full gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8 text-text-primary-negative font-serif ~text-xl/2xl">
               <div className="overflow-hidden grid grid-rows-5 pb-8 pt-24 w-full border-r border-border-tertiary-negative justify-items-end">
-                <div className="process-item-1 process-item pr-8 w-1/2 row-start-5 text-right flex items-center text-pretty">
+                <div className="process-item-1 process-item pl-4 md:pl-0 pr-4 md:pr-6 lg:pr-8 w-full md:w-1/2 row-start-5 text-right flex items-center text-pretty">
                   {process.item1}
                 </div>
-                <div className="process-item-3 process-item pr-8 w-1/2 row-start-3 text-right flex items-center text-pretty">
+                <div className="process-item-3 process-item pl-4 md:pl-0 pr-4 md:pr-6 lg:pr-8 w-full md:w-1/2 row-start-3 text-right flex items-center text-pretty">
                   {process.item3}
                 </div>
-                <div className="process-item-5 process-item pr-8 w-1/2 row-start-1 text-right flex items-center text-pretty">
+                <div className="process-item-5 process-item pl-4 md:pl-0 pr-4 md:pr-6 lg:pr-8 w-full md:w-1/2 row-start-1 text-right flex items-center text-pretty">
                   {process.item5}
                 </div>
               </div>
 
               <div className="overflow-hidden grid grid-rows-5 pb-8 pt-24 w-full border-l border-border-tertiary-negative">
-                <div className="process-item-2 process-item pl-8 w-1/2 row-start-4 flex items-center text-pretty">
+                <div className="process-item-2 process-item pr-4 md:pr-0 pl-4 md:pl-6 lg:pl-8 w-full md:w-1/2 row-start-4 flex items-center text-pretty">
                   {process.item2}
                 </div>
-                <div className="process-item-4 process-item pl-8 w-1/2 row-start-2 flex items-center text-pretty">
+                <div className="process-item-4 process-item pr-4 md:pr-0 pl-4 md:pl-6 lg:pl-8 w-full md:w-1/2 row-start-2 flex items-center text-pretty">
                   {process.item4}
                 </div>
               </div>
             </div>
-            <h1 className="process-fade ~text-6xl/13xl p-8 text-text-primary-negative w-full text-center">
+            <h1 className="process-fade ~text-6xl/13xl p-4 md:p-6 lg:p-8 text-text-primary-negative w-full text-center">
               The Nitty Gritty
             </h1>
           </div>
@@ -357,19 +359,20 @@ const ProjectEnd = ({
 
         <div className="panel-2-container z-[2] relative w-full">
           <div className="panel-2 relative flex items-end justify-center gap-8 w-full bg-surface-primary-negative">
-            <h1 className="~text-6xl/13xl text-text-primary-negative h-fit w-full p-8 font-serif-italic text-center">
+            <h1 className="~text-6xl/13xl text-text-primary-negative h-fit w-full p-4 md:p-6 lg:p-8 font-serif-italic text-center">
               Want the Details?
             </h1>
           </div>
         </div>
 
         <div className="pointer-events-none panel-3-container z-[1] relative w-full">
-          <div className="panel-3 relative flex items-end justify-center p-8 gap-8 w-full h-full">
+          <div className="panel-3 relative flex items-end justify-center p-4 md:p-6 lg:p-8 w-full h-full">
             <a
               href="https://linkedin.com/in/buhrduong"
               target="_blank"
               rel="noopener noreferrer"
-              className="pointer-events-auto hover:text-text-action flex items-center justify-center w-full font-serif bg-surface-primary hover:bg-surface-secondary text-text-primary rounded-lg p-16 h-fit text-8xl"
+              className="cursor-animation pointer-events-auto hover:text-text-action flex items-center justify-center w-full font-serif bg-surface-primary hover:bg-surface-secondary text-text-primary rounded-lg p-8 md:p-12 lg:p-16 h-fit ~text-6xl/8xl"
+              data-cursor-text="Go to LinkedIn"
             >
               Let&rsquo;s Connect
             </a>
@@ -377,18 +380,19 @@ const ProjectEnd = ({
         </div>
       </div>
 
-      <div className="explore-container relative bg-surface-primary-negative border-t border-border-primary-negative grid grid-flow-row gap-32 p-4 md:gap-48 md:p-6 lg:p-8 text-text-primary-negative">
+      <div className="explore-container relative bg-surface-primary-negative border-t border-border-primary-negative flex flex-col gap-32 p-4 md:gap-48 md:p-6 lg:p-8 text-text-primary-negative">
         <div className="flex gap-4 md:gap-6 lg:gap-8">
           <div className="flex flex-row md:justify-between gap-4 md:w-1/2 opacity-80">
             <p className="text-xs font-mono uppercase">EXPLORE MORE</p>
           </div>
         </div>
 
-        <div className="flex gap-8 relative">
+        <div className="flex flex-col md:flex-row gap-16 md:gap-6 lg:gap-8 relative">
           <div className="group relative w-full h-fit">
             <TransitionLink
               href={project.url}
-              className="transition-all duration-300"
+              className="cursor-animation transition-all duration-300"
+              data-cursor-text="VIEW PROJECT"
             >
               <div className="relative aspect-21/9-half bg-surface-secondary rounded-md overflow-hidden">
                 <MediaImage
@@ -398,11 +402,11 @@ const ProjectEnd = ({
                 />
               </div>
 
-              <p className="text-xs font-mono uppercase text-text-secondary-negative mt-6 mb-2 group-hover:text-text-action transition-all duration-300">
+              <p className="text-xs font-mono uppercase text-text-secondary-negative mt-6 mb-2 group-hover:text-text-action">
                 Project
               </p>
 
-              <h2 className="text-5xl group-hover:text-text-action group-hover:underline transition-all duration-300">
+              <h2 className="~text-4xl/5xl group-hover:text-text-action group-hover:underline text-pretty">
                 {project.name}
               </h2>
             </TransitionLink>
@@ -411,7 +415,8 @@ const ProjectEnd = ({
           <div className="group relative w-full h-fit">
             <TransitionLink
               href={prototype.url}
-              className="transition-all duration-300"
+              className="cursor-animation transition-all duration-300"
+              data-cursor-text="VIEW PROTOTYPE"
             >
               <div className="relative aspect-21/9-half bg-surface-secondary rounded-md overflow-hidden">
                 <MediaImage
@@ -420,10 +425,10 @@ const ProjectEnd = ({
                   alt={prototype.alt}
                 />
               </div>
-              <p className="text-xs font-mono uppercase text-text-secondary-negative mt-6 mb-2 group-hover:text-text-action transition-all duration-300">
+              <p className="text-xs font-mono uppercase text-text-secondary-negative mt-6 mb-2 group-hover:text-text-action">
                 Prototype
               </p>
-              <h2 className="text-5xl group-hover:text-text-action group-hover:underline transition-all duration-300">
+              <h2 className="~text-4xl/5xl group-hover:text-text-action group-hover:underline text-pretty">
                 {prototype.name}
               </h2>
             </TransitionLink>
