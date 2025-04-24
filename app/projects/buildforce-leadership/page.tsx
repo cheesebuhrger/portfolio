@@ -535,13 +535,13 @@ const Project1: React.FC = () => {
         </ProjectSection>
 
         <ProjectEnd
-          image="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744924853/buildforce-11_cwgjyq.webp"
+          image="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745516064/buildforce-22_i7lnc1.png"
           process={{
-            item1: "?",
-            item2: "?",
-            item3: "?",
-            item4: "?",
-            item5: "?",
+            item1: "How did I balance player-coach responsibilities?",
+            item2: "Which approaches did I take that worked or fell flat?",
+            item3: "What was the scope of research in a nimble B2B team?",
+            item4: "How did I build cases for design-driven initiatives?",
+            item5: "How did design contribute to product strategy?",
           }}
           project={{
             name: "Designing friction to save everyone time",

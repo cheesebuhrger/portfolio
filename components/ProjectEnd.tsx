@@ -329,22 +329,22 @@ const ProjectEnd = ({
           <div className="panel-1 relative flex flex-col gap-4 md:gap-6 lg:gap-8 w-full h-screen items-end justify-center bg-surface-primary-negative">
             <div className="process-fade flex flex-row w-full h-full gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8 text-text-primary-negative font-serif text-2xl">
               <div className="overflow-hidden grid grid-rows-5 pb-8 pt-24 w-full border-r border-border-tertiary-negative justify-items-end">
-                <div className="process-item-1 process-item pr-8 w-1/2 row-start-5 text-right flex items-center">
+                <div className="process-item-1 process-item pr-8 w-1/2 row-start-5 text-right flex items-center text-pretty">
                   {process.item1}
                 </div>
-                <div className="process-item-3 process-item pr-8 w-1/2 row-start-3 text-right flex items-center">
+                <div className="process-item-3 process-item pr-8 w-1/2 row-start-3 text-right flex items-center text-pretty">
                   {process.item3}
                 </div>
-                <div className="process-item-5 process-item pr-8 w-1/2 row-start-1 text-right flex items-center">
+                <div className="process-item-5 process-item pr-8 w-1/2 row-start-1 text-right flex items-center text-pretty">
                   {process.item5}
                 </div>
               </div>
 
               <div className="overflow-hidden grid grid-rows-5 pb-8 pt-24 w-full border-l border-border-tertiary-negative">
-                <div className="process-item-2 process-item pl-8 w-1/2 row-start-4 flex items-center">
+                <div className="process-item-2 process-item pl-8 w-1/2 row-start-4 flex items-center text-pretty">
                   {process.item2}
                 </div>
-                <div className="process-item-4 process-item pl-8 w-1/2 row-start-2 flex items-center">
+                <div className="process-item-4 process-item pl-8 w-1/2 row-start-2 flex items-center text-pretty">
                   {process.item4}
                 </div>
               </div>
