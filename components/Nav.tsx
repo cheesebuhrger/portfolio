@@ -47,11 +47,11 @@ const Nav = () => {
             </li>
             <li
               onClick={() => {
-                lenis?.scrollTo("#prototypes", { duration: 2 });
+                lenis?.scrollTo("#code", { duration: 2 });
               }}
               className="group-hover:py-1 hover:underline transition-all duration-300 w-fit cursor-pointer"
             >
-              Prototypes
+              Code
             </li>
             <li
               onClick={() => {

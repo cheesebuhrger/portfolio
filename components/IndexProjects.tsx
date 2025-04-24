@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import TransitionLink from "./TransitionLink";
 import MediaImage from "./MediaImage";
-import { projects, romanNumerals } from "@/data/indexProjectCovers";
+import { projects, romanNumerals } from "@/data/projects";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";

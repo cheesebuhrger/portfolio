@@ -7,6 +7,7 @@ import ProjectSection from "@/components/ProjectSection";
 import ProjectHero from "@/components/ProjectHero";
 import Quote from "@/components/Quote";
 import ProjectEnd from "@/components/ProjectEnd";
+import { projects } from "@/data/projects";
 
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import { gsap } from "gsap";
@@ -24,11 +25,9 @@ const Project1: React.FC = () => {
     <ReactLenis root>
       <div>
         <ProjectHero
-          headline={
-            <>How I shaped design & improved collaboration @Buildforce</>
-          }
-          problem="Every new project sparked scope debates with speed taking priority over quality, leading to bandaids that didn't always solve actual user problems"
-          solution="Shaped a culture of accountability & trust, improved speed:quality ratio, fostered continuous feedback, & utilized individual strengths"
+          headline={projects[1].title}
+          problem={projects[1].problem}
+          solution={projects[1].solution}
           skills={[
             "!Staff Product Designer",
             "Brand",
@@ -44,8 +43,8 @@ const Project1: React.FC = () => {
             "Web App",
           ]}
           duration={{
-            length: "1 year",
-            year: "2023-2024",
+            length: projects[1].duration,
+            year: projects[1].year,
           }}
           team={{
             avatars: [
@@ -108,12 +107,12 @@ const Project1: React.FC = () => {
           }}
           images={{
             primary: {
-              src: "/images/bf-leadership/bf-leadership-cover-1.webp",
-              alt: "Buildforce Leadership",
+              src: projects[1].image1.src,
+              alt: projects[1].image1.alt,
             },
             secondary: {
-              src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-cover-02_gqnb5l.webp",
-              alt: "Buildforce Leadership",
+              src: projects[1].image2.src,
+              alt: projects[1].image2.alt,
             },
           }}
           className="stack-animation"

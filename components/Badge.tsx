@@ -1,9 +1,9 @@
 interface BadgeProps {
-  text: string;
+  label: string;
   negative?: boolean;
 }
 
-export const Badge = ({ text, negative = false }: BadgeProps) => {
+export const Badge = ({ label, negative = false }: BadgeProps) => {
   return (
     <div
       className={`w-fit h-5 px-1 border rounded-[4px] text-xs font-mono flex items-center justify-center ${
@@ -12,7 +12,7 @@ export const Badge = ({ text, negative = false }: BadgeProps) => {
           : "border-border-secondary text-text-primary"
       }`}
     >
-      {text}
+      {label}
     </div>
   );
 };

@@ -11,7 +11,7 @@ export const BadgeGroup = ({ badges }: BadgeGroupProps) => {
         const isNegative = badge.startsWith("!");
         const text = isNegative ? badge.slice(1) : badge;
 
-        return <Badge key={index} text={text} negative={isNegative} />;
+        return <Badge key={index} label={text} negative={isNegative} />;
       })}
     </div>
   );

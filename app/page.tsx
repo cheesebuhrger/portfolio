@@ -13,6 +13,7 @@ import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
 import TransitionLink from "@/components/TransitionLink";
 import CursorDot from "@/components/CursorDot";
 import IndexProjects from "@/components/IndexProjects";
+import IndexCodeProjects from "@/components/IndexCodeProjects";
 
 const Home: NextPage = () => {
   useSplitTypeAnimation();
@@ -22,17 +23,11 @@ const Home: NextPage = () => {
         <CursorDot />
         <IndexProjects />
 
-        <section id="prototypes" className="border-t border-black py-4 md:py-8">
-          <h2 className="text-xs font-mono uppercase px-4 md:px-8 mb-48">
-            Prototypes
-          </h2>
-          {/* <IndexProjects2 /> */}
-          <Button href="/projects/playground" label="Playground" />
-        </section>
+        <IndexCodeProjects />
 
         <section
           id="playground"
-          className="relative border-t border-black p-4 md:p-8"
+          className="relative border-t border-border-primary p-4 md:p-6 lg:p-8"
         >
           <h2 className="text-xs font-mono uppercase mb-64">Playground</h2>
 

@@ -18,57 +18,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useStackAnimation } from "@/hooks/useStackAnimation";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import SplitType from "split-type";
-
+import { projects } from "@/data/projects";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const Wheel: React.FC = () => {
   const imageScaleRef = useImageScaleAnimation();
   const stackRef = useStackAnimation();
-  // const container = useRef<HTMLDivElement>(null);
-
-  // useGSAP(() => {
-  //   const heroText = new SplitType(".project-hero-text", {
-  //     types: "lines",
-  //     tagName: "div",
-  //     lineClass: "line",
-  //   });
-  //   heroText.lines?.forEach((line) => {
-  //     const content = line.innerHTML;
-  //     line.innerHTML = `<span>${content}</span>`;
-  //   });
-
-  //   gsap.set(".project-hero-text .line span", {
-  //     y: 125,
-  //     // x: 50,
-  //     // rotateX: -135,
-  //     display: "block",
-  //   });
-  //   gsap.to(".project-hero-text .line span", {
-  //     y: 0,
-  //     // x: 0,
-  //     // rotateX: 0,
-  //     duration: 1,
-  //     stagger: 0.075,
-  //     ease: "expo.out",
-  //     delay: 1,
-  //   });
-  //   return () => {
-  //     if (heroText) heroText.revert();
-  //   };
-  // }, [container]);
 
   return (
     <ReactLenis root>
       <div>
         <ProjectHero
-          headline={
-            <>
-              Designing for clarity, control, & efficiency in virtual care, from
-              0 → 1
-            </>
-          }
-          problem="Clinicians used email to know what patients they were assigned to, needed to context switch and learn many different platforms"
-          solution="Less ops hours dedicated to scheduling and pay, more first assignment completions under round robin system, and faster visit completion times"
+          headline={projects[3].title}
+          problem={projects[3].problem}
+          solution={projects[3].solution}
           skills={[
             "Design Systems",
             "IA",
@@ -82,8 +45,8 @@ const Wheel: React.FC = () => {
             "Web App",
           ]}
           duration={{
-            length: "3 months",
-            year: "2020",
+            length: projects[3].duration,
+            year: projects[3].year,
           }}
           team={{
             avatars: [
@@ -119,12 +82,12 @@ const Wheel: React.FC = () => {
           }}
           images={{
             primary: {
-              src: "/images/wheel/wheel-cover-1.webp",
-              alt: "Buildforce Leadership",
+              src: projects[3].image1.src,
+              alt: projects[3].image1.alt,
             },
             secondary: {
-              src: "/images/wheel/wheel-cover-2.jpg",
-              alt: "Buildforce Leadership",
+              src: projects[3].image2.src,
+              alt: projects[3].image2.alt,
             },
           }}
           className="stack-animation"
@@ -160,7 +123,7 @@ const Wheel: React.FC = () => {
               media={[
                 {
                   type: "image",
-                  src: "/images/wheel/wheel-0.webp",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873250/wheel-cover-1_uamqg1.webp",
                   alt: "rotating gif of gmail example and client platforms to show how similar everything looks",
                 },
               ]}
