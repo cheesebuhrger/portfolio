@@ -255,35 +255,40 @@ const IndexHero5 = () => {
           />
         </div>
       </div>
-      <div className="index-intro relative z-[5] w-screen h-screen flex flex-row pt-16 md:pt-20 lg:pt-24 pb-4 md:pb-6 lg:pb-8 items-end bg-surface-primary border-b border-border-tertiary">
-        {/* LEFT */}
-        <div className="w-full h-full flex flex-col justify-end items-end">
-          <div className="index-intro-in relative w-1/2 h-fit flex flex-col gap-2 right-2 md:right-3 lg:right-4">
-            <p className="index-intro-out text-xs font-mono uppercase">
-              Featured Project
-            </p>
-            <div className="relative w-full aspect-4/3 rounded-md overflow-hidden"></div>
-          </div>
+      <div className="index-intro relative z-[5] w-screen h-screen flex flex-col pt-16 md:pt-20 lg:pt-24 pb-4 md:pb-6 lg:pb-8 items-end bg-surface-primary border-b border-border-tertiary">
+        <div className="index-intro-out relative pl-4 pr-8 w-full h-full grid grid-cols-12 gap-4 md:gap-6 lg:gap-8 pt-16 md:p-6 lg:p-8 items-center">
+          <h1 className="relative text-4xl split-type-animation-hero col-span-6 col-start-7">
+            A builder at heart, I&rsquo;m always finding new ways to bring ideas
+            to life. Through a decade of designing products, I&rsquo;ve honed
+            skills in interaction design, motion, & prototyping. My current
+            obsession is writing code to bridge design & dev.
+          </h1>
         </div>
-
-        {/* RIGHT */}
-        <div className="index-intro-out w-full h-full flex flex-col">
-          <div className="text-5xl relative pl-4 pr-8 h-full flex items-center">
-            <h1 className="relative split-type-animation-hero">
-              Through a decade of designing products, I&rsquo;ve honed skills in
-              interaction design, motion, & prototyping. A builder at heart,
-              I&rsquo;m always finding new ways to bring ideas to life. Now
-              I&rsquo;m focusing on blending my design skills with code.
-            </h1>
+        <div className="index-intro-out w-full h-fit flex flex-row justify-end items-center">
+          {/* LEFT */}
+          <div className="w-full h-full flex flex-col justify-end items-end">
+            <div className="index-intro-in relative w-1/2 h-fit flex flex-col gap-2 right-2 md:right-3 lg:right-4">
+              <p className="text-xs font-mono uppercase">Featured Project</p>
+              <div className="relative w-full aspect-4/3 rounded-md overflow-hidden"></div>
+            </div>
           </div>
-          <div className="index-intro-in relative w-1/2 h-fit flex flex-col gap-2 left-4">
-            <p className="text-xs font-mono uppercase">Featured Prototype</p>
-            <div className="relative w-full aspect-4/3 bg-surface-secondary rounded-md overflow-hidden">
-              <MediaImage
-                src="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873197/strava-growth-cover-1_dwsdpv.webp"
-                alt="Buildforce Time Tracking App"
-                type="image"
-              />
+
+          {/* RIGHT */}
+          <div className="w-full h-full flex flex-col justify-end">
+            <div className="index-intro-in relative w-1/2 h-fit flex flex-col gap-2 left-4">
+              <p className="text-xs font-mono uppercase">Featured Prototype</p>
+              <div
+                onClick={() => {
+                  lenis?.scrollTo("#prototypes", { duration: 2 });
+                }}
+                className="relative w-full aspect-4/3 bg-surface-secondary rounded-md overflow-hidden cursor-pointer"
+              >
+                <MediaImage
+                  src="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873197/strava-growth-cover-1_dwsdpv.webp"
+                  alt="Buildforce Time Tracking App"
+                  type="image"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -292,7 +297,10 @@ const IndexHero5 = () => {
       <div id="projects" className="index-projects relative w-screen">
         {/* PROJECT 1 */}
         <div className="index-project-1 z-[4] bg-surface-primary relative w-full">
-          <div className="project-container-1 h-screen flex justify-end items-end">
+          <div className="project-container-1 h-screen flex flex-col justify-between relative">
+            <h2 className="text-xs font-mono uppercase p-4 md:p-6 lg:p-8">
+              Projects
+            </h2>
             <div className="group w-full h-fit relative flex-col">
               <div className="project-content-1 px-4 md:px-8 mb-8 w-full grid grid-cols-12 gap-8 relative">
                 <div className="index-project-meta text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action">
@@ -336,51 +344,48 @@ const IndexHero5 = () => {
         </div>
 
         {/* PROJECT 2 */}
-        <div className="project-mask-2 z-[3] relative w-screen h-screen bg-[blue] flex items-end justify-center">
-          <div className="project-container-2 group w-full h-full relative flex flex-col items-end justify-end">
-            <div className="project-content-2 px-4 md:px-8 mb-8 w-full grid grid-cols-12 gap-8">
+
+        <div className="index-project-1 z-[3] bg-surface-primary relative w-full">
+          <div className="project-container-2 h-screen flex flex-col justify-end items-end relative">
+            <div className="group w-full h-fit relative flex-col">
+              <div className="project-content-2 px-4 md:px-8 mb-8 w-full grid grid-cols-12 gap-8 relative">
+                <div className="index-project-meta text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action">
+                  {romanNumerals[1]}
+                </div>
+                <TransitionLink
+                  href={projects[1].url}
+                  className="index-project-title cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline"
+                  data-cursor-text="VIEW PROJECT"
+                >
+                  {projects[1].title}
+                </TransitionLink>
+                <div className="index-project-meta text-lg col-start-10 col-span-3 pt-1 font-serif group-hover:text-text-action">
+                  <p>{projects[1].company}</p>
+                  <p>{projects[1].year}</p>
+                </div>
+              </div>
+
               <TransitionLink
                 href={projects[1].url}
-                className="index-project-meta text-sm col-span-1 font-serif pt-2 uppercase group-hover:text-text-action transition-all duration-300"
-              >
-                {romanNumerals[1]}
-              </TransitionLink>
-              <TransitionLink
-                href={projects[1].url}
-                className="index-project-title cursor-animation ~text-2xl/6xl font-serif col-span-6 group-hover:text-text-action group-hover:underline transition-all duration-300"
+                className="cursor-animation relative flex w-full"
                 data-cursor-text="VIEW PROJECT"
               >
-                {projects[1].title}
-              </TransitionLink>
-              <TransitionLink
-                href={projects[1].url}
-                className="index-project-meta text-lg col-start-10 col-span-3 pt-1 font-serif group-hover:text-text-action transition-all duration-300"
-              >
-                <p>{projects[1].company}</p>
-                <p>{projects[1].year}</p>
+                <div className="project-image-left relative w-full aspect-4/3 overflow-hidden bg-surface-secondary">
+                  <MediaImage
+                    src={projects[1].image1.src}
+                    alt={projects[1].image1.alt}
+                    type="image"
+                  />
+                </div>
+                <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary">
+                  <MediaImage
+                    src={projects[1].image2.src}
+                    alt={projects[1].image2.alt}
+                    type="image"
+                  />
+                </div>
               </TransitionLink>
             </div>
-
-            <TransitionLink
-              href={projects[1].url}
-              className="cursor-animation relative flex bg-[pink] w-full"
-              data-cursor-text="VIEW PROJECT"
-            >
-              <div className="project-image-left relative w-full aspect-4/3 overflow-hidden bg-[green]">
-                <MediaImage
-                  src={projects[1].image1.src}
-                  alt={projects[1].image1.alt}
-                  type="image"
-                />
-              </div>
-              <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-[purple]">
-                <MediaImage
-                  src={projects[1].image2.src}
-                  alt={projects[1].image2.alt}
-                  type="image"
-                />
-              </div>
-            </TransitionLink>
           </div>
         </div>
 

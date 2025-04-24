@@ -22,7 +22,7 @@ const Home: NextPage = () => {
         <CursorDot />
         <IndexHero5 />
 
-        <section className="border-t border-black py-4 md:py-8">
+        <section id="prototypes" className="border-t border-black py-4 md:py-8">
           <h2 className="text-xs font-mono uppercase px-4 md:px-8 mb-48">
             Prototypes
           </h2>
