@@ -9,7 +9,7 @@ import ProjectSection from "@/components/ProjectSection";
 import ProjectHero from "@/components/ProjectHero";
 import ProjectSectionMediaBinder from "@/components/ProjectSectionMediaBinder";
 import ProjectEnd from "@/components/ProjectEnd";
-import { projects } from "../../../data/projects";
+import { designProjects } from "@/data/designProjects";
 
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -42,9 +42,9 @@ const Buildforce: React.FC = () => {
     <ReactLenis root>
       <div>
         <ProjectHero
-          headline={projects[0].title}
-          problem={projects[0].problem}
-          solution={projects[0].solution}
+          headline={designProjects[0].title}
+          problem={designProjects[0].problem}
+          solution={designProjects[0].solution}
           skills={[
             "!Staff Product Designer",
             "!Iterative Design",
@@ -57,8 +57,8 @@ const Buildforce: React.FC = () => {
             "Web App",
           ]}
           duration={{
-            length: projects[0].duration,
-            year: projects[0].year,
+            length: designProjects[0].duration,
+            year: designProjects[0].year,
           }}
           team={{
             avatars: [
@@ -100,12 +100,12 @@ const Buildforce: React.FC = () => {
           }}
           images={{
             primary: {
-              src: projects[0].image1.src,
-              alt: projects[0].image1.alt,
+              src: designProjects[0].image1.src,
+              alt: designProjects[0].image1.alt,
             },
             secondary: {
-              src: projects[0].image2.src,
-              alt: projects[0].image2.alt,
+              src: designProjects[0].image2.src,
+              alt: designProjects[0].image2.alt,
             },
           }}
           className="stack-animation"
@@ -264,7 +264,7 @@ const Buildforce: React.FC = () => {
                     End-of-week flow to double-check entries before it
                     auto-submits on Monday. Similar to the old design, but
                     workers can edit throughout the week and don&rsquo;t have to
-                    explicitly “&ldquo;submit&rdquo; hours.
+                    explicitly "submit" hours.
                   </>
                 ),
               },
@@ -423,7 +423,7 @@ const Buildforce: React.FC = () => {
                     <>
                       Workers get a second chance to fix their hours at the
                       start of the week but most skip it, either unaware or
-                      assuming the original entry is &ldquo;good enough.&rdquo;
+                      assuming the original entry is "good enough."
                     </>
                   ),
                 },

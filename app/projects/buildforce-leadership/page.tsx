@@ -9,7 +9,7 @@ import ProjectSection from "@/components/ProjectSection";
 import ProjectHero from "@/components/ProjectHero";
 import Quote from "@/components/Quote";
 import ProjectEnd from "@/components/ProjectEnd";
-import { projects } from "../../../data/projects";
+import { designProjects } from "@/data/designProjects";
 
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import { gsap } from "gsap";
@@ -27,9 +27,9 @@ const Project1: React.FC = () => {
     <ReactLenis root>
       <div>
         <ProjectHero
-          headline={projects[1].title}
-          problem={projects[1].problem}
-          solution={projects[1].solution}
+          headline={designProjects[1].title}
+          problem={designProjects[1].problem}
+          solution={designProjects[1].solution}
           skills={[
             "!Staff Product Designer",
             "Brand",
@@ -45,8 +45,8 @@ const Project1: React.FC = () => {
             "Web App",
           ]}
           duration={{
-            length: projects[1].duration,
-            year: projects[1].year,
+            length: designProjects[1].duration,
+            year: designProjects[1].year,
           }}
           team={{
             avatars: [
@@ -109,12 +109,12 @@ const Project1: React.FC = () => {
           }}
           images={{
             primary: {
-              src: projects[1].image1.src,
-              alt: projects[1].image1.alt,
+              src: designProjects[1].image1.src,
+              alt: designProjects[1].image1.alt,
             },
             secondary: {
-              src: projects[1].image2.src,
-              alt: projects[1].image2.alt,
+              src: designProjects[1].image2.src,
+              alt: designProjects[1].image2.alt,
             },
           }}
           className="stack-animation"

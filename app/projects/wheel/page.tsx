@@ -11,7 +11,7 @@ import Quote from "@/components/Quote";
 import Button from "@/components/Button";
 import ProjectSectionMediaBinder from "@/components/ProjectSectionMediaBinder";
 import ProjectEnd from "@/components/ProjectEnd";
-import { projects } from "../../../data/projects";
+import { designProjects } from "@/data/designProjects";
 
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -30,9 +30,9 @@ const Wheel: React.FC = () => {
     <ReactLenis root>
       <div>
         <ProjectHero
-          headline={projects[3].title}
-          problem={projects[3].problem}
-          solution={projects[3].solution}
+          headline={designProjects[3].title}
+          problem={designProjects[3].problem}
+          solution={designProjects[3].solution}
           skills={[
             "Design Systems",
             "IA",
@@ -46,8 +46,8 @@ const Wheel: React.FC = () => {
             "Web App",
           ]}
           duration={{
-            length: projects[3].duration,
-            year: projects[3].year,
+            length: designProjects[3].duration,
+            year: designProjects[3].year,
           }}
           team={{
             avatars: [
@@ -83,12 +83,12 @@ const Wheel: React.FC = () => {
           }}
           images={{
             primary: {
-              src: projects[3].image1.src,
-              alt: projects[3].image1.alt,
+              src: designProjects[3].image1.src,
+              alt: designProjects[3].image1.alt,
             },
             secondary: {
-              src: projects[3].image2.src,
-              alt: projects[3].image2.alt,
+              src: designProjects[3].image2.src,
+              alt: designProjects[3].image2.alt,
             },
           }}
           className="stack-animation"

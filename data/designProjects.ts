@@ -29,7 +29,7 @@ export const romanNumerals = [
   "x",
 ];
 
-export const projects: Project[] = [
+export const designProjects: Project[] = [
   {
     company: "Buildforce",
     year: "2024",

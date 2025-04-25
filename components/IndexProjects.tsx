@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import TransitionLink from "./TransitionLink";
 import MediaImage from "./MediaImage";
-import { projects, romanNumerals } from "../data/projects";
+import { designProjects, romanNumerals } from "@/data/designProjects";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
@@ -440,8 +440,8 @@ const IndexProjects = () => {
           className="project-image-fix index-intro-in absolute w-1/2 aspect-4/3 overflow-hidden bottom-8 right-0 md:right-4 rounded-md cursor-pointer hidden md:block"
         >
           <MediaImage
-            src={projects[0].image1.src}
-            alt={projects[0].image1.alt}
+            src={designProjects[0].image1.src}
+            alt={designProjects[0].image1.alt}
             type="image"
           />
         </div>
@@ -515,34 +515,34 @@ const IndexProjects = () => {
                   {romanNumerals[0]}
                 </div>
                 <TransitionLink
-                  href={projects[0].url}
+                  href={designProjects[0].url}
                   className="index-project-title cursor-animation ~text-4xl/6xl font-serif md:col-span-8 group-hover:text-text-action group-hover:underline text-pretty"
                   data-cursor-text="VIEW PROJECT"
                 >
-                  {projects[0].title}
+                  {designProjects[0].title}
                 </TransitionLink>
                 <div className="index-project-meta text-lg md:col-start-10 md:col-span-3 pt-1 font-serif group-hover:text-text-action">
-                  <p>{projects[0].company}</p>
-                  <p>{projects[0].year}</p>
+                  <p>{designProjects[0].company}</p>
+                  <p>{designProjects[0].year}</p>
                 </div>
               </div>
 
               <TransitionLink
-                href={projects[0].url}
+                href={designProjects[0].url}
                 className="cursor-animation relative flex w-full"
                 data-cursor-text="VIEW PROJECT"
               >
                 <div className="project-image-left relative w-full aspect-4/3 overflow-hidden bg-surface-secondary">
                   <MediaImage
-                    src={projects[0].image1.src}
-                    alt={projects[0].image1.alt}
+                    src={designProjects[0].image1.src}
+                    alt={designProjects[0].image1.alt}
                     type="image"
                   />
                 </div>
                 <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary hidden md:block">
                   <MediaImage
-                    src={projects[0].image2.src}
-                    alt={projects[0].image2.alt}
+                    src={designProjects[0].image2.src}
+                    alt={designProjects[0].image2.alt}
                     type="image"
                   />
                 </div>
@@ -561,34 +561,34 @@ const IndexProjects = () => {
                   {romanNumerals[1]}
                 </div>
                 <TransitionLink
-                  href={projects[1].url}
+                  href={designProjects[1].url}
                   className="index-project-title cursor-animation ~text-4xl/6xl font-serif md:col-span-8 group-hover:text-text-action group-hover:underline text-pretty"
                   data-cursor-text="VIEW PROJECT"
                 >
-                  {projects[1].title}
+                  {designProjects[1].title}
                 </TransitionLink>
                 <div className="index-project-meta text-lg md:col-start-10 md:col-span-3 pt-1 font-serif group-hover:text-text-action">
-                  <p>{projects[1].company}</p>
-                  <p>{projects[1].year}</p>
+                  <p>{designProjects[1].company}</p>
+                  <p>{designProjects[1].year}</p>
                 </div>
               </div>
 
               <TransitionLink
-                href={projects[1].url}
+                href={designProjects[1].url}
                 className="cursor-animation relative flex w-full"
                 data-cursor-text="VIEW PROJECT"
               >
                 <div className="project-image-left relative w-full aspect-4/3 overflow-hidden bg-surface-secondary">
                   <MediaImage
-                    src={projects[1].image1.src}
-                    alt={projects[1].image1.alt}
+                    src={designProjects[1].image1.src}
+                    alt={designProjects[1].image1.alt}
                     type="image"
                   />
                 </div>
                 <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary hidden md:block">
                   <MediaImage
-                    src={projects[1].image2.src}
-                    alt={projects[1].image2.alt}
+                    src={designProjects[1].image2.src}
+                    alt={designProjects[1].image2.alt}
                     type="image"
                   />
                 </div>
@@ -607,34 +607,34 @@ const IndexProjects = () => {
                   {romanNumerals[2]}
                 </div>
                 <TransitionLink
-                  href={projects[2].url}
+                  href={designProjects[2].url}
                   className="index-project-title cursor-animation ~text-4xl/6xl font-serif md:col-span-8 group-hover:text-text-action group-hover:underline text-pretty"
                   data-cursor-text="VIEW PROJECT"
                 >
-                  {projects[2].title}
+                  {designProjects[2].title}
                 </TransitionLink>
                 <div className="index-project-meta text-lg md:col-start-10 md:col-span-3 pt-1 font-serif group-hover:text-text-action">
-                  <p>{projects[2].company}</p>
-                  <p>{projects[2].year}</p>
+                  <p>{designProjects[2].company}</p>
+                  <p>{designProjects[2].year}</p>
                 </div>
               </div>
 
               <TransitionLink
-                href={projects[2].url}
+                href={designProjects[2].url}
                 className="cursor-animation relative flex w-full"
                 data-cursor-text="VIEW PROJECT"
               >
                 <div className="project-image-left relative w-full aspect-4/3 overflow-hidden bg-surface-secondary">
                   <MediaImage
-                    src={projects[2].image1.src}
-                    alt={projects[2].image1.alt}
+                    src={designProjects[2].image1.src}
+                    alt={designProjects[2].image1.alt}
                     type="image"
                   />
                 </div>
                 <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary hidden md:block">
                   <MediaImage
-                    src={projects[2].image2.src}
-                    alt={projects[2].image2.alt}
+                    src={designProjects[2].image2.src}
+                    alt={designProjects[2].image2.alt}
                     type="image"
                   />
                 </div>
