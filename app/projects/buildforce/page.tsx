@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { useRef } from "react";
+import { useLayoutEffect } from "react";
 
 import ProjectSectionMedia from "@/components/ProjectSectionMedia";
 import ProjectSectionContent from "@/components/ProjectSectionContent";
@@ -9,38 +8,23 @@ import ProjectSection from "@/components/ProjectSection";
 import ProjectHero from "@/components/ProjectHero";
 import ProjectSectionMediaBinder from "@/components/ProjectSectionMediaBinder";
 import ProjectEnd from "@/components/ProjectEnd";
+import CursorDot from "@/components/CursorDot";
 import { designProjects } from "@/data/designProjects";
 
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ReactLenis } from "@studio-freight/react-lenis";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useStackAnimation } from "@/hooks/useStackAnimation";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
-
-import Image from "next/image";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
 
 const Buildforce: React.FC = () => {
-  const imageScaleRef = useImageScaleAnimation();
-  const stackRef = useStackAnimation();
-
-  useGSAP(() => {
-    gsap.to(".closer-image-pin", {
-      scrollTrigger: {
-        trigger: ".closer-image-pin",
-        start: "top bottom",
-        end: "bottom bottom",
-        scrub: true,
-        pin: true,
-      },
-    });
-  });
+  useImageScaleAnimation();
+  useStackAnimation();
+  useSplitTypeAnimation();
 
   return (
     <ReactLenis root>
       <div>
+        <CursorDot />
         <ProjectHero
           headline={designProjects[0].title}
           problem={designProjects[0].problem}

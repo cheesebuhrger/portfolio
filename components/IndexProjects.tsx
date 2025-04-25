@@ -1,19 +1,21 @@
-"use client";
-
-import React, { useEffect, useRef } from "react";
-import TransitionLink from "./TransitionLink";
-import MediaImage from "./MediaImage";
-import { designProjects, romanNumerals } from "@/data/designProjects";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
 import { useLenis } from "@studio-freight/react-lenis";
+import { designProjects, romanNumerals } from "@/data/designProjects";
+
 import Button from "./Button";
+import MediaImage from "./MediaImage";
+import TransitionLink from "./TransitionLink";
 
 const IndexProjects = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const splitTypeRef = useSplitTypeAnimation();
   const lenis = useLenis();
+
   const [mobileValues, setMobileValues] = React.useState({
     scale: 0.5,
     bottom: "2rem",
@@ -40,8 +42,8 @@ const IndexProjects = () => {
     };
   }, []);
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  useLayoutEffect(() => {
+    gsap.registerPlugin(useGSAP, ScrollTrigger);
   }, []);
 
   useGSAP(() => {
@@ -443,6 +445,8 @@ const IndexProjects = () => {
             src={designProjects[0].image1.src}
             alt={designProjects[0].image1.alt}
             type="image"
+            width={864.5}
+            height={741}
           />
         </div>
       </div>
@@ -495,6 +499,8 @@ const IndexProjects = () => {
                   src="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873197/strava-growth-cover-1_dwsdpv.webp"
                   alt="Buildforce Time Tracking App"
                   type="image"
+                  width={864.5}
+                  height={741}
                 />
               </div>
             </div>
@@ -537,6 +543,8 @@ const IndexProjects = () => {
                     src={designProjects[0].image1.src}
                     alt={designProjects[0].image1.alt}
                     type="image"
+                    width={864.5}
+                    height={741}
                   />
                 </div>
                 <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary hidden md:block">
@@ -544,6 +552,8 @@ const IndexProjects = () => {
                     src={designProjects[0].image2.src}
                     alt={designProjects[0].image2.alt}
                     type="image"
+                    width={864.5}
+                    height={741}
                   />
                 </div>
               </TransitionLink>
@@ -583,6 +593,8 @@ const IndexProjects = () => {
                     src={designProjects[1].image1.src}
                     alt={designProjects[1].image1.alt}
                     type="image"
+                    width={864.5}
+                    height={741}
                   />
                 </div>
                 <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary hidden md:block">
@@ -590,6 +602,8 @@ const IndexProjects = () => {
                     src={designProjects[1].image2.src}
                     alt={designProjects[1].image2.alt}
                     type="image"
+                    width={864.5}
+                    height={741}
                   />
                 </div>
               </TransitionLink>
@@ -629,6 +643,8 @@ const IndexProjects = () => {
                     src={designProjects[2].image1.src}
                     alt={designProjects[2].image1.alt}
                     type="image"
+                    width={864.5}
+                    height={741}
                   />
                 </div>
                 <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary hidden md:block">
@@ -636,6 +652,8 @@ const IndexProjects = () => {
                     src={designProjects[2].image2.src}
                     alt={designProjects[2].image2.alt}
                     type="image"
+                    width={864.5}
+                    height={741}
                   />
                 </div>
               </TransitionLink>

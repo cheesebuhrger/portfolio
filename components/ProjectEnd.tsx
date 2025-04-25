@@ -1,13 +1,12 @@
 "use client";
 
+import { useEffect, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 import MediaImage from "@/components/MediaImage";
 import TransitionLink from "./TransitionLink";
-import CursorDot from "./CursorDot";
-import { useEffect } from "react";
 
 interface ProjectEndProps {
   process: {
@@ -40,7 +39,7 @@ const ProjectEnd = ({
   project,
   prototype,
 }: ProjectEndProps) => {
-  useEffect(() => {
+  useLayoutEffect(() => {
     gsap.registerPlugin(useGSAP, ScrollTrigger);
   }, []);
 
@@ -89,10 +88,6 @@ const ProjectEnd = ({
         scrub: true,
         pin: true,
       },
-    });
-
-    gsap.to(".process-z-2", {
-      zIndex: 2,
     });
 
     gsap.to(".process-fade", {
@@ -322,7 +317,6 @@ const ProjectEnd = ({
 
   return (
     <section>
-      <CursorDot />
       <div
         className="z-10 relative w-screen h-screen overflow-hidden bg-surface-secondary bg-cover bg-center md:bg-fixed"
         style={{ backgroundImage: `url(${image})` }}

@@ -1,16 +1,17 @@
 "use client";
 
 import type { NextPage } from "next";
-import IndexPlayground from "../components/IndexPlayground";
-import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
-import { ReactLenis } from "@studio-freight/react-lenis";
-import Button from "@/components/Button";
-import MediaImage from "@/components/MediaImage";
-import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
-import TransitionLink from "@/components/TransitionLink";
-import CursorDot from "@/components/CursorDot";
+
 import IndexProjects from "@/components/IndexProjects";
 import IndexCodeProjects from "@/components/IndexCodeProjects";
+import IndexPlayground from "../components/IndexPlayground";
+
+import CursorDot from "@/components/CursorDot";
+
+import { ReactLenis } from "@studio-freight/react-lenis";
+
+import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
+import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
 
 const Home: NextPage = () => {
   useSplitTypeAnimation();
