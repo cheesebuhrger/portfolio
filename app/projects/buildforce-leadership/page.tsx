@@ -1,13 +1,15 @@
 "use client";
 
 import React from "react";
+import { useRef } from "react";
+
 import ProjectSectionMedia from "@/components/ProjectSectionMedia";
 import ProjectSectionContent from "@/components/ProjectSectionContent";
 import ProjectSection from "@/components/ProjectSection";
 import ProjectHero from "@/components/ProjectHero";
 import Quote from "@/components/Quote";
 import ProjectEnd from "@/components/ProjectEnd";
-import { projects } from "@/data/projects";
+import { projects } from "../../../data/projects";
 
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import { gsap } from "gsap";

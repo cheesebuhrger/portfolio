@@ -9,7 +9,7 @@ import ProjectSection from "@/components/ProjectSection";
 import ProjectHero from "@/components/ProjectHero";
 import ProjectSectionMediaBinder from "@/components/ProjectSectionMediaBinder";
 import ProjectEnd from "@/components/ProjectEnd";
-import { projects } from "@/data/projects";
+import { projects } from "../../../data/projects";
 
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -423,7 +423,7 @@ const Buildforce: React.FC = () => {
                     <>
                       Workers get a second chance to fix their hours at the
                       start of the week but most skip it, either unaware or
-                      assuming the original entry is “good enough.”
+                      assuming the original entry is &ldquo;good enough.&rdquo;
                     </>
                   ),
                 },
@@ -501,7 +501,7 @@ const Buildforce: React.FC = () => {
           <div className="flex flex-col md:flex-row gap-4 md:gap-2">
             <div className="rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-8 flex flex-row md:flex-col">
               <p className="font-serif-p ~text-lg-p/2xl-p md:w-full">
-                Workers didn’t review or correct their hours with{" "}
+                Workers didn&rsquo;t review or correct their hours with{" "}
                 <span className="text-text-action">
                   ~65% of entries were submitted without worker edits
                 </span>

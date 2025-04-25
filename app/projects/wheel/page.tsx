@@ -10,6 +10,8 @@ import ProjectHero from "@/components/ProjectHero";
 import Quote from "@/components/Quote";
 import Button from "@/components/Button";
 import ProjectSectionMediaBinder from "@/components/ProjectSectionMediaBinder";
+import ProjectEnd from "@/components/ProjectEnd";
+import { projects } from "../../../data/projects";
 
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -18,7 +20,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useStackAnimation } from "@/hooks/useStackAnimation";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import SplitType from "split-type";
-import { projects } from "@/data/projects";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const Wheel: React.FC = () => {
