@@ -264,7 +264,7 @@ const Buildforce: React.FC = () => {
                     End-of-week flow to double-check entries before it
                     auto-submits on Monday. Similar to the old design, but
                     workers can edit throughout the week and don&rsquo;t have to
-                    explicitly "submit" hours.
+                    explicitly &ldquo;submit&ldquo; hours.
                   </>
                 ),
               },
@@ -423,7 +423,7 @@ const Buildforce: React.FC = () => {
                     <>
                       Workers get a second chance to fix their hours at the
                       start of the week but most skip it, either unaware or
-                      assuming the original entry is "good enough."
+                      assuming the original entry is &ldquo;good enough.&ldquo;
                     </>
                   ),
                 },
