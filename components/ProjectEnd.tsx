@@ -46,7 +46,6 @@ const ProjectEnd = ({
       scrollTrigger: {
         trigger: ".panel-1-container",
         start: "top 90%",
-        // markers: true,
         toggleActions: "play none none reverse",
       },
     });

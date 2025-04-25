@@ -24,7 +24,6 @@ export const useAppearAnimation = () => {
             trigger: element,
             start: "top 75%",
             toggleActions: "play none none reverse",
-            // markers: true,
           },
         }
       );

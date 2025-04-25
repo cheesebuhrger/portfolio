@@ -21,7 +21,6 @@ const processTimeline = gsap.timeline({
   scrollTrigger: {
     trigger: ".panel-1-container",
     start: "top 90%",
-    markers: true,
     toggleActions: "play none none reverse",
   },
 });
@@ -49,7 +48,6 @@ const Playground: React.FC = () => {
         start: "top bottom",
         end: "bottom bottom",
         scrub: true,
-        // markers: true,
         pin: true,
       },
     });
@@ -59,7 +57,6 @@ const Playground: React.FC = () => {
         start: "top bottom",
         end: "bottom bottom",
         scrub: true,
-        // markers: true,
         pin: true,
       },
     });
@@ -70,7 +67,6 @@ const Playground: React.FC = () => {
         start: "top bottom",
         end: "bottom bottom",
         scrub: true,
-        // markers: true,
       },
     });
     gsap.to(".panel-3", {
@@ -79,7 +75,6 @@ const Playground: React.FC = () => {
         start: "top bottom",
         end: "bottom bottom",
         scrub: true,
-        // markers: true,
         pin: true,
       },
     });
@@ -317,85 +312,6 @@ const Playground: React.FC = () => {
           </svg>
         </section>
 
-        <div
-          id="closer"
-          className="relative w-screen -z-[1] overflow-hidden flex flex-col items-end pb-32 md:pb-40 lg:pb-48 bg-surface-primary-negative"
-        >
-          <div className="panel-1-container relative w-full">
-            <div className="panel-1 relative flex flex-col gap-4 md:gap-6 lg:gap-8 w-full h-screen items-end justify-center bg-surface-primary-negative">
-              <div className="nitty-gritty-text flex flex-row w-full h-full gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8 text-text-primary-negative font-serif text-2xl">
-                <div className="overflow-hidden grid grid-rows-5 py-8 w-full border-r border-border-tertiary-negative justify-items-end">
-                  <div className="process-item-1 process-item pr-8 w-1/2 row-start-5 text-right flex items-center">
-                    How & why did we start using the Shape Up process?
-                  </div>
-                  <div className="process-item-3 process-item pr-8 w-1/2 row-start-3 text-right flex items-center">
-                    How did we tackle product education, comms and support?
-                  </div>
-                  <div className="process-item-5 process-item pr-8 w-1/2 row-start-1 text-right flex items-center">
-                    How did we introduce a brand refresh alongside this work?
-                  </div>
-                </div>
-
-                <div className="overflow-hidden grid grid-rows-5 w-full border-l border-border-tertiary-negative">
-                  <div className="process-item-2 process-item pl-8 w-1/2 row-start-4 flex items-center">
-                    Which decisions kept us on the worker&rsquo;s side?
-                  </div>
-                  <div className="process-item-4 process-item pl-8 w-1/2 row-start-2 flex items-center">
-                    What challenges arose throughout the project?
-                  </div>
-                </div>
-              </div>
-              <h1 className="nitty-gritty-text ~text-6xl/13xl p-8 text-text-primary-negative w-full text-center">
-                The Nitty Gritty
-              </h1>
-            </div>
-          </div>
-
-          <div className="panel-2-container -z-[2] relative w-full">
-            <div className="panel-2 relative flex items-end justify-center gap-8 w-full bg-surface-primary-negative">
-              <h1 className="~text-6xl/13xl text-text-primary-negative h-fit w-full p-8 font-serif-italic text-center">
-                Want the Details?
-              </h1>
-            </div>
-          </div>
-
-          <div className="panel-3-container -z-[3] relative w-full">
-            <div className="panel-3 relative flex items-end justify-center p-8 gap-8 w-full h-full">
-              <div className="flex items-center justify-center w-full font-serif bg-surface-primary text-text-primary rounded-lg p-16 h-fit text-8xl">
-                <p>Message me</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* divider */}
-        <div className="explore-container relative bg-surface-primary-negative border-t border-border-primary-negative grid grid-flow-row gap-32 p-4 md:gap-48 md:p-6 lg:p-8 text-text-primary-negative">
-          <div className="flex gap-4 md:gap-6 lg:gap-8">
-            <div className="flex flex-row md:justify-between gap-4 md:w-1/2 opacity-80">
-              <p className="text-xs font-mono uppercase">EXPLORE MORE</p>
-            </div>
-          </div>
-
-          <div className="turn-white grid grid-cols-2 gap-8">
-            <div className="w-full h-fit">
-              <div className="aspect-4/3 bg-[grey] rounded-md overflow-hidden">
-                <Image
-                  src="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744093117/buildforce-cover-01_1_jzzqeo.webp"
-                  alt="Project Name"
-                  width={1000}
-                  height={1000}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h2 className="text-5xl mt-4">Project Name </h2>
-            </div>
-
-            <div className="w-full h-fit">
-              <div className="aspect-4/3 bg-[grey] rounded-md overflow-hidden" />
-              <h2 className="text-5xl mt-4">Prototype Name </h2>
-            </div>
-          </div>
-        </div>
         {/* divider */}
 
         {/* divider */}

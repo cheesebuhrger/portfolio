@@ -27,7 +27,6 @@ export const useStackAnimation = () => {
             start: "bottom bottom",
             end: () => "+=" + window.innerHeight,
             scrub: 1,
-            // markers: true,
             pin: true,
             pinSpacing: false,
           },

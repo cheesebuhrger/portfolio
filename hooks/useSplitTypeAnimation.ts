@@ -101,7 +101,6 @@ export const useSplitTypeAnimation = () => {
           trigger: element,
           start: start,
           toggleActions: "play none none reverse",
-          // markers: true, // Keep markers off for production
         },
       });
 
@@ -119,7 +118,6 @@ export const useSplitTypeAnimation = () => {
             trigger: element,
             start: start,
             toggleActions: "play none none reverse",
-            // markers: true, // Keep markers off for production
           },
         }
       );

@@ -26,7 +26,10 @@ const IndexCodeProjects = () => {
 
       <ul className="">
         {codeProjects.map((codeProject) => (
-          <li className="py-4 md:py-6 lg:py-8 border-b border-border-primary">
+          <li
+            key={codeProject.title}
+            className="py-4 md:py-6 lg:py-8 border-b border-border-primary"
+          >
             <Link href={codeProject.url}>
               <div className="grid grid-cols-12 gap-4 md:gap-6 lg:gap-8">
                 <h3 className="text-5xl font-serif col-span-6">
@@ -37,7 +40,7 @@ const IndexCodeProjects = () => {
                 </p>
                 <div className="col-span-3 flex flex-wrap gap-1">
                   {codeProject.technologies.map((technology) => (
-                    <Badge label={technology} />
+                    <Badge key={technology} label={technology} />
                   ))}
                 </div>
               </div>

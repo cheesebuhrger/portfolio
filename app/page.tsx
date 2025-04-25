@@ -1,10 +1,7 @@
 "use client";
 
 import type { NextPage } from "next";
-import IndexHero3 from "@/components/IndexHero3";
-import SectionLabel from "../components/ProjectSection";
 import IndexPlayground from "../components/IndexPlayground";
-import IndexProjects2 from "@/components/IndexProjects2";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import { ReactLenis } from "@studio-freight/react-lenis";
 import Button from "@/components/Button";

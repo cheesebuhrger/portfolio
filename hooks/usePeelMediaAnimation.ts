@@ -23,7 +23,6 @@ export const usePeelMediaAnimation = () => {
           trigger: element,
           start: "top 80%",
           toggleActions: "play none none reverse",
-          // markers: true,
         },
         x: fromLeft ? "-100%" : "100%",
         rotateX: 90,

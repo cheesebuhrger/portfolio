@@ -11,9 +11,18 @@ import { useGSAP } from "@gsap/react";
 import { useLenis } from "@studio-freight/react-lenis";
 import Button from "./Button";
 
+const useMobileScale = () => (window.innerWidth < 768 ? 0 : 0.5);
+const useMobileBottom = () => (window.innerWidth < 768 ? 0 : "2rem");
+const useMobileRight = () => (window.innerWidth < 768 ? 0 : "1rem");
+const useMobileRadius = () => (window.innerWidth < 768 ? 0 : "2rem");
+
 const IndexProjects = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const lenis = useLenis();
+  const mobileScale = useMobileScale();
+  const mobileBottom = useMobileBottom();
+  const mobileRight = useMobileRight();
+  const mobileRadius = useMobileRadius();
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -77,7 +86,6 @@ const IndexProjects = () => {
         scrollTrigger: {
           trigger: ".index-project-1",
           start: "center bottom",
-          // markers: true,
           toggleActions: "play none none reverse",
         },
       }
@@ -93,7 +101,6 @@ const IndexProjects = () => {
         trigger: ".index-project-1 .project-container",
         start: "top bottom",
         end: "bottom bottom",
-        // markers: true,
         scrub: true,
       },
     });
@@ -125,7 +132,6 @@ const IndexProjects = () => {
         trigger: ".index-project-1 .project-container",
         start: "top bottom",
         end: "bottom bottom",
-        // markers: true,
         scrub: true,
         pin: true,
         pinSpacing: false,
@@ -137,7 +143,6 @@ const IndexProjects = () => {
         trigger: ".index-project-2 .project-container",
         start: "top bottom",
         end: "bottom bottom",
-        // markers: true,
         scrub: true,
         pin: true,
         pinSpacing: false,
@@ -149,27 +154,21 @@ const IndexProjects = () => {
         trigger: ".index-project-3 .project-container",
         start: "top bottom",
         end: "bottom bottom",
-        // markers: true,
         scrub: true,
         pin: true,
         pinSpacing: false,
       },
     });
 
-    const useMobileScale = () => (window.innerWidth < 768 ? 0 : 0.5);
-    const useMobileBottom = () => (window.innerWidth < 768 ? 0 : "2rem");
-    const useMobileRight = () => (window.innerWidth < 768 ? 0 : "1rem");
-    const useMobileRadius = () => (window.innerWidth < 768 ? 0 : "2rem");
-
     pinFirstProject
       .set(".index-project-1 .project-container", { yPercent: -100 })
       .fromTo(
         ".index-project-1 .project-image-left",
         {
-          scale: useMobileScale(),
-          bottom: useMobileBottom(),
-          right: useMobileRight(),
-          borderRadius: useMobileRadius(),
+          scale: mobileScale,
+          bottom: mobileBottom,
+          right: mobileRight,
+          borderRadius: mobileRadius,
         },
         {
           scale: 1,
@@ -206,7 +205,6 @@ const IndexProjects = () => {
         },
         {
           scale: 1,
-          // ease: "power1.inOut",
         }
       )
       .fromTo(
@@ -216,7 +214,6 @@ const IndexProjects = () => {
         },
         {
           scale: 1,
-          // ease: "power1.inOut",
         },
         "<"
       );
@@ -232,7 +229,6 @@ const IndexProjects = () => {
         },
         {
           scale: 1,
-          // ease: "power1.inOut",
         }
       )
       .fromTo(
@@ -242,7 +238,6 @@ const IndexProjects = () => {
         },
         {
           scale: 1,
-          // ease: "power1.inOut",
         },
         "<"
       );
@@ -251,7 +246,6 @@ const IndexProjects = () => {
       scrollTrigger: {
         trigger: ".index-project-1",
         start: "25% center",
-        // markers: true,
         toggleActions: "play none none reverse",
       },
     });
@@ -297,7 +291,6 @@ const IndexProjects = () => {
       scrollTrigger: {
         trigger: ".index-project-2",
         start: "25% center",
-        // markers: true,
         toggleActions: "play none none reverse",
       },
     });
@@ -343,7 +336,6 @@ const IndexProjects = () => {
       scrollTrigger: {
         trigger: ".index-project-3",
         start: "25% center",
-        // markers: true,
         toggleActions: "play none none reverse",
       },
     });

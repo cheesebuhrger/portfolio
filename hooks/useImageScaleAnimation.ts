@@ -19,7 +19,6 @@ export const useImageScaleAnimation = () => {
           trigger: element,
           start: "top bottom",
           toggleActions: "play none none reverse",
-          // markers:true,
         },
       });
     });

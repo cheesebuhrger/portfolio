@@ -49,6 +49,22 @@ export const codeProjects: CodeProject[] = [
     },
   },
   {
+    title: "Particle waves",
+    company: "Me",
+    year: "2024",
+    duration: "N/A",
+    url: "/projects/playground",
+    technologies: ["React", "Typescript", "Next.js", "Tailwind CSS"],
+    image1: {
+      src: "",
+      alt: "Image 1",
+    },
+    image2: {
+      src: "",
+      alt: "Image 2",
+    },
+  },
+  {
     title: "Wheel Clinician App",
     company: "Wheel",
     year: "2021",
