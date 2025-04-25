@@ -7,8 +7,7 @@ import SplitType from "split-type";
 import MediaImage from "@/components/MediaImage";
 import TransitionLink from "./TransitionLink";
 import CursorDot from "./CursorDot";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import { useEffect } from "react";
 
 interface ProjectEndProps {
   process: {
@@ -41,6 +40,10 @@ const ProjectEnd = ({
   project,
   prototype,
 }: ProjectEndProps) => {
+  useEffect(() => {
+    gsap.registerPlugin(useGSAP, ScrollTrigger);
+  }, []);
+
   useGSAP(() => {
     const processTimeline = gsap.timeline({
       scrollTrigger: {

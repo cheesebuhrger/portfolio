@@ -11,20 +11,38 @@ import { useGSAP } from "@gsap/react";
 import { useLenis } from "@studio-freight/react-lenis";
 import Button from "./Button";
 
-const useMobileScale = () => (window.innerWidth < 768 ? 0 : 0.5);
-const useMobileBottom = () => (window.innerWidth < 768 ? 0 : "2rem");
-const useMobileRight = () => (window.innerWidth < 768 ? 0 : "1rem");
-const useMobileRadius = () => (window.innerWidth < 768 ? 0 : "2rem");
-
 const IndexProjects = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const lenis = useLenis();
-  const mobileScale = useMobileScale();
-  const mobileBottom = useMobileBottom();
-  const mobileRight = useMobileRight();
-  const mobileRadius = useMobileRadius();
+  const [mobileValues, setMobileValues] = React.useState({
+    scale: 0.5,
+    bottom: "2rem",
+    right: "1rem",
+    radius: "2rem",
+  });
 
-  gsap.registerPlugin(ScrollTrigger);
+  useEffect(() => {
+    const updateMobileValues = () => {
+      const isMobile = window.innerWidth < 768;
+      setMobileValues({
+        scale: isMobile ? 0 : 0.5,
+        bottom: isMobile ? "0" : "2rem",
+        right: isMobile ? "0" : "1rem",
+        radius: isMobile ? "0" : "2rem",
+      });
+    };
+
+    updateMobileValues();
+    window.addEventListener("resize", updateMobileValues);
+
+    return () => {
+      window.removeEventListener("resize", updateMobileValues);
+    };
+  }, []);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+  }, []);
 
   useGSAP(() => {
     // Split type animation setup
@@ -165,10 +183,10 @@ const IndexProjects = () => {
       .fromTo(
         ".index-project-1 .project-image-left",
         {
-          scale: mobileScale,
-          bottom: mobileBottom,
-          right: mobileRight,
-          borderRadius: mobileRadius,
+          scale: mobileValues.scale,
+          bottom: mobileValues.bottom,
+          right: mobileValues.right,
+          borderRadius: mobileValues.radius,
         },
         {
           scale: 1,
