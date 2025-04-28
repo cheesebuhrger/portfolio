@@ -45,14 +45,14 @@ const Nav = () => {
             >
               Projects
             </li>
-            <li
+            {/* <li
               onClick={() => {
                 lenis?.scrollTo("#code", { duration: 2 });
               }}
               className="group-hover:py-1 hover:underline transition-all duration-300 w-fit cursor-pointer"
             >
               Code
-            </li>
+            </li> */}
             <li
               onClick={() => {
                 lenis?.scrollTo("#playground", { duration: 2 });
@@ -61,16 +61,8 @@ const Nav = () => {
             >
               Playground
             </li>
-            {/* <li
-              onClick={() => {
-                lenis?.scrollTo("#about");
-              }}
-              className="group-hover:py-1 hover:underline transition-all duration-300 w-fit cursor-pointer"
-            >
-              About
-            </li> */}
           </ul>
-          <ul className="col-span-3 col-start-10 text-text-primary-negative">
+          {/* <ul className="col-span-3 col-start-10 text-text-primary-negative">
             <li
               onClick={() => {
                 lenis?.scrollTo("#about", { duration: 2 });
@@ -79,7 +71,7 @@ const Nav = () => {
             >
               About
             </li>
-          </ul>
+          </ul> */}
         </>
       )}
     </nav>

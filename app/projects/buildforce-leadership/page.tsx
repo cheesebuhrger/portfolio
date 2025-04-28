@@ -158,14 +158,14 @@ const Project1: React.FC = () => {
                 // footnote: "Rebrand (Marketing), Design System, External Applications, Time Tracking, Core Workforce, NC Expansion, Vision",
               },
               {
-                title: <>Tighter collaborative exercises introduced</>,
-                value: "3",
-                footnote: "Shape Up, xfn crit, product debates",
+                title: <>Pair design/prototyping hrs per initiative</>,
+                value: "15",
+                footnote: "Instead of siloed design time",
                 direction: "up",
               },
               null,
               {
-                title: <>Hypothesis-driven accountability strengthened</>,
+                title: <>Hypothesis-driven accountability</>,
                 value: "0 → 1",
                 footnote: "Inspired by strong inference",
               },
@@ -231,11 +231,17 @@ const Project1: React.FC = () => {
             className="flex flex-col gap-4 md:gap-6 lg:gap-8"
           >
             <ProjectSectionMedia
-              layout={{ type: "full" }}
+              layout={{
+                type: "mockup",
+                background: {
+                  image:
+                    "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-11-bg_rcrm7o.webp",
+                },
+              }}
               media={[
                 {
                   type: "image",
-                  src: "/images/bf-leadership/bf-leadership-2.webp",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745866772/buildforce-leadership-09_hhle2l.webp",
                   alt: "Contractor onboarding for Buildforce web app",
                 },
               ]}
@@ -254,8 +260,7 @@ const Project1: React.FC = () => {
               layout={{
                 type: "mockup",
                 background: {
-                  image:
-                    "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-11-bg_rcrm7o.webp",
+                  color: "bg-[#BEB39E]",
                 },
               }}
               media={[
@@ -396,7 +401,7 @@ const Project1: React.FC = () => {
             media={[
               {
                 type: "image",
-                src: "/images/bf-leadership/bf-leadership-10.webp",
+                src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183529/buildforce-leadership-16_wlkezt.webp",
                 alt: "??",
               },
             ]}
@@ -444,7 +449,7 @@ const Project1: React.FC = () => {
             media={[
               {
                 type: "video",
-                src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1743183531/buildforce-leadership-17_g9pm0a.webm",
+                src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1745868581/buildforce-leadership-17_gqdmo7.webm",
                 alt: "??",
               },
             ]}
@@ -512,8 +517,14 @@ const Project1: React.FC = () => {
               media={[
                 {
                   type: "image",
-                  src: "/images/bf-leadership/bf-leadership-12.webp",
-                  alt: "??",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745867699/buildforce-leadership-18_mzepbc.webp",
+                  alt: "FigJam that helped map out design levels at Buildforce and areas of improvement",
+                  caption: (
+                    <>
+                      FigJam that helped map out design levels at Buildforce,
+                      calibrated skill level and areas of interest.
+                    </>
+                  ),
                 },
               ]}
             />
@@ -536,7 +547,7 @@ const Project1: React.FC = () => {
         </ProjectSection>
 
         <ProjectEnd
-          image="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745516064/buildforce-22_i7lnc1.png"
+          image="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745868275/buildforce-22_kppdjx.webp"
           process={{
             item1: "How did I balance player-coach responsibilities?",
             item2: "Which approaches did I take that worked or fell flat?",
@@ -545,18 +556,18 @@ const Project1: React.FC = () => {
             item5: "How did design contribute to product strategy?",
           }}
           project={{
-            name: "Designing friction to save everyone time",
+            name: designProjects[2].title,
             type: "image",
-            src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744093117/buildforce-cover-01_1_jzzqeo.webp",
-            alt: "Time entry on the Buildforce mobile app",
-            url: "/projects/buildforce",
+            src: designProjects[2].image1.src,
+            alt: designProjects[2].image1.alt,
+            url: designProjects[2].url,
           }}
           prototype={{
-            name: "Prototype",
+            name: designProjects[0].title,
             type: "image",
-            src: "",
-            alt: "",
-            url: "/",
+            src: designProjects[0].image2.src,
+            alt: designProjects[0].image2.alt,
+            url: designProjects[0].url,
           }}
         />
       </div>

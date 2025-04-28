@@ -21,7 +21,7 @@ const Home: NextPage = () => {
         <CursorDot />
         <IndexProjects />
 
-        <IndexCodeProjects />
+        {/* <IndexCodeProjects /> */}
 
         <section
           id="playground"

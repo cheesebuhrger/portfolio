@@ -453,10 +453,11 @@ const IndexProjects = () => {
       <div className="index-intro relative z-[5] w-screen h-screen flex flex-col pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-8 items-end bg-surface-primary border-b border-border-tertiary">
         <div className="index-intro-out relative p-4 md:p-6 lg:p-8 w-full h-full flex md:grid flex-col md:grid-cols-2 gap-8 md:gap-6 lg:gap-8 justify-center md:items-center">
           <h1 className="relative text-4xl split-type-animation-hero col-span-1 md:col-start-2 text-pretty">
-            A builder at heart, I&rsquo;m always finding new ways to bring ideas
-            to life. Through a decade of designing products, I&rsquo;ve honed
-            skills in interaction design, motion, & prototyping. My current
-            obsession is writing code to bridge design & dev.
+            I&rsquo;m a builder at heart, always finding new ways to bring ideas
+            to life. Over the past decade, I&rsquo;ve honed my skills in
+            interaction design, motion, & prototyping. These days, I&rsquo;m
+            deepening my skills in frontend code to bridge the gap between
+            design & dev.
           </h1>
           <div className="md:hidden flex flex-row gap-2">
             <Button
@@ -465,7 +466,7 @@ const IndexProjects = () => {
               }}
               label="Go to Projects"
             />
-            <Button
+            {/* <Button
               onClick={() => {
                 lenis?.scrollTo("#prototypes", {
                   offset: -60,
@@ -473,7 +474,7 @@ const IndexProjects = () => {
                 });
               }}
               label="Go to Prototypes"
-            />
+            /> */}
           </div>
         </div>
         <div className="index-intro-out w-full h-fit md:flex-row justify-end items-center hidden md:flex">
@@ -488,16 +489,16 @@ const IndexProjects = () => {
           {/* RIGHT */}
           <div className="w-full h-full flex flex-col justify-end">
             <div className="index-intro-in relative w-1/2 h-fit flex flex-col gap-2 left-2 md:left-3 lg:left-4">
-              <p className="text-xs font-mono uppercase">Featured Prototype</p>
+              {/* <p className="text-xs font-mono uppercase">Featured Prototype</p> */}
               <div
                 onClick={() => {
-                  lenis?.scrollTo("#prototypes", { duration: 2 });
+                  lenis?.scrollTo("#project-2", { duration: 2 });
                 }}
                 className="relative w-full aspect-4/3 bg-surface-secondary rounded-md overflow-hidden cursor-pointer"
               >
                 <MediaImage
-                  src="https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873197/strava-growth-cover-1_dwsdpv.webp"
-                  alt="Buildforce Time Tracking App"
+                  src={designProjects[1].image2.src}
+                  alt={designProjects[1].image2.alt}
                   type="image"
                   width={864.5}
                   height={741}
@@ -510,7 +511,10 @@ const IndexProjects = () => {
 
       <div id="projects" className="index-projects relative w-screen">
         {/* PROJECT 1 */}
-        <div className="index-project-1 z-[4] bg-surface-primary relative w-full">
+        <div
+          id="project-1"
+          className="index-project-1 z-[4] bg-surface-primary relative w-full"
+        >
           <div className="project-container h-fit lg:h-screen flex flex-col justify-between relative">
             <h2 className="text-xs font-mono uppercase p-4 md:p-6 lg:p-8 mb-32 lg:mb-0">
               Projects
@@ -563,7 +567,10 @@ const IndexProjects = () => {
 
         {/* PROJECT 2 */}
 
-        <div className="index-project-2 z-[3] bg-surface-primary relative w-full">
+        <div
+          id="project-2"
+          className="index-project-2 z-[3] bg-surface-primary relative w-full"
+        >
           <div className="project-container h-fit lg:h-screen flex flex-col justify-end items-end relative">
             <div className="group w-full h-fit relative flex flex-col gap-4 md:gap-6 lg:gap-8">
               <div className="project-content px-4 md:px-6 lg:px-8 mt-20 md:mt-24 w-full flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-6 lg:gap-8 relative">
@@ -613,7 +620,10 @@ const IndexProjects = () => {
 
         {/* PROJECT 3 */}
 
-        <div className="index-project-3 z-[2] bg-surface-primary relative w-full">
+        <div
+          id="project-3"
+          className="index-project-3 z-[2] bg-surface-primary relative w-full"
+        >
           <div className="project-container h-fit lg:h-screen flex flex-col justify-end items-end relative">
             <div className="group w-full h-fit relative flex flex-col gap-4 md:gap-6 lg:gap-8">
               <div className="project-content px-4 md:px-6 lg:px-8 mt-20 md:mt-24 w-full flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-6 lg:gap-8 relative">

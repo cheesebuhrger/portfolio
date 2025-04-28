@@ -343,7 +343,7 @@ const Buildforce: React.FC = () => {
         {/* ---- PROBLEM ---- */}
         <ProjectSection
           sectionNumber="II"
-          sectionLabel="Problem"
+          sectionLabel="Problem Framing"
           iconType="problem"
           className="stack-animation"
         >
@@ -520,18 +520,18 @@ const Buildforce: React.FC = () => {
             item5: "How did we introduce a brand refresh alongside this work?",
           }}
           project={{
-            name: "How I shaped design & improved collaboration @Buildforce",
+            name: designProjects[1].title,
             type: "image",
-            src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-cover-02_gqnb5l.webp",
-            alt: "Contractor time approval",
-            url: "/projects/buildforce-leadership",
+            src: designProjects[1].image1.src,
+            alt: designProjects[1].image1.alt,
+            url: designProjects[1].url,
           }}
           prototype={{
-            name: "Prototype",
+            name: designProjects[2].title,
             type: "image",
-            src: "",
-            alt: "",
-            url: "",
+            src: designProjects[2].image1.src,
+            alt: designProjects[2].image1.alt,
+            url: designProjects[2].url,
           }}
         />
       </div>

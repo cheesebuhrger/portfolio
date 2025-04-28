@@ -327,22 +327,22 @@ const ProjectEnd = ({
           <div className="panel-1 relative flex flex-col gap-4 md:gap-6 lg:gap-8 w-full h-screen items-end justify-center bg-surface-primary-negative">
             <div className="process-fade flex flex-row w-full h-full gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8 text-text-primary-negative font-serif ~text-xl/2xl">
               <div className="overflow-hidden grid grid-rows-5 pb-8 pt-24 w-full border-r border-border-tertiary-negative justify-items-end">
-                <div className="process-item-1 process-item pl-4 md:pl-0 pr-4 md:pr-6 lg:pr-8 w-full md:w-1/2 row-start-5 text-right flex items-center text-pretty">
+                <div className="process-item-1 process-item pl-4 md:pl-0 pr-4 md:pr-6 lg:pr-8 w-full md:w-1/2 row-start-5 text-right flex items-center text-balance">
                   {process.item1}
                 </div>
-                <div className="process-item-3 process-item pl-4 md:pl-0 pr-4 md:pr-6 lg:pr-8 w-full md:w-1/2 row-start-3 text-right flex items-center text-pretty">
+                <div className="process-item-3 process-item pl-4 md:pl-0 pr-4 md:pr-6 lg:pr-8 w-full md:w-1/2 row-start-3 text-right flex items-center text-balance">
                   {process.item3}
                 </div>
-                <div className="process-item-5 process-item pl-4 md:pl-0 pr-4 md:pr-6 lg:pr-8 w-full md:w-1/2 row-start-1 text-right flex items-center text-pretty">
+                <div className="process-item-5 process-item pl-4 md:pl-0 pr-4 md:pr-6 lg:pr-8 w-full md:w-1/2 row-start-1 text-right flex items-center text-balance">
                   {process.item5}
                 </div>
               </div>
 
               <div className="overflow-hidden grid grid-rows-5 pb-8 pt-24 w-full border-l border-border-tertiary-negative">
-                <div className="process-item-2 process-item pr-4 md:pr-0 pl-4 md:pl-6 lg:pl-8 w-full md:w-1/2 row-start-4 flex items-center text-pretty">
+                <div className="process-item-2 process-item pr-4 md:pr-0 pl-4 md:pl-6 lg:pl-8 w-full md:w-1/2 row-start-4 flex items-center text-balance">
                   {process.item2}
                 </div>
-                <div className="process-item-4 process-item pr-4 md:pr-0 pl-4 md:pl-6 lg:pl-8 w-full md:w-1/2 row-start-2 flex items-center text-pretty">
+                <div className="process-item-4 process-item pr-4 md:pr-0 pl-4 md:pl-6 lg:pl-8 w-full md:w-1/2 row-start-2 flex items-center text-balance">
                   {process.item4}
                 </div>
               </div>
@@ -368,7 +368,7 @@ const ProjectEnd = ({
               target="_blank"
               rel="noopener noreferrer"
               className="cursor-animation pointer-events-auto hover:text-text-action flex items-center justify-center w-full font-serif bg-surface-primary hover:bg-surface-secondary text-text-primary rounded-lg p-8 md:p-12 lg:p-16 h-fit ~text-6xl/8xl"
-              data-cursor-text="Go to LinkedIn"
+              data-cursor-text="View LinkedIn"
             >
               Let&rsquo;s Connect
             </a>
@@ -384,7 +384,7 @@ const ProjectEnd = ({
         </div>
 
         <div className="flex flex-col md:flex-row gap-16 md:gap-6 lg:gap-8 relative">
-          <div className="group relative w-full h-fit">
+          <div className="group relative w-full md:w-1/2 h-fit">
             <TransitionLink
               href={project.url}
               className="cursor-animation transition-all duration-300"
@@ -398,21 +398,20 @@ const ProjectEnd = ({
                 />
               </div>
 
-              <p className="text-xs font-mono uppercase text-text-secondary-negative mt-6 mb-2 group-hover:text-text-action">
+              {/* <p className="text-xs font-mono uppercase text-text-secondary-negative mt-6 mb-2 group-hover:text-text-action">
                 Project
-              </p>
-
-              <h2 className="~text-4xl/5xl group-hover:text-text-action group-hover:underline text-pretty">
+              </p> */}
+              <h2 className="~text-4xl/5xl mt-6 group-hover:text-text-action group-hover:underline text-pretty">
                 {project.name}
               </h2>
             </TransitionLink>
           </div>
 
-          <div className="group relative w-full h-fit">
+          <div className="group relative w-full md:w-1/2 h-fit">
             <TransitionLink
               href={prototype.url}
               className="cursor-animation transition-all duration-300"
-              data-cursor-text="VIEW PROTOTYPE"
+              data-cursor-text="VIEW PROJECT"
             >
               <div className="relative aspect-21/9-half bg-surface-secondary rounded-md overflow-hidden">
                 <MediaImage
@@ -421,10 +420,10 @@ const ProjectEnd = ({
                   alt={prototype.alt}
                 />
               </div>
-              <p className="text-xs font-mono uppercase text-text-secondary-negative mt-6 mb-2 group-hover:text-text-action">
+              {/* <p className="text-xs font-mono uppercase text-text-secondary-negative mt-6 mb-2 group-hover:text-text-action">
                 Prototype
-              </p>
-              <h2 className="~text-4xl/5xl group-hover:text-text-action group-hover:underline text-pretty">
+              </p> */}
+              <h2 className="~text-4xl/5xl mt-6 group-hover:text-text-action group-hover:underline text-pretty">
                 {prototype.name}
               </h2>
             </TransitionLink>

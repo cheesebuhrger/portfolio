@@ -42,11 +42,11 @@ export const designProjects: Project[] = [
       "Redesigning the time tracking flow resulted in fewer errors, more accurate hrs from workers, & reduced days of manual payroll cleanup",
     image1: {
       src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744093117/buildforce-cover-01_1_jzzqeo.webp",
-      alt: "Buildforce",
+      alt: "Buildforce time tracking app.",
     },
     image2: {
       src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744925544/buildforce-cover-02_v3wm6k.webp",
-      alt: "Buildforce",
+      alt: "Buildforce worker looking at phone on a construction site.",
     },
   },
   {
@@ -61,29 +61,31 @@ export const designProjects: Project[] = [
       "Shaped a culture of accountability & trust, improved speed:quality ratio, fostered continuous feedback, & utilized individual strengths",
 
     image1: {
-      src: "/images/bf-leadership/bf-leadership-cover-1.webp",
+      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745867478/buildforce-leadership-cover-01_qwwv1t.webp",
       alt: "Buildforce",
     },
     image2: {
       src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-cover-02_gqnb5l.webp",
-      alt: "Buildforce brand refresh moodboard",
+      alt: "Buildforce brand refresh moodboard.",
     },
   },
   {
     company: "Strava",
-    year: "2022-23",
+    year: "2021-22",
     duration: "1 year",
     url: "/projects/strava-growth",
     title: "Evolving my process for growth design",
-    problem: "",
-    solution: "",
+    problem:
+      "Early subscription growth efforts didn't always perform well, lacking connection to human problems & context",
+    solution:
+      "I grounded growth experiements & initiatives in real human problems resulting in $6.8MM/yr subscription revenue with my involvement",
     image1: {
       src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873197/strava-growth-cover-1_dwsdpv.webp",
-      alt: "Buildforce",
+      alt: "Strava subscription cancel modal",
     },
     image2: {
-      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873197/strava-growth-cover-2_iyh5ek.webp",
-      alt: "Buildforce",
+      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745864055/strava-growth-cover-02_vmvxii.webp",
+      alt: "Strava youth running",
     },
   },
   {
