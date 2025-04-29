@@ -252,7 +252,7 @@ const Project1: React.FC = () => {
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745866772/buildforce-leadership-09_hhle2l.webp",
-                  alt: "Contractor onboarding for Buildforce web app",
+                  alt: "Contractor onboarding flow with worker count selection",
                 },
               ]}
             />
@@ -276,7 +276,7 @@ const Project1: React.FC = () => {
               media={[
                 {
                   type: "image",
-                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183529/buildforce-leadership-11_defhzi.webp",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745914866/buildforce-leadership-11_wu1sbw.webp",
                   alt: "Worker time submission flow for Buildforce web app",
                 },
               ]}
@@ -322,7 +322,7 @@ const Project1: React.FC = () => {
               {
                 type: "video",
                 src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1743183530/buildforce-leadership-12_aqpi2t.webm",
-                alt: "??",
+                alt: "Buildforce brandmark in differnt iterations",
               },
             ]}
             stats={[
@@ -406,12 +406,12 @@ const Project1: React.FC = () => {
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183529/buildforce-leadership-14_q6huzo.webp",
-                  alt: "??",
+                  alt: "New icons for Buildforce brand",
                 },
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183529/buildforce-leadership-15_wtczko.webp",
-                  alt: "Spot compoisitions Buildforce brand",
+                  alt: "New spot compoisitions for Buildforce brand",
                 },
               ]}
             />
@@ -421,7 +421,7 @@ const Project1: React.FC = () => {
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183529/buildforce-leadership-16_wlkezt.webp",
-                  alt: "??",
+                  alt: "Design system components with new brand style",
                 },
               ]}
             />
@@ -488,7 +488,7 @@ const Project1: React.FC = () => {
               {
                 type: "video",
                 src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1745868581/buildforce-leadership-17_gqdmo7.webm",
-                alt: "??",
+                alt: "Melysia unwrapping video of Buildforce growth package",
               },
             ]}
           />
@@ -557,7 +557,7 @@ const Project1: React.FC = () => {
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745867699/buildforce-leadership-18_mzepbc.webp",
-                  alt: "FigJam that helped map out design levels at Buildforce and areas of improvement",
+                  alt: "FigJam mapping out design levels at Buildforce and areas of improvement",
                 },
               ]}
             />
@@ -567,12 +567,12 @@ const Project1: React.FC = () => {
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-20_fmi2so.webp",
-                  alt: "??",
+                  alt: "Worker profile before submitting an application in Trades app",
                 },
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-21_ki9pnk.webp",
-                  alt: "??",
+                  alt: "Worker transfer interaction in Contractor web app",
                 },
               ]}
             />

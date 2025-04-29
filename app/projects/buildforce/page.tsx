@@ -242,7 +242,7 @@ const Buildforce: React.FC = () => {
               {
                 type: "image",
                 src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744060192/buildforce-07_r0yavc.webp",
-                alt: "Contractor onboarding for Buildforce web app",
+                alt: "Worker time entry edit flow in Trades app",
                 caption: (
                   <>
                     End-of-week flow to double-check entries before it
@@ -289,7 +289,7 @@ const Buildforce: React.FC = () => {
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744060079/buildforce-08_nrwqhs.webp",
-                  alt: "Contractor onboarding for Buildforce web app",
+                  alt: "Contractor time approval screen detailing worker time entry",
                   caption: (
                     <>
                       Contractors can view location and time entry details for
@@ -309,7 +309,7 @@ const Buildforce: React.FC = () => {
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744092019/buildforce-09_dqdnsc.webp",
-                  alt: "Contractor onboarding for Buildforce web app",
+                  alt: "Trades app showing contractor adjusting worker total hours and option to dispute the change",
                   caption: (
                     <>
                       Workers are notified when time is approved or edited so
@@ -321,7 +321,7 @@ const Buildforce: React.FC = () => {
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744092019/buildforce-10_ykqwvx.webp",
-                  alt: "Contractor onboarding for Buildforce web app",
+                  alt: "Trades app showing contractor adjusting worker total hours",
                 },
               ]}
             />
@@ -380,7 +380,7 @@ const Buildforce: React.FC = () => {
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743717774/buildforce-02_bpjwok.webp",
-                  alt: "Trades app clockout flow",
+                  alt: "Trades app clockout flow in previous version",
                   caption: (
                     <>
                       Our time tracking system works like a stopwatch: easy to
@@ -402,7 +402,7 @@ const Buildforce: React.FC = () => {
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743717774/buildforce-03_qq6zik.webp",
-                  alt: "Trades app submit time flow at the start of the following week",
+                  alt: "Trades app submit time flow at the start of the following week in previous version",
                   caption: (
                     <>
                       Workers get a second chance to fix their hours at the
@@ -449,7 +449,7 @@ const Buildforce: React.FC = () => {
               {
                 type: "image",
                 src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744064972/buildforce-01_fhd7ft.webp",
-                alt: "Contractor time approval",
+                alt: "Contractor time approval in previous version",
                 caption: (
                   <>
                     Contractors use this web app surface to approve worker hours
