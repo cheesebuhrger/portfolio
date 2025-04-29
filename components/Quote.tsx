@@ -53,7 +53,7 @@ const Quote: React.FC<QuoteProps> = ({ writer, content }) => {
             className={`${
               isExpanded && content.full
                 ? "font-sans ~text-sm/base"
-                : "font-serif-p ~text-2xl-p/4xl-p"
+                : "font-serif-p ~text-2xl-p/4xl-p text-pretty"
             }`}
           >
             {isExpanded && content.full ? content.full : content.snippet}

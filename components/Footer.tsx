@@ -35,14 +35,14 @@ const Footer = () => {
                 Projects
               </TransitionLink>
             </li>
-            <li>
+            {/* <li>
               <TransitionLink
                 href="/#prototypes"
                 className="hover:text-text-action"
               >
                 Prototypes
               </TransitionLink>
-            </li>
+            </li> */}
             <li>
               <TransitionLink
                 href="/#playground"
@@ -51,14 +51,14 @@ const Footer = () => {
                 Playground
               </TransitionLink>
             </li>
-            <li className="mt-4">
+            {/* <li className="mt-4">
               <TransitionLink
                 href="/about"
                 className="hover:text-text-action mb-4"
               >
                 About
               </TransitionLink>
-            </li>
+            </li> */}
           </>
         )}
 

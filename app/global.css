@@ -207,3 +207,18 @@ html.lenis body {
   z-index: 1;
   animation: none !important;
 }
+
+/* Initial Load Animation */
+.initial-load {
+  opacity: 0;
+  animation: fadeIn 0.4s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
