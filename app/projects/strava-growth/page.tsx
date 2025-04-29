@@ -141,7 +141,7 @@ const Project3: React.FC = () => {
               {
                 type: "image",
                 src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745879439/strava-growth-01_mc03zg.webp",
-                alt: "Strava growth",
+                alt: "Growth experiment on registration in Strava app detailing when subscriber free trial and when payment is required",
               },
             ]}
             stats={[
@@ -167,12 +167,12 @@ const Project3: React.FC = () => {
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745888194/strava-growth-02_ogyywo.webp",
-                  alt: "Strava growth",
+                  alt: "Monthly or annual subscription rate selection in bottom sheet",
                 },
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745887485/strava-growth-03_xjtc4t.webp",
-                  alt: "Strava growth",
+                  alt: "Page showcasing different types of trail routes on Strava web for SEO",
                 },
               ]}
             />
@@ -182,7 +182,7 @@ const Project3: React.FC = () => {
                 {
                   type: "image",
                   src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745887483/strava-growth-04_ldtsl6.webp",
-                  alt: "Strava growth",
+                  alt: "Various strava subscription UI cards with different features that are being upsold",
                 },
               ]}
             />
