@@ -522,7 +522,7 @@ const IndexProjects = () => {
             <div className="group w-full h-fit relative flex flex-col gap-4 md:gap-6 lg:gap-8">
               <div className="project-content px-4 md:px-6 lg:px-8 w-full flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-6 lg:gap-8 relative">
                 <div className="index-project-meta text-sm md:col-span-1 font-serif pt-1 lg:pt-2 uppercase group-hover:text-text-action">
-                  {romanNumerals[0]}
+                  {designProjects[0].year}
                 </div>
                 <TransitionLink
                   href={designProjects[0].url}
@@ -532,8 +532,8 @@ const IndexProjects = () => {
                   {designProjects[0].title}
                 </TransitionLink>
                 <div className="index-project-meta text-lg md:col-start-10 md:col-span-3 pt-1 font-serif group-hover:text-text-action">
+                  <p>{designProjects[0].role}</p>
                   <p>{designProjects[0].company}</p>
-                  <p>{designProjects[0].year}</p>
                 </div>
               </div>
 
@@ -575,7 +575,7 @@ const IndexProjects = () => {
             <div className="group w-full h-fit relative flex flex-col gap-4 md:gap-6 lg:gap-8">
               <div className="project-content px-4 md:px-6 lg:px-8 mt-20 md:mt-24 w-full flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-6 lg:gap-8 relative">
                 <div className="index-project-meta text-sm md:col-span-1 font-serif pt-1 lg:pt-2 uppercase group-hover:text-text-action">
-                  {romanNumerals[1]}
+                  {designProjects[1].year}
                 </div>
                 <TransitionLink
                   href={designProjects[1].url}
@@ -585,8 +585,8 @@ const IndexProjects = () => {
                   {designProjects[1].title}
                 </TransitionLink>
                 <div className="index-project-meta text-lg md:col-start-10 md:col-span-3 pt-1 font-serif group-hover:text-text-action">
+                  <p>{designProjects[1].role}</p>
                   <p>{designProjects[1].company}</p>
-                  <p>{designProjects[1].year}</p>
                 </div>
               </div>
 
@@ -628,7 +628,7 @@ const IndexProjects = () => {
             <div className="group w-full h-fit relative flex flex-col gap-4 md:gap-6 lg:gap-8">
               <div className="project-content px-4 md:px-6 lg:px-8 mt-20 md:mt-24 w-full flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-6 lg:gap-8 relative">
                 <div className="index-project-meta text-sm md:col-span-1 font-serif pt-1 lg:pt-2 uppercase group-hover:text-text-action">
-                  {romanNumerals[2]}
+                  {designProjects[2].year}
                 </div>
                 <TransitionLink
                   href={designProjects[2].url}
@@ -638,8 +638,8 @@ const IndexProjects = () => {
                   {designProjects[2].title}
                 </TransitionLink>
                 <div className="index-project-meta text-lg md:col-start-10 md:col-span-3 pt-1 font-serif group-hover:text-text-action">
+                  <p>{designProjects[2].role}</p>
                   <p>{designProjects[2].company}</p>
-                  <p>{designProjects[2].year}</p>
                 </div>
               </div>
 

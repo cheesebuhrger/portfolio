@@ -130,9 +130,20 @@ const Project1: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                Improved processes & accountability for results. This is the
-                second sentance to illustrate the length. This is the third line
-                to illustrate the length.
+                Our culture became more accountable, more candid, & more
+                objective once we realized we all wanted the same thing.
+              </>
+            }
+            body={
+              <>
+                I helped the team move from reactive shipping to a more
+                intentional and accountable process by starting with honest,
+                one-on-one conversations. From there, we introduced a more
+                hypothesis-driven approach to shipping work, clearly defining
+                the problem, the proposed change, and how we would measure
+                impact. We also adopted Shape Up, which gave us space to shape
+                ideas when problems were vague or complex, and build features
+                that weren&rsquo;t just &ldquo;quick fixes&rdquo;.
               </>
             }
           />
@@ -284,9 +295,21 @@ const Project1: React.FC = () => {
           <ProjectSectionContent
             headline={
               <>
-                Evolved Visual Identity & Design System Foundation. This is the
-                second sentance to illustrate the length. This is the third line
-                to illustrate the length.
+                While the brand refresh helped us better communicate
+                Buildforce&rsquo;s mission, it also gave us a way to improve
+                product quality while keeping up dev speed.
+              </>
+            }
+            body={
+              <>
+                Refreshing Buildforce&rsquo;s visual identity became the
+                launchpad for a more collaborative and scalable design system,
+                with better accessibility, clearer hierarchy, and consistent
+                patterns. I led and produced a majority of the work (and even
+                wrote code for the Contractor web app). Because everyone stayed
+                in the loop and contributed, both engineers and designers felt
+                real ownership over maintaining the design system. It made the
+                team faster, and pulled collaboration much closer.
               </>
             }
           />
@@ -416,8 +439,26 @@ const Project1: React.FC = () => {
           className="stack-animation"
         >
           <ProjectSectionContent
-            headline={<>Empowerment & Growth</>}
-            body={<>My view i</>}
+            headline={
+              <>
+                Engineers felt empowered to move work through the design
+                process, & a designer grew into her role with more confidence &
+                clarity.
+              </>
+            }
+            body={
+              <>
+                Through shared crit, stronger design system coverage, and
+                clearer project context, engineers were able to ship thoughtful
+                features without waiting on a designer. At the same time, I
+                mentored our other designer through weekly pair sessions and
+                regular feedback in and out of meetings. I got to know what she
+                enjoyed, where she wanted to grow, and shaped her projects to
+                reflect both. Over time, she brought more rigor to her process,
+                communicated design decisions more clearly, and shipped work
+                that felt noticeably stronger.
+              </>
+            }
           />
 
           <ProjectSectionMedia

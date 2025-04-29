@@ -36,7 +36,7 @@ const Nav = () => {
 
       {isHome && (
         <>
-          <ul className="group col-span-3 col-start-7 text-text-primary-negative w-fit">
+          <ul className="group col-span-3 col-start-7 text-text-primary-negative w-fit hidden md:block">
             <li
               onClick={() => {
                 lenis?.scrollTo("#projects", { duration: 2 });

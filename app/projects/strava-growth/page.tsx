@@ -115,8 +115,25 @@ const Project3: React.FC = () => {
           iconType="solution"
         >
           <ProjectSectionContent
-            headline={<>This is a title.</>}
-            body={<></>}
+            headline={
+              <>
+                We fixed the experiment backlog to solve real problems, grew
+                subscriptions, and didn&rsquo;t wreck the product doing it.
+              </>
+            }
+            body={
+              <>
+                As the first designer on a newly established subscription growth
+                team, I helped shift our approach by reverse engineering backlog
+                ideas into human problems, collaborating with research to run
+                ideation sessions along the athlete journey. Alongside building
+                smarter growth experiments, I also made sure our work respected
+                the overall product, working within an existing design system
+                and partnering with designers to form new patterns. My
+                contributions helped drive ~$6.3M in annual subscription growth
+                revenue.
+              </>
+            }
           />
           <ProjectSectionMedia
             layout={{ type: "stats", statsPosition: "left" }}
@@ -130,14 +147,13 @@ const Project3: React.FC = () => {
             stats={[
               null,
               {
-                title: <>Est. yearly subscription revenue</>,
-                value: "$6.8M",
-                footnote: "Experiments I was involved in",
+                title: <>Est. annual booking impact</>,
+                value: "$6.3M",
                 direction: "up",
               },
               {
-                title: <>New Subscribers</>,
-                value: "2.8k",
+                title: <>Subscription starts</>,
+                value: "~90k",
                 direction: "up",
               },
               null,
@@ -150,12 +166,12 @@ const Project3: React.FC = () => {
               media={[
                 {
                   type: "image",
-                  src: "",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745888194/strava-growth-02_ogyywo.webp",
                   alt: "Strava growth",
                 },
                 {
                   type: "image",
-                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873197/strava-growth-cover-2_iyh5ek.webp",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745887485/strava-growth-03_xjtc4t.webp",
                   alt: "Strava growth",
                 },
               ]}
@@ -165,7 +181,7 @@ const Project3: React.FC = () => {
               media={[
                 {
                   type: "image",
-                  src: "",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745887483/strava-growth-04_ldtsl6.webp",
                   alt: "Strava growth",
                 },
               ]}

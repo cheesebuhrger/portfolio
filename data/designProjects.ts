@@ -1,5 +1,6 @@
 export interface Project {
   title: string;
+  role: string;
   problem: string;
   solution: string;
   company: string;
@@ -32,6 +33,7 @@ export const romanNumerals = [
 export const designProjects: Project[] = [
   {
     company: "Buildforce",
+    role: "Staff Product Designer",
     year: "2024",
     duration: "6 weeks",
     url: "/projects/buildforce",
@@ -51,6 +53,7 @@ export const designProjects: Project[] = [
   },
   {
     company: "Buildforce",
+    role: "Staff Product Designer",
     year: "2023-24",
     duration: "1 year",
     url: "/projects/buildforce-leadership",
@@ -58,7 +61,7 @@ export const designProjects: Project[] = [
     problem:
       "Every new project sparked scope debates with speed taking priority over quality, leading to bandaids that didn't always solve actual user problems",
     solution:
-      "Shaped a culture of accountability & trust, improved speed:quality ratio, fostered continuous feedback, & utilized individual strengths",
+      "Made accountability part of the culture, improved quality without slowing down, & helped the team grow by working better together",
 
     image1: {
       src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1745867478/buildforce-leadership-cover-01_qwwv1t.webp",
@@ -71,14 +74,15 @@ export const designProjects: Project[] = [
   },
   {
     company: "Strava",
+    role: "Senior Growth Designer",
     year: "2021-22",
     duration: "1 year",
     url: "/projects/strava-growth",
-    title: "Evolving my process for growth design",
+    title: "Growing subscribers with human context",
     problem:
       "Early subscription growth efforts didn't always perform well, lacking connection to human problems & context",
     solution:
-      "I grounded growth experiements & initiatives in real human problems resulting in $6.8MM/yr subscription revenue with my involvement",
+      "I shifted the team's approach to focus on real athlete challenges, helping drive $6.3MM in additional annual subscription revenue",
     image1: {
       src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742873197/strava-growth-cover-1_dwsdpv.webp",
       alt: "Strava subscription cancel modal",
@@ -90,6 +94,7 @@ export const designProjects: Project[] = [
   },
   {
     company: "Wheel",
+    role: "Senior Product Designer",
     year: "2019",
     duration: "3 months",
     url: "/projects/wheel",
