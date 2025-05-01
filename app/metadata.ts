@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
-  title: "Buhr: [Portfolio]",
+  title: {
+    template: "Buhr | %s",
+    default: "Buhr | Portfolio",
+  },
   description:
     "Exploring product design and front-end development. My portfolio blends systems thinking, interaction design, motion, and real code.",
   keywords: [
@@ -20,6 +23,30 @@ export const metadata: Metadata = {
   robots: "index, follow",
   alternates: {
     canonical: "https://buhr.dev",
+  },
+  metadataBase: new URL("https://buhr.dev"),
+  openGraph: {
+    url: "https://buhr.dev",
+    type: "website",
+    title: "Buhr | Portfolio",
+    description:
+      "Exploring product design and front-end development. My portfolio blends systems thinking, interaction design, motion, and real code.",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1746114120/open-graph-image_fqc6wk.png?v=2",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Buhr | Portfolio",
+    description:
+      "Exploring product design and front-end development. My portfolio blends systems thinking, interaction design, motion, and real code.",
+    images: [
+      "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1746114120/open-graph-image_fqc6wk.png?v=2",
+    ],
   },
 };
 
