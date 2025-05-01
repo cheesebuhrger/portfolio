@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "BUHR.DESIGN",
     images: [
       {
-        url: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1746114120/open-graph-image_fqc6wk.png",
+        url: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1746114120/open-graph-image_fqc6wk.png?v=2",
         width: 1200,
         height: 630,
         alt: "BUHR.DESIGN Portfolio Preview",
