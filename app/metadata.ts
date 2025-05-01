@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
-  title: "BUHR.DESIGN",
+  title: "Buhr Duong: [Portfolio]",
   description:
-    "Exploring the overlap of product design and front-end development. Buhr Duong's portfolio blends systems thinking, motion, and real code.",
+    "Exploring product design and front-end development. My portfolio blends systems thinking, interaction design, motion, and real code.",
   keywords: [
     "product design",
     "interaction design",
@@ -20,17 +20,17 @@ export const metadata: Metadata = {
   robots: "index, follow",
   openGraph: {
     type: "website",
-    title: "BUHR.DESIGN",
+    title: "Buhr Duong: [Portfolio]",
     description:
-      "Exploring the overlap of product design and front-end development. Buhr Duong's portfolio blends systems thinking, motion, and real code.",
+      "Exploring product design and front-end development. My portfolio blends systems thinking, interaction design, motion, and real code.",
     url: "https://buhr.design",
-    siteName: "BUHR.DESIGN",
+    siteName: "Buhr Duong: [Portfolio]",
     images: [
       {
         url: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1746114120/open-graph-image_fqc6wk.png?v=2",
         width: 1200,
         height: 630,
-        alt: "BUHR.DESIGN Portfolio Preview",
+        alt: "Buhr Duong Portfolio Showcase",
       },
     ],
     locale: "en_US",
