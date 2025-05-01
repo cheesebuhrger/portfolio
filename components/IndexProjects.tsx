@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
 import { useLenis } from "@studio-freight/react-lenis";
-import { designProjects, romanNumerals } from "@/data/designProjects";
+import { designProjects } from "@/data/designProjects";
 
 import Button from "./Button";
 import MediaImage from "./MediaImage";
