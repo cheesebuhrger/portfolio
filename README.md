@@ -25,8 +25,9 @@ I wanted full control over how I present my work—both in terms of layout and m
 
 ## What’s next
 
-- Adding more code-driven experiments
+- Adding coded demos
 - Improving accessibility
+- Get Storybook stood up
 - Getting better at animation and learning procedural animations
 
 ## Live site
