@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
-  title: "Buhr Duong: [Portfolio]",
+  title: "Buhr: [Portfolio]",
   description:
     "Exploring product design and front-end development. My portfolio blends systems thinking, interaction design, motion, and real code.",
   keywords: [
@@ -18,43 +18,8 @@ export const metadata: Metadata = {
   creator: "Buhr Duong",
   publisher: "Buhr Duong",
   robots: "index, follow",
-  openGraph: {
-    type: "website",
-    title: "Buhr Duong: [Portfolio]",
-    description:
-      "Exploring product design and front-end development. My portfolio blends systems thinking, interaction design, motion, and real code.",
-    url: "https://buhr.design",
-    siteName: "Buhr Duong: [Portfolio]",
-    images: [
-      {
-        url: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1746114120/open-graph-image_fqc6wk.png?v=2",
-        width: 1200,
-        height: 630,
-        alt: "Buhr Duong Portfolio Showcase",
-      },
-    ],
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Buhr Duong: [Portfolio]",
-    description:
-      "Exploring product design and front-end development. My portfolio blends systems thinking, interaction design, motion, and real code.",
-    images: [
-      "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1746114120/open-graph-image_fqc6wk.png?v=2",
-    ],
-  },
   alternates: {
-    canonical: "https://buhr.design",
-  },
-  other: {
-    "og:title": "Buhr Duong: [Portfolio]",
-    "og:type": "website",
-    "og:image":
-      "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1746114120/open-graph-image_fqc6wk.png?v=2",
-    "og:description":
-      "Exploring product design and front-end development. My portfolio blends systems thinking, interaction design, motion, and real code.",
-    "og:author": "Buhr Duong",
+    canonical: "https://buhr.dev",
   },
 };
 
