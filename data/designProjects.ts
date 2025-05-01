@@ -17,19 +17,6 @@ export interface Project {
   };
 }
 
-export const romanNumerals = [
-  "i",
-  "ii",
-  "iii",
-  "iv",
-  "v",
-  "vi",
-  "vii",
-  "viii",
-  "ix",
-  "x",
-];
-
 export const designProjects: Project[] = [
   {
     company: "Buildforce",

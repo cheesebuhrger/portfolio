@@ -3,7 +3,7 @@
 import type { NextPage } from "next";
 
 import IndexProjects from "@/components/IndexProjects";
-import IndexCodeProjects from "@/components/IndexCodeProjects";
+import IndexCodeProjects from "@/components/IndexDemos";
 import IndexPlayground from "../components/IndexPlayground";
 
 import CursorDot from "@/components/CursorDot";
@@ -20,17 +20,7 @@ const Home: NextPage = () => {
       <div className="min-h-screen bg-surface-background">
         <CursorDot />
         <IndexProjects />
-
-        {/* <IndexCodeProjects /> */}
-
-        <section
-          id="playground"
-          className="relative border-t border-border-primary p-4 md:p-6 lg:p-8"
-        >
-          <h2 className="text-xs font-mono uppercase mb-64">Playground</h2>
-
-          <IndexPlayground />
-        </section>
+        <IndexPlayground />
       </div>
     </ReactLenis>
   );

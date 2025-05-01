@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import TransitionLink from "./TransitionLink";
-import { codeProjects } from "@/data/codeProjects";
+import { demos } from "@/data/codeDemos";
 import Button from "./Button";
 import MediaImage from "./MediaImage";
 import { Badge } from "./Badge";
@@ -25,21 +25,17 @@ const IndexCodeProjects = () => {
       <h2 className="text-xs font-mono uppercase">Code</h2>
 
       <ul className="">
-        {codeProjects.map((codeProject) => (
+        {demos.map((demo) => (
           <li
-            key={codeProject.title}
+            key={demo.title}
             className="py-4 md:py-6 lg:py-8 border-b border-border-primary"
           >
-            <Link href={codeProject.url}>
+            <Link href={demo.url}>
               <div className="grid grid-cols-12 gap-4 md:gap-6 lg:gap-8">
-                <h3 className="text-5xl font-serif col-span-6">
-                  {codeProject.title}
-                </h3>
-                <p className="text-5xl font-serif col-span-3">
-                  {codeProject.year}
-                </p>
+                <h3 className="text-5xl font-serif col-span-6">{demo.title}</h3>
+                <p className="text-5xl font-serif col-span-3">{demo.year}</p>
                 <div className="col-span-3 flex flex-wrap gap-1">
-                  {codeProject.technologies.map((technology) => (
+                  {demo.technologies.map((technology) => (
                     <Badge key={technology} label={technology} />
                   ))}
                 </div>

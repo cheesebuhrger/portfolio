@@ -23,7 +23,11 @@ const IndexPlayground: React.FC = () => {
     useModal(playgroundItems);
 
   return (
-    <div>
+    <section
+      id="playground"
+      className="relative border-t border-border-primary p-4 md:p-6 lg:p-8"
+    >
+      <h2 className="text-xs font-mono uppercase mb-64">Playground</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
         {playgroundItems.map((item, index) => (
           <div
@@ -81,7 +85,7 @@ const IndexPlayground: React.FC = () => {
           </div>
         </div>
       </Modal>
-    </div>
+    </section>
   );
 };
 

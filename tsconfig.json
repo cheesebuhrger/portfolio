@@ -27,7 +27,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "data/designProjects.ts",
-    "data/codeProjects.ts",
+    "data/codeDemos.ts",
     "data/indexPlayground.ts"
   ],
   "exclude": ["node_modules"]
