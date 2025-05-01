@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# buhr.dev or buhr.design – Portfolio
 
-## Getting Started
+This is the source code for my personal portfolio, built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), and [GSAP](www.gsap.com). It showcases selected deep dives into projects, demos, and visuals that reflect how I approach design and code.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Framework**: Next.js (App Router)
+- **Language**: Typescript
+- **Styling**: Tailwind CSS
+- **Animations**: GSAP
+- **Hosting**: Vercel
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Responsive layout
+- Dynamic routing for case studies
+- Slick animations
+- Modular component architecture with reusable design patterns
+- Built from scratch, no templates
+- Used Cursor for assistance
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Why I built this
 
-## Learn More
+I wanted full control over how I present my work—both in terms of layout and motion. I also used this as a way to get deeper into front-end development and refine my skills in React, layout systems, and animation frameworks.
 
-To learn more about Next.js, take a look at the following resources:
+## What’s next
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Adding more code-driven experiments
+- Improving accessibility
+- Getting better at animation and learning procedural animations
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Live site
 
-## Deploy on Vercel
+[www.buhr.dev](https://www.buhr.dev)
+[www.buhr.design](https://www.buhr.design)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Feel free to fork, reference, or reach out if you have questions.
