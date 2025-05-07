@@ -61,7 +61,16 @@ const Footer = () => {
             </li> */}
           </>
         )}
-
+        <li>
+          <a
+            href="https://github.com/cheesebuhrger"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-text-action"
+          >
+            Github
+          </a>
+        </li>
         <li className={!isHomePage ? "mt-4" : ""}>
           <a
             href="https://linkedin.com/in/buhrduong"
@@ -69,9 +78,10 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="hover:text-text-action"
           >
-            LinkedIn [Contact]
+            LinkedIn
           </a>
         </li>
+
         <li>
           <a
             href="https://are.na/buhr-duong/"
