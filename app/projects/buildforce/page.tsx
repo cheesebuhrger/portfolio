@@ -288,7 +288,7 @@ const Buildforce: React.FC = () => {
               media={[
                 {
                   type: "image",
-                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1752015356/buildforce-08_knc89w.webp",
+                  src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1752015713/buildforce-08_shlzjc.webp",
                   alt: "Contractor time approval screen detailing worker time entry",
                   caption: (
                     <>
