@@ -520,18 +520,18 @@ const Buildforce: React.FC = () => {
             item5: "How did we introduce a brand refresh alongside this work?",
           }}
           project={{
-            name: designProjects[1].title,
-            type: "image",
-            src: designProjects[1].image1.src,
-            alt: designProjects[1].image1.alt,
-            url: designProjects[1].url,
-          }}
-          prototype={{
             name: designProjects[2].title,
             type: "image",
             src: designProjects[2].image1.src,
             alt: designProjects[2].image1.alt,
             url: designProjects[2].url,
+          }}
+          prototype={{
+            name: designProjects[0].title,
+            type: "image",
+            src: designProjects[0].image1.src,
+            alt: designProjects[0].image1.alt,
+            url: designProjects[0].url,
           }}
         />
       </div>

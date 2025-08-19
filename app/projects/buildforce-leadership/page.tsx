@@ -589,18 +589,18 @@ const Project1: React.FC = () => {
             item5: "How did design contribute to product strategy?",
           }}
           project={{
+            name: designProjects[1].title,
+            type: "image",
+            src: designProjects[1].image1.src,
+            alt: designProjects[1].image1.alt,
+            url: designProjects[1].url,
+          }}
+          prototype={{
             name: designProjects[2].title,
             type: "image",
             src: designProjects[2].image1.src,
             alt: designProjects[2].image1.alt,
             url: designProjects[2].url,
-          }}
-          prototype={{
-            name: designProjects[0].title,
-            type: "image",
-            src: designProjects[0].image2.src,
-            alt: designProjects[0].image2.alt,
-            url: designProjects[0].url,
           }}
         />
       </div>
