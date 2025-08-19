@@ -198,18 +198,18 @@ const Project3: React.FC = () => {
             item5: "How did I reverse-engineer our backlog of ideas?",
           }}
           project={{
+            name: designProjects[2].title,
+            type: "image",
+            src: designProjects[2].image1.src,
+            alt: designProjects[2].image1.alt,
+            url: designProjects[2].url,
+          }}
+          prototype={{
             name: designProjects[0].title,
             type: "image",
             src: designProjects[0].image1.src,
             alt: designProjects[0].image1.alt,
             url: designProjects[0].url,
-          }}
-          prototype={{
-            name: designProjects[1].title,
-            type: "image",
-            src: designProjects[1].image1.src,
-            alt: designProjects[1].image1.alt,
-            url: designProjects[1].url,
           }}
         />
       </div>

@@ -21,26 +21,6 @@ export const designProjects: Project[] = [
   {
     company: "Buildforce",
     role: "Staff Product Designer",
-    year: "2024",
-    duration: "6 weeks",
-    url: "/projects/buildforce",
-    title: "Designing friction to save everyone time",
-    problem:
-      "Inaccurate worker time entries made contractors distrust our system & left the ops team cleaning up payroll for 3 days",
-    solution:
-      "Redesigning the time tracking flow resulted in fewer errors, more accurate hrs from workers, & reduced days of manual payroll cleanup",
-    image1: {
-      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744093117/buildforce-cover-01_1_jzzqeo.webp",
-      alt: "Buildforce time tracking app.",
-    },
-    image2: {
-      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744925544/buildforce-cover-02_v3wm6k.webp",
-      alt: "Buildforce worker looking at phone on a construction site.",
-    },
-  },
-  {
-    company: "Buildforce",
-    role: "Staff Product Designer",
     year: "2023-24",
     duration: "1 year",
     url: "/projects/buildforce-leadership",
@@ -57,6 +37,26 @@ export const designProjects: Project[] = [
     image2: {
       src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1743183530/buildforce-leadership-cover-02_gqnb5l.webp",
       alt: "Buildforce brand refresh moodboard.",
+    },
+  },
+  {
+    company: "Buildforce",
+    role: "Staff Product Designer",
+    year: "2024",
+    duration: "6 weeks",
+    url: "/projects/buildforce",
+    title: "Designing friction to save everyone time",
+    problem:
+      "Inaccurate worker time entries made contractors distrust our system & left the ops team cleaning up payroll for 3 days",
+    solution:
+      "Redesigning the time tracking flow resulted in fewer errors, more accurate hrs from workers, & reduced days of manual payroll cleanup",
+    image1: {
+      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744093117/buildforce-cover-01_1_jzzqeo.webp",
+      alt: "Buildforce time tracking app.",
+    },
+    image2: {
+      src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744925544/buildforce-cover-02_v3wm6k.webp",
+      alt: "Buildforce worker looking at phone on a construction site.",
     },
   },
   {

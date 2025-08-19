@@ -28,9 +28,9 @@ const Project1: React.FC = () => {
     <ReactLenis root>
       <div>
         <ProjectHero
-          headline={designProjects[1].title}
-          problem={designProjects[1].problem}
-          solution={designProjects[1].solution}
+          headline={designProjects[0].title}
+          problem={designProjects[0].problem}
+          solution={designProjects[0].solution}
           skills={[
             "!Staff Product Designer",
             "Brand",
@@ -46,8 +46,8 @@ const Project1: React.FC = () => {
             "Web App",
           ]}
           duration={{
-            length: designProjects[1].duration,
-            year: designProjects[1].year,
+            length: designProjects[0].duration,
+            year: designProjects[0].year,
           }}
           team={{
             avatars: [
@@ -110,12 +110,12 @@ const Project1: React.FC = () => {
           }}
           images={{
             primary: {
-              src: designProjects[1].image1.src,
-              alt: designProjects[1].image1.alt,
+              src: designProjects[0].image1.src,
+              alt: designProjects[0].image1.alt,
             },
             secondary: {
-              src: designProjects[1].image2.src,
-              alt: designProjects[1].image2.alt,
+              src: designProjects[0].image2.src,
+              alt: designProjects[0].image2.alt,
             },
           }}
           className="stack-animation"
