@@ -26,9 +26,9 @@ const Buildforce: React.FC = () => {
       <div>
         <CursorDot />
         <ProjectHero
-          headline={designProjects[0].title}
-          problem={designProjects[0].problem}
-          solution={designProjects[0].solution}
+          headline={designProjects[1].title}
+          problem={designProjects[1].problem}
+          solution={designProjects[1].solution}
           skills={[
             "!Staff Product Designer",
             "!Iterative Design",
@@ -41,8 +41,8 @@ const Buildforce: React.FC = () => {
             "Web App",
           ]}
           duration={{
-            length: designProjects[0].duration,
-            year: designProjects[0].year,
+            length: designProjects[1].duration,
+            year: designProjects[1].year,
           }}
           team={{
             avatars: [
@@ -84,12 +84,12 @@ const Buildforce: React.FC = () => {
           }}
           images={{
             primary: {
-              src: designProjects[0].image1.src,
-              alt: designProjects[0].image1.alt,
+              src: designProjects[1].image1.src,
+              alt: designProjects[1].image1.alt,
             },
             secondary: {
-              src: designProjects[0].image2.src,
-              alt: designProjects[0].image2.alt,
+              src: designProjects[1].image2.src,
+              alt: designProjects[1].image2.alt,
             },
           }}
           className="stack-animation"
