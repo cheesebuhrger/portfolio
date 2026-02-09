@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useRef } from "react";
+import CursorDot from "@/components/CursorDot";
 
 import ProjectSectionMedia from "@/components/ProjectSectionMedia";
 import ProjectSectionContent from "@/components/ProjectSectionContent";
@@ -27,6 +28,7 @@ const Project1: React.FC = () => {
   return (
     <ReactLenis root>
       <div>
+        <CursorDot />
         <ProjectHero
           headline={designProjects[0].title}
           problem={designProjects[0].problem}

@@ -10,6 +10,13 @@ export interface GridItem {
 export const playgroundItems: GridItem[] = [
   {
     type: "video",
+    src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1770667545/abodemoney-loader_srqqc5.webm",
+    title: "Abode Money Loader",
+    date: "2026",
+    description: "Animated loader for Abode Money with Rive.",
+  },
+  {
+    type: "video",
     src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1742872389/buildforce-loader_ntpl4q.webm",
     title: "Buildforce Loader",
     date: "2024",
