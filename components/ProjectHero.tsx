@@ -153,6 +153,7 @@ const ProjectHero: React.FC<ProjectHeroProps> = ({
             src={images.primary.src}
             alt={images.primary.alt}
             fill
+            loading="eager"
             className="image-scale-animation object-cover"
           />
         </div>
