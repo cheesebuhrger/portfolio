@@ -95,7 +95,8 @@ const Button: React.FC<ButtonProps> = ({
       </div>
       <div
         ref={secondLabelRef}
-        className="absolute top-0 left-0 font-mono uppercase"
+        // Hover-flip copy; without motion it would sit on top of the label.
+        className="absolute top-0 left-0 font-mono uppercase motion-reduce:hidden"
       >
         {label}
       </div>
