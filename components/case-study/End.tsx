@@ -2,40 +2,19 @@
 
 import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import MediaImage from "@/components/MediaImage";
-import TransitionLink from "./layout/TransitionLink";
+import TransitionLink from "@/components/layout/TransitionLink";
+import type { ProjectSummary } from "@/lib/content";
 
-interface ProjectEndProps {
-  process: {
-    item1: string;
-    item2: string;
-    item3: string;
-    item4: string;
-    item5: string;
-  };
+interface EndProps {
+  /** Full-bleed image above "The Nitty Gritty". */
   image: string;
-  project: {
-    type: "image" | "video";
-    src: string;
-    alt: string;
-    name: string;
-    url: string;
-  };
-  prototype: {
-    type: "image" | "video";
-    src: string;
-    alt: string;
-    name: string;
-    url: string;
-  };
+  /** Five process questions, laid out alternating right/left bottom-up. */
+  process: string[];
+  /** "Explore more" cards. */
+  related: ProjectSummary[];
 }
 
-const ProjectEnd = ({
-  process,
-  image,
-  project,
-  prototype,
-}: ProjectEndProps) => {
-
+const End = ({ process, image, related }: EndProps) => {
   useGSAP(() => {
     const processTimeline = gsap.timeline({
       scrollTrigger: {
@@ -315,22 +294,22 @@ const ProjectEnd = ({
             <div className="process-fade flex flex-row w-full h-full gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8 text-text-primary-negative font-serif ~text-xl/2xl">
               <div className="overflow-hidden grid grid-rows-5 pb-8 pt-24 w-full border-r border-border-tertiary-negative justify-items-end">
                 <div className="process-item-1 process-item pl-4 md:pl-0 pr-4 md:pr-6 lg:pr-8 w-full md:w-1/2 row-start-5 text-right flex items-center text-balance">
-                  {process.item1}
+                  {process[0]}
                 </div>
                 <div className="process-item-3 process-item pl-4 md:pl-0 pr-4 md:pr-6 lg:pr-8 w-full md:w-1/2 row-start-3 text-right flex items-center text-balance">
-                  {process.item3}
+                  {process[2]}
                 </div>
                 <div className="process-item-5 process-item pl-4 md:pl-0 pr-4 md:pr-6 lg:pr-8 w-full md:w-1/2 row-start-1 text-right flex items-center text-balance">
-                  {process.item5}
+                  {process[4]}
                 </div>
               </div>
 
               <div className="overflow-hidden grid grid-rows-5 pb-8 pt-24 w-full border-l border-border-tertiary-negative">
                 <div className="process-item-2 process-item pr-4 md:pr-0 pl-4 md:pl-6 lg:pl-8 w-full md:w-1/2 row-start-4 flex items-center text-balance">
-                  {process.item2}
+                  {process[1]}
                 </div>
                 <div className="process-item-4 process-item pr-4 md:pr-0 pl-4 md:pl-6 lg:pl-8 w-full md:w-1/2 row-start-2 flex items-center text-balance">
-                  {process.item4}
+                  {process[3]}
                 </div>
               </div>
             </div>
@@ -371,54 +350,30 @@ const ProjectEnd = ({
         </div>
 
         <div className="flex flex-col md:flex-row gap-16 md:gap-6 lg:gap-8 relative">
-          <div className="group relative w-full md:w-1/2 h-fit">
-            <TransitionLink
-              href={project.url}
-              className="cursor-animation transition-all duration-300"
-              data-cursor-text="VIEW PROJECT"
-            >
-              <div className="relative aspect-21/9-half bg-surface-secondary rounded-md overflow-hidden">
-                <MediaImage
-                  type={project.type}
-                  src={project.src}
-                  alt={project.alt}
-                />
-              </div>
-
-              {/* <p className="text-xs font-mono uppercase text-text-secondary-negative mt-6 mb-2 group-hover:text-text-action">
-                Project
-              </p> */}
-              <h2 className="~text-4xl/5xl mt-6 group-hover:text-text-action group-hover:underline text-pretty">
-                {project.name}
-              </h2>
-            </TransitionLink>
-          </div>
-
-          <div className="group relative w-full md:w-1/2 h-fit">
-            <TransitionLink
-              href={prototype.url}
-              className="cursor-animation transition-all duration-300"
-              data-cursor-text="VIEW PROJECT"
-            >
-              <div className="relative aspect-21/9-half bg-surface-secondary rounded-md overflow-hidden">
-                <MediaImage
-                  type={prototype.type}
-                  src={prototype.src}
-                  alt={prototype.alt}
-                />
-              </div>
-              {/* <p className="text-xs font-mono uppercase text-text-secondary-negative mt-6 mb-2 group-hover:text-text-action">
-                Prototype
-              </p> */}
-              <h2 className="~text-4xl/5xl mt-6 group-hover:text-text-action group-hover:underline text-pretty">
-                {prototype.name}
-              </h2>
-            </TransitionLink>
-          </div>
+          {related.map((project) => (
+            <div key={project.slug} className="group relative w-full md:w-1/2 h-fit">
+              <TransitionLink
+                href={project.href}
+                className="cursor-animation transition-all duration-300"
+                data-cursor-text="VIEW PROJECT"
+              >
+                <div className="relative aspect-21/9-half bg-surface-secondary rounded-md overflow-hidden">
+                  <MediaImage
+                    type="image"
+                    src={project.cover.primary.src}
+                    alt={project.cover.primary.alt}
+                  />
+                </div>
+                <h2 className="~text-4xl/5xl mt-6 group-hover:text-text-action group-hover:underline text-pretty">
+                  {project.title}
+                </h2>
+              </TransitionLink>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-export default ProjectEnd;
+export default End;

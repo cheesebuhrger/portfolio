@@ -176,6 +176,27 @@ Each phase is one PR. Visual parity is checked before merge. Pause for review af
 - `ProjectEnd` → `case-study/End` with `process: string[]` and `related` derived from data.
 - Media background colour becomes a hex value applied via `style`.
 
+**Status: done.** Notes:
+- **RichText format:** plain strings. `**text**` marks a highlight (the `text-action` colour), and a blank line starts a new paragraph. Use real typographic characters (’ “ ”). This maps 1:1 to Portable Text marks if Sanity is added.
+- **Content:** `content/projects/{slug}.ts`, one typed `Project` per file. `content/projects/index.ts` holds the display order. Playground data moved to `content/playground.ts`.
+- **Seam:** `lib/content.ts` has `getProjects`, `getProject`, `getProjectSummaries` and `getRelatedProjects` (the next two, wrapping). The homepage gets summaries as props, so full case-study bodies stay out of the client bundle.
+- **Components:** case-study components moved to `components/case-study/`: `CaseStudy`, `Hero`, `Section`, `End`, `BlockRenderer`, `RichText`, and `blocks/{Text,Media,Stats,Quote,Callouts,Group}Block` + `StatCard`. The one custom Buildforce layout (three bordered statements) became a reusable `callouts` block.
+- **Migration:** the three case studies were converted from JSX with a one-off script using the TypeScript parser, not retyped. The script failed loudly on anything it didn't recognise. The migration was all-at-once rather than Strava first, because it was automated.
+- **Metadata:**
+  - Each case study has its own title, description (the project's `solution`), OG/Twitter image (the primary cover) and canonical URL.
+  - Previously every case study inherited the homepage's canonical, which marked them as duplicates of the homepage.
+  - Unknown slugs return 404 (`dynamicParams = false`).
+- **Verified against the Phase 3 build:**
+  - Visible text is character-for-character identical on all three case studies.
+  - Page heights are identical, and mockup background colours match live.
+  - All 18 case-study screenshots and 4 homepage screenshots match (differences ≤0.07%, from animated icons and video frames).
+  - The scroll tests still pass.
+- **Harmless markup changes:**
+  - A stray `undefined` class is gone from media groups.
+  - Mockup colours are now inline styles instead of `bg-[#…]` classes.
+  - A single-paragraph body renders inline rather than in a `<p>`.
+- `data/` was removed (`designProjects.ts` became the content files).
+
 ### Phase 5: Homepage
 - `FeaturedProjects` rendered from `getProjects()`, with timelines generated in a loop and mobile values via `matchMedia`.
 - Playground uses a native `<dialog>`-based `Dialog` (focus handling, Escape, arrow keys) and the unified `Media` component.
