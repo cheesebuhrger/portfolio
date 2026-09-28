@@ -39,7 +39,8 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
 
   useGSAP(
     () => {
-      const mm = gsap.matchMedia();
+      // Scoped to this section: matchMedia doesn't inherit useGSAP's scope.
+      const mm = gsap.matchMedia(ref);
 
       mm.add(
         {
@@ -81,7 +82,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           }
 
           // Floating preview: hidden once the first project is half on screen.
-          gsap.fromTo(
+          if (firstEl) gsap.fromTo(
             ".project-image-fix-container",
             { display: "block" },
             {
@@ -95,7 +96,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
             },
           );
 
-          if (motion) {
+          if (motion && firstEl) {
             gsap.to(".project-image-fix", {
               scale: 2,
               bottom: "0",
@@ -126,7 +127,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
             transformOrigin: "bottom right",
           });
           gsap.set(".project-image-right", { transformOrigin: "bottom left" });
-          gsap.set(".project-image-fix-container", { display: "block" });
+          if (firstEl) gsap.set(".project-image-fix-container", { display: "block" });
 
           // Order matters: ScrollTrigger positions depend on creation order,
           // so create every pin first, then the title reveals, then the fades.
@@ -235,22 +236,24 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
       ref={ref}
       className="overall-container relative w-screen overflow-hidden"
     >
-      <div className="project-image-fix-container w-1/2 z-[10] fixed bottom-0 hidden">
-        <a
-          href="#projects"
-          onClick={scrollTo("#projects")}
-          aria-label="Scroll to projects"
-          className="project-image-fix index-intro-in absolute w-1/2 aspect-4/3 overflow-hidden bottom-8 right-0 md:right-4 rounded-md cursor-pointer hidden md:block"
-        >
-          <Media
-            src={first.cover.primary.src}
-            alt={first.cover.primary.alt}
-            type="image"
-            imageScaleAnimation="none"
-            {...IMAGE_SIZE}
-          />
-        </a>
-      </div>
+      {first && (
+        <div className="project-image-fix-container w-1/2 z-[10] fixed bottom-0 hidden">
+          <a
+            href="#projects"
+            onClick={scrollTo("#projects")}
+            aria-label="Scroll to projects"
+            className="project-image-fix index-intro-in absolute w-1/2 aspect-4/3 overflow-hidden bottom-8 right-0 md:right-4 rounded-md cursor-pointer hidden md:block"
+          >
+            <Media
+              src={first.cover.primary.src}
+              alt={first.cover.primary.alt}
+              type="image"
+              imageScaleAnimation="none"
+              {...IMAGE_SIZE}
+            />
+          </a>
+        </div>
+      )}
 
       <div className="index-intro relative z-[5] w-screen h-screen flex flex-col pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-8 items-end bg-surface-primary border-b border-border-tertiary">
         <div className="index-intro-out relative p-4 md:p-6 lg:p-8 w-full h-full flex md:grid flex-col md:grid-cols-2 gap-8 md:gap-6 lg:gap-8 justify-center md:items-center">

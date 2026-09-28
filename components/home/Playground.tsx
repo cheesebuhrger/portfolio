@@ -30,6 +30,8 @@ export default function Playground({ items }: PlaygroundProps) {
     [items.length],
   );
 
+  if (items.length === 0) return null;
+
   return (
     <section
       id="playground"
