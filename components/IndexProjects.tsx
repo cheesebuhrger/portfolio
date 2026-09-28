@@ -48,7 +48,7 @@ const IndexProjects = () => {
   useGSAP(() => {
     // Split type animation setup
     const projectContent = document.querySelectorAll<HTMLElement>(
-      ".index-project-title"
+      ".index-project-title",
     );
     projectContent.forEach((item) => {
       const text = new SplitType(item, {
@@ -91,7 +91,7 @@ const IndexProjects = () => {
         duration: 1,
         delay: 1,
         ease: "power2.out",
-      }
+      },
     );
 
     gsap.fromTo(
@@ -107,7 +107,7 @@ const IndexProjects = () => {
           start: "center bottom",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
 
     gsap.to(".project-image-fix", {
@@ -195,7 +195,7 @@ const IndexProjects = () => {
           right: 0,
           borderRadius: 0,
           ease: "power1.inOut",
-        }
+        },
       )
       .fromTo(
         ".index-project-1 .project-image-right",
@@ -210,7 +210,7 @@ const IndexProjects = () => {
           ease: "power1.inOut",
           left: 0,
         },
-        "<"
+        "<",
       );
 
     pinSecondProject
@@ -224,7 +224,7 @@ const IndexProjects = () => {
         },
         {
           scale: 1,
-        }
+        },
       )
       .fromTo(
         ".index-project-2 .project-image-right",
@@ -234,7 +234,7 @@ const IndexProjects = () => {
         {
           scale: 1,
         },
-        "<"
+        "<",
       );
 
     pinThirdProject
@@ -248,7 +248,7 @@ const IndexProjects = () => {
         },
         {
           scale: 1,
-        }
+        },
       )
       .fromTo(
         ".index-project-3 .project-image-right",
@@ -258,7 +258,7 @@ const IndexProjects = () => {
         {
           scale: 1,
         },
-        "<"
+        "<",
       );
 
     const textFirstProject = gsap.timeline({
@@ -283,7 +283,7 @@ const IndexProjects = () => {
           skewX: 0,
           ease: "power2.out",
           duration: 1,
-        }
+        },
       )
       .fromTo(
         ".index-project-1 .index-project-title .line",
@@ -293,7 +293,7 @@ const IndexProjects = () => {
           ease: "power2.out",
           duration: 1,
         },
-        "<"
+        "<",
       )
       .fromTo(
         ".index-project-1 .index-project-meta",
@@ -303,7 +303,7 @@ const IndexProjects = () => {
           ease: "power2.out",
           duration: 0.5,
         },
-        "<"
+        "<",
       );
 
     const textSecondProject = gsap.timeline({
@@ -328,7 +328,7 @@ const IndexProjects = () => {
           skewX: 0,
           ease: "power2.out",
           duration: 1,
-        }
+        },
       )
       .fromTo(
         ".index-project-2 .index-project-title .line",
@@ -338,7 +338,7 @@ const IndexProjects = () => {
           ease: "power2.out",
           duration: 1,
         },
-        "<"
+        "<",
       )
       .fromTo(
         ".index-project-2 .index-project-meta",
@@ -348,7 +348,7 @@ const IndexProjects = () => {
           ease: "power2.out",
           duration: 0.5,
         },
-        "<"
+        "<",
       );
 
     const textThirdProject = gsap.timeline({
@@ -373,7 +373,7 @@ const IndexProjects = () => {
           skewX: 0,
           ease: "power2.out",
           duration: 1,
-        }
+        },
       )
       .fromTo(
         ".index-project-3 .index-project-title .line",
@@ -383,7 +383,7 @@ const IndexProjects = () => {
           ease: "power2.out",
           duration: 1,
         },
-        "<"
+        "<",
       )
       .fromTo(
         ".index-project-3 .index-project-meta",
@@ -393,7 +393,7 @@ const IndexProjects = () => {
           ease: "power2.out",
           duration: 0.5,
         },
-        "<"
+        "<",
       );
 
     gsap.to(".index-project-1 .project-container", {
@@ -452,11 +452,10 @@ const IndexProjects = () => {
       <div className="index-intro relative z-[5] w-screen h-screen flex flex-col pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-8 items-end bg-surface-primary border-b border-border-tertiary">
         <div className="index-intro-out relative p-4 md:p-6 lg:p-8 w-full h-full flex md:grid flex-col md:grid-cols-2 gap-8 md:gap-6 lg:gap-8 justify-center md:items-center">
           <h1 className="relative text-4xl split-type-animation-hero col-span-1 md:col-start-2 text-pretty">
-            I&rsquo;m a builder at heart, always finding new ways to bring ideas
-            to life. Over the past decade, I&rsquo;ve honed my skills in
-            interaction design, motion, & prototyping. These days, I&rsquo;m
-            deepening my skills in frontend code to bridge the gap between
-            design & dev.
+            I&apos;m a builder at heart. For the past decade I&apos;ve designed
+            products across interaction, motion, and prototyping, and these days
+            I build them too, taking work from concept to production front-end.
+            I sweat the small details that make something feel well-crafted.
           </h1>
           <div className="md:hidden flex flex-row gap-2">
             <Button

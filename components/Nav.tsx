@@ -21,7 +21,7 @@ const Nav = () => {
           onClick={scrollToTop}
         >
           <div>BUHR DUONG</div>
-          <div>PRODUCT DESIGNER</div>
+          <div>DESIGN ENGINEER</div>
         </div>
       ) : (
         <Button
