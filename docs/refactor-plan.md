@@ -202,6 +202,49 @@ Each phase is one PR. Visual parity is checked before merge. Pause for review af
 - Playground uses a native `<dialog>`-based `Dialog` (focus handling, Escape, arrow keys) and the unified `Media` component.
 - Type `useModal` generically (or fold it into the Playground).
 
+**Status: done.** Notes:
+- **Final component layout:**
+  - `components/home/{FeaturedProjects,Playground}`
+  - `components/ui/{Button,Badge,BadgeGroup,Avatar,AvatarGroup,Tooltip,Media,Dialog}`
+  - `components/case-study/*`, `components/layout/*` (now including `useTransition`), `components/motion/*`, `components/icons/*`
+  - `hooks/` and `data/` are gone.
+- **`FeaturedProjects`:**
+  - Renders the projects by mapping over the data, instead of three copy-pasted blocks and timelines.
+  - Creation order is preserved: all pins, then the title reveals, then the fades. That order matters for ScrollTrigger positions.
+  - Animations are scoped to the component (`useGSAP({ scope })`, `data-project` elements) instead of numbered global classes.
+  - `gsap.matchMedia()` handles breakpoints and reduced motion. It only runs when at least one condition matches, hence the explicit `isDesktop` condition.
+- **Playground and dialog:**
+  - `Playground` takes its items from `lib/content.ts` (`getPlaygroundItems`); the `PlaygroundItem` type lives in `lib/types.ts`.
+  - Tiles are `<button>`s, so they're keyboard-accessible.
+  - `Modal` became `Dialog`, built on the native `<dialog>`: focus is trapped and restored, Escape and scrim clicks animate closed, arrow keys navigate, and page scroll is locked while it's open. This clears the last lint error.
+  - `useModal` was folded into `Playground`.
+  - `MediaItem` was removed; the Playground uses `Media`, so images now go through `next/image` with `sizes`.
+- **Other markup:**
+  - The intro's floating preview and "featured" tile are real `#projects` / `#project-2` links instead of clickable divs.
+  - Project z-index is an inline style, since it's computed from the number of projects.
+- **Intended behaviour changes:**
+  1. **Mobile:** the first project's image now grows with the mobile values (from the corner, square edges). Before, the timeline was built before the mobile values were set, so phones always got the desktop inset/rounded values.
+  2. **Modal:** wheel-scrolling over the open modal no longer scrolls the page behind it (the baseline measured 1,117px).
+- **Verified against the Phase 4 build:**
+  - Desktop homepage screenshots are pixel-identical at all 8 scroll positions, apart from video frames.
+  - Phone screenshots are identical except the mobile fix above.
+  - Same page heights, pin count and text.
+  - Modal navigation, Escape and scrim close behave the same.
+  - Scroll tests pass, reduced motion works, and there are no page errors.
+- **Lint is fully clean.**
+
+### Later: Code projects (not yet designed)
+A second kind of project for coding work. The cover is likely shared, but the sections are still to be decided. Choose the approach once the sections are designed:
+
+- **A. Same template, new block types** (start here). If a code project is still hero → numbered sections → end, only new blocks are needed. Examples: `code` (snippet + language + caption), `embed` (live demo / sandbox), `stack` (tech used). Add each to the `Block` union in `lib/types.ts`, give it a component in `components/case-study/blocks/`, and add a case in `BlockRenderer`. Every project can then use them.
+- **B. Second template** (only if the page *structure* differs, e.g. no problem/solution or team, a "Try it" link, a different ending):
+  - Split the type into `ProjectBase` (shared: slug, title, year, role, cover) and `DesignProject | CodeProject`, discriminated by a `kind` field.
+  - Add `components/code-study/CodeStudy.tsx`, reusing the cover, `Section`, `BlockRenderer` and blocks.
+  - In `app/projects/[slug]/page.tsx`, pick the template by `project.kind`.
+  - Summaries only use base fields, so homepage cards and "Explore more" work for both kinds. Filter by `kind` if code projects get their own homepage section.
+- Moving from A to B later is additive: add `kind` and one branch in the route.
+- In Sanity, this maps to either one document type with a `kind` field or two document types.
+
 ### Later: Sanity (deferred)
 - Sanity schemas mirror `lib/types.ts`. `lib/content.ts` switches to GROQ. Studio at `/studio`. Revalidation webhook.
 - Decide on image hosting then: keep Cloudinary URLs or move to the Sanity image CDN.

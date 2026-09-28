@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { ScaleReveal, useScaleReveal } from "./motion/useScaleReveal";
+import { ScaleReveal, useScaleReveal } from "@/components/motion/useScaleReveal";
 
 interface BaseMediaProps {
   type: "image" | "video";
@@ -18,6 +18,8 @@ interface ImageProps extends BaseMediaProps {
   src: string;
   width?: number;
   height?: number;
+  /** Rendered-width hint for responsive image selection (with fill). */
+  sizes?: string;
 }
 
 interface VideoProps extends BaseMediaProps {
@@ -30,9 +32,9 @@ interface VideoProps extends BaseMediaProps {
   muted?: boolean;
 }
 
-type MediaImageProps = ImageProps | VideoProps;
+type MediaProps = ImageProps | VideoProps;
 
-const MediaImage: React.FC<MediaImageProps> = (props) => {
+const Media: React.FC<MediaProps> = (props) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const mediaClassName = `w-full h-full ${props.objectFit ?? "object-cover"}`;
@@ -66,10 +68,10 @@ const MediaImage: React.FC<MediaImageProps> = (props) => {
       alt={props.alt}
       {...(props.width && props.height
         ? { width: props.width, height: props.height }
-        : { fill: true })}
+        : { fill: true, sizes: props.sizes })}
       className={mediaClassName}
     />
   );
 };
 
-export default MediaImage;
+export default Media;

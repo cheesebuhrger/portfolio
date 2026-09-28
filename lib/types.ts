@@ -114,3 +114,14 @@ export type Project = {
     process: string[];
   };
 };
+
+/** A tile in the homepage Playground grid (opens in the detail dialog). */
+export type PlaygroundItem = {
+  type: "image" | "video";
+  src: string;
+  title: string;
+  date: string;
+  description?: string;
+  /** External link, shown as "View" in the dialog. */
+  url?: string;
+};

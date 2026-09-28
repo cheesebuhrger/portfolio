@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useTransition } from "../../hooks/useTransition";
+import { useTransition } from "./useTransition";
 
 type TransitionLinkProps = Omit<React.ComponentProps<typeof Link>, "href"> & {
   href: string;

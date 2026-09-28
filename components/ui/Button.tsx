@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { gsap, SplitText, useGSAP, withMotion } from "@/lib/gsap";
-import TransitionLink from "./layout/TransitionLink";
+import TransitionLink from "@/components/layout/TransitionLink";
 
 interface ButtonProps {
   label: string;
