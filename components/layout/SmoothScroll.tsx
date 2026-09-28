@@ -40,13 +40,23 @@ function ResetScrollOnNavigate() {
   const isHistoryNavigation = useRef(false);
   // Last scroll position per path, for back/forward. The browser's own
   // restoration lands too late (after ScrollTrigger has already refreshed).
+  // Keyed by path, not history entry: revisiting a page restores the most
+  // recent visit's position.
   const savedPositions = useRef(new Map<string, number>());
 
   useEffect(() => {
     const onPopState = () => {
-      isHistoryNavigation.current = true;
+      // Only flag back/forward that changes page; a same-path popstate (e.g.
+      // between #hash entries) never reaches the route-change effect that
+      // clears the flag.
+      if (window.location.pathname !== previousPathname.current) {
+        isHistoryNavigation.current = true;
+      }
     };
     const onScroll = () => {
+      // During back/forward the browser scrolls before React swaps pages;
+      // that position belongs to the incoming page, so don't record it.
+      if (isHistoryNavigation.current) return;
       savedPositions.current.set(previousPathname.current, window.scrollY);
     };
     window.addEventListener("popstate", onPopState);
@@ -65,9 +75,7 @@ function ResetScrollOnNavigate() {
     const fromHistory = isHistoryNavigation.current;
     isHistoryNavigation.current = false;
 
-    const hashTarget = window.location.hash
-      ? document.getElementById(decodeURIComponent(window.location.hash.slice(1)))
-      : null;
+    const hashTarget = getHashTarget();
     const target = fromHistory
       ? (savedPositions.current.get(pathname) ?? 0)
       : (hashTarget ?? 0);
@@ -88,13 +96,40 @@ function ResetScrollOnNavigate() {
     // above the viewport, which the browser's scroll anchoring compensates
     // for), and ScrollTrigger's first refresh then locks in the shifted
     // position. Re-apply the target once that refresh is done.
-    const onRefresh = () => {
+    //
+    // Pages without ScrollTriggers never refresh, so disarm on the visitor's
+    // first input or after a moment; otherwise a later resize would snap
+    // them back to the target mid-read.
+    const disarm = () => {
       ScrollTrigger.removeEventListener("refresh", onRefresh);
+      clearTimeout(timeout);
+      for (const type of INPUT_EVENTS) window.removeEventListener(type, disarm);
+    };
+    const onRefresh = () => {
+      disarm();
       jump();
     };
+    const timeout = setTimeout(disarm, 1000);
     ScrollTrigger.addEventListener("refresh", onRefresh);
-    return () => ScrollTrigger.removeEventListener("refresh", onRefresh);
+    for (const type of INPUT_EVENTS) {
+      window.addEventListener(type, disarm, { passive: true, once: true });
+    }
+    return disarm;
   }, [lenis, pathname]);
 
   return null;
+}
+
+const INPUT_EVENTS = ["wheel", "touchstart", "keydown", "pointerdown"] as const;
+
+function getHashTarget(): HTMLElement | null {
+  const raw = window.location.hash.slice(1);
+  if (!raw) return null;
+  let id = raw;
+  try {
+    id = decodeURIComponent(raw);
+  } catch {
+    // Malformed percent-encoding in a shared link: use the hash as written.
+  }
+  return document.getElementById(id);
 }
