@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import SplitType from "split-type";
-import { gsap } from "@/lib/gsap";
+import React, { useRef } from "react";
+import { gsap, SplitText, useGSAP, withMotion } from "@/lib/gsap";
 import TransitionLink from "./layout/TransitionLink";
 
 interface ButtonProps {
@@ -22,76 +21,45 @@ const Button: React.FC<ButtonProps> = ({
   size = "medium",
   variant = "primary",
 }) => {
+  const rootRef = useRef<HTMLDivElement>(null);
   const hoverTl = useRef<gsap.core.Timeline | null>(null);
   const firstLabelRef = useRef<HTMLDivElement>(null);
   const secondLabelRef = useRef<HTMLDivElement>(null);
-  const splitTypeRef = useRef<SplitType | null>(null);
-  const secondSplitTypeRef = useRef<SplitType | null>(null);
 
-  useEffect(() => {
-    if (!firstLabelRef.current || !secondLabelRef.current) return;
+  // Hover: each character of the label flips up and out while a copy flips
+  // in from below. SplitText and the timeline are reverted automatically.
+  useGSAP(
+    () =>
+      withMotion(() => {
+        if (!firstLabelRef.current || !secondLabelRef.current) return;
 
-    // Initialize SplitType for both labels
-    splitTypeRef.current = new SplitType(firstLabelRef.current, {
-      types: "chars",
-    });
-    secondSplitTypeRef.current = new SplitType(secondLabelRef.current, {
-      types: "chars",
-    });
+        const firstChars = SplitText.create(firstLabelRef.current, {
+          type: "chars",
+        }).chars;
+        const secondChars = SplitText.create(secondLabelRef.current, {
+          type: "chars",
+        }).chars;
 
-    // Get the height of the first label
-    const labelHeight = firstLabelRef.current.offsetHeight;
+        const labelHeight = firstLabelRef.current.offsetHeight;
+        const duration = 0.25;
+        const ease = "power2.inOut";
 
-    // Create timeline for hover animation
-    const tl = gsap.timeline({ paused: true });
+        hoverTl.current = gsap
+          .timeline({ paused: true })
+          .to(firstChars, { duration, y: -labelHeight, rotate: 90, ease })
+          .fromTo(
+            secondChars,
+            { y: labelHeight, rotate: -90 },
+            { duration, y: 0, rotate: 0, ease },
+            "<",
+          );
 
-    const animationDuration = 0.25;
-    const animationStagger = 0.0;
-    const animationEase = "power2.inOut";
-
-    // Animate first label out
-    tl.to(splitTypeRef.current.chars, {
-      duration: animationDuration,
-      y: -labelHeight,
-      rotate: 90,
-      stagger: animationStagger,
-      ease: animationEase,
-    });
-
-    // Animate second label in
-    tl.fromTo(
-      secondSplitTypeRef.current.chars,
-      {
-        duration: animationDuration,
-        y: labelHeight,
-        rotate: -90,
-        stagger: animationStagger,
-        ease: animationEase,
-      },
-      {
-        duration: animationDuration,
-        y: 0,
-        rotate: 0,
-        stagger: animationStagger,
-        ease: animationEase,
-      },
-      "<"
-    );
-
-    hoverTl.current = tl;
-
-    // Cleanup
-    return () => {
-      tl.kill();
-      hoverTl.current = null;
-      if (splitTypeRef.current) {
-        splitTypeRef.current.revert();
-      }
-      if (secondSplitTypeRef.current) {
-        secondSplitTypeRef.current.revert();
-      }
-    };
-  }, [label]);
+        return () => {
+          hoverTl.current = null;
+        };
+      }),
+    { scope: rootRef, dependencies: [label] },
+  );
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     if (onClick) {
@@ -121,7 +89,7 @@ const Button: React.FC<ButtonProps> = ({
   const commonClassName = `flex relative w-fit font-mono uppercase cursor-pointer justify-center items-center ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
 
   const buttonContent = (
-    <div className="relative overflow-hidden">
+    <div ref={rootRef} className="relative overflow-hidden">
       <div ref={firstLabelRef} className="font-mono uppercase">
         {label}
       </div>

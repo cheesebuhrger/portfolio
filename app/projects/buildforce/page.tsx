@@ -1,5 +1,3 @@
-"use client";
-
 import ProjectSectionMedia from "@/components/ProjectSectionMedia";
 import ProjectSectionContent from "@/components/ProjectSectionContent";
 import ProjectSection from "@/components/ProjectSection";
@@ -8,15 +6,7 @@ import ProjectSectionMediaBinder from "@/components/ProjectSectionMediaBinder";
 import ProjectEnd from "@/components/ProjectEnd";
 import { designProjects } from "@/data/designProjects";
 
-import { useStackAnimation } from "@/hooks/useStackAnimation";
-import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
-import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
-
 const Buildforce: React.FC = () => {
-  useImageScaleAnimation();
-  useStackAnimation();
-  useSplitTypeAnimation();
-
   return (
     <div>
       <ProjectHero
@@ -86,14 +76,14 @@ const Buildforce: React.FC = () => {
             alt: designProjects[1].image2.alt,
           },
         }}
-        className="stack-animation"
+        stack
       />
 
       {/* ---- OUTCOMES ---- */}
       <ProjectSection
         sectionNumber="I"
         sectionLabel="Final Design & Outcomes"
-        className="stack-animation"
+        stack
         iconType="solution"
       >
         <ProjectSectionContent
@@ -339,7 +329,7 @@ const Buildforce: React.FC = () => {
         sectionNumber="II"
         sectionLabel="Problem Framing"
         iconType="problem"
-        className="stack-animation"
+        stack
       >
         <ProjectSectionContent
           headline={

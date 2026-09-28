@@ -1,11 +1,16 @@
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
+import { ScaleReveal, useScaleReveal } from "./motion/useScaleReveal";
 
 interface BaseMediaProps {
   type: "image" | "video";
   alt: string;
   className?: string;
   objectFit?: "object-cover" | "object-contain";
-  imageScaleAnimation?: "subtle" | "default" | "none";
+  /** Zoom-out reveal as the media scrolls into view. */
+  imageScaleAnimation?: ScaleReveal;
 }
 
 interface ImageProps extends BaseMediaProps {
@@ -25,23 +30,22 @@ interface VideoProps extends BaseMediaProps {
   muted?: boolean;
 }
 
-const getAnimationClass = (animation?: "subtle" | "default" | "none") => {
-  switch (animation) {
-    case "subtle":
-      return "image-scale-animation-subtle";
-    case "none":
-      return "";
-    default:
-      return "image-scale-animation";
-  }
-};
-
 type MediaImageProps = ImageProps | VideoProps;
 
 const MediaImage: React.FC<MediaImageProps> = (props) => {
+  const imageRef = useRef<HTMLImageElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const mediaClassName = `w-full h-full ${props.objectFit ?? "object-cover"}`;
+
+  useScaleReveal(
+    props.type === "video" ? videoRef : imageRef,
+    props.imageScaleAnimation,
+  );
+
   if (props.type === "video") {
     return (
       <video
+        ref={videoRef}
         src={props.src}
         poster={props.poster}
         controls={props.controls ?? false}
@@ -49,9 +53,7 @@ const MediaImage: React.FC<MediaImageProps> = (props) => {
         loop={props.loop ?? true}
         muted={props.muted ?? true}
         playsInline
-        className={`w-full h-full ${
-          props.objectFit ?? "object-cover"
-        } ${getAnimationClass(props.imageScaleAnimation)}`}
+        className={mediaClassName}
         aria-label={props.alt}
       />
     );
@@ -59,15 +61,13 @@ const MediaImage: React.FC<MediaImageProps> = (props) => {
 
   return (
     <Image
+      ref={imageRef}
       src={props.src}
       alt={props.alt}
       {...(props.width && props.height
         ? { width: props.width, height: props.height }
         : { fill: true })}
-      className={`w-full h-full ${
-        props.objectFit ?? "object-cover"
-      } ${getAnimationClass(props.imageScaleAnimation)}
-      }`}
+      className={mediaClassName}
     />
   );
 };

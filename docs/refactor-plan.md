@@ -149,6 +149,26 @@ Each phase is one PR. Visual parity is checked before merge. Pause for review af
 4. Add `gsap.matchMedia()` for breakpoints and `prefers-reduced-motion`. Remove `useIsMobile` / `useIsTouch` where animation-only.
 5. Remove the `/lab` route before merge.
 
+**Status: done.** Notes:
+- **Decision gate:** SplitText approved from the side-by-side lab comparison. GSAP plugins became free after this site was first built; that's why it used `split-type`. `split-type` is removed.
+- New in `components/motion/`:
+  - `SplitReveal` (hero/default variants, same timings as before, `autoSplit` re-splits on resize and font load).
+  - `useScaleReveal` (media zoom-out; wired into `MediaImage` and `ProjectHero`).
+  - `useStack` + `StackScrim`.
+- `lib/gsap.ts` registers SplitText and adds `withMotion()`, which skips an animation under `prefers-reduced-motion`.
+- Homepage project titles, ProjectEnd process lines and the Button hover also moved to SplitText (structure `.line-mask > .line`). Their timelines are otherwise unchanged; Phase 5 rewrites the homepage.
+- Case study pages are server components; `Quote` gained `"use client"`.
+- Removed: `useSplitTypeAnimation`, `useImageScaleAnimation`, `useStackAnimation`, `/lab`.
+- Homepage images opt out of the zoom (`imageScaleAnimation="none"`). They never zoomed before, because the old hook only ran on case study pages.
+- **Approved visual changes vs. live:**
+  1. The homepage intro now wraps at its natural line breaks (5 lines, previously 6). `split-type` measured once, likely before the web font loaded, and froze those breaks.
+  2. The stacking effect now visibly darkens the previous section. The scrim always existed, but its `bg-[black]` class lived in `hooks/`, which Tailwind doesn't scan, so it rendered transparent on the live site.
+- **Verified in headless Chrome against the live site:**
+  - Screenshots at 9 scroll positions: everything else is identical, apart from video and animated-icon frames.
+  - Same number of pinned sections, same page heights, no page errors.
+  - Reduced motion turns off splitting, zoom and stacking.
+- `useIsMobile` / `useIsTouch` were already removed in Phase 2. The homepage's mobile values move to `gsap.matchMedia()` in Phase 5.
+
 ### Phase 4: Content model
 - `lib/types.ts`, `content/projects/*.ts`, `lib/content.ts`.
 - `app/projects/[slug]/page.tsx` with `generateStaticParams`, `generateMetadata` (per-project title and OG image), and `BlockRenderer`.

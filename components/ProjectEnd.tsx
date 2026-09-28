@@ -1,7 +1,6 @@
 "use client";
 
-import { gsap, useGSAP } from "@/lib/gsap";
-import SplitType from "split-type";
+import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import MediaImage from "@/components/MediaImage";
 import TransitionLink from "./layout/TransitionLink";
 
@@ -98,23 +97,17 @@ const ProjectEnd = ({
     const processItems =
       document.querySelectorAll<HTMLElement>(".process-item");
     processItems.forEach((item) => {
-      const text = new SplitType(item, {
-        types: "lines",
-        tagName: "div",
-        lineClass: "line",
+      // .line-mask (clip-path reveal) > .line (slides up, un-skews)
+      const split = SplitText.create(item, {
+        type: "lines",
+        mask: "lines",
+        linesClass: "line",
       });
+      // The animated clip-path masks instead of SplitText's overflow: clip.
+      gsap.set(split.masks, { overflow: "visible" });
 
-      // Wrap each line's content in a span
-      text.lines?.forEach((line) => {
-        const content = line.innerHTML;
-        line.innerHTML = `<span>${content}</span>`;
-      });
-
-      // Get all spans within the lines
-      const spans = item.querySelectorAll<HTMLElement>(":scope > .line > span");
-
-      // Initial state for spans
-      gsap.set(spans, {
+      // Initial state for lines
+      gsap.set(split.lines, {
         y: "100%",
         display: "block",
       });
@@ -139,7 +132,7 @@ const ProjectEnd = ({
         }
       )
       .fromTo(
-        ".process-item-1 .line > span",
+        ".process-item-1 .line-mask > .line",
         {
           y: "100%",
           skewX: 30,
@@ -154,7 +147,7 @@ const ProjectEnd = ({
         "<"
       )
       .fromTo(
-        ".process-item-1 .line",
+        ".process-item-1 .line-mask",
         { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
         {
           clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
@@ -176,7 +169,7 @@ const ProjectEnd = ({
         processItemsTighten
       )
       .fromTo(
-        ".process-item-2 .line > span",
+        ".process-item-2 .line-mask > .line",
         {
           y: "100%",
           skewX: -30,
@@ -191,7 +184,7 @@ const ProjectEnd = ({
         "<"
       )
       .fromTo(
-        ".process-item-2 .line",
+        ".process-item-2 .line-mask",
         { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
         {
           clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
@@ -209,7 +202,7 @@ const ProjectEnd = ({
         processItemsTighten
       )
       .fromTo(
-        ".process-item-3 .line > span",
+        ".process-item-3 .line-mask > .line",
         {
           y: "100%",
           skewX: 30,
@@ -224,7 +217,7 @@ const ProjectEnd = ({
         "<"
       )
       .fromTo(
-        ".process-item-3 .line",
+        ".process-item-3 .line-mask",
         { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
         {
           clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
@@ -246,7 +239,7 @@ const ProjectEnd = ({
         processItemsTighten
       )
       .fromTo(
-        ".process-item-4 .line > span",
+        ".process-item-4 .line-mask > .line",
         {
           y: "100%",
           skewX: -30,
@@ -261,7 +254,7 @@ const ProjectEnd = ({
         "<"
       )
       .fromTo(
-        ".process-item-4 .line",
+        ".process-item-4 .line-mask",
         { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
         {
           clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
@@ -283,7 +276,7 @@ const ProjectEnd = ({
         processItemsTighten
       )
       .fromTo(
-        ".process-item-5 .line > span",
+        ".process-item-5 .line-mask > .line",
         {
           y: "100%",
           skewX: 30,
@@ -298,7 +291,7 @@ const ProjectEnd = ({
         "<"
       )
       .fromTo(
-        ".process-item-5 .line",
+        ".process-item-5 .line-mask",
         { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
         {
           clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
