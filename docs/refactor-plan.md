@@ -139,6 +139,7 @@ Each phase is one PR. Visual parity is checked before merge. Pause for review af
 - `InitialLoadTransition` replaced by a CSS-only `.initial-load` wrapper (same 0.4s fade, runs once because the layout persists). This clears one of the two deferred lint errors.
 - Cursor is hidden via `(hover: hover) and (pointer: fine)` rather than touch detection, so touchscreen laptops used with a mouse now get the cursor. It resets to un-hovered on route change.
 - `TransitionLink` on mobile now does client-side navigation instead of a full reload. **Watch on real devices**: if the full reload was a workaround for pinned ScrollTriggers misbehaving after navigation, it'll show up here.
+- `SmoothScroll` cancels any in-flight Lenis scroll on route change (found in code review): with one persistent instance, a smooth scroll still gliding at navigation time would otherwise carry over and leave the new page scrolled down.
 - `/` and `/about` are now server components. Case study pages stay client components until Phase 3 removes their page-level animation hooks. Converting them now would need a throwaway shim.
 
 ### Phase 3: Motion rewrite (prototype first, then adopt)
