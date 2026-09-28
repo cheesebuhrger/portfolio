@@ -37,7 +37,8 @@ function ResetScrollOnNavigate() {
   const lenis = useLenis();
   const pathname = usePathname();
   const previousPathname = useRef(pathname);
-  const isHistoryNavigation = useRef(false);
+  // Path a back/forward is heading to, until that page renders.
+  const pendingHistoryPath = useRef<string | null>(null);
   // Last scroll position per path, for back/forward. The browser's own
   // restoration lands too late (after ScrollTrigger has already refreshed).
   // Keyed by path, not history entry: revisiting a page restores the most
@@ -46,17 +47,22 @@ function ResetScrollOnNavigate() {
 
   useEffect(() => {
     const onPopState = () => {
-      // Only flag back/forward that changes page; a same-path popstate (e.g.
-      // between #hash entries) never reaches the route-change effect that
-      // clears the flag.
-      if (window.location.pathname !== previousPathname.current) {
-        isHistoryNavigation.current = true;
-      }
+      // Only track back/forward that changes page; a same-path popstate (e.g.
+      // between #hash entries) never reaches the route-change effect.
+      const path = window.location.pathname;
+      pendingHistoryPath.current =
+        path !== previousPathname.current ? path : null;
     };
     const onScroll = () => {
-      // During back/forward the browser scrolls before React swaps pages;
-      // that position belongs to the incoming page, so don't record it.
-      if (isHistoryNavigation.current) return;
+      const pending = pendingHistoryPath.current;
+      if (pending !== null) {
+        // During back/forward the browser scrolls before React swaps pages;
+        // that position belongs to the incoming page, so don't record it.
+        if (window.location.pathname === pending) return;
+        // The URL moved on (e.g. a link clicked before the back/forward
+        // rendered), so that navigation was superseded.
+        pendingHistoryPath.current = null;
+      }
       savedPositions.current.set(previousPathname.current, window.scrollY);
     };
     window.addEventListener("popstate", onPopState);
@@ -72,8 +78,8 @@ function ResetScrollOnNavigate() {
     if (!lenis || pathname === previousPathname.current) return;
     previousPathname.current = pathname;
 
-    const fromHistory = isHistoryNavigation.current;
-    isHistoryNavigation.current = false;
+    const fromHistory = pendingHistoryPath.current === pathname;
+    pendingHistoryPath.current = null;
 
     const hashTarget = getHashTarget();
     const target = fromHistory
