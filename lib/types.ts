@@ -3,7 +3,8 @@ import type { AnimatedIconType } from "@/components/icons";
 /**
  * Plain-string rich text, kept serialisable so content can move to a CMS.
  *   **like this**   → highlighted (text-action colour)
- *   blank line      → new paragraph
+ *   blank line      → new paragraph (<p> in text-block bodies; a double line
+ *                     break elsewhere, since those slots are already inside <p>/<h2>)
  * Use real typographic characters (’ “ ”) rather than HTML entities.
  */
 export type RichText = string;

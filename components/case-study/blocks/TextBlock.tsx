@@ -21,7 +21,7 @@ export default function TextBlock({ block }: TextBlockProps) {
         <h2 className={headlineClassName}>{headlineContent}</h2>
       )}
       <div className="col-span-1 col-start-1 md:col-span-1 md:col-start-2 xl:col-start-7 xl:col-span-4 row-start-2 text-base indent-16 text-pretty">
-        {body ? <RichText text={body} /> : null}
+        {body ? <RichText text={body} blocks /> : null}
       </div>
     </div>
   );
