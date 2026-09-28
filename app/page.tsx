@@ -7,7 +7,7 @@ import IndexPlayground from "../components/IndexPlayground";
 
 import CursorDot from "@/components/CursorDot";
 
-import { ReactLenis } from "@studio-freight/react-lenis";
+import { ReactLenis } from "lenis/react";
 
 import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
 

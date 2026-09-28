@@ -9,7 +9,7 @@ import ProjectEnd from "@/components/ProjectEnd";
 import CursorDot from "@/components/CursorDot";
 import { designProjects } from "@/data/designProjects";
 
-import { ReactLenis } from "@studio-freight/react-lenis";
+import { ReactLenis } from "lenis/react";
 import { useStackAnimation } from "@/hooks/useStackAnimation";
 import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";

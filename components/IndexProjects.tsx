@@ -4,7 +4,7 @@ import SplitType from "split-type";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
-import { useLenis } from "@studio-freight/react-lenis";
+import { useLenis } from "lenis/react";
 import { designProjects } from "@/data/designProjects";
 
 import Button from "./Button";

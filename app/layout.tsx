@@ -3,10 +3,11 @@ import Nav from "../components/Nav";
 import { Analytics } from "@vercel/analytics/react";
 import { ViewTransitions } from "next-view-transitions";
 import Footer from "@/components/Footer";
-import { metadata as rootMetadata } from "./metadata";
+import { metadata as rootMetadata, viewport as rootViewport } from "./metadata";
 import InitialLoadTransition from "@/components/InitialLoadTransition";
 
 export const metadata = rootMetadata;
+export const viewport = rootViewport;
 
 export default function RootLayout({
   children,
@@ -16,9 +17,6 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en">
-        <head>
-          <meta name="theme-color" content="rgb(242, 242, 242)" />
-        </head>
         <body>
           <InitialLoadTransition>
             <Nav />

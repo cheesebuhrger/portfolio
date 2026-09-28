@@ -15,7 +15,7 @@ import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useStackAnimation } from "@/hooks/useStackAnimation";
-import { ReactLenis } from "@studio-freight/react-lenis";
+import { ReactLenis } from "lenis/react";
 import ProjectSectionMediaBinder from "@/components/ProjectSectionMediaBinder";
 
 gsap.registerPlugin(ScrollTrigger);

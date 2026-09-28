@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ReactLenis } from "@studio-freight/react-lenis";
+import { ReactLenis } from "lenis/react";
 import CursorDot from "@/components/CursorDot";
 import ProjectHero from "@/components/ProjectHero";
 import ProjectSection from "@/components/ProjectSection";
