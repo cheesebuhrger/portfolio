@@ -51,8 +51,7 @@ const MediaImage: React.FC<MediaImageProps> = (props) => {
         playsInline
         className={`w-full h-full ${
           props.objectFit ?? "object-cover"
-        } ${getAnimationClass(props.imageScaleAnimation)}
-        }`}
+        } ${getAnimationClass(props.imageScaleAnimation)}`}
         aria-label={props.alt}
       />
     );

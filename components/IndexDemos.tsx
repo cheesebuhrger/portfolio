@@ -1,22 +1,10 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import TransitionLink from "./TransitionLink";
 import { demos } from "@/data/codeDemos";
-import Button from "./Button";
-import MediaImage from "./MediaImage";
 import { Badge } from "./Badge";
-
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SplitType from "split-type";
-import { useLenis } from "@studio-freight/react-lenis";
 import Link from "next/link";
 
 const IndexCodeProjects = () => {
-  const lenis = useLenis();
-
   return (
     <section
       id="code"

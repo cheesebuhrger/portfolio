@@ -9,15 +9,6 @@ import { useModal } from "../hooks/useModal";
 import Link from "next/link";
 import { playgroundItems } from "@/data/indexPlaygroundItems";
 
-interface GridItem {
-  type: "image" | "video" | "experiment";
-  src: string;
-  title?: string;
-  date?: string;
-  url?: string;
-  description?: string;
-}
-
 const IndexPlayground: React.FC = () => {
   const { isOpen, currentIndex, open, close, next, prev } =
     useModal(playgroundItems);

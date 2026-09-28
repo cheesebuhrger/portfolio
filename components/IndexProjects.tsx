@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import gsap from "gsap";
 import SplitType from "split-type";
 import { useGSAP } from "@gsap/react";
@@ -12,8 +12,7 @@ import MediaImage from "./MediaImage";
 import TransitionLink from "./TransitionLink";
 
 const IndexProjects = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const splitTypeRef = useSplitTypeAnimation();
+  useSplitTypeAnimation();
   const lenis = useLenis();
 
   const [mobileValues, setMobileValues] = React.useState({

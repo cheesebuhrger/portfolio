@@ -79,25 +79,4 @@ export const designProjects: Project[] = [
       alt: "Strava youth running",
     },
   },
-  {
-    company: "Wheel",
-    role: "Senior Product Designer",
-    year: "2019",
-    duration: "3 months",
-    url: "/projects/wheel",
-    title:
-      "Designing for clarity, control, & efficiency in virtual care, from 0 → 1",
-    problem:
-      "Clinicians used email to know what patients they were assigned to, needed to context switch and learn many different platforms",
-    solution:
-      "Less ops hours dedicated to scheduling and pay, more first assignment completions under round robin system, and faster visit completion times",
-    image1: {
-      src: "/images/wheel/wheel-cover-1.webp",
-      alt: "Wheel",
-    },
-    image2: {
-      src: "/images/wheel/wheel-cover-2.jpg",
-      alt: "Wheel",
-    },
-  },
 ];

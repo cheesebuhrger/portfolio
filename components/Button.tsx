@@ -3,8 +3,6 @@
 import React, { useEffect, useRef } from "react";
 import SplitType from "split-type";
 import { gsap } from "gsap";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 import TransitionLink from "./TransitionLink";
 
 interface ButtonProps {
@@ -30,8 +28,6 @@ const Button: React.FC<ButtonProps> = ({
   const secondLabelRef = useRef<HTMLDivElement>(null);
   const splitTypeRef = useRef<SplitType | null>(null);
   const secondSplitTypeRef = useRef<SplitType | null>(null);
-  const pathname = usePathname();
-  const router = useRouter();
 
   useEffect(() => {
     if (!firstLabelRef.current || !secondLabelRef.current) return;

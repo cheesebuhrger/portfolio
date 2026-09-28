@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useRef } from "react";
 import CursorDot from "@/components/CursorDot";
 
 import ProjectSectionMedia from "@/components/ProjectSectionMedia";
@@ -22,8 +21,8 @@ import ProjectSectionMediaBinder from "@/components/ProjectSectionMediaBinder";
 gsap.registerPlugin(ScrollTrigger);
 
 const Project1: React.FC = () => {
-  const imageScaleRef = useImageScaleAnimation();
-  const stackRef = useStackAnimation();
+  useImageScaleAnimation();
+  useStackAnimation();
 
   return (
     <ReactLenis root>

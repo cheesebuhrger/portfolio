@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -6,7 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export const useImageScaleAnimation = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     const elements = gsap.utils.toArray<HTMLElement>(".image-scale-animation");
@@ -40,6 +38,4 @@ export const useImageScaleAnimation = () => {
       });
     });
   });
-
-  return containerRef;
 };

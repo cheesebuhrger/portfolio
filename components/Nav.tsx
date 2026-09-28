@@ -1,15 +1,12 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Link from "next/link";
-import { useTransition } from "../hooks/useTransition";
 import Button from "./Button";
 import { useLenis } from "@studio-freight/react-lenis";
 
 const Nav = () => {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const { navigate } = useTransition();
   const lenis = useLenis();
 
   const scrollToTop = () => {

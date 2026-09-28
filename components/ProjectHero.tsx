@@ -5,10 +5,6 @@ import { AvatarGroup } from "./AvatarGroup";
 import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
 import { AnimatedIcon } from "./icons";
 
-interface ProjectHeroResults {
-  title: string;
-}
-
 interface ProjectHeroProps {
   headline: ReactNode;
   company?: ReactNode;
@@ -41,26 +37,6 @@ interface ProjectHeroProps {
     };
   };
   className?: string;
-}
-
-const problemIconSequence = [
-  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177227/problem-1_parbly.svg",
-  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177227/problem-2_lxidte.svg",
-  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177227/problem-3_vnjp3a.svg",
-  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177228/problem-4_zzod3m.svg",
-  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177228/problem-5_knoanl.svg",
-];
-
-const solutionIconSequence = [
-  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177813/solution-1_jj64ip.svg",
-  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177813/solution-2_x0ryne.svg",
-  "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1744177814/solution-3_vgzypm.svg",
-];
-
-// ---- RESULT COMPONENT ----
-interface ProjectHeroResultsProps {
-  title: string;
-  index: number;
 }
 
 // ---- DATA COMPONENT ----

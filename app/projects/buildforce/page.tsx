@@ -1,7 +1,5 @@
 "use client";
 
-import { useLayoutEffect } from "react";
-
 import ProjectSectionMedia from "@/components/ProjectSectionMedia";
 import ProjectSectionContent from "@/components/ProjectSectionContent";
 import ProjectSection from "@/components/ProjectSection";
