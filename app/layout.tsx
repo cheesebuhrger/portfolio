@@ -1,10 +1,11 @@
 import "./global.css";
-import Nav from "../components/Nav";
 import { Analytics } from "@vercel/analytics/react";
 import { ViewTransitions } from "next-view-transitions";
-import Footer from "@/components/Footer";
+import Nav from "@/components/layout/Nav";
+import Footer from "@/components/layout/Footer";
+import Cursor from "@/components/layout/Cursor";
+import SmoothScroll from "@/components/layout/SmoothScroll";
 import { metadata as rootMetadata, viewport as rootViewport } from "./metadata";
-import InitialLoadTransition from "@/components/InitialLoadTransition";
 
 export const metadata = rootMetadata;
 export const viewport = rootViewport;
@@ -18,12 +19,16 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en">
         <body>
-          <InitialLoadTransition>
-            <Nav />
-            {children}
-            <Analytics />
-            <Footer />
-          </InitialLoadTransition>
+          <SmoothScroll>
+            {/* Fades in once on first load; the layout persists across navigations. */}
+            <div className="initial-load">
+              <Nav />
+              <Cursor />
+              {children}
+              <Analytics />
+              <Footer />
+            </div>
+          </SmoothScroll>
         </body>
       </html>
     </ViewTransitions>
