@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
 import { ReactLenis, useLenis } from "lenis/react";
 
@@ -28,7 +28,11 @@ function CancelScrollOnNavigate() {
   const lenis = useLenis();
   const pathname = usePathname();
 
-  useEffect(() => {
+  // Layout effect, not useEffect: Next positions the new page in its own layout
+  // effects (which run after this one, since we render before {children}). A
+  // passive effect could run after a Lenis frame has already dragged the page
+  // back toward the old scroll target.
+  useLayoutEffect(() => {
     lenis?.stop();
     lenis?.start();
   }, [lenis, pathname]);
