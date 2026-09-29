@@ -4,6 +4,7 @@ import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import Media from "@/components/ui/Media";
 import TransitionLink from "@/components/layout/TransitionLink";
 import type { ProjectSummary } from "@/lib/content";
+import { SITE } from "@/lib/seo";
 
 interface EndProps {
   /** Full-bleed image above "The Nitty Gritty". */
@@ -313,24 +314,24 @@ const End = ({ process, image, related }: EndProps) => {
                 </div>
               </div>
             </div>
-            <h1 className="process-fade ~text-6xl/13xl p-4 md:p-6 lg:p-8 text-text-primary-negative w-full text-center">
+            <h2 className="process-fade ~text-6xl/13xl p-4 md:p-6 lg:p-8 text-text-primary-negative w-full text-center">
               The Nitty Gritty
-            </h1>
+            </h2>
           </div>
         </div>
 
         <div className="panel-2-container z-[2] relative w-full">
           <div className="panel-2 relative flex items-end justify-center gap-8 w-full bg-surface-primary-negative">
-            <h1 className="~text-6xl/13xl text-text-primary-negative h-fit w-full p-4 md:p-6 lg:p-8 font-serif-italic text-center">
+            <h2 className="~text-6xl/13xl text-text-primary-negative h-fit w-full p-4 md:p-6 lg:p-8 font-serif-italic text-center">
               Want the Details?
-            </h1>
+            </h2>
           </div>
         </div>
 
         <div className="pointer-events-none panel-3-container z-[1] relative w-full">
           <div className="panel-3 relative flex items-end justify-center p-4 md:p-6 lg:p-8 w-full h-full">
             <a
-              href="https://linkedin.com/in/buhrduong"
+              href={SITE.profiles.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="cursor-animation pointer-events-auto hover:text-text-action flex items-center justify-center w-full font-serif bg-surface-primary hover:bg-surface-secondary text-text-primary rounded-lg p-8 md:p-12 lg:p-16 h-fit ~text-6xl/8xl"

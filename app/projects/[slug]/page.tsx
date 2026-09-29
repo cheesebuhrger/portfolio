@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CaseStudy from "@/components/case-study/CaseStudy";
+import JsonLd from "@/components/seo/JsonLd";
+import { caseStudyJsonLd, ogImage, shareMetadata } from "@/lib/seo";
 import {
   getProject,
   getProjects,
@@ -21,17 +23,18 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const project = getProject((await params).slug);
   if (!project) return {};
 
-  const title = `Buhr | ${project.title}`;
-  const description = project.solution;
-  const url = projectHref(project.slug);
-  const image = project.cover.primary.src;
-
   return {
     title: project.title,
-    description,
-    alternates: { canonical: url },
-    openGraph: { type: "article", url, title, description, images: [image] },
-    twitter: { card: "summary_large_image", title, description, images: [image] },
+    description: project.solution,
+    ...shareMetadata({
+      path: projectHref(project.slug),
+      title: `Buhr | ${project.title}`,
+      description: project.solution,
+      image: ogImage(project.cover.primary.src),
+      type: "article",
+      publishedTime: project.published,
+      modifiedTime: project.updated ?? project.published,
+    }),
   };
 }
 
@@ -40,5 +43,10 @@ export default async function ProjectPage({ params }: Params) {
   const project = getProject(slug);
   if (!project) notFound();
 
-  return <CaseStudy project={project} related={getRelatedProjects(slug)} />;
+  return (
+    <>
+      <JsonLd data={caseStudyJsonLd(project, projectHref(slug))} />
+      <CaseStudy project={project} related={getRelatedProjects(slug)} />
+    </>
+  );
 }

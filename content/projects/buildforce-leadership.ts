@@ -7,6 +7,7 @@ const buildforceLeadership: Project = {
   role: "Staff Product Designer",
   year: "2023-24",
   duration: "1 year",
+  published: "2024-07-05",
   problem: "Every new project sparked scope debates with speed taking priority over quality, leading to bandaids that didn't always solve actual user problems",
   solution: "Made accountability part of the culture, improved quality without slowing down, & helped the team grow by working better together",
   skills: [

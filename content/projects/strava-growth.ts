@@ -7,6 +7,7 @@ const stravaGrowth: Project = {
   role: "Senior Growth Designer",
   year: "2021-22",
   duration: "1 year",
+  published: "2022-02-08",
   problem: "Early subscription growth efforts didn't always perform well, lacking connection to human problems & context",
   solution: "I shifted the team's approach to focus on real athlete challenges, helping drive $6.3MM in additional annual subscription revenue",
   skills: [
