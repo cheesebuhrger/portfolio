@@ -1,6 +1,6 @@
 # SEO & AEO Plan
 
-_Created 2026-09-28. Status: approved, decisions below. Build this **before** `playground-links-plan.md`, which reuses its helpers._
+_Created 2026-09-28. Status: approved, decisions below. Build this **before** `frames-links-plan.md`, which reuses its helpers._
 
 **SEO** (search engine optimization): being found and understood by Google/Bing.
 **AEO** (answer engine optimization, also called GEO): being understood and cited by AI answer tools such as ChatGPT search, Perplexity, Claude and Google AI Overviews / AI Mode. The two overlap almost entirely.
@@ -15,7 +15,7 @@ _Created 2026-09-28. Status: approved, decisions below. Build this **before** `p
 | AI companies run separate bots for **search** (OAI-SearchBot, Claude-SearchBot, PerplexityBot) and **training** (GPTBot, ClaudeBot, Google-Extended). Blocking a search bot removes you from that engine's answers. | [OpenAI crawler docs](https://developers.openai.com/api/docs/bots) | `robots.txt` must allow the search bots. Allowing training bots is a separate choice (see decisions). |
 | Content changes can raise visibility in AI answers by up to 40%; adding statistics, quotations and cited sources are among the most effective. Answer engines also draw on what other sites say about you. | [GEO: Generative Engine Optimization (KDD 2024)](https://arxiv.org/abs/2311.09735) | Your case studies already fit (first-person, real metrics, quotes). Beyond the site, get mentioned elsewhere (LinkedIn etc.) with a consistent name and role. |
 | ProfilePage markup suits "About Me" pages, not home pages that mix other content. | [Google: ProfilePage](https://developers.google.com/search/docs/appearance/structured-data/profile-page) | Homepage: `Person` + `WebSite`. Use `ProfilePage` later, when `/about` is real. |
-| For video indexing, each video needs a dedicated **watch page** where it's the main content, with a stable thumbnail. | [Google: video SEO](https://developers.google.com/search/docs/appearance/video) | This confirms the Playground plan's per-item pages (option A). |
+| For video indexing, each video needs a dedicated **watch page** where it's the main content, with a stable thumbnail. | [Google: video SEO](https://developers.google.com/search/docs/appearance/video) | This confirms the Frames plan's per-item pages (option A). |
 | LinkedIn wants og:image ≥1200×627 and doesn't reliably render WebP. | [LinkedIn: shareable websites](https://www.linkedin.com/help/linkedin/answer/a521928) | Case-study previews are currently `.webp` covers, so serve 1200×630 JPEGs through Cloudinary. |
 | JSON-LD goes in a `<script type="application/ld+json">` in the page/layout, with `<` escaped. | [Next.js: JSON-LD](https://nextjs.org/docs/app/guides/json-ld) | One small helper component. |
 | Search Console has a **Generative AI performance report**. | [Google: optimizing for generative AI](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide) | Verify the site so you can see AI Overview / AI Mode visibility. |
@@ -47,7 +47,7 @@ _Created 2026-09-28. Status: approved, decisions below. Build this **before** `p
 - **`ogImage(src)` helper:** returns a Cloudinary 1200×630 JPEG for any image or video URL (videos use a frame).
 
 ### 2. Crawling and indexing
-- **`app/sitemap.ts`:** `/`, every case study and (later) every Playground item, with `lastModified`. `/about` is excluded.
+- **`app/sitemap.ts`:** `/`, every case study and (later) every Frames item, with `lastModified`. `/about` is excluded.
 - **`app/robots.ts`:** allow everything, point to the sitemap, and apply the AI crawler policy chosen below.
 - **`/about`:** `robots: { index: false }` and its own title/canonical until it's built. (Decision made: hide for now.)
 
@@ -100,5 +100,5 @@ _Created 2026-09-28. Status: approved, decisions below. Build this **before** `p
 5. **Homepage title:** "Buhr Duong: Design Engineer".
 6. **`/about`:** `noindex` and left out of the sitemap until it's built.
 7. **Preview images:** Cloudinary URL transform `c_fill,g_auto,w_1200,h_630,q_auto,f_jpg`, generated on request; nothing to configure in Cloudinary. Crops reviewed and approved.
-8. **Playground video dates** (for the Playground plan): `uploadDate` is the Cloudinary version timestamp (when first published on the site), and `dateCreated` is the item's year.
+8. **Frame video dates** (for the Frames plan; the section was formerly "Frames"): `uploadDate` is the Cloudinary version timestamp (when first published on the site), and `dateCreated` is the item's year.
 9. **Primary domain: buhrduong.com** (decided 2026-09-29, matching the email buhr@buhrduong.com). `buhr.dev`, `buhr.design` and the `www.` variants 308-redirect to it in Vercel. `SITE.url` in `lib/seo.ts` drives the canonicals, sitemap, robots and JSON-LD.

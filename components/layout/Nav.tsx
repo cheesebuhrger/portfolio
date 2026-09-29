@@ -56,8 +56,8 @@ const Nav = () => {
               Code
             </li> */}
             <li className="group-hover:py-1 hover:underline transition-all duration-300 w-fit cursor-pointer">
-              <a href="#playground" onClick={scrollToSection("#playground")}>
-                Playground
+              <a href="#frames" onClick={scrollToSection("#frames")}>
+                Frames
               </a>
             </li>
           </ul>

@@ -119,9 +119,9 @@ export type Project = {
   };
 };
 
-/** A tile in the homepage Playground grid (opens in the detail dialog). */
-export type PlaygroundItem = {
-  /** URL segment: /playground/{slug}. Hand-written so URLs stay stable. */
+/** A frame: a tile in the homepage Frames grid, with its own page and dialog. */
+export type Frame = {
+  /** URL segment: /frames/{slug}. Hand-written so URLs stay stable. */
   slug: string;
   type: "image" | "video";
   src: string;

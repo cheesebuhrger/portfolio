@@ -4,11 +4,11 @@
  * (e.g. to Sanity) means changing this file, not the UI.
  */
 import projects from "@/content/projects";
-import playgroundItems from "@/content/playground";
-import type { PlaygroundItem, Project } from "./types";
+import frames from "@/content/frames";
+import type { Frame, Project } from "./types";
 import { projectHref } from "./routes";
 
-export { playgroundHref, projectHref } from "./routes";
+export { frameHref, projectHref } from "./routes";
 
 /** What cards and lists need; keeps full case-study bodies out of client bundles. */
 export type ProjectSummary = Pick<
@@ -47,28 +47,28 @@ export function getRelatedProjects(slug: string, count = 2): ProjectSummary[] {
   );
 }
 
-export function getPlaygroundItems(): PlaygroundItem[] {
-  return playgroundItems;
+export function getFrames(): Frame[] {
+  return frames;
 }
 
-export function getPlaygroundItem(slug: string): PlaygroundItem | undefined {
-  return playgroundItems.find((item) => item.slug === slug);
+export function getFrame(slug: string): Frame | undefined {
+  return frames.find((item) => item.slug === slug);
 }
 
 /** Previous and next items around `slug`, wrapping at the ends. */
-export function getAdjacentPlaygroundItems(slug: string) {
-  const index = playgroundItems.findIndex((item) => item.slug === slug);
-  const count = playgroundItems.length;
+export function getAdjacentFrames(slug: string) {
+  const index = frames.findIndex((item) => item.slug === slug);
+  const count = frames.length;
   return {
-    prev: playgroundItems[(index - 1 + count) % count],
-    next: playgroundItems[(index + 1) % count],
+    prev: frames[(index - 1 + count) % count],
+    next: frames[(index + 1) % count],
   };
 }
 
 /** Description for metadata; falls back to a factual line when none is written. */
-export function playgroundDescription(item: PlaygroundItem): string {
+export function frameDescription(item: Frame): string {
   return (
     item.description ??
-    `${item.title} (${item.date}), from Buhr Duong’s playground.`
+    `${item.title} (${item.date}), a frame by Buhr Duong.`
   );
 }

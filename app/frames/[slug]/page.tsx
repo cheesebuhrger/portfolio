@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Button from "@/components/ui/Button";
-import PlaygroundDetail from "@/components/playground/PlaygroundDetail";
+import FrameDetail from "@/components/frames/FrameDetail";
 import JsonLd from "@/components/seo/JsonLd";
 import {
-  getAdjacentPlaygroundItems,
-  getPlaygroundItem,
-  getPlaygroundItems,
-  playgroundDescription,
-  playgroundHref,
+  getAdjacentFrames,
+  getFrame,
+  getFrames,
+  frameDescription,
+  frameHref,
 } from "@/lib/content";
-import { ogImage, playgroundJsonLd, shareMetadata } from "@/lib/seo";
+import { ogImage, frameJsonLd, shareMetadata } from "@/lib/seo";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -18,19 +18,19 @@ type Params = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return getPlaygroundItems().map((item) => ({ slug: item.slug }));
+  return getFrames().map((item) => ({ slug: item.slug }));
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const item = getPlaygroundItem((await params).slug);
+  const item = getFrame((await params).slug);
   if (!item) return {};
-  const description = playgroundDescription(item);
+  const description = frameDescription(item);
 
   return {
     title: item.title,
     description,
     ...shareMetadata({
-      path: playgroundHref(item.slug),
+      path: frameHref(item.slug),
       title: `Buhr | ${item.title}`,
       description,
       image: ogImage(item.src, item.preview),
@@ -45,41 +45,41 @@ const STEP_LINK =
   "flex relative w-fit font-mono uppercase justify-center items-center h-8 min-w-8 px-2 text-xs rounded-sm hover:bg-surface-button-hover active:bg-surface-button-active transition-all duration-30";
 
 /**
- * A playground item's own page: what a shared link, a refresh and search
+ * A frame's own page: what a shared link, a refresh and search
  * engines get. Inside the site, the same URL opens as a dialog instead
- * (app/@modal/(.)playground).
+ * (app/@modal/(.)frames).
  */
-export default async function PlaygroundItemPage({ params }: Params) {
+export default async function FramePage({ params }: Params) {
   const { slug } = await params;
-  const item = getPlaygroundItem(slug);
+  const item = getFrame(slug);
   if (!item) notFound();
-  const { prev, next } = getAdjacentPlaygroundItems(slug);
+  const { prev, next } = getAdjacentFrames(slug);
 
   return (
     <div className="min-h-screen bg-surface-background pt-20 md:pt-24">
       <JsonLd
-        data={playgroundJsonLd(item, playgroundHref(slug), playgroundDescription(item))}
+        data={frameJsonLd(item, frameHref(slug), frameDescription(item))}
       />
       <nav
-        aria-label="Playground"
+        aria-label="Frames"
         className="flex flex-row justify-between w-full px-6 py-4 border-b border-border-secondary"
       >
         <Button
-          href="/#playground"
-          label="All Playground"
+          href="/#frames"
+          label="All Frames"
           size="small"
           variant="secondary"
         />
         <div className="flex gap-4 text-xs">
-          <a href={playgroundHref(prev.slug)} className={STEP_LINK}>
+          <a href={frameHref(prev.slug)} className={STEP_LINK}>
             Previous
           </a>
-          <a href={playgroundHref(next.slug)} className={STEP_LINK}>
+          <a href={frameHref(next.slug)} className={STEP_LINK}>
             Next
           </a>
         </div>
       </nav>
-      <PlaygroundDetail item={item} headingLevel="h1" />
+      <FrameDetail item={item} headingLevel="h1" />
     </div>
   );
 }

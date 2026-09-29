@@ -4,7 +4,7 @@
  * footer's profile links all read from here, so they can't drift apart.
  */
 import type { Metadata } from "next";
-import type { PlaygroundItem, Project } from "./types";
+import type { Frame, Project } from "./types";
 
 export const SITE = {
   /** Primary domain. buhr.dev, buhr.design and www.* 308-redirect here (Vercel). */
@@ -205,9 +205,9 @@ export function caseStudyJsonLd(project: Project, path: string) {
   };
 }
 
-/** Playground item: a video or image by the person, on its own page. */
-export function playgroundJsonLd(
-  item: PlaygroundItem,
+/** Frame: a video or image by the person, on its own page. */
+export function frameJsonLd(
+  item: Frame,
   path: string,
   description: string,
 ) {

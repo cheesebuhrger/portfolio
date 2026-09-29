@@ -3,4 +3,4 @@
  * them without bundling the content data.
  */
 export const projectHref = (slug: string) => `/projects/${slug}`;
-export const playgroundHref = (slug: string) => `/playground/${slug}`;
+export const frameHref = (slug: string) => `/frames/${slug}`;

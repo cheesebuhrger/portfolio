@@ -46,10 +46,10 @@ const Footer = () => {
             </li> */}
             <li>
               <TransitionLink
-                href="/#playground"
+                href="/#frames"
                 className="hover:text-text-action"
               >
-                Playground
+                Frames
               </TransitionLink>
             </li>
             {/* <li className="mt-4">

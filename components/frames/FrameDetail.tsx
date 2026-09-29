@@ -1,17 +1,17 @@
 import Link from "next/link";
-import type { PlaygroundItem } from "@/lib/types";
+import type { Frame } from "@/lib/types";
 import Media from "@/components/ui/Media";
 
 /**
- * A playground item's media and details. Shared by the dialog (opened from
+ * A frame's media and details. Shared by the dialog (opened from
  * the homepage) and the item's full page (a shared link or refresh), so both
  * show exactly the same thing.
  */
-export default function PlaygroundDetail({
+export default function FrameDetail({
   item,
   headingLevel = "h2",
 }: {
-  item: PlaygroundItem;
+  item: Frame;
   /** h1 on the item's own page; h2 in the dialog (the page behind has the h1). */
   headingLevel?: "h1" | "h2";
 }) {

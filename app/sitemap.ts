@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 import {
-  getPlaygroundItems,
+  getFrames,
   getProjects,
-  playgroundHref,
+  frameHref,
   projectHref,
 } from "@/lib/content";
 import { absoluteUrl, cloudinaryUploadDate } from "@/lib/seo";
@@ -13,15 +13,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: absoluteUrl(projectHref(project.slug)),
     lastModified: project.updated ?? project.published,
   }));
-  const playground = getPlaygroundItems().map((item) => ({
-    url: absoluteUrl(playgroundHref(item.slug)),
+  const frames = getFrames().map((item) => ({
+    url: absoluteUrl(frameHref(item.slug)),
     lastModified: cloudinaryUploadDate(item.src),
   }));
-  const latest = [...projects, ...playground]
+  const latest = [...projects, ...frames]
     .map((p) => p.lastModified)
     .filter(Boolean)
     .sort()
     .at(-1);
 
-  return [{ url: absoluteUrl("/"), lastModified: latest }, ...projects, ...playground];
+  return [{ url: absoluteUrl("/"), lastModified: latest }, ...projects, ...frames];
 }

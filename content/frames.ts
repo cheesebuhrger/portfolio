@@ -1,6 +1,6 @@
-import type { PlaygroundItem } from "@/lib/types";
+import type { Frame } from "@/lib/types";
 
-const playgroundItems: PlaygroundItem[] = [
+const frames: Frame[] = [
   {
     slug: "abode-money-loader",
     type: "video",
@@ -89,4 +89,4 @@ const playgroundItems: PlaygroundItem[] = [
   },
 ];
 
-export default playgroundItems;
+export default frames;
