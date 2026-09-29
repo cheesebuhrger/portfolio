@@ -17,20 +17,20 @@ export default function FrameDetail({
 }) {
   const Heading = headingLevel;
   return (
-    <div className="mx-auto max-w-[1600px] w-full">
-      <div className="flex flex-col gap-4 md:gap-8 lg:flex-row p-4 md:p-8 h-auto">
+    <div className="mx-auto w-full">
+      <div className="flex flex-col gap-8 md:gap-10 xl:gap-12 lg:flex-row p-8 md:p-8 h-auto">
         <div className="flex-shrink-0 lg:w-2/3">
-          <div className="w-full h-0 pb-[75%] relative">
-            <div className="absolute inset-0 rounded-md overflow-hidden">
-              <Media
-                key={item.src}
-                type={item.type}
-                src={item.src}
-                alt={item.title}
-                sizes="(min-width: 60rem) 66vw, 100vw"
-                imageScaleAnimation="none"
-              />
-            </div>
+          {/* 4:3 box; the media is contained (shown whole), not cropped. */}
+          <div className="relative w-full aspect-4/3 rounded-md overflow-hidden">
+            <Media
+              key={item.src}
+              type={item.type}
+              src={item.src}
+              alt={item.title}
+              objectFit="object-contain"
+              sizes="(min-width: 60rem) 66vw, 100vw"
+              imageScaleAnimation="none"
+            />
           </div>
         </div>
         <div className="lg:w-1/3">
