@@ -3,14 +3,14 @@
 import React, { useEffect } from "react";
 import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import { useLenis } from "lenis/react";
-import { designProjects } from "@/data/designProjects";
+import type { ProjectSummary } from "@/lib/content";
 
 import Button from "./Button";
 import MediaImage from "./MediaImage";
 import SplitReveal from "./motion/SplitReveal";
 import TransitionLink from "./layout/TransitionLink";
 
-const IndexProjects = () => {
+const IndexProjects = ({ projects }: { projects: ProjectSummary[] }) => {
   const lenis = useLenis();
 
   const [mobileValues, setMobileValues] = React.useState({
@@ -430,8 +430,8 @@ const IndexProjects = () => {
           className="project-image-fix index-intro-in absolute w-1/2 aspect-4/3 overflow-hidden bottom-8 right-0 md:right-4 rounded-md cursor-pointer hidden md:block"
         >
           <MediaImage
-            src={designProjects[0].image1.src}
-            alt={designProjects[0].image1.alt}
+            src={projects[0].cover.primary.src}
+            alt={projects[0].cover.primary.alt}
             type="image"
                     imageScaleAnimation="none"
             width={864.5}
@@ -489,8 +489,8 @@ const IndexProjects = () => {
                 className="relative w-full aspect-4/3 bg-surface-secondary rounded-md overflow-hidden cursor-pointer"
               >
                 <MediaImage
-                  src={designProjects[1].image2.src}
-                  alt={designProjects[1].image2.alt}
+                  src={projects[1].cover.secondary.src}
+                  alt={projects[1].cover.secondary.alt}
                   type="image"
                     imageScaleAnimation="none"
                   width={864.5}
@@ -515,30 +515,30 @@ const IndexProjects = () => {
             <div className="group w-full h-fit relative flex flex-col gap-4 md:gap-6 lg:gap-8">
               <div className="project-content px-4 md:px-6 lg:px-8 w-full flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-6 lg:gap-8 relative">
                 <div className="index-project-meta text-sm md:col-span-1 font-serif pt-1 lg:pt-2 uppercase group-hover:text-text-action">
-                  {designProjects[0].year}
+                  {projects[0].year}
                 </div>
                 <TransitionLink
-                  href={designProjects[0].url}
+                  href={projects[0].href}
                   className="index-project-title cursor-animation ~text-4xl/6xl font-serif md:col-span-8 group-hover:text-text-action group-hover:underline text-pretty"
                   data-cursor-text="VIEW PROJECT"
                 >
-                  {designProjects[0].title}
+                  {projects[0].title}
                 </TransitionLink>
                 <div className="index-project-meta text-lg md:col-start-10 md:col-span-3 pt-1 font-serif group-hover:text-text-action">
-                  <p>{designProjects[0].role}</p>
-                  <p>{designProjects[0].company}</p>
+                  <p>{projects[0].role}</p>
+                  <p>{projects[0].company}</p>
                 </div>
               </div>
 
               <TransitionLink
-                href={designProjects[0].url}
+                href={projects[0].href}
                 className="cursor-animation relative flex w-full"
                 data-cursor-text="VIEW PROJECT"
               >
                 <div className="project-image-left relative w-full aspect-4/3 overflow-hidden bg-surface-secondary">
                   <MediaImage
-                    src={designProjects[0].image1.src}
-                    alt={designProjects[0].image1.alt}
+                    src={projects[0].cover.primary.src}
+                    alt={projects[0].cover.primary.alt}
                     type="image"
                     imageScaleAnimation="none"
                     width={864.5}
@@ -547,8 +547,8 @@ const IndexProjects = () => {
                 </div>
                 <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary hidden md:block">
                   <MediaImage
-                    src={designProjects[0].image2.src}
-                    alt={designProjects[0].image2.alt}
+                    src={projects[0].cover.secondary.src}
+                    alt={projects[0].cover.secondary.alt}
                     type="image"
                     imageScaleAnimation="none"
                     width={864.5}
@@ -570,30 +570,30 @@ const IndexProjects = () => {
             <div className="group w-full h-fit relative flex flex-col gap-4 md:gap-6 lg:gap-8">
               <div className="project-content px-4 md:px-6 lg:px-8 mt-20 md:mt-24 w-full flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-6 lg:gap-8 relative">
                 <div className="index-project-meta text-sm md:col-span-1 font-serif pt-1 lg:pt-2 uppercase group-hover:text-text-action">
-                  {designProjects[1].year}
+                  {projects[1].year}
                 </div>
                 <TransitionLink
-                  href={designProjects[1].url}
+                  href={projects[1].href}
                   className="index-project-title cursor-animation ~text-4xl/6xl font-serif md:col-span-8 group-hover:text-text-action group-hover:underline text-pretty"
                   data-cursor-text="VIEW PROJECT"
                 >
-                  {designProjects[1].title}
+                  {projects[1].title}
                 </TransitionLink>
                 <div className="index-project-meta text-lg md:col-start-10 md:col-span-3 pt-1 font-serif group-hover:text-text-action">
-                  <p>{designProjects[1].role}</p>
-                  <p>{designProjects[1].company}</p>
+                  <p>{projects[1].role}</p>
+                  <p>{projects[1].company}</p>
                 </div>
               </div>
 
               <TransitionLink
-                href={designProjects[1].url}
+                href={projects[1].href}
                 className="cursor-animation relative flex w-full"
                 data-cursor-text="VIEW PROJECT"
               >
                 <div className="project-image-left relative w-full aspect-4/3 overflow-hidden bg-surface-secondary">
                   <MediaImage
-                    src={designProjects[1].image1.src}
-                    alt={designProjects[1].image1.alt}
+                    src={projects[1].cover.primary.src}
+                    alt={projects[1].cover.primary.alt}
                     type="image"
                     imageScaleAnimation="none"
                     width={864.5}
@@ -602,8 +602,8 @@ const IndexProjects = () => {
                 </div>
                 <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary hidden md:block">
                   <MediaImage
-                    src={designProjects[1].image2.src}
-                    alt={designProjects[1].image2.alt}
+                    src={projects[1].cover.secondary.src}
+                    alt={projects[1].cover.secondary.alt}
                     type="image"
                     imageScaleAnimation="none"
                     width={864.5}
@@ -625,30 +625,30 @@ const IndexProjects = () => {
             <div className="group w-full h-fit relative flex flex-col gap-4 md:gap-6 lg:gap-8">
               <div className="project-content px-4 md:px-6 lg:px-8 mt-20 md:mt-24 w-full flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-6 lg:gap-8 relative">
                 <div className="index-project-meta text-sm md:col-span-1 font-serif pt-1 lg:pt-2 uppercase group-hover:text-text-action">
-                  {designProjects[2].year}
+                  {projects[2].year}
                 </div>
                 <TransitionLink
-                  href={designProjects[2].url}
+                  href={projects[2].href}
                   className="index-project-title cursor-animation ~text-4xl/6xl font-serif md:col-span-8 group-hover:text-text-action group-hover:underline text-pretty"
                   data-cursor-text="VIEW PROJECT"
                 >
-                  {designProjects[2].title}
+                  {projects[2].title}
                 </TransitionLink>
                 <div className="index-project-meta text-lg md:col-start-10 md:col-span-3 pt-1 font-serif group-hover:text-text-action">
-                  <p>{designProjects[2].role}</p>
-                  <p>{designProjects[2].company}</p>
+                  <p>{projects[2].role}</p>
+                  <p>{projects[2].company}</p>
                 </div>
               </div>
 
               <TransitionLink
-                href={designProjects[2].url}
+                href={projects[2].href}
                 className="cursor-animation relative flex w-full"
                 data-cursor-text="VIEW PROJECT"
               >
                 <div className="project-image-left relative w-full aspect-4/3 overflow-hidden bg-surface-secondary">
                   <MediaImage
-                    src={designProjects[2].image1.src}
-                    alt={designProjects[2].image1.alt}
+                    src={projects[2].cover.primary.src}
+                    alt={projects[2].cover.primary.alt}
                     type="image"
                     imageScaleAnimation="none"
                     width={864.5}
@@ -657,8 +657,8 @@ const IndexProjects = () => {
                 </div>
                 <div className="project-image-right relative w-full aspect-4/3 overflow-hidden bg-surface-secondary hidden md:block">
                   <MediaImage
-                    src={designProjects[2].image2.src}
-                    alt={designProjects[2].image2.alt}
+                    src={projects[2].cover.secondary.src}
+                    alt={projects[2].cover.secondary.alt}
                     type="image"
                     imageScaleAnimation="none"
                     width={864.5}

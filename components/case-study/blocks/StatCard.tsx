@@ -1,6 +1,6 @@
-import { AnimatedIcon } from "./icons";
+import { AnimatedIcon } from "@/components/icons";
 
-interface StatBlockProps {
+interface StatCardProps {
   title: React.ReactNode;
   value: string;
   direction?: "up" | "down" | "unknown" | "none";
@@ -8,7 +8,7 @@ interface StatBlockProps {
   footnote?: string;
 }
 
-const StatBlock: React.FC<StatBlockProps> = ({
+const StatCard: React.FC<StatCardProps> = ({
   title,
   value,
   direction = "none",
@@ -44,4 +44,4 @@ const StatBlock: React.FC<StatBlockProps> = ({
   );
 };
 
-export default StatBlock;
+export default StatCard;

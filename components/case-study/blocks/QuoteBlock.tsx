@@ -19,7 +19,7 @@ interface QuoteProps {
   content: QuoteContent;
 }
 
-const Quote: React.FC<QuoteProps> = ({ writer, content }) => {
+const QuoteBlock: React.FC<QuoteProps> = ({ writer, content }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -74,4 +74,4 @@ const Quote: React.FC<QuoteProps> = ({ writer, content }) => {
   );
 };
 
-export default Quote;
+export default QuoteBlock;

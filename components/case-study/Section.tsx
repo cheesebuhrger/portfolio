@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useRef } from "react";
-import { AnimatedIcon, AnimatedIconType } from "./icons";
-import { StackScrim, useStack } from "./motion/stack";
+import { AnimatedIcon, AnimatedIconType } from "@/components/icons";
+import { StackScrim, useStack } from "@/components/motion/stack";
 
-interface ProjectSectionProps {
+interface SectionProps {
   sectionNumber?: string;
   sectionLabel: string;
   className?: string;
@@ -14,7 +14,7 @@ interface ProjectSectionProps {
   stack?: boolean;
 }
 
-const ProjectSection: React.FC<ProjectSectionProps> = ({
+const Section: React.FC<SectionProps> = ({
   sectionNumber,
   sectionLabel,
   className = "",
@@ -51,4 +51,4 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
   );
 };
 
-export default ProjectSection;
+export default Section;

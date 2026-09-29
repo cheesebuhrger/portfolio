@@ -2,30 +2,20 @@
 
 import { ReactNode, useRef } from "react";
 import Image from "next/image";
-import { BadgeGroup } from "./BadgeGroup";
-import { AvatarGroup } from "./AvatarGroup";
-import { AnimatedIcon } from "./icons";
-import SplitReveal from "./motion/SplitReveal";
-import { useScaleReveal } from "./motion/useScaleReveal";
-import { StackScrim, useStack } from "./motion/stack";
+import type { TeamMember } from "@/lib/types";
+import { BadgeGroup } from "@/components/BadgeGroup";
+import { AvatarGroup } from "@/components/AvatarGroup";
+import { AnimatedIcon } from "@/components/icons";
+import SplitReveal from "@/components/motion/SplitReveal";
+import { useScaleReveal } from "@/components/motion/useScaleReveal";
+import { StackScrim, useStack } from "@/components/motion/stack";
 
-interface ProjectHeroProps {
+interface HeroProps {
   headline: ReactNode;
-  company?: ReactNode;
   problem: string;
   solution: string;
   skills: string[];
-  team:
-    | ReactNode
-    | {
-        avatars: {
-          src: string;
-          alt: string;
-          href?: string;
-          primary?: string;
-          secondary?: string;
-        }[];
-      };
+  team: TeamMember[];
   duration: {
     length: string;
     year: string;
@@ -47,13 +37,13 @@ interface ProjectHeroProps {
 
 // ---- DATA COMPONENT ----
 
-interface ProjectHeroDataWrapperProps {
+interface HeroDetailProps {
   children: ReactNode;
   label: string;
   className?: string;
 }
 
-const ProjectHeroDataWrapper: React.FC<ProjectHeroDataWrapperProps> = ({
+const HeroDetail: React.FC<HeroDetailProps> = ({
   children,
   label,
   className,
@@ -66,7 +56,7 @@ const ProjectHeroDataWrapper: React.FC<ProjectHeroDataWrapperProps> = ({
   );
 };
 
-const ProjectHero: React.FC<ProjectHeroProps> = ({
+const Hero: React.FC<HeroProps> = ({
   headline,
   skills,
   team,
@@ -114,29 +104,31 @@ const ProjectHero: React.FC<ProjectHeroProps> = ({
             </div>
           </div>
           <div className="md:col-start-5 md:col-span-2 lg:col-start-10 lg:col-span-3 flex flex-col gap-8 -mt-1">
-            <ProjectHeroDataWrapper label="Role & Scope">
+            <HeroDetail label="Role & Scope">
               <BadgeGroup badges={skills} />
-            </ProjectHeroDataWrapper>
+            </HeroDetail>
 
             <div className="flex flex-row md:flex-col gap-8">
-              <ProjectHeroDataWrapper
+              <HeroDetail
                 label="Duration"
                 className="w-1/2 md:w-full"
               >
                 <span className="~text-sm/base col-span-full">
                   {duration.length} · {duration.year}
                 </span>
-              </ProjectHeroDataWrapper>
+              </HeroDetail>
 
-              <ProjectHeroDataWrapper label="Team" className="w-1/2 md:w-full">
-                {typeof team === "object" &&
-                team !== null &&
-                "avatars" in team ? (
-                  <AvatarGroup avatars={team.avatars} />
-                ) : (
-                  <div className="~text-sm/base col-span-full pr-6">{team}</div>
-                )}
-              </ProjectHeroDataWrapper>
+              <HeroDetail label="Team" className="w-1/2 md:w-full">
+                <AvatarGroup
+                  avatars={team.map((member) => ({
+                    src: member.image,
+                    alt: member.name,
+                    href: member.href,
+                    primary: member.name,
+                    secondary: member.role,
+                  }))}
+                />
+              </HeroDetail>
             </div>
           </div>
         </div>
@@ -167,4 +159,4 @@ const ProjectHero: React.FC<ProjectHeroProps> = ({
   );
 };
 
-export default ProjectHero;
+export default Hero;

@@ -7,7 +7,7 @@ import Modal from "./Modal";
 import MediaItem from "./MediaItem";
 import { useModal } from "../hooks/useModal";
 import Link from "next/link";
-import { playgroundItems } from "@/data/indexPlaygroundItems";
+import { playgroundItems } from "@/content/playground";
 
 const IndexPlayground: React.FC = () => {
   const { isOpen, currentIndex, open, close, next, prev } =
