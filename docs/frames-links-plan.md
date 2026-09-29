@@ -129,3 +129,13 @@ Using the headless-Chrome setup from the refactor:
   - Direct visits render the full page.
   - Homepage screenshots are pixel-identical to the previous build.
   - Existing scroll tests pass.
+
+## Frame page chrome (2026-09-29)
+
+- The "All Frames / Previous / Next" bar on the frame page was removed at the user's request. The page is Nav → frame → Footer.
+- Frame pages use the **homepage Nav and light Footer** (`usesHomeChrome` in `lib/routes.ts`: `/` and `/frames/*`).
+  - On a frame page the Nav items are links with the page transition. The name goes to `/`, Projects to `/#projects` and Frames to `/#frames`. On the homepage they still scroll in place.
+  - Case studies keep the back-button Nav and dark Footer.
+- On phones the Nav shows only the name (Projects/Frames are hidden below `md`, as on the homepage). Adding them on mobile is deferred.
+- The in-site dialog's URL is also `/frames/*`, so the chrome behind it counts as "home" too. That's intentional: there's no visual change while the dialog is open.
+- `getAdjacentFrames` was removed (only the full page's bar used it). The dialog keeps its own Previous/Next.

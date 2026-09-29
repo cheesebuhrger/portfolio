@@ -55,16 +55,6 @@ export function getFrame(slug: string): Frame | undefined {
   return frames.find((item) => item.slug === slug);
 }
 
-/** Previous and next items around `slug`, wrapping at the ends. */
-export function getAdjacentFrames(slug: string) {
-  const index = frames.findIndex((item) => item.slug === slug);
-  const count = frames.length;
-  return {
-    prev: frames[(index - 1 + count) % count],
-    next: frames[(index + 1) % count],
-  };
-}
-
 /** Description for metadata; falls back to a factual line when none is written. */
 export function frameDescription(item: Frame): string {
   return (

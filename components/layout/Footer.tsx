@@ -3,15 +3,17 @@
 import TransitionLink from "./TransitionLink";
 import { usePathname } from "next/navigation";
 import { SITE } from "@/lib/seo";
+import { usesHomeChrome } from "@/lib/routes";
 
 const Footer = () => {
   const pathname = usePathname();
-  const isHomePage = pathname === "/";
+  // Light footer without section links (the Nav has them) on home-style pages.
+  const homeStyle = usesHomeChrome(pathname);
 
   return (
     <footer
       className={`grid md:grid-cols-4 p-4 pt-24 md:p-8 md:pt-48 text-xs font-mono uppercase gap-8 items-end ${
-        !isHomePage
+        !homeStyle
           ? "bg-surface-primary-negative text-text-primary-negative"
           : ""
       }`}
@@ -19,14 +21,14 @@ const Footer = () => {
       {/* <div
         className={`col-span-2 h-96 border
           ${
-            !isHomePage
+            !homeStyle
               ? "border-border-primary-negative"
               : "border-border-primary"
           }`}
       ></div> */}
 
       <ul className="col-span-1 md:col-start-3">
-        {!isHomePage && (
+        {!homeStyle && (
           <>
             <li>
               <TransitionLink
@@ -72,7 +74,7 @@ const Footer = () => {
             Github
           </a>
         </li>
-        <li className={!isHomePage ? "mt-4" : ""}>
+        <li className={!homeStyle ? "mt-4" : ""}>
           <a
             href={SITE.profiles.linkedin}
             target="_blank"
