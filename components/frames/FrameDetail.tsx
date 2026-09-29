@@ -18,7 +18,7 @@ export default function FrameDetail({
   const Heading = headingLevel;
   return (
     <div className="mx-auto w-full">
-      <div className="flex flex-col gap-8 md:gap-10 xl:gap-12 lg:flex-row p-8 md:p-8 h-auto">
+      <div className="flex flex-col gap-8 md:gap-10 xl:gap-12 lg:flex-row p-4 md:p-6 lg:p-8 xl:pt-12 h-auto">
         <div className="flex-shrink-0 lg:w-2/3">
           {/* 4:3 box; the media is contained (shown whole), not cropped. */}
           <div className="relative w-full aspect-4/3 rounded-md overflow-hidden">

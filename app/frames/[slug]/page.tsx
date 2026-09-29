@@ -49,7 +49,7 @@ export default async function FramePage({ params }: Params) {
   if (!item) notFound();
 
   return (
-    <div className="min-h-screen bg-surface-background pt-20 md:pt-24">
+    <div className="min-h-screen bg-surface-background pt-28 md:pt-36 xl:pt-28">
       <JsonLd
         data={frameJsonLd(item, frameHref(slug), frameDescription(item))}
       />

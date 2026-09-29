@@ -101,7 +101,7 @@ export default function Dialog({
             shown ? "translate-y-0" : "translate-y-6"
           }`}
         >
-          <div className="sticky top-0 flex flex-row justify-between w-full px-6 py-4 border-b border-border-secondary z-10">
+          <div className="sticky top-0 flex flex-row justify-between w-full px-2 md:px-4 lg:px-6 py-4 border-b border-border-secondary z-10">
             <Button
               label="Close"
               onClick={requestClose}
