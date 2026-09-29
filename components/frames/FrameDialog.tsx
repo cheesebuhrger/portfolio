@@ -51,6 +51,15 @@ export default function FrameDialog({
     [router, items, index, count],
   );
 
+  // The browser remembers scroll per history entry, and this entry's
+  // position is the page *behind* the dialog. Refreshing would restore it
+  // onto the (much shorter) full frame page and land at the bottom, so opt
+  // this entry out: a refresh opens the frame page at the top. The full page
+  // turns restoration back on (RestoreScrollDefault).
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+  }, [slug]);
+
   const close = useCallback(() => router.back(), [router]);
   const prev = useCallback(() => step(-1), [step]);
   const next = useCallback(() => step(1), [step]);

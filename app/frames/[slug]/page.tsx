@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import FrameDetail from "@/components/frames/FrameDetail";
+import RestoreScrollDefault from "@/components/frames/RestoreScrollDefault";
 import JsonLd from "@/components/seo/JsonLd";
 import {
   getFrame,
@@ -53,6 +54,7 @@ export default async function FramePage({ params }: Params) {
       <JsonLd
         data={frameJsonLd(item, frameHref(slug), frameDescription(item))}
       />
+      <RestoreScrollDefault />
       <FrameDetail item={item} headingLevel="h1" />
     </div>
   );
