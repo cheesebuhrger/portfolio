@@ -2,8 +2,8 @@
 
 import React, { useEffect, useRef } from "react";
 import SplitType from "split-type";
-import { gsap } from "gsap";
-import TransitionLink from "./TransitionLink";
+import { gsap } from "@/lib/gsap";
+import TransitionLink from "./layout/TransitionLink";
 
 interface ButtonProps {
   label: string;
@@ -22,8 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   size = "medium",
   variant = "primary",
 }) => {
-  const linkRef = useRef<HTMLAnchorElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const hoverTl = useRef<gsap.core.Timeline | null>(null);
   const firstLabelRef = useRef<HTMLDivElement>(null);
   const secondLabelRef = useRef<HTMLDivElement>(null);
   const splitTypeRef = useRef<SplitType | null>(null);
@@ -79,19 +78,12 @@ const Button: React.FC<ButtonProps> = ({
       "<"
     );
 
-    // Add event listeners
-    const container = href ? linkRef.current : buttonRef.current;
-    if (container) {
-      container.addEventListener("mouseenter", () => tl.play());
-      container.addEventListener("mouseleave", () => tl.reverse());
-    }
+    hoverTl.current = tl;
 
     // Cleanup
     return () => {
-      if (container) {
-        container.removeEventListener("mouseenter", () => tl.play());
-        container.removeEventListener("mouseleave", () => tl.reverse());
-      }
+      tl.kill();
+      hoverTl.current = null;
       if (splitTypeRef.current) {
         splitTypeRef.current.revert();
       }
@@ -99,7 +91,7 @@ const Button: React.FC<ButtonProps> = ({
         secondSplitTypeRef.current.revert();
       }
     };
-  }, [href]);
+  }, [label]);
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     if (onClick) {
@@ -121,6 +113,11 @@ const Button: React.FC<ButtonProps> = ({
       "border-none hover:bg-surface-button-hover active:bg-surface-button-active transition-all duration-30",
   };
 
+  const hoverHandlers = {
+    onMouseEnter: () => hoverTl.current?.play(),
+    onMouseLeave: () => hoverTl.current?.reverse(),
+  };
+
   const commonClassName = `flex relative w-fit font-mono uppercase cursor-pointer justify-center items-center ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
 
   const buttonContent = (
@@ -138,15 +135,15 @@ const Button: React.FC<ButtonProps> = ({
   );
 
   return href ? (
-    <TransitionLink href={href} ref={linkRef} className={commonClassName}>
+    <TransitionLink href={href} className={commonClassName} {...hoverHandlers}>
       {buttonContent}
     </TransitionLink>
   ) : (
     <button
-      ref={buttonRef}
       type="button"
       onClick={handleClick}
       className={commonClassName}
+      {...hoverHandlers}
     >
       {buttonContent}
     </button>

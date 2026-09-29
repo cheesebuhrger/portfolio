@@ -209,9 +209,10 @@ html.lenis body {
 }
 
 /* Initial Load Animation */
+/* No fill-mode: once finished, the animation leaves no opacity behind, so it
+   doesn't create a stacking context that would break Nav's mix-blend. */
 .initial-load {
-  opacity: 0;
-  animation: fadeIn 0.4s ease-in forwards;
+  animation: fadeIn 0.4s ease-in;
 }
 
 @keyframes fadeIn {

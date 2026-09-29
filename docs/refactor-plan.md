@@ -133,6 +133,15 @@ Each phase is one PR. Visual parity is checked before merge. Pause for review af
 - Nav and Footer use real links or buttons.
 - Split pages into server components with client islands where possible.
 
+**Status: done.** Notes:
+- New: `lib/gsap.ts` (single plugin registration), `components/layout/{SmoothScroll,Cursor}.tsx`. Moved: `Nav`, `Footer`, `TransitionLink` → `components/layout/`.
+- Removed: `CursorDot`, `InitialLoadTransition`, `useCursorAnimation`, `useIsMobile`, `useIsTouch`.
+- `InitialLoadTransition` replaced by a CSS-only `.initial-load` wrapper (same 0.4s fade, runs once because the layout persists). This clears one of the two deferred lint errors.
+- Cursor is hidden via `(hover: hover) and (pointer: fine)` rather than touch detection, so touchscreen laptops used with a mouse now get the cursor. It resets to un-hovered on route change.
+- `TransitionLink` on mobile now does client-side navigation instead of a full reload. **Watch on real devices**: if the full reload was a workaround for pinned ScrollTriggers misbehaving after navigation, it'll show up here.
+- `SmoothScroll` cancels any in-flight Lenis scroll on route change (found in code review): with one persistent instance, a smooth scroll still gliding at navigation time would otherwise carry over and leave the new page scrolled down.
+- `/` and `/about` are now server components. Case study pages stay client components until Phase 3 removes their page-level animation hooks. Converting them now would need a throwaway shim.
+
 ### Phase 3: Motion rewrite (prototype first, then adopt)
 1. **Prototype (isolated):** build `SplitReveal` with GSAP SplitText on a throwaway route (e.g. `/lab/motion`, not linked or indexed). Render the same headlines side by side: current `split-type` implementation vs. new. Check line breaks, timing, easing, skew/clip reveal, resize behaviour, and font-load behaviour.
 2. **Decision gate:** if it looks the same, adopt SplitText. If not, keep `split-type` but still move it into a scoped `SplitReveal` component (the architectural fix doesn't depend on the library).

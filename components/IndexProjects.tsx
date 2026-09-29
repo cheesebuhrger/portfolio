@@ -1,15 +1,15 @@
-import React, { useEffect, useLayoutEffect } from "react";
-import gsap from "gsap";
+"use client";
+
+import React, { useEffect } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import SplitType from "split-type";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
 import { useLenis } from "lenis/react";
 import { designProjects } from "@/data/designProjects";
 
 import Button from "./Button";
 import MediaImage from "./MediaImage";
-import TransitionLink from "./TransitionLink";
+import TransitionLink from "./layout/TransitionLink";
 
 const IndexProjects = () => {
   useSplitTypeAnimation();
@@ -41,9 +41,6 @@ const IndexProjects = () => {
     };
   }, []);
 
-  useLayoutEffect(() => {
-    gsap.registerPlugin(useGSAP, ScrollTrigger);
-  }, []);
 
   useGSAP(() => {
     // Split type animation setup

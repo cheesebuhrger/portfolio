@@ -1,5 +1,5 @@
 import { useEffect, useRef, ReactNode } from "react";
-import { gsap } from "gsap";
+import { gsap } from "@/lib/gsap";
 
 interface TooltipProps {
   primary: string;

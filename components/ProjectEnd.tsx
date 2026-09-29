@@ -1,12 +1,9 @@
 "use client";
 
-import { useLayoutEffect } from "react";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, useGSAP } from "@/lib/gsap";
 import SplitType from "split-type";
 import MediaImage from "@/components/MediaImage";
-import TransitionLink from "./TransitionLink";
+import TransitionLink from "./layout/TransitionLink";
 
 interface ProjectEndProps {
   process: {
@@ -39,9 +36,6 @@ const ProjectEnd = ({
   project,
   prototype,
 }: ProjectEndProps) => {
-  useLayoutEffect(() => {
-    gsap.registerPlugin(useGSAP, ScrollTrigger);
-  }, []);
 
   useGSAP(() => {
     const processTimeline = gsap.timeline({

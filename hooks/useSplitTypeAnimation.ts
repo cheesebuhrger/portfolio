@@ -1,14 +1,8 @@
-import { useLayoutEffect } from "react";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, useGSAP } from "@/lib/gsap";
 import SplitType from "split-type";
 
 export const useSplitTypeAnimation = () => {
 
-  useLayoutEffect(() => {
-    gsap.registerPlugin(useGSAP, ScrollTrigger);
-  }, []);
 
   useGSAP(() => {
     const elements = gsap.utils.toArray<HTMLElement>(
