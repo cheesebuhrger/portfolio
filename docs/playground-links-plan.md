@@ -107,7 +107,7 @@ Using the headless-Chrome setup from the refactor:
 - **Scroll (`components/layout/SmoothScroll.tsx`):**
   - Opening a route dialog, stepping between items, and closing it don't move the page behind.
     - This is decided by whether a `dialog[data-route-overlay]` is actually in the DOM after the commit, not by the URL, because `/playground/*` can also be the full page (found in code review).
-  - Scroll positions for Back/Forward are saved on every scroll, and saving stops as soon as a navigation starts (a click on a link to another page, or popstate). Browsers can emit a stray scroll to 0 mid-navigation, before the URL changes, which overwrote the real position.
+  - Scroll positions for Back/Forward are saved on every scroll, and saving stops as soon as a navigation starts (a click on a link to another page, or popstate). It resumes when the new route renders, or when the visitor scrolls again (wheel, touch or keys) if a navigation never completes. Browsers can emit a stray scroll to 0 mid-navigation, before the URL changes, which overwrote the real position.
     - A first attempt waited for scrolling to settle before saving. Code review showed it lost the position when you click while a smooth scroll is still gliding, and that it could still save the stray 0 on slow loads.
   - `lenis.resize()` runs before every jump. Lenis clamps to its cached page height, which is stale coming from a short page (the full item page), so jumps to `#playground` stopped short.
 - **Share images:**

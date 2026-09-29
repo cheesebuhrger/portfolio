@@ -85,21 +85,26 @@ function ResetScrollOnNavigate() {
       if (url.origin !== window.location.origin) return;
       if (url.pathname === window.location.pathname) return; // same-page #hash
       navigating.current = true;
-      // Safety net in case the navigation never completes.
-      window.clearTimeout(navigatingTimer);
-      navigatingTimer = window.setTimeout(() => {
-        navigating.current = false;
-      }, NAVIGATION_TIMEOUT_MS);
     };
-    let navigatingTimer: number | undefined;
+    // Safety net if a navigation never completes (cancelled, failed): the
+    // visitor scrolling again means they're still on this page. Stray scrolls
+    // come without input, so a slow load can't re-enable saving by itself.
+    const onUserScroll = () => {
+      navigating.current = false;
+    };
     window.addEventListener("popstate", onPopState);
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("click", onClick, { capture: true });
+    for (const type of SCROLL_INPUT_EVENTS) {
+      window.addEventListener(type, onUserScroll, { passive: true });
+    }
     return () => {
-      window.clearTimeout(navigatingTimer);
       window.removeEventListener("popstate", onPopState);
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("click", onClick, { capture: true });
+      for (const type of SCROLL_INPUT_EVENTS) {
+        window.removeEventListener(type, onUserScroll);
+      }
     };
   }, []);
 
@@ -171,8 +176,8 @@ function ResetScrollOnNavigate() {
   return null;
 }
 
-/** Resume saving scroll positions if a started navigation never completes. */
-const NAVIGATION_TIMEOUT_MS = 5000;
+/** Input that means the visitor is scrolling this page themselves. */
+const SCROLL_INPUT_EVENTS = ["wheel", "touchmove", "keydown"] as const;
 
 const INPUT_EVENTS = ["wheel", "touchstart", "keydown", "pointerdown"] as const;
 
