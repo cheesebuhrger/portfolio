@@ -91,10 +91,16 @@ function ResetScrollOnNavigate() {
       // the first snapshot; one pending longer than NAVIGATION_STALE_MS is
       // treated as abandoned, so the next click snapshots afresh.
       const now = performance.now();
-      const pending =
-        pendingHistoryPath.current !== null ||
-        (navigating.current && now - navigationStartedAt < NAVIGATION_STALE_MS);
-      if (pending) return;
+      if (pendingHistoryPath.current !== null) {
+        // Mid Back/Forward: scrollY may already belong to the incoming page,
+        // so don't snapshot — but still ignore stray scrolls from here on.
+        navigating.current = true;
+        navigationStartedAt = now;
+        return;
+      }
+      if (navigating.current && now - navigationStartedAt < NAVIGATION_STALE_MS) {
+        return; // keep the first click's snapshot
+      }
       savedPositions.current.set(previousPathname.current, window.scrollY);
       navigating.current = true;
       navigationStartedAt = now;
