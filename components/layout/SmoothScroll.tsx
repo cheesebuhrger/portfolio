@@ -39,6 +39,8 @@ function ResetScrollOnNavigate() {
   const previousPathname = useRef(pathname);
   // Path a back/forward is heading to, until that page renders.
   const pendingHistoryPath = useRef<string | null>(null);
+  // A link to another page was clicked and its route hasn't rendered yet.
+  const navigating = useRef(false);
   // Whether a route dialog was showing after the previous navigation.
   const overlayWasShown = useRef(false);
   // Last scroll position per path, for back/forward. The browser's own
@@ -65,25 +67,39 @@ function ResetScrollOnNavigate() {
         // rendered), so that navigation was superseded.
         pendingHistoryPath.current = null;
       }
-      // Save once scrolling settles, and only if still on the same page:
-      // browsers can emit a stray scroll (e.g. to 0) mid-navigation, before
-      // the URL changes, which would otherwise overwrite the real position.
-      const path = previousPathname.current;
-      const y = window.scrollY;
-      window.clearTimeout(saveTimer);
-      saveTimer = window.setTimeout(() => {
-        if (previousPathname.current === path) {
-          savedPositions.current.set(path, y);
-        }
-      }, SAVE_SETTLE_MS);
+      // Once a navigation has started, the position no longer belongs to
+      // this page: browsers can emit a stray scroll (e.g. to 0) before the
+      // URL changes, which would overwrite the position the visitor left at.
+      if (navigating.current) return;
+      savedPositions.current.set(previousPathname.current, window.scrollY);
     };
-    let saveTimer: number | undefined;
+    // A click on a link to another page starts a navigation (Back/Forward are
+    // covered by popstate above). Capture phase, so this runs before any
+    // handler that turns the click into a client-side navigation.
+    const onClick = (e: MouseEvent) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const link = e.target instanceof Element ? e.target.closest("a[href]") : null;
+      if (!(link instanceof HTMLAnchorElement)) return;
+      if (link.target && link.target !== "_self") return;
+      const url = new URL(link.href, window.location.href);
+      if (url.origin !== window.location.origin) return;
+      if (url.pathname === window.location.pathname) return; // same-page #hash
+      navigating.current = true;
+      // Safety net in case the navigation never completes.
+      window.clearTimeout(navigatingTimer);
+      navigatingTimer = window.setTimeout(() => {
+        navigating.current = false;
+      }, NAVIGATION_TIMEOUT_MS);
+    };
+    let navigatingTimer: number | undefined;
     window.addEventListener("popstate", onPopState);
     window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("click", onClick, { capture: true });
     return () => {
-      window.clearTimeout(saveTimer);
+      window.clearTimeout(navigatingTimer);
       window.removeEventListener("popstate", onPopState);
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("click", onClick, { capture: true });
     };
   }, []);
 
@@ -91,6 +107,7 @@ function ResetScrollOnNavigate() {
     // Only on real route changes, not on first load or when Lenis initialises.
     if (!lenis || pathname === previousPathname.current) return;
     previousPathname.current = pathname;
+    navigating.current = false;
 
     const fromHistory = pendingHistoryPath.current === pathname;
     pendingHistoryPath.current = null;
@@ -154,8 +171,8 @@ function ResetScrollOnNavigate() {
   return null;
 }
 
-/** How long scrolling must pause before a position is remembered. */
-const SAVE_SETTLE_MS = 150;
+/** Resume saving scroll positions if a started navigation never completes. */
+const NAVIGATION_TIMEOUT_MS = 5000;
 
 const INPUT_EVENTS = ["wheel", "touchstart", "keydown", "pointerdown"] as const;
 
