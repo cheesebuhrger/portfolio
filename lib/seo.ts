@@ -29,11 +29,10 @@ export const SITE = {
     "Design systems",
     "Front-end development",
   ],
-  /** Default share image (already 1200×630). */
-  ogImage:
-    "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1746121545/open-graph-image_zagxbj.png?v=2",
+  /** Default share image (1200×630), served from /public. */
+  ogImage: "/og-image.png",
   ogImageAlt:
-    "Buhr Duong, designer, coder, builder: Bringing Ideas to Life, above a row of project thumbnails",
+    "Buhr Duong, Design Engineer: Bringing Ideas to Life, above a row of project thumbnails",
 } as const;
 
 /** Absolute URL for a site path. */
