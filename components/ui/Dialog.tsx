@@ -14,6 +14,11 @@ type DialogProps = {
   onNext: () => void;
   /** Accessible name, e.g. the current item's title. */
   label?: string;
+  /**
+   * Marks a dialog that has its own URL (an intercepted route). Page-level
+   * scroll handling leaves the page behind it alone.
+   */
+  routeOverlay?: boolean;
   children: React.ReactNode;
 };
 
@@ -31,6 +36,7 @@ export default function Dialog({
   onPrev,
   onNext,
   label,
+  routeOverlay = false,
   children,
 }: DialogProps) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -71,6 +77,7 @@ export default function Dialog({
       ref={ref}
       aria-label={label}
       data-lenis-prevent
+      data-route-overlay={routeOverlay || undefined}
       onCancel={(e) => {
         // Escape: animate out instead of closing instantly.
         e.preventDefault();

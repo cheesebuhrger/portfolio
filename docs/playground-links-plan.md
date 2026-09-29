@@ -105,7 +105,9 @@ Using the headless-Chrome setup from the refactor:
 - **`PlaygroundDetail`** is shared by the dialog (heading `h2`, since the page behind has the `h1`) and the full page (`h1`).
 - **On the full page, Previous/Next are plain `<a>` links** (a full navigation), so Next doesn't intercept them into a dialog over the page. "All Playground" goes to `/#playground`.
 - **Scroll (`components/layout/SmoothScroll.tsx`):**
-  - Opening an overlay route, and closing it with Back, don't move the page behind.
+  - Opening a route dialog, stepping between items, and closing it don't move the page behind.
+    - This is decided by whether a `dialog[data-route-overlay]` is actually in the DOM after the commit, not by the URL, because `/playground/*` can also be the full page (found in code review).
+  - Scroll positions for Back/Forward are saved once scrolling settles (150 ms), and only if still on the same page. Browsers can emit a stray scroll to 0 mid-navigation, before the URL changes, which overwrote the real position.
   - `lenis.resize()` runs before every jump. Lenis clamps to its cached page height, which is stale coming from a short page (the full item page), so jumps to `#playground` stopped short.
 - **Share images:**
   - `ogImage(src, { at, gravity })`. Buildforce Loader uses the frame at 1s, centre-cropped; its first frame is blank.

@@ -39,6 +39,8 @@ function ResetScrollOnNavigate() {
   const previousPathname = useRef(pathname);
   // Path a back/forward is heading to, until that page renders.
   const pendingHistoryPath = useRef<string | null>(null);
+  // Whether a route dialog was showing after the previous navigation.
+  const overlayWasShown = useRef(false);
   // Last scroll position per path, for back/forward. The browser's own
   // restoration lands too late (after ScrollTrigger has already refreshed).
   // Keyed by path, not history entry: revisiting a page restores the most
@@ -63,11 +65,23 @@ function ResetScrollOnNavigate() {
         // rendered), so that navigation was superseded.
         pendingHistoryPath.current = null;
       }
-      savedPositions.current.set(previousPathname.current, window.scrollY);
+      // Save once scrolling settles, and only if still on the same page:
+      // browsers can emit a stray scroll (e.g. to 0) mid-navigation, before
+      // the URL changes, which would otherwise overwrite the real position.
+      const path = previousPathname.current;
+      const y = window.scrollY;
+      window.clearTimeout(saveTimer);
+      saveTimer = window.setTimeout(() => {
+        if (previousPathname.current === path) {
+          savedPositions.current.set(path, y);
+        }
+      }, SAVE_SETTLE_MS);
     };
+    let saveTimer: number | undefined;
     window.addEventListener("popstate", onPopState);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
+      window.clearTimeout(saveTimer);
       window.removeEventListener("popstate", onPopState);
       window.removeEventListener("scroll", onScroll);
     };
@@ -76,18 +90,20 @@ function ResetScrollOnNavigate() {
   useLayoutEffect(() => {
     // Only on real route changes, not on first load or when Lenis initialises.
     if (!lenis || pathname === previousPathname.current) return;
-    const leaving = previousPathname.current;
     previousPathname.current = pathname;
 
     const fromHistory = pendingHistoryPath.current === pathname;
     pendingHistoryPath.current = null;
 
-    // Overlay routes (dialogs with their own URL, see app/@modal) open over
-    // the page you were on, which stays mounted: opening, stepping between
-    // items and closing with Back must not move it.
-    const opensOverlay = isOverlayRoute(pathname);
-    const closesOverlay = fromHistory && isOverlayRoute(leaving);
-    if (opensOverlay || closesOverlay) return;
+    // Route dialogs (URLs shown as a dialog over the page you were on, see
+    // app/@modal) leave that page mounted: opening one, stepping between
+    // items and closing it must not move it. Decided by whether such a
+    // dialog is actually in the DOM (this runs after the commit's DOM
+    // updates), not by the URL — the same URL can also be a full page.
+    const overlayShown = !!document.querySelector("dialog[data-route-overlay]");
+    const overlayClosed = !overlayShown && overlayWasShown.current;
+    overlayWasShown.current = overlayShown;
+    if (overlayShown || overlayClosed) return;
 
     const hashTarget = getHashTarget();
     const target = fromHistory
@@ -138,8 +154,8 @@ function ResetScrollOnNavigate() {
   return null;
 }
 
-/** Routes shown as a dialog over the current page when navigated to in-app. */
-const isOverlayRoute = (path: string) => path.startsWith("/playground/");
+/** How long scrolling must pause before a position is remembered. */
+const SAVE_SETTLE_MS = 150;
 
 const INPUT_EVENTS = ["wheel", "touchstart", "keydown", "pointerdown"] as const;
 

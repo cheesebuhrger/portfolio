@@ -58,6 +58,7 @@ export default function PlaygroundDialog({
   return (
     <Dialog
       open
+      routeOverlay
       onClose={close}
       onPrev={prev}
       onNext={next}
