@@ -113,7 +113,7 @@ const ProjectSectionMedia: React.FC<ProjectSectionMediaProps> = ({
   }
 
   // Stats layout
-  const StatBlocks = () => (
+  const statBlocks = (
     <div className="grid grid-rows md:grid-cols-2 w-full md:w-1/2 md:aspect-16/9-half gap-4 md:gap-2">
       {[0, 1, 2, 3].map((index) => (
         <div
@@ -137,7 +137,7 @@ const ProjectSectionMedia: React.FC<ProjectSectionMediaProps> = ({
     <div className="flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-8">
       {layout.statsPosition === "left" ? (
         <>
-          <StatBlocks />
+          {statBlocks}
           <div className="relative bg-surface-secondary overflow-hidden rounded-md aspect-16/9-half w-full md:w-1/2">
             <MediaImage {...media[0]} />
           </div>
@@ -147,7 +147,7 @@ const ProjectSectionMedia: React.FC<ProjectSectionMediaProps> = ({
           <div className="relative bg-surface-secondary overflow-hidden rounded-md aspect-16/9-half w-full md:w-1/2">
             <MediaImage {...media[0]} />
           </div>
-          <StatBlocks />
+          {statBlocks}
         </>
       )}
     </div>

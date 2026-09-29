@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Button from "./Button";
-import { useLenis } from "@studio-freight/react-lenis";
+import { useLenis } from "lenis/react";
 
 const Nav = () => {
   const pathname = usePathname();
