@@ -76,10 +76,18 @@ function ResetScrollOnNavigate() {
   useLayoutEffect(() => {
     // Only on real route changes, not on first load or when Lenis initialises.
     if (!lenis || pathname === previousPathname.current) return;
+    const leaving = previousPathname.current;
     previousPathname.current = pathname;
 
     const fromHistory = pendingHistoryPath.current === pathname;
     pendingHistoryPath.current = null;
+
+    // Overlay routes (dialogs with their own URL, see app/@modal) open over
+    // the page you were on, which stays mounted: opening, stepping between
+    // items and closing with Back must not move it.
+    const opensOverlay = isOverlayRoute(pathname);
+    const closesOverlay = fromHistory && isOverlayRoute(leaving);
+    if (opensOverlay || closesOverlay) return;
 
     const hashTarget = getHashTarget();
     const target = fromHistory
@@ -93,6 +101,10 @@ function ResetScrollOnNavigate() {
       // it already is.
       lenis.stop();
       lenis.start();
+      // Lenis clamps jumps to its cached page height, which is still the
+      // previous page's until its resize observer fires; coming from a short
+      // page, a jump down this one would stop short. Re-measure first.
+      lenis.resize();
       lenis.scrollTo(target, { immediate: true, force: true });
     };
     jump();
@@ -125,6 +137,9 @@ function ResetScrollOnNavigate() {
 
   return null;
 }
+
+/** Routes shown as a dialog over the current page when navigated to in-app. */
+const isOverlayRoute = (path: string) => path.startsWith("/playground/");
 
 const INPUT_EVENTS = ["wheel", "touchstart", "keydown", "pointerdown"] as const;
 

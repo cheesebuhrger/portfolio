@@ -1,6 +1,6 @@
 # Shareable Playground Links: Plan
 
-_Created 2026-09-28. Status: approved, with all recommended options chosen (see bottom). Build after `seo-aeo-plan.md`, which provides the sitemap, JSON-LD and og-image helpers used here._
+_Created 2026-09-28. Status: built 2026-09-29 (notes at the end). Approved, with all recommended options chosen (see bottom). Build after `seo-aeo-plan.md`, which provides the sitemap, JSON-LD and og-image helpers used here._
 
 ## Goal
 
@@ -91,3 +91,33 @@ Using the headless-Chrome setup from the refactor:
 3. **Structured data:** `VideoObject` for videos and `ImageObject` for images, via the `JsonLd` helper from the SEO plan.
    - `VideoObject` needs `name`, `thumbnailUrl` (the Cloudinary frame) and `uploadDate`. Only years are known today, so add real dates to the content if possible; otherwise mark up the year only and accept that video rich results are less likely.
    - Items go into `app/sitemap.ts`.
+
+## Implementation notes (2026-09-29)
+
+- **Routes:**
+  - `app/playground/[slug]` is the full page (shared links, refreshes, crawlers).
+  - `app/@modal/(.)playground/[slug]` is the intercepted in-site dialog.
+  - `app/@modal/default.tsx` and `[...catchAll]` close the slot.
+  - Both routes are statically generated; unknown slugs return 404.
+- **The dialog lives in the intercepted route's layout** (`app/@modal/(.)playground/layout.tsx` → `components/playground/PlaygroundDialog`). That way it stays mounted while Previous/Next change the slug: no close/reopen between items.
+  - Previous/Next use `router.replace`, so history doesn't grow and Back closes in one step.
+  - Rapid presses step from the pending target, so two quick presses move two items.
+- **`PlaygroundDetail`** is shared by the dialog (heading `h2`, since the page behind has the `h1`) and the full page (`h1`).
+- **On the full page, Previous/Next are plain `<a>` links** (a full navigation), so Next doesn't intercept them into a dialog over the page. "All Playground" goes to `/#playground`.
+- **Scroll (`components/layout/SmoothScroll.tsx`):**
+  - Opening an overlay route, and closing it with Back, don't move the page behind.
+  - `lenis.resize()` runs before every jump. Lenis clamps to its cached page height, which is stale coming from a short page (the full item page), so jumps to `#playground` stopped short.
+- **Share images:**
+  - `ogImage(src, { at, gravity })`. Buildforce Loader uses the frame at 1s, centre-cropped; its first frame is blank.
+  - `og:image:type` and `og:image:alt` are now set on every page.
+- **Structured data:**
+  - `VideoObject`: `uploadDate` from the Cloudinary version, `dateCreated` from the item year.
+  - `ImageObject` for image items.
+  - `BreadcrumbList` on both.
+  - Validator: 0 errors, 0 warnings.
+- **The sitemap** now lists 14 URLs, including all 10 Playground items.
+- **Verified in headless Chrome:**
+  - Open, Previous/Next, Escape, scrim click, Back/Forward and focus return all behave as intended, and the page behind never moves.
+  - Direct visits render the full page.
+  - Homepage screenshots are pixel-identical to the previous build.
+  - Existing scroll tests pass.

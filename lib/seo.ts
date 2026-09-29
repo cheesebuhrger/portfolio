@@ -4,7 +4,7 @@
  * footer's profile links all read from here, so they can't drift apart.
  */
 import type { Metadata } from "next";
-import type { Project } from "./types";
+import type { PlaygroundItem, Project } from "./types";
 
 export const SITE = {
   /** Primary domain. buhr.dev, buhr.design and www.* 308-redirect here (Vercel). */
@@ -32,25 +32,43 @@ export const SITE = {
   /** Default share image (already 1200×630). */
   ogImage:
     "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1746121545/open-graph-image_zagxbj.png?v=2",
+  ogImageAlt:
+    "Buhr Duong, designer, coder, builder: Bringing Ideas to Life, above a row of project thumbnails",
 } as const;
 
 /** Absolute URL for a site path. */
 export const absoluteUrl = (path = "/") =>
   path === "/" ? SITE.url : `${SITE.url}${path}`;
 
+const CLOUDINARY_ASSET =
+  /^(https:\/\/res\.cloudinary\.com\/[^/]+\/(image|video)\/upload\/)(.+)\.[a-z0-9]+(?:\?.*)?$/i;
+
 /**
  * 1200×630 JPEG share image from any Cloudinary image or video URL, via
  * Cloudinary's on-the-fly transforms (crop around the subject, auto quality).
- * Videos use their first frame. Non-Cloudinary URLs are returned unchanged.
+ * Videos use the frame at `at` seconds (default: the first frame).
+ * Non-Cloudinary URLs are returned unchanged.
  */
-export function ogImage(src: string): string {
-  const match = src.match(
-    /^(https:\/\/res\.cloudinary\.com\/[^/]+\/(image|video)\/upload\/)(.+)\.[a-z0-9]+(?:\?.*)?$/i,
-  );
+export function ogImage(
+  src: string,
+  { at = 0, gravity = "auto" }: { at?: number; gravity?: "auto" | "center" } = {},
+): string {
+  const match = src.match(CLOUDINARY_ASSET);
   if (!match) return src;
   const [, base, kind, path] = match;
-  const frame = kind === "video" ? "so_0," : "";
-  return `${base}${frame}c_fill,g_auto,w_1200,h_630,q_auto,f_jpg/${path}.jpg`;
+  const frame = kind === "video" ? `so_${at},` : "";
+  return `${base}${frame}c_fill,g_${gravity},w_1200,h_630,q_auto,f_jpg/${path}.jpg`;
+}
+
+/**
+ * When a Cloudinary asset was uploaded (its /v<unix seconds>/ version), as an
+ * ISO date — i.e. when it was first published on this site.
+ */
+export function cloudinaryUploadDate(src: string): string | undefined {
+  const version = src.match(/\/v(\d{9,11})\//)?.[1];
+  return version
+    ? new Date(Number(version) * 1000).toISOString().slice(0, 10)
+    : undefined;
 }
 
 /**
@@ -63,6 +81,7 @@ export function shareMetadata({
   title,
   description,
   image = SITE.ogImage,
+  imageAlt = SITE.ogImageAlt,
   type = "website",
   publishedTime,
   modifiedTime,
@@ -71,11 +90,20 @@ export function shareMetadata({
   title: string;
   description: string;
   image?: string;
+  imageAlt?: string;
   type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
 }): Pick<Metadata, "alternates" | "openGraph" | "twitter"> {
-  const images = [{ url: image, width: 1200, height: 630 }];
+  const images = [
+    {
+      url: image,
+      width: 1200,
+      height: 630,
+      type: /\.png(\?|$)/i.test(image) ? "image/png" : "image/jpeg",
+      alt: imageAlt,
+    },
+  ];
   return {
     alternates: { canonical: path },
     openGraph: {
@@ -91,7 +119,12 @@ export function shareMetadata({
         authors: [SITE.url],
       }),
     },
-    twitter: { card: "summary_large_image", title, description, images: [image] },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [{ url: image, alt: imageAlt }],
+    },
   };
 }
 
@@ -164,6 +197,57 @@ export function caseStudyJsonLd(project: Project, path: string) {
         itemListElement: [
           { "@type": "ListItem", position: 1, name: SITE.name, item: SITE.url },
           { "@type": "ListItem", position: 2, name: project.title, item: url },
+        ],
+      },
+      websiteSchema,
+      personSchema,
+    ],
+  };
+}
+
+/** Playground item: a video or image by the person, on its own page. */
+export function playgroundJsonLd(
+  item: PlaygroundItem,
+  path: string,
+  description: string,
+) {
+  const url = absoluteUrl(path);
+  const thumbnail = ogImage(item.src, item.preview);
+  const media =
+    item.type === "video"
+      ? {
+          "@type": "VideoObject",
+          name: item.title,
+          description,
+          thumbnailUrl: thumbnail,
+          contentUrl: item.src,
+          uploadDate: cloudinaryUploadDate(item.src),
+        }
+      : {
+          "@type": "ImageObject",
+          name: item.title,
+          description,
+          contentUrl: item.src,
+          thumbnailUrl: thumbnail,
+        };
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        ...media,
+        "@id": `${url}#media`,
+        url,
+        mainEntityOfPage: url,
+        dateCreated: item.date,
+        creator: { "@id": PERSON_ID },
+        ...(item.url && { sameAs: item.url }),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: SITE.name, item: SITE.url },
+          { "@type": "ListItem", position: 2, name: item.title, item: url },
         ],
       },
       websiteSchema,

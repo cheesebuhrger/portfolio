@@ -6,6 +6,9 @@
 import projects from "@/content/projects";
 import playgroundItems from "@/content/playground";
 import type { PlaygroundItem, Project } from "./types";
+import { projectHref } from "./routes";
+
+export { playgroundHref, projectHref } from "./routes";
 
 /** What cards and lists need; keeps full case-study bodies out of client bundles. */
 export type ProjectSummary = Pick<
@@ -13,7 +16,6 @@ export type ProjectSummary = Pick<
   "slug" | "title" | "company" | "role" | "year" | "cover"
 > & { href: string };
 
-export const projectHref = (slug: string) => `/projects/${slug}`;
 
 const toSummary = ({ slug, title, company, role, year, cover }: Project): ProjectSummary => ({
   slug,
@@ -47,4 +49,26 @@ export function getRelatedProjects(slug: string, count = 2): ProjectSummary[] {
 
 export function getPlaygroundItems(): PlaygroundItem[] {
   return playgroundItems;
+}
+
+export function getPlaygroundItem(slug: string): PlaygroundItem | undefined {
+  return playgroundItems.find((item) => item.slug === slug);
+}
+
+/** Previous and next items around `slug`, wrapping at the ends. */
+export function getAdjacentPlaygroundItems(slug: string) {
+  const index = playgroundItems.findIndex((item) => item.slug === slug);
+  const count = playgroundItems.length;
+  return {
+    prev: playgroundItems[(index - 1 + count) % count],
+    next: playgroundItems[(index + 1) % count],
+  };
+}
+
+/** Description for metadata; falls back to a factual line when none is written. */
+export function playgroundDescription(item: PlaygroundItem): string {
+  return (
+    item.description ??
+    `${item.title} (${item.date}), from Buhr Duong’s playground.`
+  );
 }
