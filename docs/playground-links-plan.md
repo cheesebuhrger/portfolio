@@ -110,7 +110,8 @@ Using the headless-Chrome setup from the refactor:
   - Scroll positions for Back/Forward are saved on every scroll.
     - A click on a link to another page snapshots the position at that moment and ignores scrolls until the new route renders. Browsers emit a stray scroll to 0 mid-navigation, and trackpad/smooth-scroll momentum continues after a click.
     - Popstate uses the existing pending-history logic.
-    - Known gap (rare): if a soft navigation is abandoned without a reload, positions stay frozen until the next link click or route change, so a browser Back in between restores the click-time position.
+    - Repeat clicks while a navigation or Back/Forward is pending keep the first snapshot. A navigation pending for more than 10 s counts as abandoned, and the next click snapshots afresh.
+    - Known gap (rare): after an abandoned soft navigation, a browser Back before the next click or route change restores the click-time position.
   - Earlier attempts (a settle debounce, then resuming on a timeout or on wheel/key input) each reopened the stray-scroll or momentum case in code review. Browsers can emit a stray scroll to 0 mid-navigation, before the URL changes, which overwrote the real position.
   - `lenis.resize()` runs before every jump. Lenis clamps to its cached page height, which is stale coming from a short page (the full item page), so jumps to `#playground` stopped short.
 - **Share images:**

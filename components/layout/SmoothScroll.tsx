@@ -86,11 +86,20 @@ function ResetScrollOnNavigate() {
       if (url.pathname === window.location.pathname) return; // same-page #hash
       // Snapshot the position at the moment of the click, then ignore scrolls
       // until the new route renders: neither a stray mid-navigation scroll nor
-      // leftover smooth-scroll/trackpad momentum can overwrite it. If this
-      // navigation is abandoned, the next link click snapshots afresh.
+      // leftover smooth-scroll/trackpad momentum can overwrite it. Repeat
+      // clicks while a navigation (or a Back/Forward) is still pending keep
+      // the first snapshot; one pending longer than NAVIGATION_STALE_MS is
+      // treated as abandoned, so the next click snapshots afresh.
+      const now = performance.now();
+      const pending =
+        pendingHistoryPath.current !== null ||
+        (navigating.current && now - navigationStartedAt < NAVIGATION_STALE_MS);
+      if (pending) return;
       savedPositions.current.set(previousPathname.current, window.scrollY);
       navigating.current = true;
+      navigationStartedAt = now;
     };
+    let navigationStartedAt = 0;
     window.addEventListener("popstate", onPopState);
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("click", onClick, { capture: true });
@@ -168,6 +177,9 @@ function ResetScrollOnNavigate() {
 
   return null;
 }
+
+/** A click-started navigation still pending after this is treated as abandoned. */
+const NAVIGATION_STALE_MS = 10_000;
 
 const INPUT_EVENTS = ["wheel", "touchstart", "keydown", "pointerdown"] as const;
 
