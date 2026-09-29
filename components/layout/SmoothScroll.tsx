@@ -84,27 +84,20 @@ function ResetScrollOnNavigate() {
       const url = new URL(link.href, window.location.href);
       if (url.origin !== window.location.origin) return;
       if (url.pathname === window.location.pathname) return; // same-page #hash
+      // Snapshot the position at the moment of the click, then ignore scrolls
+      // until the new route renders: neither a stray mid-navigation scroll nor
+      // leftover smooth-scroll/trackpad momentum can overwrite it. If this
+      // navigation is abandoned, the next link click snapshots afresh.
+      savedPositions.current.set(previousPathname.current, window.scrollY);
       navigating.current = true;
-    };
-    // Safety net if a navigation never completes (cancelled, failed): the
-    // visitor scrolling again means they're still on this page. Stray scrolls
-    // come without input, so a slow load can't re-enable saving by itself.
-    const onUserScroll = () => {
-      navigating.current = false;
     };
     window.addEventListener("popstate", onPopState);
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("click", onClick, { capture: true });
-    for (const type of SCROLL_INPUT_EVENTS) {
-      window.addEventListener(type, onUserScroll, { passive: true });
-    }
     return () => {
       window.removeEventListener("popstate", onPopState);
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("click", onClick, { capture: true });
-      for (const type of SCROLL_INPUT_EVENTS) {
-        window.removeEventListener(type, onUserScroll);
-      }
     };
   }, []);
 
@@ -175,9 +168,6 @@ function ResetScrollOnNavigate() {
 
   return null;
 }
-
-/** Input that means the visitor is scrolling this page themselves. */
-const SCROLL_INPUT_EVENTS = ["wheel", "touchmove", "keydown"] as const;
 
 const INPUT_EVENTS = ["wheel", "touchstart", "keydown", "pointerdown"] as const;
 
