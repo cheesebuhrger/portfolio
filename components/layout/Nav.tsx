@@ -2,11 +2,16 @@
 
 import { usePathname } from "next/navigation";
 import Button from "@/components/ui/Button";
+import TransitionLink from "@/components/layout/TransitionLink";
+import { usesHomeChrome } from "@/lib/routes";
 import { useLenis } from "lenis/react";
 
 const Nav = () => {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  // Frame pages show the homepage Nav; there its items link to the homepage
+  // (with the page transition) instead of scrolling in place.
+  const homeChrome = usesHomeChrome(pathname);
   const lenis = useLenis();
 
   const scrollToTop = () => {
@@ -31,6 +36,14 @@ const Nav = () => {
           <div>BUHR DUONG</div>
           <div>DESIGN ENGINEER</div>
         </button>
+      ) : homeChrome ? (
+        <TransitionLink
+          href="/"
+          className="col-span-4 text-text-primary-negative cursor-pointer text-left"
+        >
+          <div>BUHR DUONG</div>
+          <div>DESIGN ENGINEER</div>
+        </TransitionLink>
       ) : (
         <Button
           href="/"
@@ -39,13 +52,17 @@ const Nav = () => {
         />
       )}
 
-      {isHome && (
+      {homeChrome && (
         <>
           <ul className="group col-span-3 col-start-7 text-text-primary-negative w-fit hidden md:block">
             <li className="group-hover:pb-1 hover:underline transition-all duration-300 w-fit cursor-pointer">
-              <a href="#projects" onClick={scrollToSection("#projects")}>
-                Projects
-              </a>
+              {isHome ? (
+                <a href="#projects" onClick={scrollToSection("#projects")}>
+                  Projects
+                </a>
+              ) : (
+                <TransitionLink href="/#projects">Projects</TransitionLink>
+              )}
             </li>
             {/* <li
               onClick={() => {
@@ -56,9 +73,13 @@ const Nav = () => {
               Code
             </li> */}
             <li className="group-hover:py-1 hover:underline transition-all duration-300 w-fit cursor-pointer">
-              <a href="#playground" onClick={scrollToSection("#playground")}>
-                Playground
-              </a>
+              {isHome ? (
+                <a href="#frames" onClick={scrollToSection("#frames")}>
+                  Frames
+                </a>
+              ) : (
+                <TransitionLink href="/#frames">Frames</TransitionLink>
+              )}
             </li>
           </ul>
           {/* <ul className="col-span-3 col-start-10 text-text-primary-negative">

@@ -12,8 +12,11 @@ export const viewport = rootViewport;
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  /** Parallel route (app/@modal): dialogs with their own URL. */
+  modal: React.ReactNode;
 }>) {
   return (
     <ViewTransitions>
@@ -25,6 +28,7 @@ export default function RootLayout({
               <Nav />
               <Cursor />
               {children}
+              {modal}
               <Analytics />
               <Footer />
             </div>

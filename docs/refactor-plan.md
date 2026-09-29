@@ -2,6 +2,8 @@
 
 _Created 2026-09-28. Living document: update as phases land._
 
+> **Note (2026-09-29):** the homepage "Playground" section was later renamed **Frames** (`components/home/Frames.tsx`, `content/frames.ts`, `/frames/{slug}`). References below describe the code as it was at the time.
+
 ## Goals
 
 - Fix the architecture so pages are templates filled with data, not hand-built one-offs.

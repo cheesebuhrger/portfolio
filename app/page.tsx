@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
-import Playground from "@/components/home/Playground";
+import Frames from "@/components/home/Frames";
 import JsonLd from "@/components/seo/JsonLd";
-import { getPlaygroundItems, getProjectSummaries } from "@/lib/content";
+import { getFrames, getProjectSummaries } from "@/lib/content";
 import { homeJsonLd, shareMetadata, SITE } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default function Home() {
     <div className="min-h-screen bg-surface-background">
       <JsonLd data={homeJsonLd()} />
       <FeaturedProjects projects={getProjectSummaries()} />
-      <Playground items={getPlaygroundItems()} />
+      <Frames items={getFrames()} />
     </div>
   );
 }

@@ -1,7 +1,8 @@
-import type { PlaygroundItem } from "@/lib/types";
+import type { Frame } from "@/lib/types";
 
-const playgroundItems: PlaygroundItem[] = [
+const frames: Frame[] = [
   {
+    slug: "abode-money-loader",
     type: "video",
     src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1770667545/abodemoney-loader_srqqc5.webm",
     title: "Abode Money Loader",
@@ -9,13 +10,17 @@ const playgroundItems: PlaygroundItem[] = [
     description: "Animated loader for Abode Money with Rive.",
   },
   {
+    slug: "buildforce-loader",
     type: "video",
     src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1742872389/buildforce-loader_ntpl4q.webm",
     title: "Buildforce Loader",
+    // First frame is blank; 1s shows the full logo, centred.
+    preview: { at: 1, gravity: "center" },
     date: "2024",
     description: "Animated loader I created using Lottie.",
   },
   {
+    slug: "gloss-genius",
     type: "image",
     src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742872388/gloss-genius_jo1q9t.webp",
     title: "Gloss Genius",
@@ -23,6 +28,7 @@ const playgroundItems: PlaygroundItem[] = [
     description: "A visual exercise for Gloss Genius.",
   },
   {
+    slug: "buildforce-icons",
     type: "image",
     src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742872387/buildforce-icons_gzy72y.webp",
     title: "Buildforce Icons",
@@ -31,6 +37,7 @@ const playgroundItems: PlaygroundItem[] = [
       "Icon set I chipped away at @Buildforce. Inspiration from the blueprint and elevator iconography.",
   },
   {
+    slug: "buildforce-spots",
     type: "image",
     src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742872387/buildforce-spots_zhudiu.webp",
     title: "Buildforce Spots",
@@ -39,6 +46,7 @@ const playgroundItems: PlaygroundItem[] = [
       "Spots I made @Buildforce. We initially started out heavy on illustrations but those take a long time to produce. I evolved our approach to a more composite grunge. Used them in product for empty states and guided onboarding.",
   },
   {
+    slug: "uber-cross-dispatch",
     type: "video",
     src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1742872390/uber-cross-dispatch_fpunmd.webm",
     title: "Uber Cross Dispatch",
@@ -47,18 +55,21 @@ const playgroundItems: PlaygroundItem[] = [
       "A project that I worked on @Uber; created an animation in AE and various feed card assets. When supply/demand conditions are right, Uber might dispatch a vehicle of a higher class to the rider. Happened all the time but users weren't aware. We ran an experiment with this animation and feed card to see if it would drive repeat rides.",
   },
   {
+    slug: "chapter-2",
     type: "image",
     src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742872388/chapter-2_hjku1l.webp",
     title: "Chapter 2",
     date: "2014",
   },
   {
+    slug: "chapter-4",
     type: "image",
     src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742872388/chapter-4_tdbtuv.webp",
     title: "Chapter 4",
     date: "2014",
   },
   {
+    slug: "andy-nguyen-portrait",
     type: "video",
     src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1742872391/andy-nguyen_eg7k6a.webm",
     title: "Andy Nguyen Portrait",
@@ -68,6 +79,7 @@ const playgroundItems: PlaygroundItem[] = [
       "I filmed a video portrait/documentary of my nephew, Andy Nguyen. Played around with a few different lenses and techniques. Also scrappily used my iPhone to record better sound for the interview and choreo.",
   },
   {
+    slug: "enzyme-value-props",
     type: "video",
     src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1742872389/eod-props_r90nda.webm",
     title: "Enzyme Value Props",
@@ -77,4 +89,4 @@ const playgroundItems: PlaygroundItem[] = [
   },
 ];
 
-export default playgroundItems;
+export default frames;

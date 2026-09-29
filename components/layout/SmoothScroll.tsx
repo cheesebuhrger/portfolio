@@ -39,6 +39,10 @@ function ResetScrollOnNavigate() {
   const previousPathname = useRef(pathname);
   // Path a back/forward is heading to, until that page renders.
   const pendingHistoryPath = useRef<string | null>(null);
+  // A link to another page was clicked and its route hasn't rendered yet.
+  const navigating = useRef(false);
+  // Whether a route dialog was showing after the previous navigation.
+  const overlayWasShown = useRef(false);
   // Last scroll position per path, for back/forward. The browser's own
   // restoration lands too late (after ScrollTrigger has already refreshed).
   // Keyed by path, not history entry: revisiting a page restores the most
@@ -63,13 +67,52 @@ function ResetScrollOnNavigate() {
         // rendered), so that navigation was superseded.
         pendingHistoryPath.current = null;
       }
+      // Once a navigation has started, the position no longer belongs to
+      // this page: browsers can emit a stray scroll (e.g. to 0) before the
+      // URL changes, which would overwrite the position the visitor left at.
+      if (navigating.current) return;
       savedPositions.current.set(previousPathname.current, window.scrollY);
     };
+    // A click on a link to another page starts a navigation (Back/Forward are
+    // covered by popstate above). Capture phase, so this runs before any
+    // handler that turns the click into a client-side navigation.
+    const onClick = (e: MouseEvent) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const link = e.target instanceof Element ? e.target.closest("a[href]") : null;
+      if (!(link instanceof HTMLAnchorElement)) return;
+      if (link.target && link.target !== "_self") return;
+      const url = new URL(link.href, window.location.href);
+      if (url.origin !== window.location.origin) return;
+      if (url.pathname === window.location.pathname) return; // same-page #hash
+      // Snapshot the position at the moment of the click, then ignore scrolls
+      // until the new route renders: neither a stray mid-navigation scroll nor
+      // leftover smooth-scroll/trackpad momentum can overwrite it. Repeat
+      // clicks while a navigation (or a Back/Forward) is still pending keep
+      // the first snapshot; one pending longer than NAVIGATION_STALE_MS is
+      // treated as abandoned, so the next click snapshots afresh.
+      const now = performance.now();
+      if (pendingHistoryPath.current !== null) {
+        // Mid Back/Forward: scrollY may already belong to the incoming page,
+        // so don't snapshot — but still ignore stray scrolls from here on.
+        navigating.current = true;
+        navigationStartedAt = now;
+        return;
+      }
+      if (navigating.current && now - navigationStartedAt < NAVIGATION_STALE_MS) {
+        return; // keep the first click's snapshot
+      }
+      savedPositions.current.set(previousPathname.current, window.scrollY);
+      navigating.current = true;
+      navigationStartedAt = now;
+    };
+    let navigationStartedAt = 0;
     window.addEventListener("popstate", onPopState);
     window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("click", onClick, { capture: true });
     return () => {
       window.removeEventListener("popstate", onPopState);
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("click", onClick, { capture: true });
     };
   }, []);
 
@@ -77,9 +120,20 @@ function ResetScrollOnNavigate() {
     // Only on real route changes, not on first load or when Lenis initialises.
     if (!lenis || pathname === previousPathname.current) return;
     previousPathname.current = pathname;
+    navigating.current = false;
 
     const fromHistory = pendingHistoryPath.current === pathname;
     pendingHistoryPath.current = null;
+
+    // Route dialogs (URLs shown as a dialog over the page you were on, see
+    // app/@modal) leave that page mounted: opening one, stepping between
+    // items and closing it must not move it. Decided by whether such a
+    // dialog is actually in the DOM (this runs after the commit's DOM
+    // updates), not by the URL — the same URL can also be a full page.
+    const overlayShown = !!document.querySelector("dialog[data-route-overlay]");
+    const overlayClosed = !overlayShown && overlayWasShown.current;
+    overlayWasShown.current = overlayShown;
+    if (overlayShown || overlayClosed) return;
 
     const hashTarget = getHashTarget();
     const target = fromHistory
@@ -93,6 +147,10 @@ function ResetScrollOnNavigate() {
       // it already is.
       lenis.stop();
       lenis.start();
+      // Lenis clamps jumps to its cached page height, which is still the
+      // previous page's until its resize observer fires; coming from a short
+      // page, a jump down this one would stop short. Re-measure first.
+      lenis.resize();
       lenis.scrollTo(target, { immediate: true, force: true });
     };
     jump();
@@ -125,6 +183,9 @@ function ResetScrollOnNavigate() {
 
   return null;
 }
+
+/** A click-started navigation still pending after this is treated as abandoned. */
+const NAVIGATION_STALE_MS = 10_000;
 
 const INPUT_EVENTS = ["wheel", "touchstart", "keydown", "pointerdown"] as const;
 

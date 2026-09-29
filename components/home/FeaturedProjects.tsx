@@ -209,7 +209,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           }
 
           // 3. Each project fades to greyscale as the next covers it; the last
-          //    one also fades out into the Playground.
+          //    one also fades out into Frames.
           projectEls.forEach((el, i) => {
             gsap.to(el.querySelector(".project-container"), {
               ...(i === lastIndex && { opacity: 0.1 }),

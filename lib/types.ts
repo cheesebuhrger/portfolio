@@ -119,8 +119,10 @@ export type Project = {
   };
 };
 
-/** A tile in the homepage Playground grid (opens in the detail dialog). */
-export type PlaygroundItem = {
+/** A frame: a tile in the homepage Frames grid, with its own page and dialog. */
+export type Frame = {
+  /** URL segment: /frames/{slug}. Hand-written so URLs stay stable. */
+  slug: string;
   type: "image" | "video";
   src: string;
   title: string;
@@ -128,4 +130,9 @@ export type PlaygroundItem = {
   description?: string;
   /** External link, shown as "View" in the dialog. */
   url?: string;
+  /**
+   * Share-preview tweaks: for videos, the moment (seconds) to take the frame
+   * from — the first frame of a loader can be blank — and how to crop it.
+   */
+  preview?: { at?: number; gravity?: "auto" | "center" };
 };

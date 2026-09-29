@@ -4,8 +4,11 @@
  * (e.g. to Sanity) means changing this file, not the UI.
  */
 import projects from "@/content/projects";
-import playgroundItems from "@/content/playground";
-import type { PlaygroundItem, Project } from "./types";
+import frames from "@/content/frames";
+import type { Frame, Project } from "./types";
+import { projectHref } from "./routes";
+
+export { frameHref, projectHref } from "./routes";
 
 /** What cards and lists need; keeps full case-study bodies out of client bundles. */
 export type ProjectSummary = Pick<
@@ -13,7 +16,6 @@ export type ProjectSummary = Pick<
   "slug" | "title" | "company" | "role" | "year" | "cover"
 > & { href: string };
 
-export const projectHref = (slug: string) => `/projects/${slug}`;
 
 const toSummary = ({ slug, title, company, role, year, cover }: Project): ProjectSummary => ({
   slug,
@@ -45,6 +47,18 @@ export function getRelatedProjects(slug: string, count = 2): ProjectSummary[] {
   );
 }
 
-export function getPlaygroundItems(): PlaygroundItem[] {
-  return playgroundItems;
+export function getFrames(): Frame[] {
+  return frames;
+}
+
+export function getFrame(slug: string): Frame | undefined {
+  return frames.find((item) => item.slug === slug);
+}
+
+/** Description for metadata; falls back to a factual line when none is written. */
+export function frameDescription(item: Frame): string {
+  return (
+    item.description ??
+    `${item.title} (${item.date}), a frame by Buhr Duong.`
+  );
 }
