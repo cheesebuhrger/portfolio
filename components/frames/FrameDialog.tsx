@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef } from "react";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import { frameHref } from "@/lib/routes";
 import Dialog from "@/components/ui/Dialog";
+import { ScrollTrigger } from "@/lib/gsap";
 
 type FrameDialogProps = {
   /** Every item's slug and title, in display order (for Previous/Next). */
@@ -54,11 +55,15 @@ export default function FrameDialog({
   // The browser remembers scroll per history entry, and this entry's
   // position is the page *behind* the dialog. Refreshing would restore it
   // onto the (much shorter) full frame page and land at the bottom, so opt
-  // this entry out: a refresh opens the frame page at the top. The full page
-  // turns restoration back on (RestoreScrollDefault).
+  // this entry out: a refresh opens the frame page at the top.
+  // Set through ScrollTrigger, which otherwise rewrites
+  // history.scrollRestoration with the value it saw at startup on every
+  // refresh (e.g. a window resize). Restored when the dialog closes; the full
+  // page restores it when left (RestoreScrollDefault).
   useEffect(() => {
-    window.history.scrollRestoration = "manual";
+    ScrollTrigger.clearScrollMemory("manual");
   }, [slug]);
+  useEffect(() => () => ScrollTrigger.clearScrollMemory("auto"), []);
 
   const close = useCallback(() => router.back(), [router]);
   const prev = useCallback(() => step(-1), [step]);
