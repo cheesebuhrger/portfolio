@@ -1,5 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
 import { AnimatedIcon, AnimatedIconType } from "./icons";
+import { StackScrim, useStack } from "./motion/stack";
 
 interface ProjectSectionProps {
   sectionNumber?: string;
@@ -7,6 +10,8 @@ interface ProjectSectionProps {
   className?: string;
   children?: React.ReactNode;
   iconType?: AnimatedIconType | null;
+  /** Pin and fade under the next section as it scrolls over. */
+  stack?: boolean;
 }
 
 const ProjectSection: React.FC<ProjectSectionProps> = ({
@@ -15,9 +20,14 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
   className = "",
   children,
   iconType = null,
+  stack = false,
 }) => {
+  const ref = useRef<HTMLElement>(null);
+  useStack(ref, stack);
+
   return (
     <section
+      ref={ref}
       className={`bg-surface-primary border-t border-border-primary relative grid grid-flow-row gap-32 px-4 pt-4 pb-32 md:gap-48 md:px-6 md:pt-6 md:pb-40 lg:px-8 lg:pt-8 lg:pb-48 ${className}`}
     >
       <div className="flex gap-4 md:gap-6 lg:gap-8">
@@ -36,6 +46,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       </div>
 
       {children}
+      {stack && <StackScrim />}
     </section>
   );
 };

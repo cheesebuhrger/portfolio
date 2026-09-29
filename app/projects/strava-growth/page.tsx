@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import ProjectHero from "@/components/ProjectHero";
 import ProjectSection from "@/components/ProjectSection";
@@ -9,15 +7,7 @@ import ProjectEnd from "@/components/ProjectEnd";
 import ProjectSectionMedia from "@/components/ProjectSectionMedia";
 import ProjectSectionMediaBinder from "@/components/ProjectSectionMediaBinder";
 
-import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
-import { useStackAnimation } from "@/hooks/useStackAnimation";
-import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
-
 const Project3: React.FC = () => {
-  useImageScaleAnimation();
-  useStackAnimation();
-  useSplitTypeAnimation();
-
   return (
     <div>
       <ProjectHero
@@ -102,12 +92,12 @@ const Project3: React.FC = () => {
             alt: designProjects[2].image2.alt,
           },
         }}
-        className="stack-animation"
+        stack
       />
       <ProjectSection
         sectionNumber="I"
         sectionLabel="Outcomes & Design Samples"
-        className="stack-animation"
+        stack
         iconType="solution"
       >
         <ProjectSectionContent

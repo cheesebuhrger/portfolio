@@ -1,18 +1,16 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import SplitType from "split-type";
-import { useSplitTypeAnimation } from "@/hooks/useSplitTypeAnimation";
+import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import { useLenis } from "lenis/react";
 import { designProjects } from "@/data/designProjects";
 
 import Button from "./Button";
 import MediaImage from "./MediaImage";
+import SplitReveal from "./motion/SplitReveal";
 import TransitionLink from "./layout/TransitionLink";
 
 const IndexProjects = () => {
-  useSplitTypeAnimation();
   const lenis = useLenis();
 
   const [mobileValues, setMobileValues] = React.useState({
@@ -48,23 +46,17 @@ const IndexProjects = () => {
       ".index-project-title",
     );
     projectContent.forEach((item) => {
-      const text = new SplitType(item, {
-        types: "lines",
-        tagName: "div",
-        lineClass: "line",
+      // .line-mask (clip-path reveal) > .line (slides up, un-skews)
+      const split = SplitText.create(item, {
+        type: "lines",
+        mask: "lines",
+        linesClass: "line",
       });
+      // The animated clip-path masks instead of SplitText's overflow: clip.
+      gsap.set(split.masks, { overflow: "visible" });
 
-      // Wrap each line's content in a span
-      text.lines?.forEach((line) => {
-        const content = line.innerHTML;
-        line.innerHTML = `<span>${content}</span>`;
-      });
-
-      // Get all spans within the lines
-      const spans = item.querySelectorAll<HTMLElement>(":scope > .line > span");
-
-      // Initial state for spans
-      gsap.set(spans, {
+      // Initial state for lines
+      gsap.set(split.lines, {
         display: "block",
         y: "100%",
         x: 75,
@@ -268,7 +260,7 @@ const IndexProjects = () => {
 
     textFirstProject
       .fromTo(
-        ".index-project-1 .index-project-title .line > span",
+        ".index-project-1 .index-project-title .line-mask > .line",
         {
           y: "100%",
           x: 75,
@@ -283,7 +275,7 @@ const IndexProjects = () => {
         },
       )
       .fromTo(
-        ".index-project-1 .index-project-title .line",
+        ".index-project-1 .index-project-title .line-mask",
         { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
         {
           clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
@@ -313,7 +305,7 @@ const IndexProjects = () => {
 
     textSecondProject
       .fromTo(
-        ".index-project-2 .index-project-title .line > span",
+        ".index-project-2 .index-project-title .line-mask > .line",
         {
           y: "100%",
           x: 75,
@@ -328,7 +320,7 @@ const IndexProjects = () => {
         },
       )
       .fromTo(
-        ".index-project-2 .index-project-title .line",
+        ".index-project-2 .index-project-title .line-mask",
         { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
         {
           clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
@@ -358,7 +350,7 @@ const IndexProjects = () => {
 
     textThirdProject
       .fromTo(
-        ".index-project-3 .index-project-title .line > span",
+        ".index-project-3 .index-project-title .line-mask > .line",
         {
           y: "100%",
           x: 75,
@@ -373,7 +365,7 @@ const IndexProjects = () => {
         },
       )
       .fromTo(
-        ".index-project-3 .index-project-title .line",
+        ".index-project-3 .index-project-title .line-mask",
         { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
         {
           clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
@@ -441,6 +433,7 @@ const IndexProjects = () => {
             src={designProjects[0].image1.src}
             alt={designProjects[0].image1.alt}
             type="image"
+                    imageScaleAnimation="none"
             width={864.5}
             height={741}
           />
@@ -448,12 +441,16 @@ const IndexProjects = () => {
       </div>
       <div className="index-intro relative z-[5] w-screen h-screen flex flex-col pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-8 items-end bg-surface-primary border-b border-border-tertiary">
         <div className="index-intro-out relative p-4 md:p-6 lg:p-8 w-full h-full flex md:grid flex-col md:grid-cols-2 gap-8 md:gap-6 lg:gap-8 justify-center md:items-center">
-          <h1 className="relative text-4xl split-type-animation-hero col-span-1 md:col-start-2 text-pretty">
+          <SplitReveal
+            as="h1"
+            variant="hero"
+            className="relative text-4xl col-span-1 md:col-start-2 text-pretty"
+          >
             I&apos;m a builder at heart. For the past decade I&apos;ve designed
             products across interaction, motion, and prototyping, and these days
             I build them too, taking work from concept to production front-end.
             I sweat the small details that make something feel well-crafted.
-          </h1>
+          </SplitReveal>
           <div className="md:hidden flex flex-row gap-2">
             <Button
               onClick={() => {
@@ -495,6 +492,7 @@ const IndexProjects = () => {
                   src={designProjects[1].image2.src}
                   alt={designProjects[1].image2.alt}
                   type="image"
+                    imageScaleAnimation="none"
                   width={864.5}
                   height={741}
                 />
@@ -542,6 +540,7 @@ const IndexProjects = () => {
                     src={designProjects[0].image1.src}
                     alt={designProjects[0].image1.alt}
                     type="image"
+                    imageScaleAnimation="none"
                     width={864.5}
                     height={741}
                   />
@@ -551,6 +550,7 @@ const IndexProjects = () => {
                     src={designProjects[0].image2.src}
                     alt={designProjects[0].image2.alt}
                     type="image"
+                    imageScaleAnimation="none"
                     width={864.5}
                     height={741}
                   />
@@ -595,6 +595,7 @@ const IndexProjects = () => {
                     src={designProjects[1].image1.src}
                     alt={designProjects[1].image1.alt}
                     type="image"
+                    imageScaleAnimation="none"
                     width={864.5}
                     height={741}
                   />
@@ -604,6 +605,7 @@ const IndexProjects = () => {
                     src={designProjects[1].image2.src}
                     alt={designProjects[1].image2.alt}
                     type="image"
+                    imageScaleAnimation="none"
                     width={864.5}
                     height={741}
                   />
@@ -648,6 +650,7 @@ const IndexProjects = () => {
                     src={designProjects[2].image1.src}
                     alt={designProjects[2].image1.alt}
                     type="image"
+                    imageScaleAnimation="none"
                     width={864.5}
                     height={741}
                   />
@@ -657,6 +660,7 @@ const IndexProjects = () => {
                     src={designProjects[2].image2.src}
                     alt={designProjects[2].image2.alt}
                     type="image"
+                    imageScaleAnimation="none"
                     width={864.5}
                     height={741}
                   />

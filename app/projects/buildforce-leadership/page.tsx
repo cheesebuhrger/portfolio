@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 
 import ProjectSectionMedia from "@/components/ProjectSectionMedia";
@@ -10,14 +8,9 @@ import Quote from "@/components/Quote";
 import ProjectEnd from "@/components/ProjectEnd";
 import { designProjects } from "@/data/designProjects";
 
-import { useImageScaleAnimation } from "@/hooks/useImageScaleAnimation";
-import { useStackAnimation } from "@/hooks/useStackAnimation";
 import ProjectSectionMediaBinder from "@/components/ProjectSectionMediaBinder";
 
 const Project1: React.FC = () => {
-  useImageScaleAnimation();
-  useStackAnimation();
-
   return (
     <div>
       <ProjectHero
@@ -111,7 +104,7 @@ const Project1: React.FC = () => {
             alt: designProjects[0].image2.alt,
           },
         }}
-        className="stack-animation"
+        stack
       />
 
       {/* ---- OUTCOMES 1 ---- */}
@@ -119,7 +112,7 @@ const Project1: React.FC = () => {
         sectionNumber="I.A"
         sectionLabel="Outcome: Accountability & Trust"
         iconType="solution"
-        className="stack-animation"
+        stack
       >
         <ProjectSectionContent
           headline={
@@ -282,7 +275,7 @@ const Project1: React.FC = () => {
         sectionNumber="I.B"
         sectionLabel="Outcome: Speed & Quality"
         iconType="solution"
-        className="stack-animation"
+        stack
       >
         <ProjectSectionContent
           headline={
@@ -426,7 +419,7 @@ const Project1: React.FC = () => {
         sectionNumber="I.C"
         sectionLabel="Outcome: Empowerment & Growth"
         iconType="solution"
-        className="stack-animation"
+        stack
       >
         <ProjectSectionContent
           headline={
