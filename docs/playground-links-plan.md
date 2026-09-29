@@ -112,6 +112,7 @@ Using the headless-Chrome setup from the refactor:
     - Popstate uses the existing pending-history logic.
     - Repeat clicks while a navigation or Back/Forward is pending keep the first snapshot. A navigation pending for more than 10 s counts as abandoned, and the next click snapshots afresh.
     - Known gap (rare): after an abandoned soft navigation, a browser Back before the next click or route change restores the click-time position.
+    - Known gap (rare): pressing Back and then clicking a link before the Back page renders. The Back page's render clears the "navigating" flag while the clicked navigation is still in flight, so a stray scroll in that window could be saved for the Back page. Accepted: it needs three narrow timings to coincide. The fix would be to tie the flag to the clicked link's target path.
   - Earlier attempts (a settle debounce, then resuming on a timeout or on wheel/key input) each reopened the stray-scroll or momentum case in code review. Browsers can emit a stray scroll to 0 mid-navigation, before the URL changes, which overwrote the real position.
   - `lenis.resize()` runs before every jump. Lenis clamps to its cached page height, which is stale coming from a short page (the full item page), so jumps to `#playground` stopped short.
 - **Share images:**
