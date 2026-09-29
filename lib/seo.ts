@@ -7,7 +7,8 @@ import type { Metadata } from "next";
 import type { Project } from "./types";
 
 export const SITE = {
-  url: "https://buhr.dev",
+  /** Primary domain. buhr.dev, buhr.design and www.* 308-redirect here (Vercel). */
+  url: "https://buhrduong.com",
   name: "Buhr Duong",
   jobTitle: "Design Engineer",
   /** Homepage <title>; other pages use the "Buhr | %s" template. */

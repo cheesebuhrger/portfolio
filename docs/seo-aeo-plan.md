@@ -101,3 +101,4 @@ _Created 2026-09-28. Status: approved, decisions below. Build this **before** `p
 6. **`/about`:** `noindex` and left out of the sitemap until it's built.
 7. **Preview images:** Cloudinary URL transform `c_fill,g_auto,w_1200,h_630,q_auto,f_jpg`, generated on request; nothing to configure in Cloudinary. Crops reviewed and approved.
 8. **Playground video dates** (for the Playground plan): `uploadDate` is the Cloudinary version timestamp (when first published on the site), and `dateCreated` is the item's year.
+9. **Primary domain: buhrduong.com** (decided 2026-09-29, matching the email buhr@buhrduong.com). `buhr.dev`, `buhr.design` and the `www.` variants 308-redirect to it in Vercel. `SITE.url` in `lib/seo.ts` drives the canonicals, sitemap, robots and JSON-LD.
