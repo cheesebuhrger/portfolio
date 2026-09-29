@@ -23,8 +23,12 @@ export default function RestoreScrollDefault() {
   useEffect(() => {
     const restore = () => ScrollTrigger.clearScrollMemory("auto");
     const onClick = (e: MouseEvent) => {
+      // Only clicks that navigate this tab (same checks as TransitionLink).
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       const link = e.target instanceof Element ? e.target.closest("a[href]") : null;
       if (!(link instanceof HTMLAnchorElement)) return;
+      if (link.target && link.target !== "_self") return;
+      if (link.hasAttribute("download")) return;
       if (new URL(link.href, window.location.href).origin !== window.location.origin) return;
       restore();
     };
