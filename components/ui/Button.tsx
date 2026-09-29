@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { gsap, SplitText, useGSAP, withMotion } from "@/lib/gsap";
-import TransitionLink from "./layout/TransitionLink";
+import TransitionLink from "@/components/layout/TransitionLink";
 
 interface ButtonProps {
   label: string;
@@ -40,17 +40,20 @@ const Button: React.FC<ButtonProps> = ({
           type: "chars",
         }).chars;
 
-        const labelHeight = firstLabelRef.current.offsetHeight;
         const duration = 0.25;
         const ease = "power2.inOut";
 
+        // Move by each character's own height (yPercent), not a measured pixel
+        // value: buttons can mount while hidden (e.g. inside a dialog that
+        // hasn't opened yet), where measuring would give 0. Characters are as
+        // tall as the label's line, so this travels the full label height.
         hoverTl.current = gsap
           .timeline({ paused: true })
-          .to(firstChars, { duration, y: -labelHeight, rotate: 90, ease })
+          .to(firstChars, { duration, yPercent: -100, rotate: 90, ease })
           .fromTo(
             secondChars,
-            { y: labelHeight, rotate: -90 },
-            { duration, y: 0, rotate: 0, ease },
+            { yPercent: 100, rotate: -90 },
+            { duration, yPercent: 0, rotate: 0, ease },
             "<",
           );
 

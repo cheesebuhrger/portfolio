@@ -1,12 +1,12 @@
-import IndexProjects from "@/components/IndexProjects";
-import IndexPlayground from "@/components/IndexPlayground";
-import { getProjectSummaries } from "@/lib/content";
+import FeaturedProjects from "@/components/home/FeaturedProjects";
+import Playground from "@/components/home/Playground";
+import { getPlaygroundItems, getProjectSummaries } from "@/lib/content";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-surface-background">
-      <IndexProjects projects={getProjectSummaries()} />
-      <IndexPlayground />
+      <FeaturedProjects projects={getProjectSummaries()} />
+      <Playground items={getPlaygroundItems()} />
     </div>
   );
 }

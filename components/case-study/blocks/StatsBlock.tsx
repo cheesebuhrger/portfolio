@@ -1,5 +1,5 @@
 import type { Block } from "@/lib/types";
-import MediaImage from "@/components/MediaImage";
+import Media from "@/components/ui/Media";
 import RichText from "../RichText";
 import StatCard from "./StatCard";
 import { mediaProps } from "./MediaBlock";
@@ -32,7 +32,7 @@ export default function StatsBlock({ block }: StatsBlockProps) {
 
   const mediaPanel = (
     <div className="relative bg-surface-secondary overflow-hidden rounded-md aspect-16/9-half w-full md:w-1/2">
-      <MediaImage {...mediaProps(media)} />
+      <Media {...mediaProps(media)} />
     </div>
   );
 

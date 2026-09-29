@@ -1,7 +1,7 @@
 "use client";
 
 import { gsap, SplitText, useGSAP } from "@/lib/gsap";
-import MediaImage from "@/components/MediaImage";
+import Media from "@/components/ui/Media";
 import TransitionLink from "@/components/layout/TransitionLink";
 import type { ProjectSummary } from "@/lib/content";
 
@@ -358,7 +358,7 @@ const End = ({ process, image, related }: EndProps) => {
                 data-cursor-text="VIEW PROJECT"
               >
                 <div className="relative aspect-21/9-half bg-surface-secondary rounded-md overflow-hidden">
-                  <MediaImage
+                  <Media
                     type="image"
                     src={project.cover.primary.src}
                     alt={project.cover.primary.alt}

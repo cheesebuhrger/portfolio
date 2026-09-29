@@ -3,8 +3,8 @@
 import { ReactNode, useRef } from "react";
 import Image from "next/image";
 import type { TeamMember } from "@/lib/types";
-import { BadgeGroup } from "@/components/BadgeGroup";
-import { AvatarGroup } from "@/components/AvatarGroup";
+import { BadgeGroup } from "@/components/ui/BadgeGroup";
+import { AvatarGroup } from "@/components/ui/AvatarGroup";
 import { AnimatedIcon } from "@/components/icons";
 import SplitReveal from "@/components/motion/SplitReveal";
 import { useScaleReveal } from "@/components/motion/useScaleReveal";

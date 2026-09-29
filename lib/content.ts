@@ -4,7 +4,8 @@
  * (e.g. to Sanity) means changing this file, not the UI.
  */
 import projects from "@/content/projects";
-import type { Project } from "./types";
+import playgroundItems from "@/content/playground";
+import type { PlaygroundItem, Project } from "./types";
 
 /** What cards and lists need; keeps full case-study bodies out of client bundles. */
 export type ProjectSummary = Pick<
@@ -42,4 +43,8 @@ export function getRelatedProjects(slug: string, count = 2): ProjectSummary[] {
   return Array.from({ length: Math.min(count, projects.length - 1) }, (_, i) =>
     toSummary(projects[(index + 1 + i) % projects.length]),
   );
+}
+
+export function getPlaygroundItems(): PlaygroundItem[] {
+  return playgroundItems;
 }

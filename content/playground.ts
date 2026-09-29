@@ -1,13 +1,6 @@
-export interface GridItem {
-  type: "video" | "image";
-  src: string;
-  title: string;
-  date: string;
-  description?: string;
-  url?: string;
-}
+import type { PlaygroundItem } from "@/lib/types";
 
-export const playgroundItems: GridItem[] = [
+const playgroundItems: PlaygroundItem[] = [
   {
     type: "video",
     src: "https://res.cloudinary.com/dc9cfuxqp/video/upload/v1770667545/abodemoney-loader_srqqc5.webm",
@@ -83,3 +76,5 @@ export const playgroundItems: GridItem[] = [
       "A narrative style animation I made for a marketing site @Wheel (fka Enzyme). The value props keep the provider, Julian, at the center.",
   },
 ];
+
+export default playgroundItems;

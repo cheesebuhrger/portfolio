@@ -1,15 +1,15 @@
-import type { Block, Media } from "@/lib/types";
-import MediaImage from "@/components/MediaImage";
+import type { Block, Media as MediaContent } from "@/lib/types";
+import Media from "@/components/ui/Media";
 import RichText from "../RichText";
 
 type MediaBlockProps = { block: Extract<Block, { type: "media" }> };
 
 /** Media props minus content-only fields like caption. */
-export function mediaProps({ caption: _caption, ...media }: Media) {
+export function mediaProps({ caption: _caption, ...media }: MediaContent) {
   return media;
 }
 
-function Caption({ media }: { media: Media }) {
+function Caption({ media }: { media: MediaContent }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-4 md:gap-6 lg:gap-8">
       <p className="col-span-1 col-start-1 md:col-span-1 md:col-start-2 xl:col-start-4 xl:col-span-3 xl:text-right text-xs text-text-secondary mt-2">
@@ -26,7 +26,7 @@ export default function MediaBlock({ block }: MediaBlockProps) {
     return (
       <div>
         <div className="relative bg-surface-secondary overflow-hidden rounded-md aspect-16/9">
-          <MediaImage {...mediaProps(media[0])} />
+          <Media {...mediaProps(media[0])} />
         </div>
         <Caption media={media[0]} />
       </div>
@@ -53,7 +53,7 @@ export default function MediaBlock({ block }: MediaBlockProps) {
           style={style}
         >
           <div className="relative flex w-full h-full items-center justify-center p-4 py-20 sm:p-8 sm:py-24 md:p-12 md:py-24">
-            <MediaImage
+            <Media
               imageScaleAnimation="subtle"
               objectFit="object-contain"
               {...(media[0].type === "image" ? { width: 1440, height: 900 } : {})}
@@ -72,7 +72,7 @@ export default function MediaBlock({ block }: MediaBlockProps) {
       {media.map((item, index) => (
         <div key={index} className="w-full md:w-1/2">
           <div className="relative bg-surface-secondary overflow-hidden rounded-md aspect-16/9-half">
-            <MediaImage {...mediaProps(item)} />
+            <Media {...mediaProps(item)} />
           </div>
           {item.caption && (
             <div className="grid grid-cols-1 mb-2 md:mb-4 lg:mb-0 xl:grid-cols-6 gap-4 md:gap-6 lg:gap-8">

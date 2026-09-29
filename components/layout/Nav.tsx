@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Button from "../Button";
+import Button from "@/components/ui/Button";
 import { useLenis } from "lenis/react";
 
 const Nav = () => {
