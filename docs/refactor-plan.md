@@ -231,6 +231,8 @@ Each phase is one PR. Visual parity is checked before merge. Pause for review af
   - Same page heights, pin count and text.
   - Modal navigation, Escape and scrim close behave the same.
   - Scroll tests pass, reduced motion works, and there are no page errors.
+- **Button hover flip:** it now moves characters by `yPercent` instead of a pixel height measured when the button first appears. Buttons inside the dialog mount before it opens, so the measurement returned 0 and the flip lost its travel. Verified against live: dialog buttons, "Go to Projects" and the Nav back button move the same distance (16/20px).
+- **User decisions:** keep the mobile image-growth fix; keep the modal scroll lock.
 - **Lint is fully clean.**
 
 ### Later: Code projects (not yet designed)
