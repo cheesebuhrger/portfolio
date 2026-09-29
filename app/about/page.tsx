@@ -1,3 +1,13 @@
+import type { Metadata } from "next";
+
+// Placeholder until the page is built: kept out of search results and the
+// sitemap, with its own canonical so it never claims to be the homepage.
+export const metadata: Metadata = {
+  title: "About",
+  alternates: { canonical: "/about" },
+  robots: { index: false, follow: true },
+};
+
 export default function About() {
   return (
     <div className="min-h-screen bg-surface-background">

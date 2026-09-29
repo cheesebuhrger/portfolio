@@ -2,6 +2,7 @@
 
 import TransitionLink from "./TransitionLink";
 import { usePathname } from "next/navigation";
+import { SITE } from "@/lib/seo";
 
 const Footer = () => {
   const pathname = usePathname();
@@ -63,7 +64,7 @@ const Footer = () => {
         )}
         <li>
           <a
-            href="https://github.com/cheesebuhrger"
+            href={SITE.profiles.github}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-text-action"
@@ -73,7 +74,7 @@ const Footer = () => {
         </li>
         <li className={!isHomePage ? "mt-4" : ""}>
           <a
-            href="https://linkedin.com/in/buhrduong"
+            href={SITE.profiles.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-text-action"
@@ -84,7 +85,7 @@ const Footer = () => {
 
         <li>
           <a
-            href="https://are.na/buhr-duong/"
+            href={SITE.profiles.arena}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-text-action"

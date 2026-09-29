@@ -97,6 +97,10 @@ export type Project = {
   role: string;
   year: string;
   duration: string;
+  /** First published on the site (ISO date, e.g. "2024-07-05"). */
+  published: string;
+  /** Last meaningful content change (ISO date); omit if never updated. */
+  updated?: string;
   problem: string;
   solution: string;
   skills: string[];

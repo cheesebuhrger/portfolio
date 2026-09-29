@@ -7,6 +7,7 @@ const buildforce: Project = {
   role: "Staff Product Designer",
   year: "2024",
   duration: "6 weeks",
+  published: "2024-11-19",
   problem: "Inaccurate worker time entries made contractors distrust our system & left the ops team cleaning up payroll for 3 days",
   solution: "Redesigning the time tracking flow resulted in fewer errors, more accurate hrs from workers, & reduced days of manual payroll cleanup",
   skills: [
