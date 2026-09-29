@@ -1,4 +1,4 @@
-# buhr.dev or buhr.design – Portfolio
+# buhrduong.com – Portfolio
 
 This is the source code for my personal portfolio, built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), and [GSAP](www.gsap.com). It showcases selected deep dives into projects, demos, and visuals that reflect how I approach design and code.
 
@@ -32,8 +32,7 @@ I wanted full control over how I present my work—both in terms of layout and m
 
 ## Live site
 
-[www.buhr.dev](https://www.buhr.dev)
-[www.buhr.design](https://www.buhr.design)
+[buhrduong.com](https://buhrduong.com) (buhr.dev and buhr.design redirect here)
 
 ---
 
