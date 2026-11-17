@@ -5,6 +5,7 @@
  */
 import type { Metadata } from "next";
 import type { Frame, Project } from "./types";
+import { frameHref, projectHref } from "./routes";
 
 export const SITE = {
   /** Primary domain. buhr.dev, buhr.design and www.* 308-redirect here (Vercel). */
@@ -253,4 +254,60 @@ export function frameJsonLd(
       personSchema,
     ],
   };
+}
+
+// ---------------------------------------------------------------------------
+// llms.txt (llmstxt.org): a Markdown summary of the site for AI tools. Takes
+// content as arguments so this file stays free of content imports.
+
+/** Escapes characters that would end a Markdown link's text early. */
+const linkText = (text: string) => text.replace(/[\\[\]]/g, "\\$&");
+
+/** One line, ending in a full stop. */
+const sentence = (text: string) => {
+  const line = text.replace(/\s+/g, " ").trim();
+  return /[.!?]$/.test(line) ? line : `${line}.`;
+};
+
+const listItem = (title: string, path: string, note: string) =>
+  `- [${linkText(title)}](${absoluteUrl(path)}): ${sentence(note)}`;
+
+export function llmsTxt(
+  projects: Project[],
+  frames: Frame[],
+  describeFrame: (item: Frame) => string,
+): string {
+  const frameItem = (item: Frame) =>
+    listItem(item.title, frameHref(item.slug), describeFrame(item));
+  // Frames with only the generic fallback description go under "Optional",
+  // which tools may skip.
+  const described = frames.filter((item) => item.description);
+  const undescribed = frames.filter((item) => !item.description);
+
+  return [
+    `# ${SITE.name}`,
+    `> ${SITE.description}`,
+    `Portfolio home: ${SITE.url}. Works across ${SITE.knowsAbout.join(", ").toLowerCase()}. Run as ${SITE.business.name}.`,
+    "## Case studies",
+    projects
+      .map((project) =>
+        listItem(
+          project.title,
+          projectHref(project.slug),
+          `${project.company}, ${project.year}. ${project.problem}`,
+        ),
+      )
+      .join("\n"),
+    "## Frames",
+    described.map(frameItem).join("\n"),
+    "## Profiles",
+    [
+      `- [LinkedIn](${SITE.profiles.linkedin})`,
+      `- [GitHub](${SITE.profiles.github})`,
+      `- [Are.na](${SITE.profiles.arena})`,
+    ].join("\n"),
+    ...(undescribed.length
+      ? ["## Optional", undescribed.map(frameItem).join("\n")]
+      : []),
+  ].join("\n\n") + "\n";
 }
