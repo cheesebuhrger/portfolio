@@ -34,7 +34,7 @@ Parts 2–3 prepare for part 4: the docs site can only document tokens and compo
 | Custom 404 page | No `app/not-found.tsx`, so every unknown URL shows Next's generic "This page could not be found." `/frames/typo` already gets the homepage Nav (`usesHomeChrome` matches `/frames/`); other bad URLs get the back-button Nav. Fix: a designed `not-found.tsx` with the homepage Nav everywhere. **On hold (2026-11-17).** | Small |
 | Optional: `llms.txt` | A plain-text site summary for AI answer engines. It's cheap, but its value is unproven. | Tiny |
 | Optional: Vercel Speed Insights | Real-user Core Web Vitals, next to the existing Analytics. | Tiny |
-| Optional: media via `buhrduong.com/media` | A rewrite to Cloudinary would put share images and video on the primary domain. | Small |
+| ~~Optional: media via `buhrduong.com/media`~~ | A rewrite to Cloudinary would put share images and video on the primary domain. **Skipped (2026-11-17):** cosmetic benefit; every file would detour through Vercel bandwidth. | Small |
 
 ---
 
