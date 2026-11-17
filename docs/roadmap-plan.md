@@ -28,10 +28,10 @@ Parts 2–3 prepare for part 4: the docs site can only document tokens and compo
 
 | Item | Why | Size |
 |---|---|---|
-| Frame page Nav on phones | Below `md` only the name shows, so there's no way to Projects/Frames except the logo. Deferred on 2026-09-29. | Small |
+| Frame page Nav on phones | Below `md` only the name shows, so there's no way to Projects/Frames except the logo. Deferred on 2026-09-29. **On hold (2026-11-17).** | Small |
 | Chapter 2/4 frame descriptions | They use the fallback line ("{title} ({date}), from Buhr Duong's frames."). | Writing only |
-| Homepage refresh position | Refreshing mid-page lands at an unexpected position. It also happens on the live site from before the refactor, so the pinned GSAP sections are the likely cause. | Medium, investigate first |
-| 404 for mistyped frame URLs | `/frames/typo` 404s, but the page shows the back-button Nav. The homepage chrome would fit better. | Small |
+| Homepage refresh position | Refreshing mid-page lands at an unexpected position. It also happens on the live site from before the refactor, so the pinned GSAP sections are the likely cause: the browser restores the old `scrollY` before ScrollTrigger adds pin spacers, and `SmoothScroll.tsx` skips first load. Options: always start at the top on refresh, or re-apply the saved position after ScrollTrigger's refresh. **On hold (2026-11-17).** | Medium, investigate first |
+| Custom 404 page | No `app/not-found.tsx`, so every unknown URL shows Next's generic "This page could not be found." `/frames/typo` already gets the homepage Nav (`usesHomeChrome` matches `/frames/`); other bad URLs get the back-button Nav. Fix: a designed `not-found.tsx` with the homepage Nav everywhere. **On hold (2026-11-17).** | Small |
 | Optional: `llms.txt` | A plain-text site summary for AI answer engines. It's cheap, but its value is unproven. | Tiny |
 | Optional: Vercel Speed Insights | Real-user Core Web Vitals, next to the existing Analytics. | Tiny |
 | Optional: media via `buhrduong.com/media` | A rewrite to Cloudinary would put share images and video on the primary domain. | Small |
