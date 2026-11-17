@@ -1,0 +1,231 @@
+# Roadmap: Polish, Modernization and Design System: Plan
+
+_Created 2026-09-30. Status: draft, not started. Covers what comes after `refactor-plan.md`, `seo-aeo-plan.md` and `frames-links-plan.md`, all shipped (PRs #1–#9). Counts in the audit sections are from `main` at 95b1378._
+
+## Goal
+
+1. **Close out launch:** do the remaining admin steps and small fixes.
+2. **Modernize the component code:** remove patterns from the "first version" era. Nothing visible changes.
+3. **Tighten the token system:**
+   - named spacing aliases instead of the same breakpoint chains repeated everywhere;
+   - one column grid that every section aligns to.
+4. **Showcase the system:** a Material.io-style documentation site for the design system this portfolio uses, optionally backed by a self-made component package. Like the Sanity work, this is partly a portfolio piece in its own right.
+
+Parts 2–3 prepare for part 4: the docs site can only document tokens and components that actually exist in clean form.
+
+---
+
+## 1. Launch admin (no code)
+
+- Resubmit `https://buhrduong.com/sitemap.xml` in Google Search Console, since the domain changed.
+- Submit the same sitemap in Bing Webmaster Tools (it also feeds ChatGPT search and Copilot).
+- Run LinkedIn Post Inspector on the homepage and one frame URL to refresh cached previews.
+- Delete the 9 merged local branches: `git branch --merged main | grep -v main | xargs git branch -d`.
+
+## 2. Fixes and polish
+
+| Item | Why | Size |
+|---|---|---|
+| Frame page Nav on phones | Below `md` only the name shows, so there's no way to Projects/Frames except the logo. Deferred on 2026-09-29. | Small |
+| Chapter 2/4 frame descriptions | They use the fallback line ("{title} ({date}), from Buhr Duong's frames."). | Writing only |
+| Homepage refresh position | Refreshing mid-page lands at an unexpected position. It also happens on the live site from before the refactor, so the pinned GSAP sections are the likely cause. | Medium, investigate first |
+| 404 for mistyped frame URLs | `/frames/typo` 404s, but the page shows the back-button Nav. The homepage chrome would fit better. | Small |
+| Optional: `llms.txt` | A plain-text site summary for AI answer engines. It's cheap, but its value is unproven. | Tiny |
+| Optional: Vercel Speed Insights | Real-user Core Web Vitals, next to the existing Analytics. | Tiny |
+| Optional: media via `buhrduong.com/media` | A rewrite to Cloudinary would put share images and video on the primary domain. | Small |
+
+---
+
+## 3. Component modernization
+
+Code-only changes: every page should be pixel-identical before and after (verify with the headless-Chrome diff used in the refactor).
+
+### Findings
+
+| Pattern | Where | Modern replacement |
+|---|---|---|
+| `React.FC<Props>` (8) | `ui/Button`, `ui/Media`, `icons/AnimatedIcon`, `case-study/Hero` (×2), `Section`, `blocks/StatCard`, `blocks/QuoteBlock` | Plain function components with typed props: `function Button({ … }: ButtonProps)`. `React.FC` is no longer recommended: it hides the return type and used to add `children` implicitly. |
+| `import React` for JSX (2) | `ui/Button`, `case-study/Section` | Not needed since the automatic JSX runtime. Import only the hooks. |
+| Template-string `className` (17 in 12 files) | `ui/Avatar`, `Badge`, `Dialog`, `layout/Footer`, `motion/stack`, `AnimatedIcon`, `Hero`, `Section`, and the `MediaBlock`, `StatsBlock`, `StatCard` and `QuoteBlock` blocks | A `cn()` helper (`clsx` + `tailwind-merge`) in `lib/cn.ts`. It merges conditionals cleanly and lets a passed-in `className` override defaults instead of conflicting with them. |
+| Hand-rolled variant maps | `ui/Button` (and `Badge`) | `cva` (class-variance-authority) or a typed `variants` object. This is what the component package would use later (§6). |
+| Invalid class `duration-30` (2) | `ui/Button:82, 84` | Tailwind has no `duration-30`, so the transition currently falls back to the default 150 ms. **Decided: 250 ms**, matching the label flip. This is a **visible** change (from 150 ms), so review it. |
+| Tailwind v2 names `flex-shrink-0`, `flex-grow` (3) | `frames/FrameDetail`, `blocks/QuoteBlock`, `ui/Dialog` | `shrink-0`, `grow` |
+| `w-screen` (6) | `home/FeaturedProjects` (×3), `case-study/Hero`, `case-study/End` (×2) | `w-full`. `100vw` includes the scrollbar on desktop browsers, which can add a horizontal scroll. Check that the pinned sections still size correctly. |
+| Arbitrary values `z-[…]`, `rounded-[…]` (10) | `Cursor`, `FeaturedProjects`, `End`, `Badge` | A named z-index scale (`z-cursor`, `z-dialog`, `z-nav`, …) and radius tokens (`rounded-full` for the `1000px` cursor, `rounded-xs` for the badge's 4px). |
+| Commented-out JSX (5 blocks) | `layout/Nav` (2), `layout/Footer` (3) | Delete it; git history keeps it. |
+| Padding-bottom aspect ratio | Fixed in `FrameDetail` (PR #9); no others remain | Already `aspect-*` utilities. |
+| `bg-fixed` + inline `backgroundImage` | `case-study/End:288–289` | `background-attachment: fixed` doesn't work on iOS and forces repaints. Use a `next/image` / `Media` layer with a GSAP or CSS scroll-driven parallax. |
+| Large hardcoded GSAP timelines | `case-study/End` (~350 lines) | Split into a hook per panel (`useEndPanels`), with durations and easings from shared motion tokens (§4). |
+| Unused tokens | `surface-swiper`, `--black-60`, `--black-70`, `--pink-02` | Remove them, or document them as reserved. |
+| `mx-auto w-full` without a max width | `FrameDetail` and others | `mx-auto` does nothing without a `max-w-*`. Remove it, or give the grid a max width (§5). |
+
+### Decision needed: Tailwind 3.4 → 4
+
+- **Tailwind 4 is CSS-first:** tokens live in `@theme { --color-surface-primary: …; --spacing-gutter: … }` inside the CSS.
+  - The same variables are then usable from plain CSS, GSAP and a component package, which is exactly what §6 needs.
+- **Cost:**
+  - a migration (`npx @tailwindcss/upgrade`);
+  - checking whether `fluid-tailwind` supports v4 (if not, the `~text-*` sizes become `clamp()` values in `@theme`);
+  - a pixel-diff pass.
+- **Recommendation:** migrate as the first step of the token work, before adding aliases, so the aliases are written once, in the new format.
+
+---
+
+## 4. Token aliases
+
+### Findings: repeated responsive spacing chains
+
+| Chain | Count | Value (base / md / lg) |
+|---|---|---|
+| `gap-4 md:gap-6 lg:gap-8` | 16 | 16 / 24 / 32 px |
+| `p-4 md:p-6 lg:p-8` | 11 | 16 / 24 / 32 |
+| `px-4 md:px-6 lg:px-8` | 5 | 16 / 24 / 32 |
+| `pr-4 md:pr-6 lg:pr-8`, `pl-4 md:pl-6 lg:pl-8` | 5 | 16 / 24 / 32 |
+| `gap-y-8 md:gap-y-12 lg:gap-y-16`, `gap-8 md:gap-12 lg:gap-16` | 3 | 32 / 48 / 64 |
+| `pb-32 md:pb-40 lg:pb-48` | 1 (+ variants) | 128 / 160 / 192 |
+| `pt-16 md:pt-20 lg:pt-24` | 1 | 64 / 80 / 96 |
+| `px-2 md:px-4 lg:px-6` (dialog header) | 1 | 8 / 16 / 24 |
+
+- **The 16/24/32 step appears 37 times across 13 files.** It's the site's gutter: both the page margin and the gap between columns. It just has no name.
+- **One-off variants look accidental:**
+  - `p-4 md:p-6 lg:p-4 xl:p-8` shrinks at `lg`;
+  - `gap-16 md:gap-6 lg:gap-8`, `gap-12 md:gap-6 lg:gap-8` and `gap-8 md:gap-6 lg:gap-8` have a bigger gap on mobile than on tablet.
+
+  Check each against the live design: keep it deliberately or snap it to the scale.
+
+### Approach: responsive CSS variables, exposed as spacing tokens
+
+```css
+:root {
+  --space-gutter: 1rem;      /* 16 */
+  --space-stack:  2rem;      /* 32: gap between stacked blocks */
+  --space-section: 8rem;     /* 128: space below a section */
+  --space-page-top: 4rem;    /* 64 */
+}
+@media (min-width: 48rem) { :root { --space-gutter: 1.5rem; --space-stack: 3rem; --space-section: 10rem; --space-page-top: 5rem; } }
+@media (min-width: 60rem) { :root { --space-gutter: 2rem;   --space-stack: 4rem; --space-section: 12rem; --space-page-top: 6rem; } }
+```
+
+Registered as spacing tokens, so every utility works: `p-gutter`, `px-gutter`, `gap-gutter`, `gap-y-stack`, `pb-section`, `pt-page-top`, and `px-gutter-half` for the dialog header.
+
+- **Why variables rather than `@apply` classes:**
+  - One token works with every property (padding, gap, margin, inset, even GSAP offsets) instead of needing a class per property.
+  - The breakpoint logic lives in one place.
+- **Why not fluid (`~p-4/8`):** fluid values change size continuously between breakpoints, which is a visible change. Stepped variables keep parity. Switching to fluid later becomes a one-line change per token.
+- **Also worth naming:**
+  - a **z-index scale** and **radius** tokens (see §3);
+  - **motion tokens**: durations and eases now written inline in GSAP calls (`power3.out`, `0.8`, …) become `motion.duration.base`, `motion.ease.emphasized`, shared by CSS and GSAP.
+
+---
+
+## 5. Column grid
+
+### Findings
+
+Sections pick their own column system:
+
+| Component | Columns |
+|---|---|
+| `Nav` | 12 at every size |
+| `FeaturedProjects` | `md:grid-cols-12` (×2) and `md:grid-cols-2` |
+| `case-study/Hero` | `md:grid-cols-6 lg:grid-cols-12` |
+| `TextBlock`, `MediaBlock` | `grid-cols-1 md:grid-cols-2 xl:grid-cols-12` (MediaBlock also `xl:grid-cols-6`) |
+| `QuoteBlock` | `grid-cols-1 lg:grid-cols-2` |
+| `StatsBlock` | `md:grid-cols-2` |
+| `Frames` | `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3` |
+| `Footer` | `md:grid-cols-4` |
+| `about/page` | `grid-cols-1 md:grid-cols-2` |
+| `End`, `Hero`, `Section`, `StatsBlock`, `FeaturedProjects`, `FrameDetail` | Flex with fractional widths (`w-1/2`, `lg:w-2/3`), 22 in total |
+
+Most of these would fit a 12-column grid (2, 3, 4 and 6 all divide 12). But the columns are computed separately inside each section with different gaps, so edges only line up by coincidence. A "half" in a flex row with `gap-8` isn't the same line as `col-span-6` in a grid with `gap-6`.
+
+### Approach
+
+- **One grid definition:**
+  - 4 columns below `md`, 8 at `md`, 12 at `lg` and up;
+  - the gap is `--space-gutter` and the outer margin is `--space-gutter`, so the page edge and the column gaps share one rhythm.
+  - This is the Material 3 layout model (compact / medium / expanded window classes). It also matches the existing `md` and `lg` breakpoints.
+- **Delivered as:**
+  - a `grid-layout` utility (or a `<Grid>` / `<Grid.Item span={{ base: 4, md: 4, lg: 6 }}>` component);
+  - sections use `col-span-*` / `col-start-*` instead of their own `grid-cols-*`;
+  - a subgrid (`grid-cols-subgrid`) lets nested blocks inherit the parent's columns instead of starting a new grid.
+- **A grid overlay for development:** press **G** to show the columns over the page. This is useful for the migration, and a nice thing to demo in the design-system site.
+- **This one is visible:** snapping sections to shared columns will move some edges by a few pixels. Migrate one section per commit with before/after screenshots, and decide per section.
+
+### Decision needed
+
+- **Max content width** at `xxl` (1600px+): today everything stretches edge to edge on ultrawide screens.
+  - Option 1: cap the grid (e.g. 1600px, centred).
+  - Option 2: keep full-bleed, and let only text columns cap their line length.
+
+---
+
+## 6. Design system showcase
+
+### What it is
+
+A documentation site for the portfolio's design system, in the spirit of material.io. Name: **Flxra Design System** (flora, respelled).
+
+- **Foundations:** color (primitive → semantic tokens: `--pink-05` → `surface-secondary`), type (Surt / Editorial Old / Geist, the fluid scale, the `-p` paragraph variants and why they exist), spacing (§4), grid (§5, with the live overlay), radius, elevation/z-index, motion (tokens plus live GSAP demos: SplitReveal, scale reveal, the cursor).
+- **Components:** Button, Badge, Avatar, AvatarGroup, Tooltip, Dialog, Media, AnimatedIcon, plus the case-study blocks as "patterns". Each page has a live demo, variants, a props table, usage do/don't, accessibility notes and the code.
+- **Why it's a portfolio piece:** it shows design-engineering judgement (token architecture, API design, documentation), not only visuals.
+
+### Architecture options
+
+| Option | Shape | Pros | Cons |
+|---|---|---|---|
+| **A. Route in this app** | `/system/*` in the portfolio, reading the real tokens and components | Fastest; zero drift, since it documents the code that ships | Not a real "library"; everything is coupled |
+| **B. Monorepo** | pnpm workspaces: `apps/portfolio`, `apps/system` (docs site), `packages/tokens`, `packages/ui` | A real package boundary, consumed by two apps; the standard industry setup (Turborepo) | Repo restructure; build tooling (tsup, Tailwind content paths across packages) |
+| **C. Separate repo, published to npm** | `@flxra/ui` on npm, versioned with Changesets | The most "real"; others can install it | Two repos to keep in sync; every change is publish → bump → install |
+
+**Decided 2026-11-17: go straight to B.** Do **C** only if there's a reason to. (Original recommendation was A → B; kept below for context.)
+
+1. **A first:** build `/system` inside the portfolio while §3–§5 land. Content and design matter most, and it gives immediate value.
+2. **B next:** once the components are stable, move to a Turborepo monorepo.
+   - `packages/tokens`: the CSS variables, the Tailwind v4 `@theme`, motion tokens as TS.
+   - `packages/ui`: components built with `cva` + `cn`, and a `"use client"` boundary only where needed.
+   - `apps/system`: served at **`buhrduong.com/flxra`** via a Vercel rewrite or microfrontend (decided).
+   - The portfolio then consumes `@flxra/ui` like any other app, which is the actual showcase claim: "this site is built from my library."
+3. **C (npm publish):** only if a second consumer appears. B already demonstrates the skill.
+
+### Tooling to decide during §6
+
+- **Docs content (decided: MDX only):** MDX pages with a small `<Demo>` / `<PropsTable>` kit. Storybook is not used; it can be added later as a dev workbench if the component count grows.
+- **Props tables:** generated from TypeScript (`react-docgen-typescript`), so they don't drift.
+- **Token source:** hand-written CSS variables are enough at this size. Style Dictionary / DTCG JSON is only worth it if tokens need to sync with Figma variables, which is a nice extra story if the Figma file uses variables.
+- **Accessibility and visual tests:** `axe` on each demo, plus screenshot tests. The existing headless-Chrome diff can become a Playwright suite.
+
+---
+
+## 7. Later
+
+- **Sanity CMS** (from `refactor-plan.md`): the `lib/content.ts` seam is ready. If §6 comes first, Sanity schemas can map one-to-one to the documented block components.
+- **Code-project case-study template** (from `refactor-plan.md`).
+- **About page:** `noindex` until it's built; add `ProfilePage` JSON-LD once it's real.
+
+## Suggested order
+
+1. **Launch admin (§1)** and the small fixes (§2). A day or two, independent PRs.
+2. **Modernization (§3)**, code-only, pixel-identical. One PR, or split UI primitives / case study / home.
+3. **Tailwind v4 migration** (if approved), pixel-identical. One PR.
+4. **Token aliases (§4)**, pixel-identical except the accidental one-offs, which are reviewed individually. One PR.
+5. **Column grid (§5)**, visible changes, reviewed per section. One PR per area (home, case study, frames, nav/footer).
+6. **Monorepo:** Turborepo with `apps/portfolio`, `packages/tokens` (`@flxra/tokens`), `packages/ui` (`@flxra/ui`). The portfolio consumes the packages; pixel-identical.
+7. **Flxra docs app (`apps/flxra`)** at `buhrduong.com/flxra`: foundations first, then components.
+8. **Sanity (§7).**
+
+**Process for every step:** write the step's plan first, run it through a review with the latest Claude model (currently Fable 5.1) to check it's sound, then implement. Each step pauses for review, as in the refactor. Every PR runs `/code-review` and the headless-Chrome diff against production.
+
+## Verification (applies to every code step)
+
+- `npm run lint`, `npm run typecheck`, `npm run build`.
+- Pixel diff against production at the usual scroll positions (home, one case study, a frame page, the dialog), at phone, tablet and desktop widths. §3, §4 and the Tailwind migration expect **zero** diff. §5 expects only the approved diffs.
+- The existing scroll/navigation behaviour tests still pass.
+
+## Decisions
+
+1. ~~Migrate to Tailwind 4 before the token work?~~ **Decided 2026-11-17: yes.** Migrate first, as step 3 of the suggested order.
+2. ~~Button transition duration?~~ **Decided 2026-11-17: 250 ms** (matches the label flip; becomes `motion.duration.fast`). Note: v4 accepts any number, so after the migration `duration-30` becomes a real 30 ms instead of the 150 ms default. Settle this before or during the migration.
+3. ~~Max content width at `xxl`: cap or full-bleed?~~ **Decided 2026-11-17: cap the grid at 2400px, centred.** Wider screens get equal margins on both sides.
+4. ~~Design system structure, name, URL?~~ **Decided 2026-11-17:** monorepo (option B) from the start; named **Flxra Design System**; packages `@flxra/*`; docs at `buhrduong.com/flxra`.
+5. ~~Docs tooling?~~ **Decided 2026-11-17: MDX only.**
