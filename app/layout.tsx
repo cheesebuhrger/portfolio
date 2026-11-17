@@ -1,5 +1,6 @@
 import "./global.css";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ViewTransitions } from "next-view-transitions";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
@@ -30,6 +31,7 @@ export default function RootLayout({
               {children}
               {modal}
               <Analytics />
+              <SpeedInsights />
               <Footer />
             </div>
           </SmoothScroll>
