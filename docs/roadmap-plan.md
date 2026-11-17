@@ -13,6 +13,8 @@ _Created 2026-09-30. Status: draft, not started. Covers what comes after `refact
 
 Parts 2–3 prepare for part 4: the docs site can only document tokens and components that actually exist in clean form.
 
+**Styling architecture (decided 2026-11-17): hybrid.** Tokens are plain CSS variables in `@flxra/tokens`, owned by no framework. `@flxra/ui` components are styled with CSS Modules (in `@layer components`) and ship as compiled CSS, so apps that use them don't need Tailwind. The portfolio keeps Tailwind for page layout, with its theme mapped to the same variables. Components accept `className` for placement only (margin, width, grid span); their appearance changes through `variant`/`size` props or token overrides. Reason: avoid tying the design system to Tailwind's upgrade cycle and plugin ecosystem (`fluid-tailwind` is already unmaintained and v3-only).
+
 ---
 
 ## 1. Launch admin (no code)
@@ -46,7 +48,7 @@ Code-only changes: every page should be pixel-identical before and after (verify
 |---|---|---|
 | `React.FC<Props>` (8) | `ui/Button`, `ui/Media`, `icons/AnimatedIcon`, `case-study/Hero` (×2), `Section`, `blocks/StatCard`, `blocks/QuoteBlock` | Plain function components with typed props: `function Button({ … }: ButtonProps)`. `React.FC` is no longer recommended: it hides the return type and used to add `children` implicitly. |
 | `import React` for JSX (2) | `ui/Button`, `case-study/Section` | Not needed since the automatic JSX runtime. Import only the hooks. |
-| Template-string `className` (17 in 12 files) | `ui/Avatar`, `Badge`, `Dialog`, `layout/Footer`, `motion/stack`, `AnimatedIcon`, `Hero`, `Section`, and the `MediaBlock`, `StatsBlock`, `StatCard` and `QuoteBlock` blocks | A `cn()` helper (`clsx` + `tailwind-merge`) in `lib/cn.ts`. It merges conditionals cleanly and lets a passed-in `className` override defaults instead of conflicting with them. |
+| Template-string `className` (17 in 12 files) | `ui/Avatar`, `Badge`, `Dialog`, `layout/Footer`, `motion/stack`, `AnimatedIcon`, `Hero`, `Section`, and the `MediaBlock`, `StatsBlock`, `StatCard` and `QuoteBlock` blocks | In the portfolio, a `cn()` helper (`clsx` + `tailwind-merge`) in `lib/cn.ts`. (`@flxra/ui` uses plain `clsx` with CSS Modules.) It merges conditionals cleanly and lets a passed-in `className` override defaults instead of conflicting with them. |
 | Hand-rolled variant maps | `ui/Button` (and `Badge`) | `cva` (class-variance-authority) or a typed `variants` object. This is what the component package would use later (§6). |
 | Invalid class `duration-30` (2) | `ui/Button:82, 84` | Tailwind has no `duration-30`, so the transition currently falls back to the default 150 ms. **Decided: 250 ms**, matching the label flip. This is a **visible** change (from 150 ms), so review it. |
 | Tailwind v2 names `flex-shrink-0`, `flex-grow` (3) | `frames/FrameDetail`, `blocks/QuoteBlock`, `ui/Dialog` | `shrink-0`, `grow` |
@@ -59,15 +61,9 @@ Code-only changes: every page should be pixel-identical before and after (verify
 | Unused tokens | `surface-swiper`, `--black-60`, `--black-70`, `--pink-02` | Remove them, or document them as reserved. |
 | `mx-auto w-full` without a max width | `FrameDetail` and others | `mx-auto` does nothing without a `max-w-*`. Remove it, or give the grid a max width (§5). |
 
-### Decision needed: Tailwind 3.4 → 4
+### Tailwind 3.4 → 4: deferred
 
-- **Tailwind 4 is CSS-first:** tokens live in `@theme { --color-surface-primary: …; --spacing-gutter: … }` inside the CSS.
-  - The same variables are then usable from plain CSS, GSAP and a component package, which is exactly what §6 needs.
-- **Cost:**
-  - a migration (`npx @tailwindcss/upgrade`);
-  - checking whether `fluid-tailwind` supports v4 (if not, the `~text-*` sizes become `clamp()` values in `@theme`);
-  - a pixel-diff pass.
-- **Recommendation:** migrate as the first step of the token work, before adding aliases, so the aliases are written once, in the new format.
+With the hybrid architecture, Tailwind is only the portfolio's layout tool, not the design system's foundation, so the migration no longer has to come first. It's still worth doing eventually: v3 will age, `fluid-tailwind` is unmaintained, and v4 reads CSS variables natively (`@theme inline`). The reviewed plan is parked in `docs/tailwind-v4-plan.md`; refresh it against the code before using it.
 
 ---
 
@@ -175,15 +171,15 @@ A documentation site for the portfolio's design system, in the spirit of materia
 | Option | Shape | Pros | Cons |
 |---|---|---|---|
 | **A. Route in this app** | `/system/*` in the portfolio, reading the real tokens and components | Fastest; zero drift, since it documents the code that ships | Not a real "library"; everything is coupled |
-| **B. Monorepo** | pnpm workspaces: `apps/portfolio`, `apps/system` (docs site), `packages/tokens`, `packages/ui` | A real package boundary, consumed by two apps; the standard industry setup (Turborepo) | Repo restructure; build tooling (tsup, Tailwind content paths across packages) |
+| **B. Monorepo** | pnpm workspaces: `apps/portfolio`, `apps/flxra` (docs site), `packages/tokens`, `packages/ui` | A real package boundary, consumed by two apps; the standard industry setup (Turborepo) | Repo restructure; build tooling (tsup, CSS Modules bundling) |
 | **C. Separate repo, published to npm** | `@flxra/ui` on npm, versioned with Changesets | The most "real"; others can install it | Two repos to keep in sync; every change is publish → bump → install |
 
 **Decided 2026-11-17: go straight to B.** Do **C** only if there's a reason to. (Original recommendation was A → B; kept below for context.)
 
 1. **A first:** build `/system` inside the portfolio while §3–§5 land. Content and design matter most, and it gives immediate value.
 2. **B next:** once the components are stable, move to a Turborepo monorepo.
-   - `packages/tokens`: the CSS variables, the Tailwind v4 `@theme`, motion tokens as TS.
-   - `packages/ui`: components built with `cva` + `cn`, and a `"use client"` boundary only where needed.
+   - `packages/tokens`: plain CSS variables (`--flxra-*`), plus motion tokens as TS for GSAP. No Tailwind.
+   - `packages/ui`: components styled with CSS Modules in `@layer components`, variants via `cva` or a typed map with `clsx`, shipped as compiled CSS; a `"use client"` boundary only where needed. No Tailwind.
    - `apps/system`: served at **`buhrduong.com/flxra`** via a Vercel rewrite or microfrontend (decided).
    - The portfolio then consumes `@flxra/ui` like any other app, which is the actual showcase claim: "this site is built from my library."
 3. **C (npm publish):** only if a second consumer appears. B already demonstrates the skill.
@@ -207,12 +203,13 @@ A documentation site for the portfolio's design system, in the spirit of materia
 
 1. **Launch admin (§1)** and the small fixes (§2). A day or two, independent PRs.
 2. **Modernization (§3)**, code-only, pixel-identical. One PR, or split UI primitives / case study / home.
-3. **Tailwind v4 migration** (if approved), pixel-identical. One PR.
-4. **Token aliases (§4)**, pixel-identical except the accidental one-offs, which are reviewed individually. One PR.
+3. **Monorepo:** Turborepo with `apps/portfolio` and empty `packages/tokens` (`@flxra/tokens`) and `packages/ui` (`@flxra/ui`). Pixel-identical.
+4. **`@flxra/tokens` + aliases (§4):** move the colour primitives and semantic tokens into plain CSS variables, add the spacing aliases, z-index, radius and motion tokens. The portfolio's Tailwind config maps to them. Pixel-identical except the accidental one-offs, reviewed individually.
 5. **Column grid (§5)**, visible changes, reviewed per section. One PR per area (home, case study, frames, nav/footer).
-6. **Monorepo:** Turborepo with `apps/portfolio`, `packages/tokens` (`@flxra/tokens`), `packages/ui` (`@flxra/ui`). The portfolio consumes the packages; pixel-identical.
+6. **`@flxra/ui` in CSS Modules:** move the primitives (Button, Badge, Avatar, Tooltip, Dialog, Media, AnimatedIcon) one at a time; the portfolio consumes them. Pixel-identical except the approved Button 250 ms.
 7. **Flxra docs app (`apps/flxra`)** at `buhrduong.com/flxra`: foundations first, then components.
-8. **Sanity (§7).**
+8. **Tailwind v4 migration of the portfolio**, when convenient, from the parked `docs/tailwind-v4-plan.md`.
+9. **Sanity (§7).**
 
 **Process for every step:** write the step's plan first, run it through a review with the latest Claude model (currently Fable 5.1) to check it's sound, then implement. Each step pauses for review, as in the refactor. Every PR runs `/code-review` and the headless-Chrome diff against production.
 
@@ -224,8 +221,9 @@ A documentation site for the portfolio's design system, in the spirit of materia
 
 ## Decisions
 
-1. ~~Migrate to Tailwind 4 before the token work?~~ **Decided 2026-11-17: yes.** Migrate first, as step 3 of the suggested order.
+1. ~~Migrate to Tailwind 4 before the token work?~~ **Decided 2026-11-17: yes, then revised the same day: deferred** to step 8 after choosing the hybrid architecture (decision 6).
 2. ~~Button transition duration?~~ **Decided 2026-11-17: 250 ms** (matches the label flip; becomes `motion.duration.fast`). Note: v4 accepts any number, so after the migration `duration-30` becomes a real 30 ms instead of the 150 ms default. Settle this before or during the migration.
 3. ~~Max content width at `xxl`: cap or full-bleed?~~ **Decided 2026-11-17: cap the grid at 2400px, centred.** Wider screens get equal margins on both sides.
 4. ~~Design system structure, name, URL?~~ **Decided 2026-11-17:** monorepo (option B) from the start; named **Flxra Design System**; packages `@flxra/*`; docs at `buhrduong.com/flxra`.
 5. ~~Docs tooling?~~ **Decided 2026-11-17: MDX only.**
+6. ~~Styling architecture?~~ **Decided 2026-11-17: hybrid.** Tokens as plain CSS variables, `@flxra/ui` in CSS Modules, portfolio keeps Tailwind mapped to the tokens. See the note under Goal.
