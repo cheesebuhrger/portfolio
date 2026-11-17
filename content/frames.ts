@@ -60,6 +60,8 @@ const frames: Frame[] = [
     src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742872388/chapter-2_hjku1l.webp",
     title: "Chapter 2",
     date: "2014",
+    description:
+      "Chapter cover for a group project proposal in my master's program at AAU, for a fashion client. Art direction and composited by me from stock photography and a Bodoni numeral.",
   },
   {
     slug: "chapter-4",
@@ -67,6 +69,8 @@ const frames: Frame[] = [
     src: "https://res.cloudinary.com/dc9cfuxqp/image/upload/v1742872388/chapter-4_tdbtuv.webp",
     title: "Chapter 4",
     date: "2014",
+    description:
+      "Another chapter cover from the same AAU proposal. Same concept: stock photography composited in Photoshop, with the Bodoni 4 cutting across the jacket.",
   },
   {
     slug: "andy-nguyen-portrait",
