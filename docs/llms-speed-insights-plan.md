@@ -1,6 +1,6 @@
 # llms.txt + Vercel Speed Insights: Plan
 
-_Created 2026-11-17. Status: revised after Fable 5.1 review (see end), awaiting approval. §2 optional items of `roadmap-plan.md`. Branch `feat/llms-txt-speed-insights` from `main`._
+_Created 2026-11-17. Status: approved and implemented 2026-11-17; revised after Fable 5.1 review and `/code-review` (see end). §2 optional items of `roadmap-plan.md`. Branch `feat/llms-txt-speed-insights` from `main`._
 
 ## Goal
 
@@ -33,7 +33,7 @@ The body is built in a small `llmsTxt()` function in `lib/seo.ts` (next to `pers
 
 > {SITE.description}
 
-Portfolio home: {SITE.url}. Works across {SITE.knowsAbout, joined}. Run as {SITE.business.name}.
+Portfolio home: {SITE.url}. {SITE.jobTitle}, working as {SITE.business.name}.
 
 ## Case studies
 - [{title}]({absolute url}): {company}, {year}. {problem}
@@ -53,7 +53,7 @@ Portfolio home: {SITE.url}. Works across {SITE.knowsAbout, joined}. Run as {SITE
 - Same page set as the sitemap: home, every project, every frame. `/about` stays out (it's `noindex`).
 - URLs via `absoluteUrl()` + `projectHref()` / `frameHref()`, as in `sitemap.ts`.
 - Link text escapes `[`, `]` and `\`; descriptions have newlines collapsed and end with a full stop (some `problem` strings don't). No `**` stripping needed: these fields are plain strings, not `RichText`.
-- Frames without their own `description` (currently `chapter-2`, `chapter-4`) go under `## Optional`, the spec's section that tools may skip. They move up automatically once they get a description.
+- Frames without their own `description` go under `## Optional`, the spec's section that tools may skip, and move up automatically once they get one. (`chapter-2` and `chapter-4` got descriptions in this PR, so the section is currently empty and left out.)
 - `text/plain` rather than `text/markdown`: both are valid, but some browsers (Firefox) download `text/markdown` instead of showing it.
 - **robots.txt is unchanged.** It blocks AI *training* crawlers; AI *search* and user-triggered fetchers (OAI-SearchBot, Claude-SearchBot, PerplexityBot, ChatGPT-User, Claude-User) are already allowed and are the ones that would read llms.txt. Not added to the sitemap (llms.txt isn't a page).
 
@@ -62,9 +62,8 @@ Portfolio home: {SITE.url}. Works across {SITE.knowsAbout, joined}. Run as {SITE
 **Closest existing code:** `<Analytics />` from `@vercel/analytics/react` in `app/layout.tsx:32`.
 
 - `npm install @vercel/speed-insights` (2.1.0).
-- In `app/layout.tsx`: `import { SpeedInsights } from "@vercel/speed-insights/next";` and render `<SpeedInsights />` right after `<Analytics />`.
-- The `/next` entry point is the Next.js-specific one (it reads the route, so metrics group by route pattern like `/projects/[slug]` rather than each URL).
-- **Parity note:** the existing `Analytics` uses the generic `/react` entry; `@vercel/analytics/next` is the Next.js one. Out of scope to change here (it alters how page views are recorded); listed as a follow-up.
+- In `app/layout.tsx`: `import { SpeedInsights } from "@vercel/speed-insights/react";` and render `<SpeedInsights />` right after `<Analytics />`.
+- **`/react`, not `/next`** (changed after `/code-review`): the `/next` entry derives the route pattern from the root layout's `useParams()`, which includes the `@modal/[...catchAll]` slot's param, so `/about` would be reported as `/[...catchAll]`. `/react` reports plain URLs, matching the existing `Analytics` (also `/react`), so the two dashboards line up page by page.
 - **Dashboard step (you):** enable Speed Insights in the Vercel project (Project → Speed Insights → Enable). Without it, the script loads but data isn't collected. Check the plan's included data points.
 
 ## Verification
@@ -90,3 +89,9 @@ Fable built a prototype of the route on a scratch copy (`○ /llms.txt (Static)`
 - Fallback-description frames moved to `## Optional`.
 
 Confirmed: the static route works and doesn't clash with `@modal/[...catchAll]`; the llmstxt.org structure; robots.txt reasoning; Speed Insights `/next` import, peer deps (Next ≥13, React 18/19), route grouping and placement; the Analytics `/react` vs `/next` note; no CSP or consent issues (no cookies). Some ad blockers block `/_vercel/*`, so some data will be missing.
+
+## Code review (`/code-review`, 2026-11-17)
+
+- Fixed: Speed Insights switched to `/react` (route mislabelling via the `@modal` catch-all; also matches Analytics).
+- Fixed: profiles built from `SITE.profiles` with a typed label map; the "Works across…" line (lowercased, repeating the description) replaced; every section is left out when empty.
+- Not changed: escaping Markdown in descriptions (plain prose, read by AI tools, not rendered); `sampleRate` (traffic is low; revisit if the plan's data points run out).

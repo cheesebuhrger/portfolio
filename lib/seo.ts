@@ -272,6 +272,17 @@ const sentence = (text: string) => {
 const listItem = (title: string, path: string, note: string) =>
   `- [${linkText(title)}](${absoluteUrl(path)}): ${sentence(note)}`;
 
+/** An H2 section, left out when it has no items. */
+const section = (heading: string, items: string[]) =>
+  items.length ? [`## ${heading}`, items.join("\n")] : [];
+
+/** Display names for SITE.profiles; a new profile won't compile without one. */
+const PROFILE_LABELS: Record<keyof typeof SITE.profiles, string> = {
+  linkedin: "LinkedIn",
+  github: "GitHub",
+  arena: "Are.na",
+};
+
 export function llmsTxt(
   projects: Project[],
   frames: Frame[],
@@ -287,27 +298,25 @@ export function llmsTxt(
   return [
     `# ${SITE.name}`,
     `> ${SITE.description}`,
-    `Portfolio home: ${SITE.url}. Works across ${SITE.knowsAbout.join(", ").toLowerCase()}. Run as ${SITE.business.name}.`,
-    "## Case studies",
-    projects
-      .map((project) =>
+    `Portfolio home: ${SITE.url}. ${SITE.jobTitle}, working as ${SITE.business.name}.`,
+    ...section(
+      "Case studies",
+      projects.map((project) =>
         listItem(
           project.title,
           projectHref(project.slug),
           `${project.company}, ${project.year}. ${project.problem}`,
         ),
-      )
-      .join("\n"),
-    "## Frames",
-    described.map(frameItem).join("\n"),
-    "## Profiles",
-    [
-      `- [LinkedIn](${SITE.profiles.linkedin})`,
-      `- [GitHub](${SITE.profiles.github})`,
-      `- [Are.na](${SITE.profiles.arena})`,
-    ].join("\n"),
-    ...(undescribed.length
-      ? ["## Optional", undescribed.map(frameItem).join("\n")]
-      : []),
+      ),
+    ),
+    ...section("Frames", described.map(frameItem)),
+    ...section(
+      "Profiles",
+      Object.entries(SITE.profiles).map(
+        ([key, url]) =>
+          `- [${PROFILE_LABELS[key as keyof typeof SITE.profiles]}](${url})`,
+      ),
+    ),
+    ...section("Optional", undescribed.map(frameItem)),
   ].join("\n\n") + "\n";
 }
