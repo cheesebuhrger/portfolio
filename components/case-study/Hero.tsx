@@ -43,11 +43,11 @@ interface HeroDetailProps {
   className?: string;
 }
 
-const HeroDetail: React.FC<HeroDetailProps> = ({
+const HeroDetail = ({
   children,
   label,
   className,
-}) => {
+}: HeroDetailProps) => {
   return (
     <div className={`flex flex-col gap-4 ${className}`}>
       <h3 className="~text-xl/2xl col-span-full">{label}</h3>
@@ -56,7 +56,7 @@ const HeroDetail: React.FC<HeroDetailProps> = ({
   );
 };
 
-const Hero: React.FC<HeroProps> = ({
+const Hero = ({
   headline,
   skills,
   team,
@@ -66,7 +66,7 @@ const Hero: React.FC<HeroProps> = ({
   solution,
   className = "",
   stack = false,
-}) => {
+}: HeroProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const primaryImageRef = useRef<HTMLImageElement>(null);
   const secondaryImageRef = useRef<HTMLImageElement>(null);

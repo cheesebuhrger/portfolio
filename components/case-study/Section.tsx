@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { AnimatedIcon, AnimatedIconType } from "@/components/icons";
 import { StackScrim, useStack } from "@/components/motion/stack";
 
@@ -14,14 +14,14 @@ interface SectionProps {
   stack?: boolean;
 }
 
-const Section: React.FC<SectionProps> = ({
+const Section = ({
   sectionNumber,
   sectionLabel,
   className = "",
   children,
   iconType = null,
   stack = false,
-}) => {
+}: SectionProps) => {
   const ref = useRef<HTMLElement>(null);
   useStack(ref, stack);
 

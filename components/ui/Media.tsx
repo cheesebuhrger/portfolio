@@ -34,7 +34,7 @@ interface VideoProps extends BaseMediaProps {
 
 type MediaProps = ImageProps | VideoProps;
 
-const Media: React.FC<MediaProps> = (props) => {
+const Media = (props: MediaProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const mediaClassName = `w-full h-full ${props.objectFit ?? "object-cover"}`;

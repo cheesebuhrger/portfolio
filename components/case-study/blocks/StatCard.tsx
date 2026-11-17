@@ -8,13 +8,13 @@ interface StatCardProps {
   footnote?: string;
 }
 
-const StatCard: React.FC<StatCardProps> = ({
+const StatCard = ({
   title,
   value,
   direction = "none",
   className,
   footnote,
-}) => {
+}: StatCardProps) => {
   return (
     <div
       className={`rounded-md border border-border-primary w-full h-full p-4 md:p-6 lg:p-4 xl:p-8 flex flex-row md:flex-col items-center md:items-start justify-between ${className}`}
