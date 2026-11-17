@@ -1,6 +1,6 @@
 # Roadmap: Polish, Modernization and Design System: Plan
 
-_Created 2026-09-30. Status: draft, not started. Covers what comes after `refactor-plan.md`, `seo-aeo-plan.md` and `frames-links-plan.md`, all shipped (PRs #1–#9). Counts in the audit sections are from `main` at 95b1378._
+_Created 2026-09-30. Status: in progress (launch admin and §2 optional items done 2026-11-17; decisions settled, see end). Covers what comes after `refactor-plan.md`, `seo-aeo-plan.md` and `frames-links-plan.md`, all shipped (PRs #1–#9). Counts in the audit sections are from `main` at 95b1378._
 
 ## Goal
 
@@ -22,9 +22,9 @@ Parts 2–3 prepare for part 4: the docs site can only document tokens and compo
 - Resubmit `https://buhrduong.com/sitemap.xml` in Google Search Console, since the domain changed.
 - Submit the same sitemap in Bing Webmaster Tools (it also feeds ChatGPT search and Copilot).
 - Run LinkedIn Post Inspector on the homepage and one frame URL to refresh cached previews.
-- Delete the 9 merged local branches: `git branch --merged main | grep -v main | xargs git branch -d`.
+- Delete the merged local branches. `git branch --merged main` misses branches whose PRs were squash-merged, so check each branch's PR state (`gh pr list --state merged --head <branch>`) and delete those with `git branch -D`.
 
-**Done 2026-11-17:** sitemaps resubmitted (Google, Bing), LinkedIn previews refreshed, merged branches deleted, and the unused Netlify site and GitHub integration removed (all domains are served by Vercel; DNS is at Porkbun).
+**Done 2026-11-17:** sitemaps resubmitted (Google, Bing), LinkedIn previews refreshed, merged branches deleted (6 via `git branch --merged`, plus `feat/llms-txt-speed-insights`; `refactor/phase-2…5` kept because their local tips differ from what their PRs merged, so they may hold unpushed work), and the unused Netlify site and GitHub integration removed (all domains are served by Vercel; DNS is at Porkbun).
 
 ## 2. Fixes and polish
 
@@ -42,7 +42,7 @@ Parts 2–3 prepare for part 4: the docs site can only document tokens and compo
 
 ## 3. Component modernization
 
-Code-only changes: every page should be pixel-identical before and after (verify with the headless-Chrome diff used in the refactor).
+Code-only changes: every page should be pixel-identical before and after (verify with the headless-Chrome diff used in the refactor). **Exceptions, reviewed individually with before/after screenshots:** the Button duration, `w-screen` → `w-full` (pinned sections get one scrollbar-width narrower on desktop) and the `bg-fixed` replacement (scroll behaviour of the End background changes).
 
 ### Findings
 
@@ -54,8 +54,8 @@ Code-only changes: every page should be pixel-identical before and after (verify
 | Hand-rolled variant maps | `ui/Button` (and `Badge`) | `cva` (class-variance-authority) or a typed `variants` object. This is what the component package would use later (§6). |
 | Invalid class `duration-30` (2) | `ui/Button:82, 84` | Tailwind has no `duration-30`, so the transition currently falls back to the default 150 ms. **Decided: 250 ms**, matching the label flip. This is a **visible** change (from 150 ms), so review it. |
 | Tailwind v2 names `flex-shrink-0`, `flex-grow` (3) | `frames/FrameDetail`, `blocks/QuoteBlock`, `ui/Dialog` | `shrink-0`, `grow` |
-| `w-screen` (6) | `home/FeaturedProjects` (×3), `case-study/Hero`, `case-study/End` (×2) | `w-full`. `100vw` includes the scrollbar on desktop browsers, which can add a horizontal scroll. Check that the pinned sections still size correctly. |
-| Arbitrary values `z-[…]`, `rounded-[…]` (10) | `Cursor`, `FeaturedProjects`, `End`, `Badge` | A named z-index scale (`z-cursor`, `z-dialog`, `z-nav`, …) and radius tokens (`rounded-full` for the `1000px` cursor, `rounded-xs` for the badge's 4px). |
+| `w-screen` (6) | `home/FeaturedProjects` (×3), `case-study/Hero`, `case-study/End` (×2) | `w-full`. `100vw` includes the scrollbar on desktop browsers, which can add a horizontal scroll. Check that the pinned sections still size correctly. **Visible** on desktop (scrollbar width), so review it. |
+| Arbitrary values `z-[…]`, `rounded-[…]` (10) | `Cursor`, `FeaturedProjects`, `End`, `Badge` | A named z-index scale (`z-cursor`, `z-dialog`, `z-nav`, …) and radius tokens (`rounded-full` for the `1000px` cursor; a new `xs: 4px` radius token for the badge, since the config only defines sm/md/lg and v4's built-in `rounded-xs` is 2px). |
 | Commented-out JSX (5 blocks) | `layout/Nav` (2), `layout/Footer` (3) | Delete it; git history keeps it. |
 | Padding-bottom aspect ratio | Fixed in `FrameDetail` (PR #9); no others remain | Already `aspect-*` utilities. |
 | `bg-fixed` + inline `backgroundImage` | `case-study/End:288–289` | `background-attachment: fixed` doesn't work on iOS and forces repaints. Use a `next/image` / `Media` layer with a GSAP or CSS scroll-driven parallax. |
@@ -94,17 +94,19 @@ With the hybrid architecture, Tailwind is only the portfolio's layout tool, not 
 ### Approach: responsive CSS variables, exposed as spacing tokens
 
 ```css
+/* @flxra/tokens: every variable is prefixed --flxra-* */
 :root {
-  --space-gutter: 1rem;      /* 16 */
-  --space-stack:  2rem;      /* 32: gap between stacked blocks */
-  --space-section: 8rem;     /* 128: space below a section */
-  --space-page-top: 4rem;    /* 64 */
+  --flxra-space-gutter-sm: 0.5rem; /* 8: dialog header */
+  --flxra-space-gutter: 1rem;      /* 16 */
+  --flxra-space-stack:  2rem;      /* 32: gap between stacked blocks */
+  --flxra-space-section: 8rem;     /* 128: space below a section */
+  --flxra-space-page-top: 4rem;    /* 64 */
 }
-@media (min-width: 48rem) { :root { --space-gutter: 1.5rem; --space-stack: 3rem; --space-section: 10rem; --space-page-top: 5rem; } }
-@media (min-width: 60rem) { :root { --space-gutter: 2rem;   --space-stack: 4rem; --space-section: 12rem; --space-page-top: 6rem; } }
+@media (min-width: 48rem) { :root { --flxra-space-gutter-sm: 1rem;   --flxra-space-gutter: 1.5rem; --flxra-space-stack: 3rem; --flxra-space-section: 10rem; --flxra-space-page-top: 5rem; } }
+@media (min-width: 60rem) { :root { --flxra-space-gutter-sm: 1.5rem; --flxra-space-gutter: 2rem;   --flxra-space-stack: 4rem; --flxra-space-section: 12rem; --flxra-space-page-top: 6rem; } }
 ```
 
-Registered as spacing tokens, so every utility works: `p-gutter`, `px-gutter`, `gap-gutter`, `gap-y-stack`, `pb-section`, `pt-page-top`, and `px-gutter-half` for the dialog header.
+The portfolio's Tailwind config maps short names to them, so every utility works: `p-gutter`, `px-gutter`, `gap-gutter`, `gap-y-stack`, `pb-section`, `pt-page-top`, and `px-gutter-sm` for the dialog header (8/16/24, one step below the gutter; not half of it). The same `--flxra-*` names are what `@flxra/ui`'s CSS Modules read, so the two can't diverge. Existing colour primitives (`--pink-05` etc.) are renamed to `--flxra-*` in step 4 too.
 
 - **Why variables rather than `@apply` classes:**
   - One token works with every property (padding, gap, margin, inset, even GSAP offsets) instead of needing a class per property.
@@ -142,7 +144,7 @@ Most of these would fit a 12-column grid (2, 3, 4 and 6 all divide 12). But the 
 - **One grid definition:**
   - 4 columns below `md`, 8 at `md`, 12 at `lg` and up;
   - the gap is `--space-gutter` and the outer margin is `--space-gutter`, so the page edge and the column gaps share one rhythm.
-  - This is the Material 3 layout model (compact / medium / expanded window classes). It also matches the existing `md` and `lg` breakpoints.
+  - Modelled on Material 3's compact / medium / expanded idea, but switching at the site's own `md` (768px) and `lg` (960px) breakpoints, not M3's 600/840dp.
 - **Delivered as:**
   - a `grid-layout` utility (or a `<Grid>` / `<Grid.Item span={{ base: 4, md: 4, lg: 6 }}>` component);
   - sections use `col-span-*` / `col-start-*` instead of their own `grid-cols-*`;
@@ -150,11 +152,9 @@ Most of these would fit a 12-column grid (2, 3, 4 and 6 all divide 12). But the 
 - **A grid overlay for development:** press **G** to show the columns over the page. This is useful for the migration, and a nice thing to demo in the design-system site.
 - **This one is visible:** snapping sections to shared columns will move some edges by a few pixels. Migrate one section per commit with before/after screenshots, and decide per section.
 
-### Decision needed
+### Max content width (decided 2026-11-17)
 
-- **Max content width** at `xxl` (1600px+): today everything stretches edge to edge on ultrawide screens.
-  - Option 1: cap the grid (e.g. 1600px, centred).
-  - Option 2: keep full-bleed, and let only text columns cap their line length.
+The grid is capped at **2400px, centred**. Wider screens get equal margins on both sides. (Today everything stretches edge to edge on ultrawide screens.)
 
 ---
 
@@ -176,15 +176,14 @@ A documentation site for the portfolio's design system, in the spirit of materia
 | **B. Monorepo** | pnpm workspaces: `apps/portfolio`, `apps/flxra` (docs site), `packages/tokens`, `packages/ui` | A real package boundary, consumed by two apps; the standard industry setup (Turborepo) | Repo restructure; build tooling (tsup, CSS Modules bundling) |
 | **C. Separate repo, published to npm** | `@flxra/ui` on npm, versioned with Changesets | The most "real"; others can install it | Two repos to keep in sync; every change is publish → bump → install |
 
-**Decided 2026-11-17: go straight to B.** Do **C** only if there's a reason to. (Original recommendation was A → B; kept below for context.)
+**Decided 2026-11-17: go straight to B; no `/system` route in the portfolio.** Do **C** only if there's a reason to.
 
-1. **A first:** build `/system` inside the portfolio while §3–§5 land. Content and design matter most, and it gives immediate value.
-2. **B next:** once the components are stable, move to a Turborepo monorepo.
+1. **B:** a Turborepo monorepo.
    - `packages/tokens`: plain CSS variables (`--flxra-*`), plus motion tokens as TS for GSAP. No Tailwind.
    - `packages/ui`: components styled with CSS Modules in `@layer components`, variants via `cva` or a typed map with `clsx`, shipped as compiled CSS; a `"use client"` boundary only where needed. No Tailwind.
-   - `apps/system`: served at **`buhrduong.com/flxra`** via a Vercel rewrite or microfrontend (decided).
+   - `apps/flxra`: served at **`buhrduong.com/flxra`** via a Vercel rewrite or microfrontend (decided).
    - The portfolio then consumes `@flxra/ui` like any other app, which is the actual showcase claim: "this site is built from my library."
-3. **C (npm publish):** only if a second consumer appears. B already demonstrates the skill.
+2. **C (npm publish):** only if a second consumer appears. B already demonstrates the skill.
 
 ### Tooling to decide during §6
 
@@ -224,7 +223,7 @@ A documentation site for the portfolio's design system, in the spirit of materia
 ## Decisions
 
 1. ~~Migrate to Tailwind 4 before the token work?~~ **Decided 2026-11-17: yes, then revised the same day: deferred** to step 8 after choosing the hybrid architecture (decision 6).
-2. ~~Button transition duration?~~ **Decided 2026-11-17: 250 ms** (matches the label flip; becomes `motion.duration.fast`). Note: v4 accepts any number, so after the migration `duration-30` becomes a real 30 ms instead of the 150 ms default. Settle this before or during the migration.
+2. ~~Button transition duration?~~ **Decided 2026-11-17: 250 ms** (matches the label flip; becomes `motion.duration.fast`). Applied when Button moves to CSS Modules (step 6), which comes before the Tailwind 4 migration (step 8). If Button were still on Tailwind at step 8, note that v4 turns `duration-30` into a real 30 ms.
 3. ~~Max content width at `xxl`: cap or full-bleed?~~ **Decided 2026-11-17: cap the grid at 2400px, centred.** Wider screens get equal margins on both sides.
 4. ~~Design system structure, name, URL?~~ **Decided 2026-11-17:** monorepo (option B) from the start; named **Flxra Design System**; packages `@flxra/*`; docs at `buhrduong.com/flxra`.
 5. ~~Docs tooling?~~ **Decided 2026-11-17: MDX only.**

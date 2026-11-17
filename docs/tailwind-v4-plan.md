@@ -2,6 +2,8 @@
 
 _Created 2026-11-17. Status: **parked** (revised after Fable 5.1 review, see end). Deferred to step 8 of `roadmap-plan.md` after the hybrid styling decision; refresh against the code before use. Open question if resumed: accept v4's hover-on-touch behaviour?_
 
+> **Before resuming:** this plan was written when Button still used Tailwind's `duration-30`. Per the roadmap, Button moves to `@flxra/ui` (CSS Modules, 250 ms) in step 6, before this migration in step 8. Drop the Button steps (step 3's `duration-150` pin and step 6) if that has happened, and the "one approved exception" with them; otherwise keep them. Likewise, components already moved to CSS Modules no longer need their Tailwind classes checked.
+
 ## Goal
 
 Move the site from Tailwind 3.4 (JS config) to Tailwind 4.3 (CSS-first `@theme`). **Every page must look identical before and after**, with one approved exception: the Button transition becomes 250 ms (roadmap decision 2).
