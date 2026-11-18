@@ -78,7 +78,7 @@ const Hero = ({
     <div
       ref={ref}
       id="introduction"
-      className={`flex flex-col gap-y-12 md:gap-y-24 pb-24 md:pb-40 w-screen ${className}`}
+      className={`flex flex-col gap-y-12 md:gap-y-24 pb-24 md:pb-40 w-full ${className}`}
     >
       <div className="flex flex-col gap-y-12 md:gap-y-24 pt-24 pb-4 md:pb-0 md:h-85 md:min-h-fit md:justify-end">
         <SplitReveal

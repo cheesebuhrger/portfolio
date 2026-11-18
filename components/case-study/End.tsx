@@ -285,11 +285,11 @@ const End = ({ process, image, related }: EndProps) => {
   return (
     <section>
       <div
-        className="z-10 relative w-screen h-screen overflow-hidden bg-surface-secondary bg-cover bg-center md:bg-fixed"
+        className="z-10 relative w-full h-screen overflow-hidden bg-surface-secondary bg-cover bg-center md:bg-fixed"
         style={{ backgroundImage: `url(${image})` }}
       />
 
-      <div className="pointer-events-none relative w-screen overflow-hidden flex flex-col items-end pb-32 md:pb-40 lg:pb-48 bg-surface-primary-negative">
+      <div className="pointer-events-none relative w-full overflow-hidden flex flex-col items-end pb-32 md:pb-40 lg:pb-48 bg-surface-primary-negative">
         <div className="panel-1-container z-[3] relative w-full">
           <div className="panel-1 relative flex flex-col gap-4 md:gap-6 lg:gap-8 w-full h-screen items-end justify-center bg-surface-primary-negative">
             <div className="process-fade flex flex-row w-full h-full gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8 text-text-primary-negative font-serif ~text-xl/2xl">
