@@ -20,7 +20,7 @@ Capture End under `prefers-reduced-motion: reduce` (puppeteer `emulateMediaFeatu
 - (a) Keep it fixed for everyone (no change).
 - (b) **Recommended:** under reduced motion, the image scrolls with the page, CSS only (`motion-reduce:absolute motion-reduce:inset-0 motion-reduce:h-full` on the layer; Tailwind 3.4 emits variants after base utilities, so these win over `fixed` and `h-lvh`). Normal visitors see no change.
 
-**Verify.** Normal motion: the timeline dump and screenshots are identical to main (the wrapper changes no tweens or trigger order). Reduced motion: before/after screenshots for approval. Live toggle: switching the OS setting while on the page reverts or rebuilds cleanly (matchMedia revert), with no stuck pin spacers or half-split text, including after a resize-triggered re-split (so a rebuilt timeline is reverted too).
+**Verify.** Normal motion: the timeline dump and screenshots are identical to main (the wrapper changes no tweens or trigger order). Reduced motion: before/after screenshots for approval. Live toggle: switching the OS setting while on the page reverts or rebuilds cleanly (matchMedia revert), with no stuck pin spacers or half-split text, including after a resize.
 
 ## 2. Re-split the process text on resize and after fonts load (invisible in normal conditions)
 
@@ -68,4 +68,4 @@ Sound with changes, all applied above. The scope catch in item 1 was a false pre
 
 ## Order and approvals
 
-3 → 2 → 1. The two invisible ones first, so item 1's reduced-motion screenshots are taken on the final code. Stops: the fixed-image decision (before item 1), then item 1's reduced-motion before/after. Then `/code-review` and the PR.
+3 → 1 (item 2 dropped). The invisible one first, so item 1's reduced-motion screenshots are taken on the final code. Stops: the fixed-image decision (before item 1), then item 1's reduced-motion before/after. Then `/code-review` and the PR.
