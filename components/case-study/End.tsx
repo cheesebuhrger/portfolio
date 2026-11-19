@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap, SplitText, useGSAP } from "@/lib/gsap";
+import { gsap, SplitText, useGSAP, withMotion } from "@/lib/gsap";
 import Media from "@/components/ui/Media";
 import TransitionLink from "@/components/layout/TransitionLink";
 import type { ProjectSummary } from "@/lib/content";
@@ -25,88 +25,89 @@ const End = ({ process, image, related }: EndProps) => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
-    () => {
-      const processTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".panel-1-container",
-          start: "top 90%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Large text animations
-      for (const n of PANELS) {
-        gsap.set(`.panel-${n}`, { yPercent: -100 });
-        gsap.to(`.panel-${n}`, {
+    () =>
+      withMotion(() => {
+        const processTimeline = gsap.timeline({
           scrollTrigger: {
-            trigger: `.panel-${n}-container`,
+            trigger: ".panel-1-container",
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        // Large text animations
+        for (const n of PANELS) {
+          gsap.set(`.panel-${n}`, { yPercent: -100 });
+          gsap.to(`.panel-${n}`, {
+            scrollTrigger: {
+              trigger: `.panel-${n}-container`,
+              start: "top bottom",
+              end: "bottom bottom",
+              scrub: true,
+              pin: true,
+            },
+          });
+        }
+
+        gsap.to(".process-fade", {
+          opacity: 0.1,
+          scrollTrigger: {
+            trigger: ".panel-2-container",
             start: "top bottom",
             end: "bottom bottom",
             scrub: true,
-            pin: true,
           },
         });
-      }
 
-      gsap.to(".process-fade", {
-        opacity: 0.1,
-        scrollTrigger: {
-          trigger: ".panel-2-container",
-          start: "top bottom",
-          end: "bottom bottom",
-          scrub: true,
-        },
-      });
+        // Split type animation setup
+        gsap.utils.toArray<HTMLElement>(".process-item").forEach((item) => {
+          // .line-mask (clip-path reveal) > .line (slides up, un-skews)
+          const split = SplitText.create(item, {
+            type: "lines",
+            mask: "lines",
+            linesClass: "line",
+          });
+          // The animated clip-path masks instead of SplitText's overflow: clip.
+          gsap.set(split.masks, { overflow: "visible" });
 
-      // Split type animation setup
-      gsap.utils.toArray<HTMLElement>(".process-item").forEach((item) => {
-        // .line-mask (clip-path reveal) > .line (slides up, un-skews)
-        const split = SplitText.create(item, {
-          type: "lines",
-          mask: "lines",
-          linesClass: "line",
+          // Initial state for lines
+          gsap.set(split.lines, {
+            y: "100%",
+            display: "block",
+          });
         });
-        // The animated clip-path masks instead of SplitText's overflow: clip.
-        gsap.set(split.masks, { overflow: "visible" });
 
-        // Initial state for lines
-        gsap.set(split.lines, {
-          y: "100%",
-          display: "block",
-        });
-      });
+        const duration = 1;
+        const ease = "power2.out";
+        const skewDelay = 0.25;
+        const tighten = ">-0.9";
 
-      const duration = 1;
-      const ease = "power2.out";
-      const skewDelay = 0.25;
-      const tighten = ">-0.9";
-
-      // Each item slides in from its side while its lines rise, un-skew and
-      // unmask. Odd items (1, 3, 5) enter from the right, even ones from the left.
-      for (let i = 0; i < process.length; i++) {
-        const from = i % 2 === 0 ? 1 : -1;
-        const item = `.process-item-${i + 1}`;
-        processTimeline
-          .fromTo(
-            item,
-            { xPercent: 100 * from },
-            { xPercent: 0, ease, duration },
-            i === 0 ? undefined : tighten,
-          )
-          .fromTo(
-            `${item} .line-mask > .line`,
-            { y: "100%", skewX: 30 * from },
-            { y: 0, skewX: 0, duration, ease, delay: skewDelay },
-            "<",
-          )
-          .fromTo(
-            `${item} .line-mask`,
-            { clipPath: CLIP_HIDDEN },
-            { clipPath: CLIP_SHOWN, duration, ease },
-            "<",
-          );
-      }
-    },
+        // Each item slides in from its side while its lines rise, un-skew and
+        // unmask. Odd items (1, 3, 5) enter from the right, even ones from the left.
+        for (let i = 0; i < process.length; i++) {
+          const from = i % 2 === 0 ? 1 : -1;
+          const item = `.process-item-${i + 1}`;
+          processTimeline
+            .fromTo(
+              item,
+              { xPercent: 100 * from },
+              { xPercent: 0, ease, duration },
+              i === 0 ? undefined : tighten,
+            )
+            .fromTo(
+              `${item} .line-mask > .line`,
+              { y: "100%", skewX: 30 * from },
+              { y: 0, skewX: 0, duration, ease, delay: skewDelay },
+              "<",
+            )
+            .fromTo(
+              `${item} .line-mask`,
+              { clipPath: CLIP_HIDDEN },
+              { clipPath: CLIP_SHOWN, duration, ease },
+              "<",
+            );
+        }
+      }),
     { scope: sectionRef },
   );
 
@@ -115,9 +116,10 @@ const End = ({ process, image, related }: EndProps) => {
       {/* Fixed background. clip-path (unlike overflow) also clips
           a fixed child, so the image shows only through this box: the look of
           background-attachment: fixed, which iOS Safari ignores. lvh, so the
-          image doesn't re-crop as iOS toolbars collapse. */}
+          image doesn't re-crop as iOS toolbars collapse. With reduced motion it
+          scrolls with the page instead. */}
       <div className="z-10 relative w-full h-screen bg-surface-secondary [clip-path:inset(0)]">
-        <div className="fixed inset-x-0 top-0 h-lvh">
+        <div className="fixed inset-x-0 top-0 h-lvh motion-reduce:absolute motion-reduce:inset-0 motion-reduce:h-full">
           <Media
             type="image"
             src={image}
