@@ -162,10 +162,11 @@ The grid is capped at **2400px, centred**. Wider screens get equal margins on bo
 
 ### What it is
 
-A documentation site for the portfolio's design system, in the spirit of material.io. Name: **Flxra Design System** (flora, respelled).
+A standalone design system and component library with a docs site in the spirit of material.io; the portfolio is its first consumer. Name: **Flxra Design System** (flora, respelled).
 
-- **Foundations:** color (primitive → semantic tokens: `--pink-05` → `surface-secondary`), type (Surt / Editorial Old / Geist, the fluid scale, the `-p` paragraph variants and why they exist), spacing (§4), grid (§5, with the live overlay), radius, elevation/z-index, motion (tokens plus live GSAP demos: SplitReveal, scale reveal, the cursor).
-- **Components:** Button, Badge, Avatar, AvatarGroup, Tooltip, Dialog, Media, AnimatedIcon, plus the case-study blocks as "patterns". Each page has a live demo, variants, a props table, usage do/don't, accessibility notes and the code.
+- **Foundations:** color (primitive → semantic tokens, e.g. `--flxra-pink-05` → `--flxra-surface-secondary`; final names set in step 4), type (Surt / Editorial Old / Geist, the fluid scale, the `-p` paragraph variants and why they exist), spacing (§4), grid (§5), radius, elevation/z-index, motion tokens.
+- **Only what's in the packages can be documented.** The docs live in the Flxra repo and can't import portfolio code. The grid overlay, the GSAP motion components (SplitReveal, scale reveal, the cursor) and the case-study blocks are portfolio code today: each one either moves into `@flxra/ui` (a deliberate step, with its own plan) or stays out of the docs. Decide per item when step 6/7 get planned.
+- **Components:** Button, Badge, Avatar, AvatarGroup, Tooltip, Dialog, Media, AnimatedIcon. Each page has a live demo, variants, a props table, usage do/don't, accessibility notes and the code.
 - **Why it's a portfolio piece:** it shows design-engineering judgement (token architecture, API design, documentation), not only visuals.
 
 ### Architecture options
@@ -173,10 +174,16 @@ A documentation site for the portfolio's design system, in the spirit of materia
 | Option | Shape | Pros | Cons |
 |---|---|---|---|
 | **A. Route in this app** | `/system/*` in the portfolio, reading the real tokens and components | Fastest; zero drift, since it documents the code that ships | Not a real "library"; everything is coupled |
-| **B. Monorepo** | pnpm workspaces: `apps/portfolio`, `apps/flxra` (docs site), `packages/tokens`, `packages/ui` | A real package boundary, consumed by two apps; the standard industry setup (Turborepo) | Repo restructure; build tooling (tsup, CSS Modules bundling) |
+| **B. Monorepo** | workspaces: `apps/portfolio`, `apps/flxra` (docs site), `packages/tokens`, `packages/ui` (as first proposed; superseded, see below) | A real package boundary, consumed by two apps; the standard industry setup (Turborepo) | Repo restructure; build tooling (tsup, CSS Modules bundling) |
 | **C. Separate repo, published to npm** | `@flxra/ui` on npm, versioned with Changesets | The most "real"; others can install it | Two repos to keep in sync; every change is publish → bump → install |
 
-**Decided 2026-11-17: B. Revised 2026-11-19: C, with B inside Flxra's repo.** Flxra is meant to be a real library: used by others and by other projects, maintained separately from the portfolio, possibly with its own domain. Outside users can only install published packages, so C is required, and the portfolio installs `@flxra/*` from npm like any other consumer. Flxra's own repo is a Turborepo monorepo (packages plus the docs app), which is where B's benefits (one change across packages and docs, no publishing to see it) still apply. The portfolio repo stays a single Next app. `docs/monorepo-plan.md` (the portfolio-monorepo version of B) is shelved; its Turborepo and Vercel findings carry over to the Flxra repo.
+**Decided 2026-11-17: B. Revised 2026-11-19: C, with B inside Flxra's repo.** Flxra is meant to be a real library: used by others and by other projects, maintained separately from the portfolio, possibly with its own domain. Outside users can only install published packages, so C is required, and the portfolio installs `@flxra/*` from npm like any other consumer. Flxra's own repo is a Turborepo monorepo (packages plus the docs app), which is where B's benefits (one change across packages and docs, no publishing to see it) still apply. The portfolio repo stays a single Next app. `docs/monorepo-plan.md` (the portfolio-monorepo version of B) is shelved. What carries over to the Flxra repo: the Turborepo task setup (defined tasks, `ui: "stream"`, `packageManager` for turbo 2, `--force` for parity builds) and the Vercel notes on Root Directory and "include files outside". What doesn't: lockfile drift, the production switchover and Tailwind's `relative: true` (a new repo with no Tailwind).
+
+**Known requirements for the Flxra plans** (from the 2026-11-19 review; each plan must solve these):
+- **CSS layer order (step 6).** Tailwind 3.4 emits its reset and utilities *unlayered*, and unlayered CSS beats any `@layer`, whatever the specificity. A layered `.button` from `@flxra/ui` would lose to preflight's `button { padding: 0; background: transparent }` in the portfolio. Either the portfolio puts its Tailwind output in native layers ordered around `flxra`, or the package ships unlayered with low-specificity selectors. Decide and test in step 6's plan.
+- **Building `@flxra/ui` (step 3).** Bundling with esbuild/tsup drops module-level `"use client"` directives, and tsup has no first-class CSS Modules output. The build must keep the directives (per-file entries or a directive-preserving bundler) and emit the scoped CSS plus its class map. Prove it with a test consumer.
+- **The docs app seeing fresh code (step 3).** If the docs import the compiled `dist/`, edits don't show up without a rebuild, and a fresh clone has no `dist/`. Either turbo `dependsOn: ["^build"]` with a watch build in dev, or the docs consume source through a dev-only export condition plus `transpilePackages`.
+- **Publishing (step 3).** Scoped packages publish as restricted by default, and a free org can't publish restricted packages (E402). Set `publishConfig.access: "public"` (and Changesets `access: "public"`), and set up npm trusted publishing for the GitHub Actions workflow before the first release.
 
 **The Flxra repo** (`flxra`, its own GitHub repo):
 - `packages/tokens` → `@flxra/tokens`: plain CSS variables (`--flxra-*`), plus motion tokens as TS for GSAP. No Tailwind.
@@ -213,12 +220,13 @@ A documentation site for the portfolio's design system, in the spirit of materia
 8. **Tailwind v4 migration of the portfolio**, when convenient, from the parked `docs/tailwind-v4-plan.md`.
 9. **Sanity (§7).**
 
-**Process for every step:** write the step's plan first, run it through a review with the latest Claude model (currently Fable 5.1) to check it's sound, then implement. Each step pauses for review, as in the refactor. Every PR runs `/code-review` and the headless-Chrome diff against production.
+**Process for every step:** write the step's plan first, run it through a review with the latest Claude model (currently Fable 5.1) to check it's sound, then implement. Each step pauses for review, as in the refactor. Every PR runs `/code-review`. Portfolio PRs also run the headless-Chrome diff against production; Flxra-repo steps use the checks below instead.
 
 ## Verification (applies to every code step)
 
 - `npm run lint`, `npm run typecheck`, `npm run build`.
 - Pixel diff against production at the usual scroll positions (home, one case study, a frame page, the dialog), at phone, tablet and desktop widths. §3, §4 and the Tailwind migration expect **zero** diff. §5 expects only the approved diffs.
+- **Flxra repo steps:** lint, typecheck and build across the workspace; a packed-tarball test (`npm pack`, installed into a scratch Next app) proving the exports, types, CSS and `"use client"` boundaries resolve for a real consumer before a release; `axe` and screenshots for the docs demos; and the published version installed in the portfolio, with the pixel diff, before a portfolio step depends on it.
 - The existing scroll/navigation behaviour tests still pass.
 
 ## Decisions

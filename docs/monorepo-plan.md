@@ -1,6 +1,6 @@
 # Monorepo (roadmap step 3)
 
-> **Shelved 2026-11-19.** Flxra gets its own repo, published to npm, and the portfolio stays a single app that installs it (see the roadmap, §6 and step 3). This plan was for turning the portfolio repo itself into a monorepo. Its Fable-reviewed findings on Turborepo, workspaces, lockfile drift, Tailwind's `relative: true` and the Vercel Root Directory switchover carry over to the Flxra repo.
+> **Shelved 2026-11-19.** Flxra gets its own repo, published to npm, and the portfolio stays a single app that installs it (see the roadmap, §6 and step 3). This plan was for turning the portfolio repo itself into a monorepo. Its Turborepo task setup and Vercel Root Directory notes carry over to the Flxra repo; the lockfile-drift, production-switchover and Tailwind `relative: true` parts are specific to moving this repo and don't.
 
 Turn the repo into a Turborepo monorepo: the portfolio moves to `apps/portfolio`, and two empty packages, `@flxra/tokens` and `@flxra/ui`, get created for steps 4–6. **Nothing visible changes**, and the dependency versions stay exactly the same.
 
@@ -147,7 +147,7 @@ Optional later: an Ignored Build Step of `npx turbo-ignore`, so docs-only commit
 Sound with changes, all applied above:
 - one Next root setting (Next mirrors it);
 - `relative: true` for Tailwind's cwd-relative globs;
-- an explicit Vercel build command, and a tighter switchover window with the redeploy and rollback caveats;
+- an explicit decision on the Vercel build command (keep the default `next build`), and a tighter switchover window with the redeploy and rollback caveats;
 - a lockfile-level dependency diff (`npm ls` misses uninstalled platform binaries), with no root `npm install` pin-backs;
 - the move and root squashed into one commit, so main stays bisectable;
 - a `start` task, explicit `lint` and `typecheck` tasks, `ui: "stream"`, and no tsconfig for the empty `ui` package;
