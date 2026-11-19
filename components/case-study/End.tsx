@@ -115,10 +115,22 @@ const End = ({ process, image, related }: EndProps) => {
 
   return (
     <section ref={sectionRef}>
-      <div
-        className="z-10 relative w-full h-screen overflow-hidden bg-surface-secondary bg-cover bg-center md:bg-fixed"
-        style={{ backgroundImage: `url(${image})` }}
-      />
+      {/* Fixed background. clip-path (unlike overflow) also clips
+          a fixed child, so the image shows only through this box: the look of
+          background-attachment: fixed, which iOS Safari ignores. lvh, so the
+          image doesn't re-crop as iOS toolbars collapse. */}
+      <div className="z-10 relative w-full h-screen overflow-hidden bg-surface-secondary [clip-path:inset(0)]">
+        <div className="fixed inset-x-0 top-0 h-lvh">
+          <Media
+            type="image"
+            src={image}
+            alt=""
+            sizes="100vw"
+            unoptimized
+            imageScaleAnimation="none"
+          />
+        </div>
+      </div>
 
       <div className="pointer-events-none relative w-full overflow-hidden flex flex-col items-end pb-32 md:pb-40 lg:pb-48 bg-surface-primary-negative">
         <div className="panel-1-container z-[3] relative w-full">

@@ -20,6 +20,8 @@ interface ImageProps extends BaseMediaProps {
   height?: number;
   /** Rendered-width hint for responsive image selection (with fill). */
   sizes?: string;
+  /** Serve the original file instead of a resized copy (keeps film grain). */
+  unoptimized?: boolean;
 }
 
 interface VideoProps extends BaseMediaProps {
@@ -69,6 +71,7 @@ const Media = (props: MediaProps) => {
       {...(props.width && props.height
         ? { width: props.width, height: props.height }
         : { fill: true, sizes: props.sizes })}
+      unoptimized={props.unoptimized}
       className={mediaClassName}
     />
   );
