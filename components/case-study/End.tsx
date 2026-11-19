@@ -38,8 +38,6 @@ const End = ({ process, image, related }: EndProps) => {
       // Large text animations
       for (const n of PANELS) {
         gsap.set(`.panel-${n}`, { yPercent: -100 });
-      }
-      for (const n of PANELS) {
         gsap.to(`.panel-${n}`, {
           scrollTrigger: {
             trigger: `.panel-${n}-container`,
@@ -119,13 +117,12 @@ const End = ({ process, image, related }: EndProps) => {
           a fixed child, so the image shows only through this box: the look of
           background-attachment: fixed, which iOS Safari ignores. lvh, so the
           image doesn't re-crop as iOS toolbars collapse. */}
-      <div className="z-10 relative w-full h-screen overflow-hidden bg-surface-secondary [clip-path:inset(0)]">
+      <div className="z-10 relative w-full h-screen bg-surface-secondary [clip-path:inset(0)]">
         <div className="fixed inset-x-0 top-0 h-lvh">
           <Media
             type="image"
             src={image}
             alt=""
-            sizes="100vw"
             unoptimized
             imageScaleAnimation="none"
           />
