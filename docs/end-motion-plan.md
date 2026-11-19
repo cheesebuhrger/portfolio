@@ -24,6 +24,8 @@ Capture End under `prefers-reduced-motion: reduce` (puppeteer `emulateMediaFeatu
 
 ## 2. Re-split the process text on resize and after fonts load (invisible in normal conditions)
 
+> **Dropped (2026-11-19).** Implementing it showed that SplitText never splits these items into lines. Each `.process-item` is `display: flex`, so SplitText's inline-block words each become a flex item in one row, and it detects a single line. Each item becomes one block-level `.line` that wraps its text naturally, so there are no measured line breaks to go stale. The implementation below worked (identical timeline and trigger positions after a resize, no double split) but guarded against almost nothing, so the user chose to drop it. Real per-line splitting would be a visible design change, tracked separately if wanted.
+
 **Problem.** The five `SplitText.create` calls run once on mount, with no `autoSplit`. Line breaks are measured with whatever font and width exist at that moment. If the serif web font swaps in afterwards, or an iPad rotates, the `.line-mask` boxes keep the old breaks, so text wraps inside a mask or gets cut off by the 112% clip.
 
 **Change.** Follow `SplitReveal`'s pattern: `autoSplit: true` with the animation built in `onSplit`, returned so SplitText kills and rebuilds it on each re-split.
