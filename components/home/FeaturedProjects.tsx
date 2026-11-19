@@ -39,7 +39,8 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
 
   useGSAP(
     () => {
-      // Scoped to this section: matchMedia doesn't inherit useGSAP's scope.
+      // Scoped to this section explicitly (a matchMedia created inside
+      // useGSAP would also inherit its scope).
       const mm = gsap.matchMedia(ref);
 
       mm.add(
