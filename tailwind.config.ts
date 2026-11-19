@@ -78,7 +78,6 @@ const config: Config = {
         "primary-negative": "rgba(var(--white-100), .8)",
         "secondary-negative": "rgba(var(--white-100), .6)",
         "tertiary-negative": "rgba(var(--white-100), .4)",
-        highlight: "rgba(var(--gold-60), 1)",
         action: "rgba(var(--red-100), 1)",
         "on-action": "rgba(var(--pink-05), 1)",
       },
@@ -96,7 +95,6 @@ const config: Config = {
         button: "rgba(var(--pink-05), 0)",
         "button-hover": "rgba(var(--pink-10), 1)",
         "button-active": "rgba(var(--pink-20), 1)",
-        swiper: "rgba(var(--black-90), 1)",
       },
       border: {
         primary: "rgba(var(--black-100), .3)",

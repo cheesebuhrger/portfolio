@@ -18,14 +18,14 @@ const sizeClasses = {
   "32": "w-8 h-8",
 };
 
-const AnimatedIcon: React.FC<AnimatedIconProps> = ({
+const AnimatedIcon = ({
   type,
   size = "32",
   interval,
   className = "object-cover w-full h-full",
   containerClassName = "",
   label,
-}) => {
+}: AnimatedIconProps) => {
   const sequence = animatedIcons[type];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 

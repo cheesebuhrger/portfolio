@@ -76,49 +76,13 @@ html {
   --black-100: 0, 0, 0;
   --black-90: 26, 26, 26;
   --black-80: 51, 51, 51;
-  --black-70: 77, 77, 77;
-  --black-60: 102, 102, 102;
   --white-100: 255, 255, 255;
   --white-95: 242, 242, 242;
   --red-100: 199, 16, 16;
-  --pink-02: 254, 248, 246;
   --pink-05: 252, 234, 227;
   --pink-10: 250, 220, 209;
   --pink-20: 245, 186, 163;
 }
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-} */
-/* 
-@layer utilities {
-  .clip-element {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-} */
-
-/* .project-hero-text .line {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.project-hero-text .line:not(:first-child) {
-  margin-top: -1.25rem;
-}
-
-.project-hero-text .line span {
-  position: relative;
-  will-change: transform;
-} */
 
 /* Homepage project titles (SplitText: .line-mask > .line) */
 .index-project-title .line-mask {
@@ -146,14 +110,6 @@ html {
   }
   h4 {
     @apply font-serif;
-  }
-  .project-section {
-    @apply relative px-8 py-40 grid grid-cols-12 w-screen;
-    @apply border-t border-border-primary;
-  }
-  .project-section-two {
-    @apply relative px-8 py-40 grid grid-cols-12 gap-24 w-screen;
-    @apply border-t border-border-primary;
   }
 }
 

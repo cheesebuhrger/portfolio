@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { gsap, SplitText, useGSAP, withMotion } from "@/lib/gsap";
 import TransitionLink from "@/components/layout/TransitionLink";
 
@@ -13,14 +13,14 @@ interface ButtonProps {
   variant?: "primary" | "secondary";
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
   label,
   href,
   onClick,
   className = "",
   size = "medium",
   variant = "primary",
-}) => {
+}: ButtonProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const hoverTl = useRef<gsap.core.Timeline | null>(null);
   const firstLabelRef = useRef<HTMLDivElement>(null);

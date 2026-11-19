@@ -64,14 +64,6 @@ const Nav = () => {
                 <TransitionLink href="/#projects">Projects</TransitionLink>
               )}
             </li>
-            {/* <li
-              onClick={() => {
-                lenis?.scrollTo("#code", { duration: 2 });
-              }}
-              className="group-hover:py-1 hover:underline transition-all duration-300 w-fit cursor-pointer"
-            >
-              Code
-            </li> */}
             <li className="group-hover:py-1 hover:underline transition-all duration-300 w-fit cursor-pointer">
               {isHome ? (
                 <a href="#frames" onClick={scrollToSection("#frames")}>
@@ -82,16 +74,6 @@ const Nav = () => {
               )}
             </li>
           </ul>
-          {/* <ul className="col-span-3 col-start-10 text-text-primary-negative">
-            <li
-              onClick={() => {
-                lenis?.scrollTo("#about", { duration: 2 });
-              }}
-              className="group-hover:py-1 hover:underline transition-all duration-300 w-fit cursor-pointer"
-            >
-              About
-            </li>
-          </ul> */}
         </>
       )}
     </nav>

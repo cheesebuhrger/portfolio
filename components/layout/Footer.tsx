@@ -18,15 +18,6 @@ const Footer = () => {
           : ""
       }`}
     >
-      {/* <div
-        className={`col-span-2 h-96 border
-          ${
-            !homeStyle
-              ? "border-border-primary-negative"
-              : "border-border-primary"
-          }`}
-      ></div> */}
-
       <ul className="col-span-1 md:col-start-3">
         {!homeStyle && (
           <>
@@ -38,14 +29,6 @@ const Footer = () => {
                 Projects
               </TransitionLink>
             </li>
-            {/* <li>
-              <TransitionLink
-                href="/#prototypes"
-                className="hover:text-text-action"
-              >
-                Prototypes
-              </TransitionLink>
-            </li> */}
             <li>
               <TransitionLink
                 href="/#frames"
@@ -54,14 +37,6 @@ const Footer = () => {
                 Frames
               </TransitionLink>
             </li>
-            {/* <li className="mt-4">
-              <TransitionLink
-                href="/about"
-                className="hover:text-text-action mb-4"
-              >
-                About
-              </TransitionLink>
-            </li> */}
           </>
         )}
         <li>

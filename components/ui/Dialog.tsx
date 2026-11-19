@@ -123,7 +123,7 @@ export default function Dialog({
               />
             </div>
           </div>
-          <div className="flex-grow overflow-y-auto">{children}</div>
+          <div className="grow overflow-y-auto">{children}</div>
         </div>
       )}
     </dialog>

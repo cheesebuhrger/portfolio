@@ -234,7 +234,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
   return (
     <section
       ref={ref}
-      className="overall-container relative w-screen overflow-hidden"
+      className="overall-container relative w-full overflow-hidden"
     >
       {first && (
         <div className="project-image-fix-container w-1/2 z-[10] fixed bottom-0 hidden">
@@ -255,7 +255,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
         </div>
       )}
 
-      <div className="index-intro relative z-[5] w-screen h-screen flex flex-col pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-8 items-end bg-surface-primary border-b border-border-tertiary">
+      <div className="index-intro relative z-[5] w-full h-screen flex flex-col pt-16 md:pt-20 lg:pt-24 pb-32 md:pb-8 items-end bg-surface-primary border-b border-border-tertiary">
         <div className="index-intro-out relative p-4 md:p-6 lg:p-8 w-full h-full flex md:grid flex-col md:grid-cols-2 gap-8 md:gap-6 lg:gap-8 justify-center md:items-center">
           <SplitReveal
             as="h1"
@@ -309,7 +309,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
         </div>
       </div>
 
-      <div id="projects" className="index-projects relative w-screen">
+      <div id="projects" className="index-projects relative w-full">
         {projects.map((project, i) => {
           const isFirst = i === 0;
           return (

@@ -19,7 +19,7 @@ interface QuoteProps {
   content: QuoteContent;
 }
 
-const QuoteBlock: React.FC<QuoteProps> = ({ writer, content }) => {
+const QuoteBlock = ({ writer, content }: QuoteProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -27,7 +27,7 @@ const QuoteBlock: React.FC<QuoteProps> = ({ writer, content }) => {
       <div className="col-span-1 lg:col-start-2 flex flex-row gap-6">
         <div className={`flex flex-col ${writer?.image ? "gap-8" : "gap-2"}`}>
           {writer && (
-            <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-md overflow-hidden flex-shrink-0">
+            <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-md overflow-hidden shrink-0">
               {writer.image && (
                 <Image
                   src={writer.image}

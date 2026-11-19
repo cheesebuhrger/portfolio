@@ -20,6 +20,8 @@ interface ImageProps extends BaseMediaProps {
   height?: number;
   /** Rendered-width hint for responsive image selection (with fill). */
   sizes?: string;
+  /** Serve the original file instead of a resized copy (keeps film grain). */
+  unoptimized?: boolean;
 }
 
 interface VideoProps extends BaseMediaProps {
@@ -34,7 +36,7 @@ interface VideoProps extends BaseMediaProps {
 
 type MediaProps = ImageProps | VideoProps;
 
-const Media: React.FC<MediaProps> = (props) => {
+const Media = (props: MediaProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const mediaClassName = `w-full h-full ${props.objectFit ?? "object-cover"}`;
@@ -69,6 +71,7 @@ const Media: React.FC<MediaProps> = (props) => {
       {...(props.width && props.height
         ? { width: props.width, height: props.height }
         : { fill: true, sizes: props.sizes })}
+      unoptimized={props.unoptimized}
       className={mediaClassName}
     />
   );
