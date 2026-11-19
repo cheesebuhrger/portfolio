@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import Media from "@/components/ui/Media";
 import TransitionLink from "@/components/layout/TransitionLink";
@@ -15,275 +16,105 @@ interface EndProps {
   related: ProjectSummary[];
 }
 
+/** The markup always renders five process items, alternating sides. */
+const PROCESS_COUNT = 5;
+const PANELS = [1, 2, 3];
+const CLIP_HIDDEN = "polygon(0 0, 100% 0, 100% 0, 0 0)";
+const CLIP_SHOWN = "polygon(0 0, 100% 0, 100% 112%, 0 112%)";
+
 const End = ({ process, image, related }: EndProps) => {
-  useGSAP(() => {
-    const processTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".panel-1-container",
-        start: "top 90%",
-        toggleActions: "play none none reverse",
-      },
-    });
+  const sectionRef = useRef<HTMLElement>(null);
 
-    // Large text animations
-    gsap.set(".panel-1", {
-      yPercent: -100,
-    });
-    gsap.set(".panel-2", {
-      yPercent: -100,
-    });
-    gsap.set(".panel-3", {
-      yPercent: -100,
-    });
-    gsap.to(".panel-1", {
-      scrollTrigger: {
-        trigger: ".panel-1-container",
-        start: "top bottom",
-        end: "bottom bottom",
-        scrub: true,
-        pin: true,
-      },
-    });
-    gsap.to(".panel-2", {
-      scrollTrigger: {
-        trigger: ".panel-2-container",
-        start: "top bottom",
-        end: "bottom bottom",
-        scrub: true,
-        pin: true,
-      },
-    });
-    gsap.to(".panel-3", {
-      scrollTrigger: {
-        trigger: ".panel-3-container",
-        start: "top bottom",
-        end: "bottom bottom",
-        scrub: true,
-        pin: true,
-      },
-    });
-
-    gsap.to(".process-fade", {
-      opacity: 0.1,
-      scrollTrigger: {
-        trigger: ".panel-2-container",
-        start: "top bottom",
-        end: "bottom bottom",
-        scrub: true,
-      },
-    });
-
-    // Split type animation setup
-    const processItems =
-      document.querySelectorAll<HTMLElement>(".process-item");
-    processItems.forEach((item) => {
-      // .line-mask (clip-path reveal) > .line (slides up, un-skews)
-      const split = SplitText.create(item, {
-        type: "lines",
-        mask: "lines",
-        linesClass: "line",
+  useGSAP(
+    () => {
+      const processTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".panel-1-container",
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        },
       });
-      // The animated clip-path masks instead of SplitText's overflow: clip.
-      gsap.set(split.masks, { overflow: "visible" });
 
-      // Initial state for lines
-      gsap.set(split.lines, {
-        y: "100%",
-        display: "block",
+      // Large text animations
+      for (const n of PANELS) {
+        gsap.set(`.panel-${n}`, { yPercent: -100 });
+      }
+      for (const n of PANELS) {
+        gsap.to(`.panel-${n}`, {
+          scrollTrigger: {
+            trigger: `.panel-${n}-container`,
+            start: "top bottom",
+            end: "bottom bottom",
+            scrub: true,
+            pin: true,
+          },
+        });
+      }
+
+      gsap.to(".process-fade", {
+        opacity: 0.1,
+        scrollTrigger: {
+          trigger: ".panel-2-container",
+          start: "top bottom",
+          end: "bottom bottom",
+          scrub: true,
+        },
       });
-    });
 
-    const processItemsDuration = 1;
-    const processEase = "power2.out";
-    const processSkewDelay = 0.25;
-    const processItemsTighten = ">-0.9";
+      // Split type animation setup
+      gsap.utils.toArray<HTMLElement>(".process-item").forEach((item) => {
+        // .line-mask (clip-path reveal) > .line (slides up, un-skews)
+        const split = SplitText.create(item, {
+          type: "lines",
+          mask: "lines",
+          linesClass: "line",
+        });
+        // The animated clip-path masks instead of SplitText's overflow: clip.
+        gsap.set(split.masks, { overflow: "visible" });
 
-    // Process timeline with split type animations
-    processTimeline
-      .fromTo(
-        ".process-item-1",
-        {
-          xPercent: 100,
-        },
-        {
-          xPercent: 0,
-          ease: processEase,
-          duration: processItemsDuration,
-        }
-      )
-      .fromTo(
-        ".process-item-1 .line-mask > .line",
-        {
+        // Initial state for lines
+        gsap.set(split.lines, {
           y: "100%",
-          skewX: 30,
-        },
-        {
-          y: 0,
-          skewX: 0,
-          duration: processItemsDuration,
-          ease: processEase,
-          delay: processSkewDelay,
-        },
-        "<"
-      )
-      .fromTo(
-        ".process-item-1 .line-mask",
-        { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
-        {
-          clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
-          duration: processItemsDuration,
-          ease: processEase,
-        },
-        "<"
-      )
-      .fromTo(
-        ".process-item-2",
-        {
-          xPercent: -100,
-        },
-        {
-          xPercent: 0,
-          ease: processEase,
-          duration: processItemsDuration,
-        },
-        processItemsTighten
-      )
-      .fromTo(
-        ".process-item-2 .line-mask > .line",
-        {
-          y: "100%",
-          skewX: -30,
-        },
-        {
-          y: 0,
-          skewX: 0,
-          duration: processItemsDuration,
-          ease: processEase,
-          delay: processSkewDelay,
-        },
-        "<"
-      )
-      .fromTo(
-        ".process-item-2 .line-mask",
-        { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
-        {
-          clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
-          duration: processItemsDuration,
-          ease: processEase,
-        },
-        "<"
-      )
-      .fromTo(
-        ".process-item-3",
-        {
-          xPercent: 100,
-        },
-        { xPercent: 0, ease: processEase, duration: processItemsDuration },
-        processItemsTighten
-      )
-      .fromTo(
-        ".process-item-3 .line-mask > .line",
-        {
-          y: "100%",
-          skewX: 30,
-        },
-        {
-          y: 0,
-          skewX: 0,
-          duration: processItemsDuration,
-          ease: processEase,
-          delay: processSkewDelay,
-        },
-        "<"
-      )
-      .fromTo(
-        ".process-item-3 .line-mask",
-        { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
-        {
-          clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
-          duration: processItemsDuration,
-          ease: processEase,
-        },
-        "<"
-      )
-      .fromTo(
-        ".process-item-4",
-        {
-          xPercent: -100,
-        },
-        {
-          xPercent: 0,
-          ease: processEase,
-          duration: processItemsDuration,
-        },
-        processItemsTighten
-      )
-      .fromTo(
-        ".process-item-4 .line-mask > .line",
-        {
-          y: "100%",
-          skewX: -30,
-        },
-        {
-          y: 0,
-          skewX: 0,
-          duration: processItemsDuration,
-          ease: processEase,
-          delay: processSkewDelay,
-        },
-        "<"
-      )
-      .fromTo(
-        ".process-item-4 .line-mask",
-        { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
-        {
-          clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
-          duration: processItemsDuration,
-          ease: processEase,
-        },
-        "<"
-      )
-      .fromTo(
-        ".process-item-5",
-        {
-          xPercent: 100,
-        },
-        {
-          xPercent: 0,
-          ease: processEase,
-          duration: processItemsDuration,
-        },
-        processItemsTighten
-      )
-      .fromTo(
-        ".process-item-5 .line-mask > .line",
-        {
-          y: "100%",
-          skewX: 30,
-        },
-        {
-          y: 0,
-          skewX: 0,
-          duration: processItemsDuration,
-          ease: processEase,
-          delay: processSkewDelay,
-        },
-        "<"
-      )
-      .fromTo(
-        ".process-item-5 .line-mask",
-        { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
-        {
-          clipPath: "polygon(0 0, 100% 0, 100% 112%, 0 112%)",
-          duration: processItemsDuration,
-          ease: processEase,
-        },
-        "<"
-      );
-  });
+          display: "block",
+        });
+      });
+
+      const duration = 1;
+      const ease = "power2.out";
+      const skewDelay = 0.25;
+      const tighten = ">-0.9";
+
+      // Each item slides in from its side while its lines rise, un-skew and
+      // unmask. Odd items (1, 3, 5) enter from the right, even ones from the left.
+      for (let i = 0; i < PROCESS_COUNT; i++) {
+        const from = i % 2 === 0 ? 1 : -1;
+        const item = `.process-item-${i + 1}`;
+        processTimeline
+          .fromTo(
+            item,
+            { xPercent: 100 * from },
+            { xPercent: 0, ease, duration },
+            i === 0 ? undefined : tighten,
+          )
+          .fromTo(
+            `${item} .line-mask > .line`,
+            { y: "100%", skewX: 30 * from },
+            { y: 0, skewX: 0, duration, ease, delay: skewDelay },
+            "<",
+          )
+          .fromTo(
+            `${item} .line-mask`,
+            { clipPath: CLIP_HIDDEN },
+            { clipPath: CLIP_SHOWN, duration, ease },
+            "<",
+          );
+      }
+    },
+    { scope: sectionRef },
+  );
 
   return (
-    <section>
+    <section ref={sectionRef}>
       <div
         className="z-10 relative w-full h-screen overflow-hidden bg-surface-secondary bg-cover bg-center md:bg-fixed"
         style={{ backgroundImage: `url(${image})` }}
