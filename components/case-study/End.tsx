@@ -5,19 +5,18 @@ import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import Media from "@/components/ui/Media";
 import TransitionLink from "@/components/layout/TransitionLink";
 import type { ProjectSummary } from "@/lib/content";
+import type { Project } from "@/lib/types";
 import { SITE } from "@/lib/seo";
 
 interface EndProps {
   /** Full-bleed image above "The Nitty Gritty". */
   image: string;
   /** Five process questions, laid out alternating right/left bottom-up. */
-  process: string[];
+  process: Project["end"]["process"];
   /** "Explore more" cards. */
   related: ProjectSummary[];
 }
 
-/** The markup always renders five process items, alternating sides. */
-const PROCESS_COUNT = 5;
 const PANELS = [1, 2, 3];
 const CLIP_HIDDEN = "polygon(0 0, 100% 0, 100% 0, 0 0)";
 const CLIP_SHOWN = "polygon(0 0, 100% 0, 100% 112%, 0 112%)";
@@ -84,7 +83,7 @@ const End = ({ process, image, related }: EndProps) => {
 
       // Each item slides in from its side while its lines rise, un-skew and
       // unmask. Odd items (1, 3, 5) enter from the right, even ones from the left.
-      for (let i = 0; i < PROCESS_COUNT; i++) {
+      for (let i = 0; i < process.length; i++) {
         const from = i % 2 === 0 ? 1 : -1;
         const item = `.process-item-${i + 1}`;
         processTimeline

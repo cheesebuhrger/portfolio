@@ -115,7 +115,8 @@ export type Project = {
   end: {
     /** Full-bleed image before "The Nitty Gritty". */
     image: string;
-    process: string[];
+    /** Exactly five: the End layout places them by hand, alternating sides. */
+    process: [string, string, string, string, string];
   };
 };
 
